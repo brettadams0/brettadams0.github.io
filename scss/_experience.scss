@@ -144,5 +144,18 @@
       flex-direction: column;
       align-items: flex-start;
     }
+    .timeline-item {
+      padding: 1.25rem 1.25rem;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .project-left.icon-tile {
+    min-height: 200px;
+
+    i {
+      font-size: 3.5rem;
+    }
   }
 }
