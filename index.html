@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,6 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Brett Adams | Software Engineer</title>
+
+    <!-- SEO / social preview -->
+    <meta name="description" content="Brett Adams — Software Engineering co-op student at the University of Windsor, currently at Geotab. Portfolio of projects, work experience, and writing." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brettadams0.github.io/" />
+    <meta property="og:title" content="Brett Adams | Software Engineer" />
+    <meta property="og:description" content="Software Engineering co-op student at the University of Windsor, currently at Geotab. Portfolio of projects, work experience, and writing." />
+    <meta property="og:image" content="https://brettadams0.github.io/dist/img/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Brett Adams | Software Engineer" />
+    <meta name="twitter:description" content="Software Engineering co-op student at the University of Windsor, currently at Geotab." />
+    <meta name="twitter:image" content="https://brettadams0.github.io/dist/img/logo.png" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,6 +69,11 @@
             </a>
             <ul class="hide-for-mobile nav-links flex">
               <li>
+                <a href="#experience" class="link"
+                  ><i class="fas fa-briefcase"></i> Experience</a
+                >
+              </li>
+              <li>
                 <a href="#projects" class="link"
                   ><i class="fas fa-code"></i> Projects</a
                 >
@@ -85,6 +104,11 @@
             <div class="container">
               <div class="mobile-menu-links">
                 <ul class="flex">
+                  <li>
+                    <a href="#experience" class="link blue-hover"
+                      >Experience</a
+                    >
+                  </li>
                   <li>
                     <a href="#projects" class="link blue-hover"
                       >Projects</a
@@ -126,10 +150,13 @@
               Hi, I'm <span class="main-font text-blue">Brett</span>
             </h1>
             <p class="student" id="student">
-              I'm currently a student at <a href="https://www.uwindsor.ca" class="blue-link-underline" target="_blank">The University of Windsor.</a>
+              Software Engineering student at <a href="https://www.uwindsor.ca" class="blue-link-underline" target="_blank">the University of Windsor</a>, currently on co-op at <a href="https://www.geotab.com" class="blue-link-underline" target="_blank">Geotab</a>.
             </p>
             <div class="hero-btns">
               <a href="#projects" class="btn-blue"><i class="fas fa-code"></i> Projects</a>
+              <a href="assets/resume/Resume_BrettAdams.pdf" class="btn-blue-outline mx-1"
+                target="_blank"><i class="fas fa-file-download"></i> Resume</a
+              >
               <a href="https://github.com/brettadams0" class="btn-blue-outline mx-1" id="projects-btn"
                 target="_blank"><i class="fab fa-github"></i> Github</a
               >
@@ -159,6 +186,50 @@
 
     </header>
 
+    <!-- EXPERIENCE -->
+    <section id="experience" class="experience">
+      <div class="container">
+        <h2 class="main-font" data-aos="fade-in">Work <span class="text-blue main-font">Experience</span></h2>
+
+        <div class="timeline">
+          <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-header">
+              <h3>Software Engineering Co-op</h3>
+              <span class="timeline-date">May 2026 - Present</span>
+            </div>
+            <p class="timeline-company">Geotab &middot; Oakville, ON</p>
+          </div>
+
+          <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-header">
+              <h3>Developer, Summer Student</h3>
+              <span class="timeline-date">Apr 2024 - Sep 2024</span>
+            </div>
+            <p class="timeline-company">CIMCO Refrigeration &middot; Burlington, ON</p>
+            <ul class="timeline-bullets">
+              <li>Developed and maintained Flask web applications integrating real-time APIs for NHL arenas, including a comprehensive web interface and thermal imagery support system.</li>
+              <li>Designed and delivered hands-on Python training for 20+ employees, building the team's technical capabilities.</li>
+              <li>Engineered a Python automation tool that streamlined data collection for CAG engineers, improving accuracy and operational efficiency.</li>
+              <li>Diagnosed and resolved critical bugs in legacy Python and Visual Basic codebases.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-header">
+              <h3>Digital Solutions, Summer Student</h3>
+              <span class="timeline-date">Apr 2023 - Sep 2023</span>
+            </div>
+            <p class="timeline-company">CIMCO Refrigeration &middot; Burlington, ON</p>
+            <ul class="timeline-bullets">
+              <li>Built Microsoft Power Platform tools to improve operational efficiency and user experience.</li>
+              <li>Worked with SharePoint to automate and streamline internal workflows.</li>
+              <li>Collaborated with cross-functional teams to identify and solve technical challenges.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- PROJECTS -->
     <section id="projects" class="projects">
       <div class="container">
@@ -166,21 +237,39 @@
 
 
         <div class="project-row" data-aos="fade-up">
-          <div class="project-left">
-            <img src="dist/img/spotifywebapi.png" alt="" width="560" height="300">
+          <div class="project-left icon-tile">
+            <i class="fas fa-hockey-puck"></i>
           </div>
           <div class="project-right">
-            <h3>Spotify Stats API</h3>
+            <h3>NHL Arena Web Interface</h3>
             <ul class="tech-stack-list">
               <p class="text-grey"><b>Made with: </b></p>
               <li><span class="iconify" data-icon="logos:python" data-inline="false"></span></li>
-              <li><span class="iconify" data-icon="vscode-icons:file-type-html" data-inline="false"></span></li>
               <li><span class="iconify" data-icon="skill-icons:flask-light" data-inline="false" data-width="30" data-height="30"></span></li>
+              <li><span class="iconify" data-icon="logos:javascript" data-inline="false"></span></li>
             </ul>
-            <p>Utilizes the Spotify Web API to provide users with detailed insights into their Spotify listening habits. With this tool, users can view their top artists, tracks, and genres over various time periods. Additionally, the app offers visualizations of listening trends and personalized statistics to enhance the music streaming experience.</p>
+            <p class="text-grey" style="font-size: 0.85rem; margin-bottom: 0.5rem;"><i>Built during my co-op at CIMCO Refrigeration</i></p>
+            <p>Led development of a Flask web application delivering real-time data and alarm information for NHL arenas, including a thermal imagery support system. Built a Python data aggregation pipeline integrating two APIs into structured, scalable JSON storage.</p>
+          </div>
+        </div>
+
+
+
+        <div class="project-row" data-aos="fade-up">
+          <div class="project-left icon-tile">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <div class="project-right">
+            <h3>TechNest</h3>
+            <ul class="tech-stack-list">
+              <p class="text-grey"><b>Made with: </b></p>
+              <li><span class="iconify" data-icon="logos:php" data-inline="false"></span></li>
+              <li><span class="iconify" data-icon="logos:mysql" data-inline="false"></span></li>
+              <li><span class="iconify" data-icon="vscode-icons:file-type-html" data-inline="false"></span></li>
+            </ul>
+            <p>A full-stack PHP/MySQL e-commerce platform for buying electronics — product catalog, user accounts, an admin dashboard for managing products/users/themes, and three switchable UI themes across a fully responsive design.</p>
             <div class="project-links">
-              <!-- <a href="placeholder" class="btn-blue btn-small" target="_blank"> <i class="fas fa-external-link-alt"></i> Live</a> -->
-              <a href="https://github.com/brettadams0/SpotifyWebAPI" class="btn-blue-outline btn-small mx-1" target="_blank"> <i class="fab fa-github"></i
+              <a href="https://github.com/brettadams0/TechNest" class="btn-blue-outline btn-small mx-1" target="_blank"> <i class="fab fa-github"></i
                 > Code</a>
             </div>
           </div>
@@ -198,9 +287,8 @@
               <p class="text-grey"><b>Made with: </b></p>
               <li><span class="iconify" data-icon="logos:c" data-inline="false"></span></li>
             </ul>
-            <p>MazeFinder is a C++ application that uses a genetic algorithm to solve mazes of size 20x20. This project demonstrates the use of evolutionary techniques to find optimal paths through mazes, leveraging multi-threading for improved performance.</p>
+            <p>A C++ application that solves 20x20 mazes using genetic algorithms, with a custom thread pool for parallel genome fitness evaluation and dynamic mutation/crossover strategies to refine optimal paths.</p>
             <div class="project-links">
-              <!-- <a href="placeholder" class="btn-blue btn-small" target="_blank"> <i class="fas fa-external-link-alt"></i> Live</a> -->
               <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm" class="btn-blue-outline btn-small mx-1" target="_blank"> <i class="fab fa-github"></i
                 > Code</a>
             </div>
@@ -211,25 +299,23 @@
 
         <div class="project-row" data-aos="fade-up">
           <div class="project-left">
-              <div style="background-color: #f0f0f0; width: 100%; max-width: 560px; height: 300px; display: flex; justify-content: center; align-items: center; margin: 0 auto;">
-              <img src="dist/img/drawingapp.jpg" alt="" style="height: auto; max-height: 100%; width: auto; max-width: 100%;">
-              </div>
-              </div>
+            <img src="dist/img/spotifywebapi.png" alt="" width="560" height="300">
+          </div>
           <div class="project-right">
-            <h3>Java Drawing App</h3>
+            <h3>Spotify Stats Viewer</h3>
             <ul class="tech-stack-list">
               <p class="text-grey"><b>Made with: </b></p>
-              <li><span class="iconify" data-icon="logos:java" data-inline="false"></span></li>
+              <li><span class="iconify" data-icon="logos:python" data-inline="false"></span></li>
+              <li><span class="iconify" data-icon="vscode-icons:file-type-html" data-inline="false"></span></li>
+              <li><span class="iconify" data-icon="skill-icons:flask-light" data-inline="false" data-width="30" data-height="30"></span></li>
             </ul>
-            <p>A simple Java application for drawing various shapes like lines, rectangles, and ovals. This application provides a graphical user interface (GUI) for users to draw and manipulate shapes. Allows for saving files with unique data system.</p>
+            <p>A Flask web app using Spotify's Web API with secure OAuth authentication to display users' top artists, tracks, genres, and playlists.</p>
             <div class="project-links">
-              <!-- <a href="placeholder" class="btn-blue btn-small" target="_blank"> <i class="fas fa-external-link-alt"></i> Live</a> -->
-              <a href="https://github.com/brettadams0/java-drawing-app" class="btn-blue-outline btn-small mx-1" target="_blank"> <i class="fab fa-github"></i
+              <a href="https://github.com/brettadams0/SpotifyWebAPI" class="btn-blue-outline btn-small mx-1" target="_blank"> <i class="fab fa-github"></i
                 > Code</a>
             </div>
           </div>
         </div>
-
 
         </div>
       </div>
@@ -258,6 +344,8 @@
           <li><span class="iconify" data-icon="skill-icons:flask-light" data-inline="false" data-width="90px" data-height="90px"></span><span>Flask</span></li>
           <li><span class="iconify" data-icon="flat-color-icons:linux" data-inline="false" data-width="90px" data-height="90px"></span><span>Linux</span></li>
           <li><span class="iconify" data-icon="logos:c" data-inline="false" data-width="90px" data-height="90px"></span><span>C</span></li>
+          <li><span class="iconify" data-icon="logos:c-plusplus" data-inline="false" data-width="90px" data-height="90px"></span><span>C++</span></li>
+          <li><span class="iconify" data-icon="logos:docker-icon" data-inline="false" data-width="90px" data-height="90px"></span><span>Docker</span></li>
           <li><span class="iconify" data-icon="logos:bootstrap" data-inline="false" data-width="90px" data-height="90px"></span><span>Bootstrap</span></li>
                   
         </ul>
@@ -288,6 +376,22 @@
               </div>
             </div>
         </div>
+      </div>
+    </section>
+
+    <!-- BLOG TEASER -->
+    <section id="blog-teaser" class="home-blog-teaser">
+      <div class="container">
+        <h2 class="main-font" data-aos="fade-in">From the <span class="text-blue main-font">Blog</span></h2>
+        <div class="home-blog-list">
+          {% for post in site.posts limit:3 %}
+          <a class="home-blog-card" href="{{ post.url }}" data-aos="fade-up">
+            <p class="home-blog-date">{{ post.date | date: "%B %-d, %Y" }}</p>
+            <h3>{{ post.title }}</h3>
+          </a>
+          {% endfor %}
+        </div>
+        <a href="blog/" class="home-blog-cta text-blue">Read more on the blog &rarr;</a>
       </div>
     </section>
 

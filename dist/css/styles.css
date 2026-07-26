@@ -1016,3 +1016,132 @@ header .seperator-skew svg .fill-white {
     margin: 0 1rem;
   }
 }/*# sourceMappingURL=styles.css.map */
+
+/* --- Experience section, icon-tile project cards, homepage blog teaser --- */
+/* Compiled by hand from scss/_experience.scss (no local Sass build available) */
+
+.experience {
+  background: white;
+  padding: 3rem 0 1rem;
+}
+.experience h2,
+.experience h2 span {
+  text-align: center;
+  font-weight: bold;
+}
+.experience .container {
+  max-width: 900px;
+}
+.experience .timeline {
+  margin-top: 3rem;
+}
+.experience .timeline-item {
+  box-shadow: 0 0.15rem 0.6rem rgba(43, 52, 56, 0.15);
+  border-radius: 3px;
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.5rem;
+  border-left: 3px solid #3b82f6;
+}
+.experience .timeline-item:last-child {
+  margin-bottom: 0;
+}
+.experience .timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.experience .timeline-header h3 {
+  font-size: 1.15rem;
+  color: black;
+}
+.experience .timeline-date {
+  color: #3b82f6;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.experience .timeline-company {
+  color: grey;
+  margin: 0.25rem 0 1rem;
+  font-weight: 600;
+}
+.experience .timeline-bullets {
+  padding-left: 1.25rem;
+  color: #333;
+}
+.experience .timeline-bullets li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.project-left.icon-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #181a1b;
+  border: 1px solid lightgray;
+  min-height: 300px;
+}
+.project-left.icon-tile i {
+  font-size: 5rem;
+  color: #3b82f6;
+}
+
+.home-blog-teaser {
+  background: white;
+  padding: 1rem 0 3rem;
+}
+.home-blog-teaser h2,
+.home-blog-teaser h2 span {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+.home-blog-teaser .home-blog-list {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.home-blog-teaser .home-blog-card {
+  flex: 1 1 260px;
+  max-width: 320px;
+  display: block;
+  padding: 1.25rem;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  box-shadow: 0 0.15rem 0.6rem rgba(43, 52, 56, 0.1);
+  color: black;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.home-blog-teaser .home-blog-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.3rem 1rem rgba(43, 52, 56, 0.15);
+}
+.home-blog-teaser .home-blog-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+.home-blog-teaser .home-blog-date {
+  color: #3b82f6;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.home-blog-teaser .home-blog-cta {
+  display: block;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 600px) {
+  .experience .timeline-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
