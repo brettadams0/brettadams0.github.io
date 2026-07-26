@@ -1,0 +1,8 @@
+title: Brett Adams
+description: Notes on software engineering, co-op life, and things I'm building.
+url: "https://brettadams0.github.io"
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+exclude:
+  - scss
+  - README.md

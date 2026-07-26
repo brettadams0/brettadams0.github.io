@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% if page.title %}{{ page.title }} | {% endif %}Brett Adams</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;600;700;800;900&display=swap">
+
+    <!-- Font Awesome icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+    />
+
+    <!-- Animation library styles -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link rel="stylesheet" type="text/css" href="/dist/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/blog.css" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBYB5MK388"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EBYB5MK388');
+    </script>
+  </head>
+  <body>
+    <header id="blog-header">
+      <nav id="nav">
+        <div class="container nav-container">
+          <a href="/index.html" id="logo">
+            <img src="/dist/img/logo.png" alt="logo">
+          </a>
+          <ul class="hide-for-mobile nav-links flex">
+            <li><a href="/index.html#projects" class="link"><i class="fas fa-code"></i> Projects</a></li>
+            <li><a href="/index.html#skills" class="link"><i class="fas fa-tools"></i> Skills</a></li>
+            <li><a href="/index.html#education" class="link"><i class="fas fa-user-graduate"></i> Education</a></li>
+            <li><a href="/blog/" class="link"><i class="fas fa-pen"></i> Blog</a></li>
+            <li><a href="/index.html#contact" class="link"><i class="fas fa-envelope"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="mobile-menu hide-for-desktop">
+          <div class="container">
+            <div class="mobile-menu-links">
+              <ul class="flex">
+                <li><a href="/index.html#projects" class="link blue-hover">Projects</a></li>
+                <li><a href="/index.html#skills" class="link blue-hover">Skills</a></li>
+                <li><a href="/index.html#education" class="link blue-hover">Education</a></li>
+                <li><a href="/blog/" class="link blue-hover">Blog</a></li>
+                <li><a href="/index.html#contact" class="link blue-hover">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="blog-main container">
+      {{ content }}
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="footer-flex">
+          <img src="/dist/img/logo.png" alt="logo" id="logo-footer">
+          <div class="footer-icon-links">
+            <a href="https://github.com/brettadams0" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/BrettA/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+            <a href="mailto:adamsbrett00@gmail.com" target="_blank"><i class="fas fa-envelope fa-2x"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <a id="backToTopBtn" class="btn-blue">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      const backToTopBtn = $("#backToTopBtn");
+      $(window).scroll(function () {
+        if ($(window).scrollTop() > 300) {
+          backToTopBtn.addClass("show");
+        } else {
+          backToTopBtn.removeClass("show");
+        }
+      });
+      backToTopBtn.on("click", function (e) {
+        e.preventDefault();
+        $("html, body").animate({ scrollTop: 0 }, "300");
+      });
+    </script>
+
+    <!-- AOS Animations -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>
