@@ -74,6 +74,8 @@ header {
           ul {
             justify-content: center;
             align-items: center;
+            flex-wrap: wrap;
+            row-gap: 0.5rem;
             list-style-type: none;
             li {
               margin: 0rem 1rem;
@@ -138,6 +140,18 @@ header {
       white-space: nowrap;
       text-align: center;
       margin-top: 1rem;
+
+      @media screen and (max-width: 500px) {
+        white-space: normal;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+
+        .mx-1 {
+          margin: 0;
+        }
+      }
     }
   }
 
