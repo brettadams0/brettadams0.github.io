@@ -1,0 +1,11 @@
+---
+layout: default
+---
+<article class="blog-post" data-aos="fade-up">
+  <a href="/blog/" class="back-link">&larr; Back to Blog</a>
+  <h1 class="main-font">{{ page.title }}</h1>
+  <p class="post-date">{{ page.date | date: "%B %-d, %Y" }}</p>
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>

@@ -1,0 +1,21 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+<div class="blog-hero" data-aos="fade-in">
+  <h1 class="main-font">Brett's <span class="text-blue main-font">Blog</span></h1>
+  <p>Notes on software engineering, the Geotab co-op, and things I'm building on the side.</p>
+</div>
+
+<div class="post-list">
+  {% for post in site.posts %}
+  <a class="post-card" href="{{ post.url }}" data-aos="fade-up">
+    <h2>{{ post.title }}</h2>
+    <p class="post-date">{{ post.date | date: "%B %-d, %Y" }}</p>
+    {% if post.excerpt %}<p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>{% endif %}
+  </a>
+  {% else %}
+  <p>No posts yet — check back soon.</p>
+  {% endfor %}
+</div>
