@@ -376,6 +376,7 @@ header nav .nav-container #logo {
 }
 header nav .nav-container #logo img {
   width: 250px;
+  height: auto;
 }
 header nav .nav-container .nav-links {
   z-index: 1000;
@@ -615,6 +616,7 @@ header .seperator-skew svg .fill-white {
 @media screen and (max-width: 768px) {
   header nav .nav-container #logo img {
     width: 200px;
+    height: auto;
   }
 }
 @media screen and (max-width: 500px) {
@@ -1113,6 +1115,7 @@ header .seperator-skew svg .fill-white {
 }
 .footer .footer-flex #logo-footer {
   width: 200px;
+  height: auto;
 }
 .footer .footer-flex .top-scroll-button {
   cursor: pointer;

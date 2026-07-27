@@ -8,7 +8,10 @@
     justify-content: space-between;
 
     #logo-footer {
+      // Same fix as the nav logo: width-only CSS let the height="560"
+      // HTML attribute win unopposed, squashing the aspect ratio.
       width: 200px;
+      height: auto;
     }
 
     .top-scroll-button {
