@@ -8,7 +8,7 @@ You can view the live website [here.](https://brettadams0.github.io/)
 - HTML5
 - CSS3
 - JavaScript
-- jQuery
+- Jekyll (blog, hosted at `/blog/`)
 - Particles.js
 - GSAP animations
 - AOS Animations

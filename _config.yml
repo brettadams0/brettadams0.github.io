@@ -1,8 +1,21 @@
-title: Brett Adams
-description: Notes on software engineering, co-op life, and things I'm building.
+title: Brett Adams | Data Analyst & Software Engineer
+description: >-
+  Data Analyst Intern at Geotab (BigQuery, Airflow, SQL), CS Software
+  Engineering student at the University of Windsor. Portfolio of experience,
+  projects, and writing.
 url: "https://brettadams0.github.io"
+logo: /dist/img/logo.png
+author:
+  name: Brett Adams
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+social:
+  links:
+    - https://github.com/brettadams0
+    - https://www.linkedin.com/in/bretta/
 exclude:
   - scss
   - README.md

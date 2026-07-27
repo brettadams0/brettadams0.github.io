@@ -31,15 +31,19 @@
         font-size: 1.25rem;
       }
 
+      // The "Made with:" label is a sibling <p> before this list now
+      // (a <p> isn't valid as a direct child of <ul>), so it needs its
+      // own spacing instead of the flex-row margin it used to get as a
+      // list item.
+      > p.text-grey {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
       .tech-stack-list {
         display: flex;
         flex-wrap: wrap;
         list-style-type: none;
-        margin-top: 1rem;
-
-        p {
-          margin-right: 1rem;
-        }
 
         li {
           margin-right: 20px;

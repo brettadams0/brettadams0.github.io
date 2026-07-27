@@ -2,6 +2,12 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -52,7 +58,7 @@ a {
 }
 
 .text-blue {
-  color: #3b82f6;
+  color: #2563eb;
 }
 
 .text-white {
@@ -68,7 +74,7 @@ a {
 }
 
 .bg-blue {
-  background-color: #3b82f6;
+  background-color: #2563eb;
 }
 
 .bg-dark-grey {
@@ -90,17 +96,17 @@ a {
 
 .btn-blue {
   color: white;
-  background-color: #3b82f6;
-  border: 2px solid #3b82f6;
+  background-color: #2563eb;
+  border: 2px solid #2563eb;
 }
 .btn-dark {
   color: white;
   background-color: #181a1b;
 }
 .btn-blue-outline {
-  color: #3b82f6;
+  color: #2563eb;
   background-color: transparent;
-  border: 2px solid #3b82f6;
+  border: 2px solid #2563eb;
 }
 .btn-blue:hover {
   transition: all 0.3s ease;
@@ -109,7 +115,7 @@ a {
 }
 .btn-blue-outline:hover {
   color: white;
-  background-color: #3b82f6;
+  background-color: #2563eb;
 }
 .btn-small {
   padding: 0.5rem 1rem;
@@ -136,13 +142,13 @@ a {
 }
 
 .btn-email {
-  --primary: #3b82f6;
+  --primary: #2563eb;
   --primary-dark: #0455d8;
   --primary-darkest: #013281;
   --shadow: rgba(0, 0, 0, 0.3);
   --text: #fff;
   --text-opacity: 1;
-  --success: #3b82f6;
+  --success: #2563eb;
   --success-x: -12;
   --success-stroke: 14;
   --success-opacity: 0;
@@ -154,7 +160,7 @@ a {
   --plane-x: 0;
   --plane-y: 0;
   --plane-opacity: 1;
-  --trails: rgba(59, 130, 246, 0.15);
+  --trails: rgba(37, 99, 235, 0.15);
   --trails-stroke: 57;
   --left-wing-background: var(--primary);
   --left-wing-first-x: 0;
@@ -399,7 +405,7 @@ header nav .nav-container .nav-links .link::after {
   height: 2px;
   top: 3px;
   margin: auto;
-  background: #3b82f6;
+  background: #2563eb;
   transition: width 0.3s ease;
 }
 header nav .nav-container .nav-links .link:hover::after {
@@ -430,7 +436,7 @@ header nav .mobile-menu .container .mobile-menu-links ul .link::after {
   height: 2px;
   top: 3px;
   margin: auto;
-  background: #3b82f6;
+  background: #2563eb;
   transition: width 0.3s ease;
 }
 header nav .mobile-menu .container .mobile-menu-links ul .link:hover::after {
@@ -537,8 +543,8 @@ header .scroll-btn-container div a span {
   display: block;
   height: 20px;
   width: 20px;
-  border-bottom: 2px solid #3b82f6;
-  border-right: 2px solid #3b82f6;
+  border-bottom: 2px solid #2563eb;
+  border-right: 2px solid #2563eb;
   transform: rotate(45deg);
   margin: -20px 0;
   animation: animate 2s infinite;
@@ -654,14 +660,14 @@ header .seperator-skew svg .fill-white {
 .projects .project-row .project-right h3 {
   font-size: 1.25rem;
 }
+.projects .project-row .project-right > p.text-grey {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
 .projects .project-row .project-right .tech-stack-list {
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
-  margin-top: 1rem;
-}
-.projects .project-row .project-right .tech-stack-list p {
-  margin-right: 1rem;
 }
 .projects .project-row .project-right .tech-stack-list li {
   margin-right: 20px;
@@ -753,6 +759,7 @@ header .seperator-skew svg .fill-white {
 .education .container .education-card .education-card-column .card-column-large > * {
   margin: 0.25rem 0;
 }
+.education .container .education-card .education-card-column .card-column-large h3,
 .education .container .education-card .education-card-column .card-column-large h4 {
   font-weight: normal;
 }
@@ -890,7 +897,7 @@ header .seperator-skew svg .fill-white {
 }
 .contact .card-container .card i {
   font-size: 3.5rem;
-  color: #3b82f6;
+  color: #2563eb;
   margin-bottom: 1rem;
   transition: 0.4s;
 }
@@ -997,15 +1004,15 @@ header .seperator-skew svg .fill-white {
   transition: 0.3s;
 }
 .footer .footer-flex .top-scroll-button:hover {
-  color: #3b82f6;
-  border: 3px solid #3b82f6;
+  color: #2563eb;
+  border: 3px solid #2563eb;
 }
 .footer .footer-flex .footer-icon-links a {
   margin-left: 2rem;
   transition: 0.3s;
 }
 .footer .footer-flex .footer-icon-links a:hover {
-  color: #3b82f6;
+  color: #2563eb;
 }
 .footer .footer-flex .footer-icon-links a i {
   transition: 0.3s;
@@ -1054,7 +1061,7 @@ header .seperator-skew svg .fill-white {
   border-radius: 3px;
   padding: 1.75rem 2rem;
   margin-bottom: 1.5rem;
-  border-left: 3px solid #3b82f6;
+  border-left: 3px solid #2563eb;
 }
 .experience .timeline-item:last-child {
   margin-bottom: 0;
@@ -1071,7 +1078,7 @@ header .seperator-skew svg .fill-white {
   color: black;
 }
 .experience .timeline-date {
-  color: #3b82f6;
+  color: #2563eb;
   font-size: 0.85rem;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -1101,7 +1108,7 @@ header .seperator-skew svg .fill-white {
 }
 .project-left.icon-tile i {
   font-size: 5rem;
-  color: #3b82f6;
+  color: #2563eb;
 }
 
 .home-blog-teaser {
@@ -1142,7 +1149,7 @@ header .seperator-skew svg .fill-white {
   margin-bottom: 0.4rem;
 }
 .home-blog-teaser .home-blog-date {
-  color: #3b82f6;
+  color: #2563eb;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 1px;

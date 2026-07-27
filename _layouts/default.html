@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% if page.title %}{{ page.title }} | {% endif %}Brett Adams</title>
+    <link rel="icon" type="image/png" href="/dist/img/logo.png" />
+    {% seo %}
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +23,12 @@
     />
 
     <!-- Animation library styles -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css"
+      integrity="sha384-6oNXtl81GMcKAnWPPXinWlPskKUQ0NGG1/XeyMfC5RgCJKPc03w0rHVt1jyoJLf0"
+      crossorigin="anonymous"
+    />
 
     <link rel="stylesheet" type="text/css" href="/dist/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/blog.css" />
@@ -41,7 +47,7 @@
       <nav id="nav">
         <div class="container nav-container">
           <a href="/index.html" id="logo">
-            <img src="/dist/img/logo.png" alt="logo">
+            <img src="/dist/img/logo.png" alt="logo" width="1563" height="560">
           </a>
           <ul class="hide-for-mobile nav-links flex">
             <li><a href="/index.html#projects" class="link"><i class="fas fa-code"></i> Projects</a></li>
@@ -74,40 +80,55 @@
     <footer id="footer" class="footer">
       <div class="container">
         <div class="footer-flex">
-          <img src="/dist/img/logo.png" alt="logo" id="logo-footer">
+          <img src="/dist/img/logo.png" alt="logo" id="logo-footer" width="1563" height="560">
           <div class="footer-icon-links">
-            <a href="https://github.com/brettadams0" target="_blank"><i class="fab fa-github fa-2x"></i></a>
-            <a href="https://www.linkedin.com/in/BrettA/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-            <a href="mailto:adamsbrett00@gmail.com" target="_blank"><i class="fas fa-envelope fa-2x"></i></a>
+            <a href="https://github.com/brettadams0" aria-label="GitHub" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/BrettA/" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+            <a href="mailto:adamsbrett00@gmail.com" aria-label="Email" target="_blank"><i class="fas fa-envelope fa-2x"></i></a>
           </div>
         </div>
       </div>
     </footer>
 
-    <a id="backToTopBtn" class="btn-blue">
+    <button id="backToTopBtn" class="btn-blue" aria-label="Back to top" type="button">
       <i class="fa fa-chevron-up"></i>
-    </a>
+    </button>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-      const backToTopBtn = $("#backToTopBtn");
-      $(window).scroll(function () {
-        if ($(window).scrollTop() > 300) {
-          backToTopBtn.addClass("show");
+      const backToTopBtn = document.getElementById("backToTopBtn");
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add("show");
         } else {
-          backToTopBtn.removeClass("show");
+          backToTopBtn.classList.remove("show");
         }
       });
-      backToTopBtn.on("click", function (e) {
+      backToTopBtn.addEventListener("click", function (e) {
         e.preventDefault();
-        $("html, body").animate({ scrollTop: 0 }, "300");
+        var prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+        window.scrollTo({
+          // "auto" defers to CSS `scroll-behavior`, which is smooth site-wide —
+          // "instant" is required to actually bypass that for reduced-motion users.
+          top: 0,
+          behavior: prefersReducedMotion ? "instant" : "smooth",
+        });
       });
     </script>
 
     <!-- AOS Animations -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script
+      src="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.js"
+      integrity="sha384-ZGo5k5ISlEzWLoXyt+lnvKt9j03Z7GkxXh14zLqVy098XJhcdKHjL8pQYVMI8WiH"
+      crossorigin="anonymous"
+    ></script>
     <script>
-      AOS.init();
+      AOS.init({
+        disable: function () {
+          return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        }
+      });
     </script>
   </body>
 </html>
