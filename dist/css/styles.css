@@ -578,8 +578,9 @@ header .socials ul li a {
   width: 100%;
   padding: 15px 20px;
 }
-header .socials ul li a i {
-  font-size: 1.75rem;
+header .socials ul li a .icon {
+  width: 1.75rem;
+  height: 1.75rem;
   margin-left: 1.5rem;
 }
 header .socials ul li:hover {
@@ -706,8 +707,9 @@ header .seperator-skew svg .fill-white {
   border: 1px solid lightgray;
   min-height: 300px;
 }
-.project-left.icon-tile i {
-  font-size: 5rem;
+.project-left.icon-tile .icon {
+  width: 5rem;
+  height: 5rem;
   color: #ffb454;
 }
 
@@ -774,8 +776,9 @@ header .seperator-skew svg .fill-white {
   .project-left.icon-tile {
     min-height: 200px;
   }
-  .project-left.icon-tile i {
-    font-size: 3.5rem;
+  .project-left.icon-tile .icon {
+    width: 3.5rem;
+    height: 3.5rem;
   }
 }
 .projects {
@@ -1043,13 +1046,14 @@ header .seperator-skew svg .fill-white {
   box-shadow: 0 0.15rem 0.6rem rgba(43, 52, 56, 0.15);
   border-radius: 3px;
 }
-.contact .card-container .card i {
-  font-size: 3.5rem;
+.contact .card-container .card .icon {
+  width: 3.5rem;
+  height: 3.5rem;
   color: #996313;
   margin-bottom: 1rem;
   transition: 0.4s;
 }
-.contact .card-container .card i:hover {
+.contact .card-container .card .icon:hover {
   transform: translateY(-20%);
 }
 .contact .card-container .card > * {
@@ -1155,10 +1159,10 @@ header .seperator-skew svg .fill-white {
 .footer .footer-flex .footer-icon-links a:hover {
   color: #ffb454;
 }
-.footer .footer-flex .footer-icon-links a i {
+.footer .footer-flex .footer-icon-links a .icon {
   transition: 0.3s;
 }
-.footer .footer-flex .footer-icon-links a i:hover {
+.footer .footer-flex .footer-icon-links a .icon:hover {
   transform: translateY(-20%);
 }
 
