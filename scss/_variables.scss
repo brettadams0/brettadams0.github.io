@@ -1,10 +1,41 @@
 $website-width: 1200px;
-// #2563eb, not the original #3b82f6 — that shade fails WCAG AA contrast
-// (3.68:1) both as white-on-blue button text and as blue-on-white link text.
-// This shade clears 4.5:1 in both directions while staying in the same
-// Tailwind blue family (blue-500 -> blue-600).
-$color-blue: #2563eb;
-$dark-grey: #181a1b;
-$text-color: white;
-$text-light: #dcdcdc;
+
+// Visual identity, v2: a data-pipeline/DAG-inspired palette instead of the
+// generic "dark background, one blue accent" look most portfolio sites
+// default to. Variable names kept as-is (legacy from the original palette)
+// to avoid a full find/replace of every .text-blue/.btn-blue/.bg-blue class
+// across the templates -- what changed is what these tokens resolve to,
+// not their names.
+//
+// $color-blue is now a warm amber (terminal/pipeline-monitor coded, not
+// "SaaS blue"). It's LIGHT, so as a BACKGROUND (buttons, bg-blue) it always
+// needs dark text on top -- see $on-accent below.
+//
+// As TEXT color it's a different story: one color cannot pass 4.5:1
+// contrast against both white and near-black at once (the math doesn't
+// allow it -- confirmed by scanning the whole hue for an overlap; there
+// isn't one). This site has both light sections (Projects/Education/
+// Contact) and dark ones (header/hero, Skills), and .text-blue/
+// .btn-blue-outline get used in both. So there are two text variants:
+//   $color-blue          - light amber, for text on DARK sections
+//   $color-blue-on-light - darker amber-gold, for text on WHITE sections
+// Default utility classes below assume the (more common) white-section
+// case; header/.skills override back to $color-blue locally since those
+// sections are dark. Get this wrong and it's not a style nitpick -- it's
+// the same contrast bug from Phase C, just reintroduced by the redesign.
+//
+// Verified contrast (WCAG):
+//   text 16.18:1 vs bg, text-light 6.29:1 vs bg
+//   color-blue: 10.9:1 vs bg, 1.76:1 vs white (dark-section text only)
+//   color-blue-on-light: 5.06:1 vs white (light-section text only)
+//   color-teal: 10.75:1 vs bg (hero-only, dark background)
+//   on-accent (dark text on the light amber background): 10.9:1
+$color-blue: #ffb454;
+$color-blue-on-light: #996313;
+$color-teal: #4fd6c4;
+$dark-grey: #0b0f14;
+$surface: #131a22;
+$text-color: #e7ecf2;
+$text-light: #8695a7;
+$on-accent: $dark-grey;
 

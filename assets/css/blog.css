@@ -9,7 +9,7 @@
   min-height: 60vh;
   padding-top: 2rem;
   padding-bottom: 4rem;
-  color: #dcdcdc;
+  color: #8695a7;
 }
 
 .blog-hero {
@@ -22,7 +22,7 @@
 }
 
 .blog-hero p {
-  color: #dcdcdc;
+  color: #8695a7;
   margin-top: 0.5rem;
 }
 
@@ -39,30 +39,31 @@
   padding: 1.5rem;
   border: 1px solid #2e3031;
   border-radius: 6px;
-  background: #1f2224;
+  background: #131a22;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .post-card:hover {
-  border-color: #3b82f6;
+  border-color: #ffb454;
   transform: translateY(-2px);
 }
 
 .post-card h2 {
-  color: white;
+  color: #e7ecf2;
   margin-bottom: 0.4rem;
 }
 
 .post-date {
-  color: #3b82f6;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
+  color: #ffb454;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   margin-bottom: 0.75rem;
 }
 
 .post-excerpt {
-  color: #dcdcdc;
+  color: #8695a7;
 }
 
 .blog-post {
@@ -72,7 +73,7 @@
 
 .blog-post .back-link {
   display: inline-block;
-  color: #3b82f6;
+  color: #ffb454;
   margin-bottom: 1.5rem;
 }
 
@@ -91,34 +92,36 @@
 }
 
 .post-content a {
-  color: #3b82f6;
+  color: #ffb454;
   text-decoration: underline;
 }
 
 .post-content h2,
 .post-content h3 {
   margin: 2rem 0 1rem;
-  color: white;
+  color: #e7ecf2;
 }
 
 .post-content pre {
-  background: #1f2224;
+  background: #131a22;
   padding: 1rem;
   border-radius: 6px;
   overflow-x: auto;
   margin-bottom: 1.25rem;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 .post-content code {
-  background: #1f2224;
+  background: #131a22;
   padding: 0.15rem 0.4rem;
   border-radius: 4px;
   font-size: 0.9em;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 .post-content blockquote {
-  border-left: 3px solid #3b82f6;
+  border-left: 3px solid #ffb454;
   padding-left: 1rem;
-  color: #dcdcdc;
+  color: #8695a7;
   margin: 1.5rem 0;
 }

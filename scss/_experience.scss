@@ -21,7 +21,7 @@
     border-radius: 3px;
     padding: 1.75rem 2rem;
     margin-bottom: 1.5rem;
-    border-left: 3px solid $color-blue;
+    border-left: 3px solid $color-blue-on-light;
 
     &:last-child {
       margin-bottom: 0;
@@ -42,9 +42,10 @@
   }
 
   .timeline-date {
-    color: $color-blue;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
+    color: $color-blue-on-light;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -125,10 +126,11 @@
   }
 
   .home-blog-date {
-    color: $color-blue;
+    color: $color-blue-on-light;
+    font-family: "IBM Plex Mono", monospace;
     font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
   }
 
   .home-blog-cta {
