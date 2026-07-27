@@ -40,26 +40,70 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- IBM Plex Sans (headings/body) + IBM Plex Mono (technical/utility labels) -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
-
-    <!-- Font Awesome icons -->
+    <!-- Loaded non-blocking: preload + swap to stylesheet on load, so the
+         browser doesn't stall first paint waiting on a third-party CSS
+         fetch. display=optional (not swap) because the CSS now arrives
+         later than it used to -- swapping in the real font after buttons/
+         nav have already laid out with the fallback causes visible reflow
+         (measured ~0.08 CLS). optional just keeps the fallback if the font
+         isn't ready almost immediately, so nothing shifts later. -->
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=optional"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=optional"></noscript>
+
+    <!-- Font Awesome icons (non-blocking, same preload/swap pattern) -->
+    <!-- Also preload the two webfont files the above-the-fold icons need
+         (fas: Projects/Resume buttons, fab: GitHub/LinkedIn in the socials
+         rail) directly, in parallel with everything else, so they're
+         already cached by the time the deferred CSS asks for them --
+         otherwise the glyphs pop in late and the icon+text buttons reflow
+         (this was the real source of a ~0.08 CLS regression, not the
+         Google Fonts swap). -->
+    <link rel="preload" as="font" type="font/woff2" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/webfonts/fa-solid-900.woff2" crossorigin="anonymous" />
+    <link rel="preload" as="font" type="font/woff2" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/webfonts/fa-brands-400.woff2" crossorigin="anonymous" />
+    <link
+      rel="preload"
+      as="style"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
       crossorigin="anonymous"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous"
+      />
+    </noscript>
 
-    <!-- Animation library styles -->
+    <!-- Animation library styles (non-blocking, same preload/swap pattern) -->
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
       href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css"
       integrity="sha384-6oNXtl81GMcKAnWPPXinWlPskKUQ0NGG1/XeyMfC5RgCJKPc03w0rHVt1jyoJLf0"
       crossorigin="anonymous"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css"
+        integrity="sha384-6oNXtl81GMcKAnWPPXinWlPskKUQ0NGG1/XeyMfC5RgCJKPc03w0rHVt1jyoJLf0"
+        crossorigin="anonymous"
+      />
+    </noscript>
 
-    <!-- Iconify Icons -->
+    <!-- Iconify Icons (async -- it scans the DOM on its own ready event,
+         doesn't need to block parsing) -->
     <script
+      async
       src="https://code.iconify.design/1/1.0.7/iconify.min.js"
       integrity="sha384-jQq64HqdQD5xg0PPkpkCOW3x8Nsfx5UT1qWOpoJxLYy6Ef+5i+8xPoAj/I3B+ZMm"
       crossorigin="anonymous"
