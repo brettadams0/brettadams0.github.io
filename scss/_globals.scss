@@ -12,7 +12,7 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Nunito", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
 }
 
 body {
@@ -30,7 +30,13 @@ a {
 }
 
 .main-font {
-  font-family: "Nunito", sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+// Technical/utility face -- dates, tags, stack labels, nav: anywhere the
+// content is data rather than prose gets the monospace face, on purpose.
+.mono-font {
+  font-family: "IBM Plex Mono", monospace;
 }
 
 // Utility classes
@@ -59,8 +65,10 @@ a {
 }
 
 // Text
+// Default assumes the more common case (used on a white section); dark
+// sections (header/hero, Skills) override this locally -- see those files.
 .text-blue {
-  color: $color-blue;
+  color: $color-blue-on-light;
 }
 
 .text-white {
@@ -101,7 +109,9 @@ a {
 .btn {
   @extend %btn-shared;
   &-blue {
-    color: white;
+    // $color-blue is a LIGHT amber used as a background here -- needs
+    // dark text on top, not white (white-on-amber is ~1.76:1, fails badly).
+    color: $on-accent;
     @extend %btn-shared;
     background-color: $color-blue;
     border: 2px solid $color-blue;
@@ -109,15 +119,17 @@ a {
 
   &-dark {
     @extend %btn-shared;
-    color: white;
+    color: $text-color;
     background-color: $dark-grey;
   }
 
   &-blue-outline {
+    // Default assumes a white-section usage (Projects "Code" links etc.);
+    // header overrides this back to the light on-dark variant.
     @extend %btn-shared;
-    color: $color-blue;
+    color: $color-blue-on-light;
     background-color: transparent;
-    border: 2px solid $color-blue;
+    border: 2px solid $color-blue-on-light;
   }
 
   &-blue:hover {
@@ -127,8 +139,11 @@ a {
   }
 
   &-blue-outline:hover {
-    color: white;
+    // Filling solid with the light amber on hover -- dark text regardless
+    // of which text variant this button started with.
+    color: $on-accent;
     background-color: $color-blue;
+    border: 2px solid $color-blue;
   }
 
   &-small {
@@ -159,14 +174,19 @@ a {
 }
 
 // Credit: https://codepen.io/aaroniker/pen/BajabVN
+// Colors updated to the new palette. --text was #fff, which is nearly
+// invisible here: this button has no opaque background of its own
+// (background: none, below) and sits on the white .contact section, so
+// white text had ~1:1 contrast against it at rest -- fixed to dark text
+// to match every other place the light amber accent is used as a surface.
 .btn-email {
-  --primary: #3b82f6;
-  --primary-dark: #0455d8;
-  --primary-darkest: #013281;
+  --primary: #{$color-blue};
+  --primary-dark: #d98d2b;
+  --primary-darkest: #93591a;
   --shadow: #{rgba(#000, 0.3)};
-  --text: #fff;
+  --text: #{$on-accent};
   --text-opacity: 1;
-  --success: #3b82f6;
+  --success: #{$color-blue-on-light};
   --success-x: -12;
   --success-stroke: 14;
   --success-opacity: 0;
@@ -178,7 +198,7 @@ a {
   --plane-x: 0;
   --plane-y: 0;
   --plane-opacity: 1;
-  --trails: #{rgba(#3b82f6, 0.15)};
+  --trails: #{rgba($color-blue, 0.15)};
   --trails-stroke: 57;
   --left-wing-background: var(--primary);
   --left-wing-first-x: 0;
@@ -354,9 +374,11 @@ a {
   }
 }
 
+// Used only in the hero paragraph, on the dark background -- teal as a
+// secondary accent, distinct from the amber used for primary CTAs/buttons.
 .blue-link-underline {
-  color: #0b63f3;
-  border-bottom: 1px solid #0b63f3;
+  color: $color-teal;
+  border-bottom: 1px solid $color-teal;
 }
 
 .flex {

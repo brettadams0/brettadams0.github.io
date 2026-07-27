@@ -1,26 +1,15 @@
 header {
   background: $dark-grey;
-  background-size: cover;
-  min-height: 80vh;
   position: relative;
-
-  #particles-js {
-    height: 80vh;
-    position: relative;
-
-    // Particles.js canvas
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4rem;
 
   nav {
     width: 100%;
+    padding-top: 1.5rem;
+
     .nav-container {
       position: relative;
       display: flex;
@@ -45,8 +34,10 @@ header {
         }
         a {
           text-decoration: none;
-          letter-spacing: 2px;
+          letter-spacing: 1px;
           color: $text-color;
+          font-family: "IBM Plex Mono", monospace;
+          font-size: 0.9rem;
         }
         .link::after {
           content: "";
@@ -56,7 +47,7 @@ header {
           height: 2px;
           top: 3px;
           margin: auto;
-          background: #3b82f6;
+          background: $color-blue;
           transition: width 0.3s ease;
         }
         .link:hover::after {
@@ -79,6 +70,10 @@ header {
             list-style-type: none;
             li {
               margin: 0rem 1rem;
+              a {
+                font-family: "IBM Plex Mono", monospace;
+                font-size: 0.9rem;
+              }
             }
             .link::after {
               content: "";
@@ -100,40 +95,95 @@ header {
     }
   }
 
-  // Hero Section
+  // Hero section -- flexbox, not absolute-position-plus-transform centering.
+  // The old approach centered the hero on a fixed-percentage point within a
+  // vh-based header height, with nothing constraining it to actually fit --
+  // longer copy or a taller viewport-height breakpoint could (and did) push
+  // hero content up over the nav. min-height here is a floor, not a box:
+  // content is always fully contained and can never overlap a sibling.
   .hero {
     z-index: 5;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+
+    // The pipeline signature: a small DAG -- one source, three parallel
+    // stages, one sink -- standing in for the decorative particle
+    // background this section used to have. It's not incidental decoration;
+    // it's literally the shape of the thing Brett's job is building.
+    .hero-pipeline {
+      width: min(100%, 460px);
+      margin-bottom: 1.5rem;
+
+      svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        overflow: visible;
+      }
+
+      .edge path {
+        fill: none;
+        stroke: $text-light;
+        stroke-width: 1.5;
+        stroke-dasharray: 6 6;
+        animation: pipeline-flow 1.4s linear infinite;
+      }
+
+      .node circle {
+        stroke: $dark-grey;
+        stroke-width: 2;
+      }
+
+      .node-endpoint circle {
+        fill: $color-blue;
+      }
+
+      .node-stage circle {
+        fill: $color-teal;
+        animation: pipeline-pulse 2.4s ease-in-out infinite;
+
+        &:nth-child(2) {
+          animation-delay: 0.25s;
+        }
+        &:nth-child(3) {
+          animation-delay: 0.5s;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .edge path,
+        .node-stage circle {
+          animation: none;
+        }
+      }
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
 
     h1,
     p {
       color: $text-color;
     }
 
-    h1,
-    h2 span {
-      letter-spacing: 2px;
-      white-space: nowrap;
-      text-align: center;
+    h1 {
+      letter-spacing: 1px;
       font-size: clamp(2rem, 5vw, 4rem);
-      font-weight: bold;
+      font-weight: 700;
     }
 
     p {
       color: $text-light;
       line-height: 1.6;
-      font-size: clamp(1.25rem, 2vw, 1.5rem);
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      margin: 0.75rem auto 0;
       padding: 0.5rem;
-
-      .blue-link-underline {
-        color: #3783ff;
-      }
     }
 
     .hero-btns {
@@ -153,11 +203,23 @@ header {
         }
       }
     }
+
+    // On the dark hero, .text-blue/.btn-blue-outline need the light
+    // (on-dark) accent variant -- the site-wide default assumes a white
+    // section, since most usages are on one. See _variables.scss.
+    .text-blue {
+      color: $color-blue;
+    }
+
+    .btn-blue-outline {
+      color: $color-blue;
+      border-color: $color-blue;
+    }
   }
 
   .socials {
     position: absolute;
-    bottom: 40%;
+    bottom: 8%;
     left: -125px;
     z-index: 10;
 
@@ -172,8 +234,13 @@ header {
         display: flex;
         justify-content: end;
         font-size: 1.5rem;
-        width: 100%;
         height: 100%;
+
+        // The LinkedIn icon sits on the (light) accent background -- needs
+        // dark text/icon on top, same reasoning as the buttons.
+        &.bg-blue a {
+          color: $on-accent;
+        }
 
         a {
           text-align: right;
@@ -188,58 +255,6 @@ header {
 
         &:hover {
           transform: translateX(115px);
-        }
-      }
-    }
-  }
-
-  .scroll-btn-container {
-    position: absolute;
-    width: 100%;
-    background: red;
-    bottom: 150px;
-
-    div {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      a {
-        // height: 50px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        span {
-          display: block;
-          height: 20px;
-          width: 20px;
-          border-bottom: 2px solid $color-blue;
-          border-right: 2px solid $color-blue;
-          transform: rotate(45deg);
-          margin: -20px 0;
-          animation: animate 2s infinite;
-        }
-
-        span:nth-child(2) {
-          animation-delay: -0.2s;
-        }
-
-        span:nth-child(3) {
-          animation-delay: -0.4s;
-        }
-
-        @keyframes animate {
-          0% {
-            opacity: 0;
-            transform: rotate(45deg) translate(-20px, -20px);
-          }
-          50% {
-            opacity: 1;
-          }
-          100% {
-            opacity: 0;
-            transform: rotate(45deg) translate(20px, 20px);
-          }
         }
       }
     }
@@ -264,6 +279,22 @@ header {
   }
 }
 
+@keyframes pipeline-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@keyframes pipeline-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 // Media queries
 @media screen and (max-width: 999px) {
   header {
@@ -276,10 +307,6 @@ header {
       }
     }
 
-    .hero {
-      top: 55%;
-    }
-
     .socials {
       display: none;
     }
@@ -287,10 +314,6 @@ header {
 }
 
 @media screen and (max-width: 768px) {
-  .hero {
-    width: 90%;
-  }
-
   header nav .nav-container #logo img {
     width: 200px;
   }
@@ -315,24 +338,6 @@ header {
           }
         }
       }
-    }
-    .hero {
-      span {
-        max-width: 100%;
-      }
-      p {
-        width: 100%;
-      }
-    }
-  }
-}
-
-@media screen and (min-height: 900px) {
-  header {
-    min-height: 70vh;
-
-    #particles-js {
-      height: 70vh;
     }
   }
 }

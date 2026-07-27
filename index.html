@@ -39,13 +39,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Alfa Slab One font -->
-    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
-      
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;600;700;800;900&display=swap">
-    
+    <!-- IBM Plex Sans (headings/body) + IBM Plex Mono (technical/utility labels) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 
     <!-- Font Awesome icons -->
     <link
@@ -85,7 +80,6 @@
   <body>
     <!-- HEADER -->
     <header id="header">
-      <div id="particles-js">
         <nav id="nav">
           <div class="container nav-container">
             <a href="index.html" id="logo">
@@ -168,9 +162,29 @@
 
         <!-- HERO -->
         <div class="hero">
-          <div>
+          <div class="hero-pipeline" aria-hidden="true">
+            <svg viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg">
+              <g class="edge">
+                <path d="M30,60 L300,20" />
+                <path d="M30,60 L300,60" />
+                <path d="M30,60 L300,100" />
+                <path d="M300,20 L570,60" />
+                <path d="M300,60 L570,60" />
+                <path d="M300,100 L570,60" />
+              </g>
+              <g class="node node-endpoint">
+                <circle cx="30" cy="60" r="7" />
+                <circle cx="570" cy="60" r="7" />
+              </g>
+              <g class="node node-stage">
+                <circle cx="300" cy="20" r="7" />
+                <circle cx="300" cy="60" r="7" />
+                <circle cx="300" cy="100" r="7" />
+              </g>
+            </svg>
+          </div>
+          <div class="hero-content">
             <h1 class="h1">
-              
               Hi, I'm <span class="main-font text-blue">Brett</span>
             </h1>
             <p class="student" id="student">
@@ -200,7 +214,6 @@
             <li class="bg-white"><a class="text-dark-grey" href="mailto:adamsbrett00@gmail.com"><span class="socials-text">Email</span><i class="fas fa-envelope fa-2x"></i></a></li>
           </ul>
         </div>
-      </div>
 
       <div class="seperator-skew">
         <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -448,13 +461,13 @@
           <div class="card" data-aos="fade-in">
             <i class="fas fa-envelope"></i>
             <h3>Email</h3>
-            <a href="mailto:adamsbrett00@gmail.com" class="text-blue" target="_blank">adamsbrett00@gmail.com<a>
+            <a href="mailto:adamsbrett00@gmail.com" class="text-blue" target="_blank">adamsbrett00@gmail.com</a>
           </div>
           <div class="card" data-aos="fade-in" data-aos-delay="100">
             <i class="fab fa-github"></i
               >
             <h3>GitHub</h3>
-            <a href="https://github.com/brettadams0" class="text-blue" target="_blank">brettadams0<a>
+            <a href="https://github.com/brettadams0" class="text-blue" target="_blank">brettadams0</a>
           </div>
           <div class="card" data-aos="fade-in" data-aos-delay="200">
             <i class="fab fa-linkedin"></i>
@@ -526,22 +539,6 @@
 
     <!-- GSAP animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
-
-    <!-- Particles.js for hero section -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" integrity="sha512-Kef5sc7gfTacR7TZKelcrRs15ipf7+t+n7Zh6mKNJbmW+/RRdCW9nwfLn4YX0s2nO6Kv5Y2ChqgIakaC6PW09A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script>
-      // The script tag above always loads (keeps the dependency graph static
-      // and analyzable by tools like Lighthouse); only the actual canvas
-      // animation is skipped for users who've asked the OS for reduced motion.
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        ['particles-js', 'skills', 'footer'].forEach(function (id) {
-          particlesJS.load(id, './dist/particles.json', function () {
-            console.log('particles.json loaded...');
-          });
-        });
-      }
-    </script>
 
     <script defer src="dist/js/app.js"></script>
 
