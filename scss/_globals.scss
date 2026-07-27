@@ -39,6 +39,21 @@ a {
   font-family: "IBM Plex Mono", monospace;
 }
 
+// Inline SVG icons (see _includes/icon-sprite.html) sized/aligned to drop
+// in wherever an <i class="fa..."> icon-font glyph used to sit.
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+.icon-2x {
+  width: 2em;
+  height: 2em;
+}
+
 // Utility classes
 .text-center {
   text-align: center;

@@ -55,33 +55,6 @@
     />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=optional"></noscript>
 
-    <!-- Font Awesome icons (non-blocking, same preload/swap pattern) -->
-    <!-- Also preload the two webfont files the above-the-fold icons need
-         (fas: Projects/Resume buttons, fab: GitHub/LinkedIn in the socials
-         rail) directly, in parallel with everything else, so they're
-         already cached by the time the deferred CSS asks for them --
-         otherwise the glyphs pop in late and the icon+text buttons reflow
-         (this was the real source of a ~0.08 CLS regression, not the
-         Google Fonts swap). -->
-    <link rel="preload" as="font" type="font/woff2" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/webfonts/fa-solid-900.woff2" crossorigin="anonymous" />
-    <link rel="preload" as="font" type="font/woff2" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/webfonts/fa-brands-400.woff2" crossorigin="anonymous" />
-    <link
-      rel="preload"
-      as="style"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-        crossorigin="anonymous"
-      />
-    </noscript>
-
     <!-- Animation library styles (non-blocking, same preload/swap pattern) -->
     <link
       rel="preload"
@@ -100,15 +73,6 @@
       />
     </noscript>
 
-    <!-- Iconify Icons (async -- it scans the DOM on its own ready event,
-         doesn't need to block parsing) -->
-    <script
-      async
-      src="https://code.iconify.design/1/1.0.7/iconify.min.js"
-      integrity="sha384-jQq64HqdQD5xg0PPkpkCOW3x8Nsfx5UT1qWOpoJxLYy6Ef+5i+8xPoAj/I3B+ZMm"
-      crossorigin="anonymous"
-    ></script>
-    
     <link rel="stylesheet" type="text/css" href="dist/css/styles.css" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -122,6 +86,8 @@
     </script>
   </head>
   <body>
+    {% include icon-sprite.html %}
+
     <!-- HEADER -->
     <header id="header">
         <nav id="nav">
@@ -132,31 +98,31 @@
             <ul class="hide-for-mobile nav-links flex">
               <li>
                 <a href="#experience" class="link"
-                  ><i class="fas fa-briefcase"></i> Experience</a
+                  ><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-briefcase"></use></svg> Experience</a
                 >
               </li>
               <li>
                 <a href="#projects" class="link"
-                  ><i class="fas fa-code"></i> Projects</a
+                  ><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-code"></use></svg> Projects</a
                 >
               </li>
               <li>
                 <a href="#skills" class="link"
-                  ><i class="fas fa-tools"></i> Skills</a
+                  ><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-tools"></use></svg> Skills</a
                 >
               </li>
               <li>
-                <a href="#education" class="link"><i class="fas fa-user-graduate"></i> Education</a
+                <a href="#education" class="link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-user-graduate"></use></svg> Education</a
                 >
               </li>
               <li>
                 <a href="blog/" class="link"
-                  ><i class="fas fa-pen"></i> Blog</a
+                  ><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-pen"></use></svg> Blog</a
                 >
               </li>
               <li>
                 <a href="#contact" class="link"
-                  ><i class="fas fa-envelope"></i> Contact</a
+                  ><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-envelope"></use></svg> Contact</a
                 >
               </li>
             </ul>
@@ -235,12 +201,12 @@
               Data Analyst Intern at <a href="https://www.geotab.com" class="blue-link-underline" target="_blank">Geotab</a> — BigQuery, Airflow, SQL — and a Software Engineering student at <a href="https://www.uwindsor.ca" class="blue-link-underline" target="_blank">the University of Windsor</a>.
             </p>
             <div class="hero-btns">
-              <a href="#projects" class="btn-blue"><i class="fas fa-code"></i> Projects</a>
+              <a href="#projects" class="btn-blue"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-code"></use></svg> Projects</a>
               <a href="assets/resume/Resume_BrettAdams.pdf" class="btn-blue-outline mx-1"
-                target="_blank"><i class="fas fa-file-download"></i> Resume</a
+                target="_blank"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-file-download"></use></svg> Resume</a
               >
               <a href="https://github.com/brettadams0" class="btn-blue-outline mx-1" id="projects-btn"
-                target="_blank"><i class="fab fa-github"></i> Github</a
+                target="_blank"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Github</a
               >
             </div>
           </div>
@@ -250,12 +216,10 @@
         <div class="socials">
           <ul>
             <li class="bg-blue"><a href="https://www.linkedin.com/in/bretta/"
-              target="_blank"><span class="socials-text">LinkedIn</span> <i class="fab fa-linkedin fa-2x"></i
-            ></a></li>
+              target="_blank"><span class="socials-text">LinkedIn</span> <svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-linkedin"></use></svg></a></li>
             <li class="bg-dark-grey"> <a href="https://github.com/brettadams0"
-              target="_blank"><span class="socials-text">GitHub</span><i class="fab fa-github fa-2x"></i
-            ></a></li>
-            <li class="bg-white"><a class="text-dark-grey" href="mailto:adamsbrett00@gmail.com"><span class="socials-text">Email</span><i class="fas fa-envelope fa-2x"></i></a></li>
+              target="_blank"><span class="socials-text">GitHub</span><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg></a></li>
+            <li class="bg-white"><a class="text-dark-grey" href="mailto:adamsbrett00@gmail.com"><span class="socials-text">Email</span><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-envelope"></use></svg></a></li>
           </ul>
         </div>
 
@@ -337,15 +301,15 @@
 
         <div class="project-row" data-aos="fade-up">
           <div class="project-left icon-tile">
-            <i class="fas fa-hockey-puck"></i>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-hockey-puck"></use></svg>
           </div>
           <div class="project-right">
             <h3>NHL Arena Web Interface</h3>
             <p class="text-grey"><b>Made with: </b></p>
             <ul class="tech-stack-list">
-              <li><span class="iconify" data-icon="logos:python" data-inline="false"></span></li>
-              <li><span class="iconify" data-icon="skill-icons:flask-light" data-inline="false" data-width="30" data-height="30"></span></li>
-              <li><span class="iconify" data-icon="logos:javascript" data-inline="false"></span></li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-python"></use></svg></li>
+              <li><svg class="icon" aria-hidden="true" focusable="false" style="width:30px;height:30px"><use href="#i-skill-icons-flask-light"></use></svg></li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-javascript"></use></svg></li>
             </ul>
             <p class="text-grey" style="font-size: 0.85rem; margin-bottom: 0.5rem;"><i>Built during my co-op at CIMCO Refrigeration</i></p>
             <p>Led development of a Flask web application delivering real-time data and alarm information for NHL arenas, including a thermal imagery support system. Built a Python data aggregation pipeline integrating two APIs into structured, scalable JSON storage.</p>
@@ -356,20 +320,19 @@
 
         <div class="project-row" data-aos="fade-up">
           <div class="project-left icon-tile">
-            <i class="fas fa-shopping-cart"></i>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-shopping-cart"></use></svg>
           </div>
           <div class="project-right">
             <h3>TechNest</h3>
             <p class="text-grey"><b>Made with: </b></p>
             <ul class="tech-stack-list">
-              <li><span class="iconify" data-icon="logos:php" data-inline="false"></span></li>
-              <li><span class="iconify" data-icon="logos:mysql" data-inline="false"></span></li>
-              <li><span class="iconify" data-icon="vscode-icons:file-type-html" data-inline="false"></span></li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-php"></use></svg></li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-mysql"></use></svg></li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-html"></use></svg></li>
             </ul>
             <p>A full-stack PHP/MySQL e-commerce platform for buying electronics — product catalog, user accounts, an admin dashboard for managing products/users/themes, and three switchable UI themes across a fully responsive design.</p>
             <div class="project-links">
-              <a href="https://github.com/brettadams0/TechNest" class="btn-blue-outline btn-small mx-1" target="_blank"> <i class="fab fa-github"></i
-                > Code</a>
+              <a href="https://github.com/brettadams0/TechNest" class="btn-blue-outline btn-small mx-1" target="_blank"> <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
             </div>
           </div>
         </div>
@@ -384,12 +347,11 @@
             <h3>MazeFinder - Genetic Algorithm</h3>
             <p class="text-grey"><b>Made with: </b></p>
             <ul class="tech-stack-list">
-              <li><span class="iconify" data-icon="logos:c" data-inline="false"></span></li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-c"></use></svg></li>
             </ul>
             <p>A C++ application that solves 20x20 mazes using genetic algorithms, with a custom thread pool for parallel genome fitness evaluation and dynamic mutation/crossover strategies to refine optimal paths.</p>
             <div class="project-links">
-              <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm" class="btn-blue-outline btn-small mx-1" target="_blank"> <i class="fab fa-github"></i
-                > Code</a>
+              <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm" class="btn-blue-outline btn-small mx-1" target="_blank"> <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
             </div>
           </div>
         </div>
@@ -404,14 +366,13 @@
             <h3>Spotify Stats Viewer</h3>
             <p class="text-grey"><b>Made with: </b></p>
             <ul class="tech-stack-list">
-              <li><span class="iconify" data-icon="logos:python" data-inline="false"></span></li>
-              <li><span class="iconify" data-icon="vscode-icons:file-type-html" data-inline="false"></span></li>
-              <li><span class="iconify" data-icon="skill-icons:flask-light" data-inline="false" data-width="30" data-height="30"></span></li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-python"></use></svg></li>
+              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-html"></use></svg></li>
+              <li><svg class="icon" aria-hidden="true" focusable="false" style="width:30px;height:30px"><use href="#i-skill-icons-flask-light"></use></svg></li>
             </ul>
             <p>A Flask web app using Spotify's Web API with secure OAuth authentication to display users' top artists, tracks, genres, and playlists.</p>
             <div class="project-links">
-              <a href="https://github.com/brettadams0/SpotifyWebAPI" class="btn-blue-outline btn-small mx-1" target="_blank"> <i class="fab fa-github"></i
-                > Code</a>
+              <a href="https://github.com/brettadams0/SpotifyWebAPI" class="btn-blue-outline btn-small mx-1" target="_blank"> <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
             </div>
           </div>
         </div>
@@ -431,24 +392,24 @@
         <h2 class="text-white main-font">Technical <span class="text-blue main-font">Skills</span></h2>
         <ul class="skills-icons">
           
-          <li><span class="iconify" data-icon="logos:javascript" data-inline="false" data-width="90px" data-height="90px"></span><span>JavaScript</span></li>
-          <li><span class="iconify" data-icon="logos:react" data-inline="false" data-width="90px" data-height="90px"></span><span>React</span></li>
-          <li><span class="iconify" data-icon="logos:python" data-inline="false" data-width="90px" data-height="90px"></span><span>Python</span></li>
-          <li><span class="iconify" data-icon="vscode-icons:file-type-typescript-official" data-inline="false" data-width="90px" data-height="90px"></span><span>TypeScript</span></li>
-          <li><span class="iconify" data-icon="logos:java" data-inline="false" data-width="90px" data-height="90px"></span><span>Java</span></li>
-          <li><span class="iconify" data-icon="vscode-icons:file-type-html" data-inline="false" data-width="90px" data-height="90px"></span><span>HTML</span></li>
-          <li><span class="iconify" data-icon="vscode-icons:file-type-css" data-inline="false" data-width="90px" data-height="90px"></span><span>CSS</span></li>
-          <li><span class="iconify" data-icon="logos:git-icon" data-inline="false" data-width="90px" data-height="90px"></span><span>Git</span></li>
-          <li><span class="iconify" data-icon="logos:mysql" data-inline="false" data-width="90px" data-height="90px"></span><span>MySQL</span></li>
-          <li><span class="iconify" data-icon="gcp:bigquery" data-inline="false" data-width="90px" data-height="90px"></span><span>BigQuery</span></li>
-          <li><span class="iconify" data-icon="logos:airflow-icon" data-inline="false" data-width="90px" data-height="90px"></span><span>Airflow</span></li>
-          <li><span class="iconify" data-icon="vscode-icons:file-type-databricks" data-inline="false" data-width="90px" data-height="90px"></span><span>Databricks</span></li>
-          <li><span class="iconify" data-icon="skill-icons:flask-light" data-inline="false" data-width="90px" data-height="90px"></span><span>Flask</span></li>
-          <li><span class="iconify" data-icon="flat-color-icons:linux" data-inline="false" data-width="90px" data-height="90px"></span><span>Linux</span></li>
-          <li><span class="iconify" data-icon="logos:c" data-inline="false" data-width="90px" data-height="90px"></span><span>C</span></li>
-          <li><span class="iconify" data-icon="logos:c-plusplus" data-inline="false" data-width="90px" data-height="90px"></span><span>C++</span></li>
-          <li><span class="iconify" data-icon="logos:docker-icon" data-inline="false" data-width="90px" data-height="90px"></span><span>Docker</span></li>
-          <li><span class="iconify" data-icon="logos:bootstrap" data-inline="false" data-width="90px" data-height="90px"></span><span>Bootstrap</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-javascript"></use></svg><span>JavaScript</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-react"></use></svg><span>React</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-python"></use></svg><span>Python</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-typescript-official"></use></svg><span>TypeScript</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-java"></use></svg><span>Java</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-html"></use></svg><span>HTML</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-css"></use></svg><span>CSS</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-git-icon"></use></svg><span>Git</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-mysql"></use></svg><span>MySQL</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-gcp-bigquery"></use></svg><span>BigQuery</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-airflow-icon"></use></svg><span>Airflow</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-databricks"></use></svg><span>Databricks</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill-icons-flask-light"></use></svg><span>Flask</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flat-color-icons-linux"></use></svg><span>Linux</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-c"></use></svg><span>C</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-c-plusplus"></use></svg><span>C++</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-docker-icon"></use></svg><span>Docker</span></li>
+          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-bootstrap"></use></svg><span>Bootstrap</span></li>
                   
         </ul>
       </div>
@@ -503,18 +464,17 @@
         <h2 class="section-title main-font" data-aos="fade-in">Contact <span class="text-blue main-font">Me</span></h2>
         <div class="card-container">
           <div class="card" data-aos="fade-in">
-            <i class="fas fa-envelope"></i>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-envelope"></use></svg>
             <h3>Email</h3>
             <a href="mailto:adamsbrett00@gmail.com" class="text-blue" target="_blank">adamsbrett00@gmail.com</a>
           </div>
           <div class="card" data-aos="fade-in" data-aos-delay="100">
-            <i class="fab fa-github"></i
-              >
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg>
             <h3>GitHub</h3>
             <a href="https://github.com/brettadams0" class="text-blue" target="_blank">brettadams0</a>
           </div>
           <div class="card" data-aos="fade-in" data-aos-delay="200">
-            <i class="fab fa-linkedin"></i>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-linkedin"></use></svg>
             <h3>LinkedIn</h3>
             <a href="https://www.linkedin.com/in/bretta/" class="text-blue" target="_blank">Brett Adams</a>
           </div>
@@ -563,14 +523,11 @@
 
           <div class="footer-icon-links">
             <a href="https://github.com/brettadams0" aria-label="GitHub"
-              target="_blank"><i class="fab fa-github fa-2x"></i
-            ></a>
+              target="_blank"><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg></a>
             <a href="https://www.linkedin.com/in/BrettA/" aria-label="LinkedIn"
-              target="_blank"><i class="fab fa-linkedin fa-2x"></i
-            ></a>
+              target="_blank"><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-linkedin"></use></svg></a>
             <a href="mailto:adamsbrett00@gmail.com" aria-label="Email"
-              target="_blank"><i class="fas fa-envelope fa-2x"></i
-            ></a>
+              target="_blank"><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-envelope"></use></svg></a>
           </div>
         </div>
       </div>
@@ -578,7 +535,7 @@
 
     <!-- Back to top button in corner -->
     <button id="backToTopBtn" class="btn-blue" aria-label="Back to top" type="button">
-      <i class="fa fa-chevron-up"></i>
+      <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-chevron-up"></use></svg>
     </button>
 
     <!-- GSAP animations -->
