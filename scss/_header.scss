@@ -253,8 +253,9 @@ header {
           height: 100%;
           width: 100%;
           padding: 15px 20px;
-          i {
-            font-size: 1.75rem;
+          .icon {
+            width: 1.75rem;
+            height: 1.75rem;
             margin-left: 1.5rem;
           }
         }
