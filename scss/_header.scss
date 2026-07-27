@@ -19,7 +19,13 @@ header {
         margin: auto 0;
         z-index: 10;
         img {
+          // The HTML width/height attributes (added for Lighthouse's
+          // unsized-images check) act as low-priority implicit styles.
+          // This rule only overrode width, so the height="560" attribute
+          // was winning unopposed -- squashing the image into a 250x560
+          // box instead of preserving its real ~2.79:1 aspect ratio.
           width: 250px;
+          height: auto;
         }
       }
 
@@ -316,6 +322,7 @@ header {
 @media screen and (max-width: 768px) {
   header nav .nav-container #logo img {
     width: 200px;
+    height: auto;
   }
 }
 
