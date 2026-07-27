@@ -33,9 +33,16 @@
     svg {
       margin: 0.5rem;
       width: 90px;
+      // Explicit height alongside width -- these are <svg><use> icon-sprite
+      // refs now, not <img>, so there's no intrinsic aspect ratio for the
+      // browser to preserve from a width-only rule; unlike the .icon
+      // class's 1em default, an inline style would beat this media query,
+      // so sizing has to live here in CSS to stay responsive.
+      height: 90px;
 
       @media (max-width: 420px) {
         width: 70px;
+        height: 70px;
       }
     }
     li {

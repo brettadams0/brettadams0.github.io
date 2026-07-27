@@ -36,6 +36,19 @@ a {
   font-family: "IBM Plex Mono", monospace;
 }
 
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+.icon-2x {
+  width: 2em;
+  height: 2em;
+}
+
 .text-center {
   text-align: center;
 }
@@ -938,10 +951,12 @@ header .seperator-skew svg .fill-white {
 .skills .skills-icons svg {
   margin: 0.5rem;
   width: 90px;
+  height: 90px;
 }
 @media (max-width: 420px) {
   .skills .skills-icons svg {
     width: 70px;
+    height: 70px;
   }
 }
 .skills .skills-icons li {

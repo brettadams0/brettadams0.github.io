@@ -10,23 +10,35 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 
-    <!-- Font Awesome icons -->
+    <!-- Non-blocking (see index.html for the reasoning): preload + swap to
+         stylesheet on load, display=optional so a late-arriving font never
+         swaps in and reflows already-laid-out content. -->
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=optional"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=optional"></noscript>
 
-    <!-- Animation library styles -->
+    <!-- Animation library styles (non-blocking, same pattern) -->
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
       href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css"
       integrity="sha384-6oNXtl81GMcKAnWPPXinWlPskKUQ0NGG1/XeyMfC5RgCJKPc03w0rHVt1jyoJLf0"
       crossorigin="anonymous"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css"
+        integrity="sha384-6oNXtl81GMcKAnWPPXinWlPskKUQ0NGG1/XeyMfC5RgCJKPc03w0rHVt1jyoJLf0"
+        crossorigin="anonymous"
+      />
+    </noscript>
 
     <link rel="stylesheet" type="text/css" href="/dist/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/blog.css" />
@@ -41,6 +53,8 @@
     </script>
   </head>
   <body>
+    {% include icon-sprite.html %}
+
     <header id="blog-header">
       <nav id="nav">
         <div class="container nav-container">
@@ -48,11 +62,11 @@
             <img src="/dist/img/logo.png" alt="logo" width="1563" height="560">
           </a>
           <ul class="hide-for-mobile nav-links flex">
-            <li><a href="/index.html#projects" class="link"><i class="fas fa-code"></i> Projects</a></li>
-            <li><a href="/index.html#skills" class="link"><i class="fas fa-tools"></i> Skills</a></li>
-            <li><a href="/index.html#education" class="link"><i class="fas fa-user-graduate"></i> Education</a></li>
-            <li><a href="/blog/" class="link"><i class="fas fa-pen"></i> Blog</a></li>
-            <li><a href="/index.html#contact" class="link"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="/index.html#projects" class="link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-code"></use></svg> Projects</a></li>
+            <li><a href="/index.html#skills" class="link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-tools"></use></svg> Skills</a></li>
+            <li><a href="/index.html#education" class="link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-user-graduate"></use></svg> Education</a></li>
+            <li><a href="/blog/" class="link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-pen"></use></svg> Blog</a></li>
+            <li><a href="/index.html#contact" class="link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-envelope"></use></svg> Contact</a></li>
           </ul>
         </div>
         <div class="mobile-menu hide-for-desktop">
@@ -80,16 +94,16 @@
         <div class="footer-flex">
           <img src="/dist/img/logo.png" alt="logo" id="logo-footer" width="1563" height="560">
           <div class="footer-icon-links">
-            <a href="https://github.com/brettadams0" aria-label="GitHub" target="_blank"><i class="fab fa-github fa-2x"></i></a>
-            <a href="https://www.linkedin.com/in/BrettA/" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-            <a href="mailto:adamsbrett00@gmail.com" aria-label="Email" target="_blank"><i class="fas fa-envelope fa-2x"></i></a>
+            <a href="https://github.com/brettadams0" aria-label="GitHub" target="_blank"><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg></a>
+            <a href="https://www.linkedin.com/in/BrettA/" aria-label="LinkedIn" target="_blank"><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-linkedin"></use></svg></a>
+            <a href="mailto:adamsbrett00@gmail.com" aria-label="Email" target="_blank"><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-envelope"></use></svg></a>
           </div>
         </div>
       </div>
     </footer>
 
     <button id="backToTopBtn" class="btn-blue" aria-label="Back to top" type="button">
-      <i class="fa fa-chevron-up"></i>
+      <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-chevron-up"></use></svg>
     </button>
 
     <script>
