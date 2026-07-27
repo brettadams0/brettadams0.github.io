@@ -6,19 +6,34 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Brett Adams | Data Analyst & Software Engineer</title>
+    <link rel="icon" type="image/png" href="dist/img/logo.png" />
+    {% seo %}
 
-    <!-- SEO / social preview -->
-    <meta name="description" content="Brett Adams — Data Analyst Intern at Geotab (BigQuery, Airflow, SQL), CS Software Engineering student at the University of Windsor. Portfolio of experience, projects, and writing." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://brettadams0.github.io/" />
-    <meta property="og:title" content="Brett Adams | Data Analyst & Software Engineer" />
-    <meta property="og:description" content="Data Analyst Intern at Geotab (BigQuery, Airflow, SQL), CS Software Engineering student at the University of Windsor. Portfolio of experience, projects, and writing." />
-    <meta property="og:image" content="https://brettadams0.github.io/dist/img/logo.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Brett Adams | Data Analyst & Software Engineer" />
-    <meta name="twitter:description" content="Data Analyst Intern at Geotab (BigQuery, Airflow, SQL), CS Software Engineering student at the University of Windsor." />
-    <meta name="twitter:image" content="https://brettadams0.github.io/dist/img/logo.png" />
+    <!-- Additional structured data (jekyll-seo-tag above covers title/meta/OG/Twitter/WebSite JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Brett Adams",
+        "jobTitle": "Data Analyst Intern",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Geotab"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Windsor"
+        },
+        "url": "https://brettadams0.github.io/",
+        "sameAs": [
+          "https://github.com/brettadams0",
+          "https://www.linkedin.com/in/bretta/"
+        ]
+      }
+    }
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,11 +55,20 @@
       crossorigin="anonymous"
     />
 
-    <!-- Animation library styles -->    
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Animation library styles -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css"
+      integrity="sha384-6oNXtl81GMcKAnWPPXinWlPskKUQ0NGG1/XeyMfC5RgCJKPc03w0rHVt1jyoJLf0"
+      crossorigin="anonymous"
+    />
 
     <!-- Iconify Icons -->
-    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <script
+      src="https://code.iconify.design/1/1.0.7/iconify.min.js"
+      integrity="sha384-jQq64HqdQD5xg0PPkpkCOW3x8Nsfx5UT1qWOpoJxLYy6Ef+5i+8xPoAj/I3B+ZMm"
+      crossorigin="anonymous"
+    ></script>
     
     <link rel="stylesheet" type="text/css" href="dist/css/styles.css" />
 
@@ -65,7 +89,7 @@
         <nav id="nav" data-aos="fade-in">
           <div class="container nav-container">
             <a href="index.html" id="logo">
-              <img src="dist/img/logo.png" alt="logo">
+              <img src="dist/img/logo.png" alt="logo" width="1563" height="560">
             </a>
             <ul class="hide-for-mobile nav-links flex">
               <li>
@@ -260,8 +284,8 @@
           </div>
           <div class="project-right">
             <h3>NHL Arena Web Interface</h3>
+            <p class="text-grey"><b>Made with: </b></p>
             <ul class="tech-stack-list">
-              <p class="text-grey"><b>Made with: </b></p>
               <li><span class="iconify" data-icon="logos:python" data-inline="false"></span></li>
               <li><span class="iconify" data-icon="skill-icons:flask-light" data-inline="false" data-width="30" data-height="30"></span></li>
               <li><span class="iconify" data-icon="logos:javascript" data-inline="false"></span></li>
@@ -279,8 +303,8 @@
           </div>
           <div class="project-right">
             <h3>TechNest</h3>
+            <p class="text-grey"><b>Made with: </b></p>
             <ul class="tech-stack-list">
-              <p class="text-grey"><b>Made with: </b></p>
               <li><span class="iconify" data-icon="logos:php" data-inline="false"></span></li>
               <li><span class="iconify" data-icon="logos:mysql" data-inline="false"></span></li>
               <li><span class="iconify" data-icon="vscode-icons:file-type-html" data-inline="false"></span></li>
@@ -301,8 +325,8 @@
           </div>
           <div class="project-right">
             <h3>MazeFinder - Genetic Algorithm</h3>
+            <p class="text-grey"><b>Made with: </b></p>
             <ul class="tech-stack-list">
-              <p class="text-grey"><b>Made with: </b></p>
               <li><span class="iconify" data-icon="logos:c" data-inline="false"></span></li>
             </ul>
             <p>A C++ application that solves 20x20 mazes using genetic algorithms, with a custom thread pool for parallel genome fitness evaluation and dynamic mutation/crossover strategies to refine optimal paths.</p>
@@ -321,8 +345,8 @@
           </div>
           <div class="project-right">
             <h3>Spotify Stats Viewer</h3>
+            <p class="text-grey"><b>Made with: </b></p>
             <ul class="tech-stack-list">
-              <p class="text-grey"><b>Made with: </b></p>
               <li><span class="iconify" data-icon="logos:python" data-inline="false"></span></li>
               <li><span class="iconify" data-icon="vscode-icons:file-type-html" data-inline="false"></span></li>
               <li><span class="iconify" data-icon="skill-icons:flask-light" data-inline="false" data-width="30" data-height="30"></span></li>
@@ -387,12 +411,12 @@
         <div class="education-card" data-aos="zoom-in">
             <div class="education-card-column">
               <div class="card-column-image">
-                 <img src="dist/img/uw_logo.jpg" alt="University of Windsor Logo" style="max-width: 100%; max-height: 100%; height: auto; width: auto;">
+                 <img src="dist/img/uw_logo.jpg" alt="University of Windsor Logo" width="827" height="921" style="max-width: 100%; max-height: 100%; height: auto; width: auto;">
               </div>
 
               <div class="card-column-large">
-                <h4 class="education-year">2027</h4>
-                <h4><b>University of Windsor </b></h4>
+                <h3 class="education-year">2027</h3>
+                <h3><b>University of Windsor </b></h3>
                 <h4>Honours Computer Science with Software Engineering Specialization Co-op</h4>
               </div>
             </div>
@@ -478,16 +502,16 @@
     <footer id="footer" class="footer">
       <div class="container">
         <div class="footer-flex">
-          <img src="dist/img/logo.png" alt="logo" id="logo-footer">
+          <img src="dist/img/logo.png" alt="logo" id="logo-footer" width="1563" height="560">
 
           <div class="footer-icon-links">
-            <a href="https://github.com/brettadams0"
+            <a href="https://github.com/brettadams0" aria-label="GitHub"
               target="_blank"><i class="fab fa-github fa-2x"></i
             ></a>
-            <a href="https://www.linkedin.com/in/BrettA/"
+            <a href="https://www.linkedin.com/in/BrettA/" aria-label="LinkedIn"
               target="_blank"><i class="fab fa-linkedin fa-2x"></i
             ></a>
-            <a href="mailto:adamsbrett00@gmail.com"
+            <a href="mailto:adamsbrett00@gmail.com" aria-label="Email"
               target="_blank"><i class="fas fa-envelope fa-2x"></i
             ></a>
           </div>
@@ -496,41 +520,52 @@
     </footer>
 
     <!-- Back to top button in corner -->
-    <a id="backToTopBtn" class="btn-blue">
+    <button id="backToTopBtn" class="btn-blue" aria-label="Back to top" type="button">
       <i class="fa fa-chevron-up"></i>
-    </a>
-
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Particles.js for hero section -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" integrity="sha512-Kef5sc7gfTacR7TZKelcrRs15ipf7+t+n7Zh6mKNJbmW+/RRdCW9nwfLn4YX0s2nO6Kv5Y2ChqgIakaC6PW09A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </button>
 
     <!-- GSAP animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
 
     <script>
-      particlesJS.load('particles-js', './dist/particles.json', function(){
-        console.log("particles.json loaded...")
-      })
+      // Ambient/decorative motion (particle background) is skipped entirely
+      // for users who've asked the OS for reduced motion.
+      var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      particlesJS.load('skills', './dist/particles.json', function(){
-        console.log("particles.json loaded...")
-      })
-
-      particlesJS.load('footer', './dist/particles.json', function(){
-        console.log("particles.json loaded...")
-      })
-
-      particlesJS.load()
+      if (!prefersReducedMotion) {
+        var particlesScript = document.createElement('script');
+        particlesScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js';
+        particlesScript.integrity = 'sha512-Kef5sc7gfTacR7TZKelcrRs15ipf7+t+n7Zh6mKNJbmW+/RRdCW9nwfLn4YX0s2nO6Kv5Y2ChqgIakaC6PW09A==';
+        particlesScript.crossOrigin = 'anonymous';
+        particlesScript.referrerPolicy = 'no-referrer';
+        particlesScript.onload = function () {
+          ['particles-js', 'skills', 'footer'].forEach(function (id) {
+            particlesJS.load(id, './dist/particles.json', function () {
+              console.log('particles.json loaded...');
+            });
+          });
+        };
+        document.head.appendChild(particlesScript);
+      }
     </script>
 
     <script defer src="dist/js/app.js"></script>
 
     <!-- AOS Animations -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script
+      src="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.js"
+      integrity="sha384-ZGo5k5ISlEzWLoXyt+lnvKt9j03Z7GkxXh14zLqVy098XJhcdKHjL8pQYVMI8WiH"
+      crossorigin="anonymous"
+    ></script>
     <script>
-      AOS.init();
+      // AOS's own `disable` option shows content immediately (no opacity:0
+      // hold) for reduced-motion users, instead of just skipping init and
+      // leaving [data-aos] elements invisible.
+      AOS.init({
+        disable: function () {
+          return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        }
+      });
     </script>
 
   </body>

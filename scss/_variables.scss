@@ -1,5 +1,9 @@
 $website-width: 1200px;
-$color-blue: #3b82f6;
+// #2563eb, not the original #3b82f6 — that shade fails WCAG AA contrast
+// (3.68:1) both as white-on-blue button text and as blue-on-white link text.
+// This shade clears 4.5:1 in both directions while staying in the same
+// Tailwind blue family (blue-500 -> blue-600).
+$color-blue: #2563eb;
 $dark-grey: #181a1b;
 $text-color: white;
 $text-light: #dcdcdc;

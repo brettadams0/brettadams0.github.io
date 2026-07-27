@@ -44,6 +44,22 @@ function ajax(method, url, data, success, error) {
         if (!button.classList.contains("active")) {
           button.classList.add("active");
 
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            // Skip the paper-plane keyframe animation entirely; jump
+            // straight to the success state and reset shortly after.
+            gsap.set(button, {
+              "--text-opacity": 0,
+              "--success-opacity": 1,
+              "--success-x": 0,
+              "--success-stroke": 0,
+            });
+            setTimeout(() => {
+              button.removeAttribute("style");
+              button.classList.remove("active");
+            }, 1800);
+            return;
+          }
+
           gsap.to(button, {
             keyframes: [
               {
@@ -176,17 +192,25 @@ function ajax(method, url, data, success, error) {
 
 // Back to top arrow button
 
-const backToTopBtn = $("#backToTopBtn");
+const backToTopBtn = document.getElementById("backToTopBtn");
 
-$(window).scroll(function () {
-  if ($(window).scrollTop() > 300) {
-    backToTopBtn.addClass("show");
+window.addEventListener("scroll", function () {
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add("show");
   } else {
-    backToTopBtn.removeClass("show");
+    backToTopBtn.classList.remove("show");
   }
 });
 
-backToTopBtn.on("click", function (e) {
+backToTopBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  $("html, body").animate({ scrollTop: 0 }, "300");
+  var prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  window.scrollTo({
+    // "auto" defers to CSS `scroll-behavior`, which is smooth site-wide —
+    // "instant" is required to actually bypass that for reduced-motion users.
+    top: 0,
+    behavior: prefersReducedMotion ? "instant" : "smooth",
+  });
 });
