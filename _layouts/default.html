@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
   <head>
+    <!-- See index.html for why this matters -- AOS's CSS hides [data-aos]
+         content behind html:not(.no-js), so without this, no-JS visitors
+         would never see most of the page. -->
+    <script>document.documentElement.classList.remove('no-js');</script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

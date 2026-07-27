@@ -1,8 +1,14 @@
 ---
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
   <head>
+    <!-- AOS's CSS gates its opacity:0 fade-in prep behind html:not(.no-js) --
+         this removes that class the instant JS is confirmed running. Without
+         it, any user with JS disabled (or a failed/blocked AOS script load)
+         would see every [data-aos] section stay invisible forever, since
+         nothing would ever add the .aos-animate class that reveals them. -->
+    <script>document.documentElement.classList.remove('no-js');</script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -231,6 +237,7 @@
 
     </header>
 
+    <main>
     <!-- EXPERIENCE -->
     <section id="experience" class="experience">
       <div class="container">
@@ -515,6 +522,7 @@
         </form>
       </div>
     </section>
+    </main>
 
     <footer id="footer" class="footer">
       <div class="container">
