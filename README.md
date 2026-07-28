@@ -1,4 +1,7 @@
 # Brett Adams' Personal Portfolio Website
+
+[![CI](https://github.com/brettadams0/brettadams0.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/brettadams0/brettadams0.github.io/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ## Overview
 This repository contains the code for my personal portfolio website. The website showcases my projects, skills, and education. It also provides a way for visitors to contact me.
 
