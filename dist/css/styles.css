@@ -801,7 +801,19 @@ header .seperator-skew svg .fill-white {
 }
 .projects .project-row .project-left img {
   width: 100%;
+  height: auto;
   border: 1px solid lightgray;
+}
+.projects .project-row.project-featured {
+  flex-direction: column;
+}
+.projects .project-row.project-featured .project-left,
+.projects .project-row.project-featured .project-right {
+  width: 100%;
+  margin-right: 0;
+}
+.projects .project-row.project-featured .project-left {
+  margin-bottom: 1.5rem;
 }
 .projects .project-row .project-right {
   width: 50%;
@@ -1182,3 +1194,5 @@ header .seperator-skew svg .fill-white {
     margin: 0 1rem;
   }
 }
+
+/*# sourceMappingURL=styles.css.map */
