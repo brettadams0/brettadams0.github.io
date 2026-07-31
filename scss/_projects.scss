@@ -18,7 +18,29 @@
       margin-right: 2rem;
       img {
         width: 100%;
+        // The width/height attributes (kept, so the box is reserved before
+        // the image loads) apply as presentational hints. Overriding width
+        // alone leaves the height hint in force and squashes any image whose
+        // intrinsic width isn't exactly this column -- height:auto restores
+        // the aspect ratio.
+        height: auto;
         border: 1px solid lightgray;
+      }
+    }
+
+    // Terminal captures carry a lot of small text, which is unreadable once
+    // an image is scaled into the 50% column. This variant stacks instead, so
+    // the capture gets the full container width and the output stays legible.
+    &.project-featured {
+      flex-direction: column;
+
+      .project-left,
+      .project-right {
+        width: 100%;
+        margin-right: 0;
+      }
+      .project-left {
+        margin-bottom: 1.5rem;
       }
     }
     .project-right {
