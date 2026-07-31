@@ -19,3 +19,4 @@ social:
 exclude:
   - scss
   - README.md
+  - TODO.md
