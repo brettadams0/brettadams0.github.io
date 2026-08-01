@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Bargain Hunt</title>
+<meta name="description" content="A daily screen for stocks and ETFs that just took a double-digit hit, checked against value criteria.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1620" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Bargain Hunt">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<link rel="stylesheet" href="styles.css">
+
+<!-- Fonts are loaded non-render-blocking. The brief must paint from cache
+     immediately even when fonts.googleapis.com is slow or unreachable; the
+     system fallbacks in styles.css carry the first paint. -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all';this.onload=null"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500;600&display=swap">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500;600&display=swap">
+</noscript>
+</head>
+<body>
+
+<div class="app">
+  <header class="topbar">
+    <div class="grow">
+      <h1 id="screen-title">The Bargain Hunt</h1>
+      <p class="sub" id="screen-sub">Loading…</p>
+    </div>
+    <button class="icon-btn" id="refresh-btn" type="button" aria-label="Run the hunt now">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 11a8 8 0 1 0-2.3 5.7"></path>
+        <path d="M20 4v7h-7"></path>
+      </svg>
+    </button>
+  </header>
+
+  <div class="pull" id="pull-hint" aria-hidden="true"></div>
+
+  <main id="view" tabindex="-1"></main>
+</div>
+
+<nav class="nav" aria-label="Main">
+  <button type="button" data-screen="brief" aria-current="page">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 4h11l4 4v12a0 0 0 0 1 0 0H5z"></path>
+      <path d="M8 12h8M8 16h5"></path>
+    </svg>
+    Brief
+  </button>
+  <button type="button" data-screen="watch">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6z"></path>
+      <circle cx="12" cy="12" r="2.6"></circle>
+    </svg>
+    Watch
+  </button>
+  <button type="button" data-screen="settings">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H1a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 2.6 7a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 2.7-1.1V1a2 2 0 1 1 4 0v.1A1.6 1.6 0 0 0 17 2.6a1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H23a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"></path>
+    </svg>
+    Settings
+  </button>
+</nav>
+
+<div id="snackbar-host" aria-live="polite"></div>
+<p class="sr-only" id="live" role="status" aria-live="polite"></p>
+
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
