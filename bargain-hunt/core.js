@@ -162,7 +162,16 @@
     }
 
     const brief = payload && payload.brief;
-    if (!brief || !Array.isArray(brief.candidates))
+
+    // The data branch starts with an explicit null placeholder. That is "not
+    // published yet", which is a different thing from a corrupt file.
+    if (!brief)
+      throw new BriefError(
+        "No brief has been published yet. The first one arrives after tomorrow morning's run.",
+        404
+      );
+
+    if (!Array.isArray(brief.candidates))
       throw new BriefError("The published brief was unreadable. Your last one is unchanged.", 0);
 
     const ts = Date.parse(payload.generatedAt);
