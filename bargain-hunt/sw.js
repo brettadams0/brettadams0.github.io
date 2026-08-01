@@ -86,7 +86,7 @@ self.addEventListener("fetch", (event) => {
 /* ------------------------------------------------------ background refresh */
 
 async function notify(result) {
-  const { brief, settings, watchlistHit } = result;
+  const { brief, shown, settings, watchlistHit } = result;
 
   if (watchlistHit && settings.notifyOnWatchlistDrop) {
     const pct = typeof watchlistHit.dropPct === "number"
@@ -100,7 +100,8 @@ async function notify(result) {
   }
 
   if (settings.notifyOnNewBrief) {
-    const n = brief.candidates.length;
+    const n = (shown || brief.candidates).length;
+    if (!n) return; // nothing survived his filters — don't buzz him for zero
     await self.registration.showNotification(
       `${n} candidate${n === 1 ? "" : "s"} today`,
       { body: brief.note || "", tag: "daily-brief", icon: "icon-192.png", badge: "icon-192.png" }

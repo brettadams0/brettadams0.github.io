@@ -7,187 +7,151 @@ Live at **https://brettadams0.github.io/bargain-hunt/**
 
 ---
 
-## Read this first: this is the PWA, not the Android app
+## How it works
 
-The specification asked for a signed, sideloadable Android APK, and §21 said
-that if the session could not get a working JDK + Android SDK + Gradle, it
-should build a PWA instead and say clearly that the daily refresh is degraded.
-That is what happened.
+The hunt does not run on the phone. It runs once each morning as a **scheduled
+Claude Code session**, which searches the web, writes the brief, and publishes
+it. The app is a **reader**: it fetches that file, caches it, and renders it.
 
-The build environment has JDK 21 and Gradle 8.14.3, but **`dl.google.com` is
-blocked by the network egress policy** (HTTP 403 at the proxy). That host
-serves both the Android SDK command-line tools and Google's Maven repository —
-`maven.google.com` is only a 301 redirect to it. Without them there is no
-Android SDK, no AGP, no androidx, and no Compose, so `assembleRelease` cannot
-run and no APK can be produced. Rather than hand over an Android source tree
-that has never once been compiled, this is the PWA fallback.
+```
+  Scheduled Claude Code session (every morning)
+        │  reads hunt/PROMPT.md + hunt/watchlist.json
+        │  searches the web, judges each candidate
+        ▼
+  brief.json ──push──▶ branch: bargain-hunt-data
+        │
+        │  raw.githubusercontent.com (CORS: *)
+        ▼
+  The PWA  ──▶ IndexedDB cache ──▶ tearsheets
+```
 
-**The Kotlin app remains the better long-term answer**, for the reason §3 gave:
-`WorkManager` gives a genuinely reliable daily job and this does not. If you
-want it, the spec is unchanged and the work needs a machine that can reach
-`dl.google.com`.
+Three things follow from that, and they are the whole reason for this shape:
 
-### What is degraded, specifically
+- **It costs nothing to run.** No API key, no per-token billing. The morning
+  session uses the Claude subscription it already runs under.
+- **There is no secret on the phone.** Nothing to leak, nothing to rotate.
+  This is stronger than the original design, which put an API key in Android's
+  Keystore.
+- **The daily refresh is actually reliable.** It is a real scheduled job, not
+  the browser's `periodicsync`, which Chrome gates behind engagement
+  heuristics and paces however it likes.
 
-**The daily refresh is best-effort, and that is the real cost of this path.**
+## Why this is a PWA and not the Android app
 
-The app registers a `periodicsync` handler for the daily hunt. Chrome gates
-`periodicsync` behind its own engagement heuristics and decides the actual
-cadence itself — the 6:30 am you pick in Settings is a target, not a schedule.
-In practice the brief will usually be waiting for you and sometimes will not.
-It never fires at all unless the app is installed to the home screen, and iOS
-Safari does not implement `periodicsync` in any form.
+The spec asked for a signed, sideloadable APK, with §21 as the fallback if the
+toolchain was unavailable. It was: **`dl.google.com` is blocked by the network
+egress policy** (403 at the proxy), and it serves both the Android SDK
+command-line tools and Google's Maven repo — `maven.google.com` only 301s to
+it. No SDK, no AGP, no Compose, so `assembleRelease` cannot run.
 
-When background refresh has not run, opening the app shows the last brief with
-its real timestamp, plus a "this brief is from Wednesday" bar once it is more
-than 36 hours old. Pull down to run it live; that takes under a minute. Nothing
-silently pretends to be fresh.
-
-If a guaranteed 6:30 am brief matters more than everything else, it needs
-either the native Android app or a server-side cron job. There is no third
-option that is honest.
-
-### What is not degraded
-
-Everything else in the spec is here: the data contract, the prompt, the
-tearsheet, the 52-week range bar and its degradation case, the cache-first
-brief screen, all the empty / error / stale states, the watchlist, the
-settings-to-prompt wiring with the live preview line, notifications, dark
-mode, and font scaling to 200%.
-
----
-
-## What this costs, and why it is not your Claude Pro plan
-
-**A Claude Pro subscription does not pay for this.** Pro covers claude.ai and
-Claude Code. This app calls the Anthropic **API**, which is a separate product
-with separate billing: you need an `sk-ant-` key from
-[console.anthropic.com](https://console.anthropic.com) with credit on it. API
-usage never draws down Pro plan quota, and a Pro subscription grants no API
-credits. If the account has no credits, the first run fails with "that key was
-rejected".
-
-Rough cost of one daily run on Opus 5, at published rates ($5/M input,
-$25/M output, and $10 per 1,000 web searches):
-
-| | per run | per month, daily |
-|---|---|---|
-| Web searches (~10–15) | $0.10–0.15 | $3–5 |
-| Input tokens (search results dominate) | ~$0.12 | ~$4 |
-| Output tokens incl. thinking | ~$0.10 | ~$3 |
-| **Total** | **~$0.30–0.40** | **~$10–12** |
-
-That is on top of Pro, not included in it. Costs scale with how many searches a
-run needs, so a volatile week costs more than a quiet one. Checking a watchlist
-ticker is a smaller version of the same call, a few cents each.
-
-**Set a spend limit.** It is the only thing standing between a bug and the
-card on file.
+The original §21 warning was that a PWA's daily refresh would be degraded.
+Publishing the brief from a scheduled job removes that problem: the brief is
+produced on a real schedule regardless of what the phone or browser is doing.
+`periodicsync` is still registered, but now it only pulls an already-published
+file, so it is a nice-to-have rather than the mechanism.
 
 ## Setup
 
-1. Open the link on the phone in Chrome.
-2. Chrome will offer **Add to Home screen** — accept it. This installs it as a
-   WebAPK with a real launcher icon, and it is also what makes background
-   refresh possible at all.
-3. Open it from the home screen. It starts on **Settings** because it cannot do
-   anything without a key.
-4. Paste an Anthropic API key and tap **Save**. It runs the first hunt straight
-   away, so you see the app work within a minute of setup.
-5. **Set a spend limit** in the Anthropic console under Settings → Limits.
-   There is a link on the Settings screen. One run is a few cents; a bug should
-   not be able to run away with your account.
+**1. Create the data branch.** An orphan branch holding only `brief.json`, so
+the daily commits stay out of `main`'s history:
 
-Notifications are requested after the first successful brief, not on first
-launch — a permission prompt before anything has happened just gets denied.
+```sh
+git checkout --orphan bargain-hunt-data
+git rm -rf .
+echo '{}' > brief.json && git add brief.json
+git commit -m "Start the data branch"
+git push -u origin bargain-hunt-data
+git checkout main
+```
 
-## Where the API key lives, and what that does not protect
+**2. Schedule the morning run.** In Claude Code, create a recurring task
+pointing at `bargain-hunt/hunt/RUN.md`, e.g. daily at 06:00 local:
 
-The key is stored in **IndexedDB**, scoped to the `brettadams0.github.io`
-origin. It is sent only to `api.anthropic.com`, over HTTPS, with the
-`anthropic-dangerous-direct-browser-access` header that Anthropic requires for
-browser-origin calls. It is never logged and never shown in an error message.
+> Follow the instructions in `bargain-hunt/hunt/RUN.md` in
+> `brettadams0/brettadams0.github.io`. Use web search for every figure.
 
-**This is weaker than the Android build would have been.** The spec's §15 put
-the key in `EncryptedSharedPreferences`, backed by the Android Keystore, in an
-app with `allowBackup="false"`. IndexedDB has none of that: it is not encrypted
-at rest by the app, and anyone with your unlocked phone — or any script running
-on that origin — can read it.
+**3. Install it on the phone.** Open the link in Chrome, accept **Add to Home
+screen**, and launch it from the icon. There is nothing to configure — no key,
+no sign-in.
 
-Two things follow from that, and they matter:
+## Changing what it looks for
 
-- **The spend limit is the real backstop.** Set it.
-- **This origin hosts a public personal site.** The app is the only script on
-  `/bargain-hunt/`, but the key is readable by anything served from the same
-  origin, so treat a key used here as scoped to this purpose and rotate it if
-  you ever have doubts. **Forget key** on the Settings screen wipes it.
+**Screen settings live on the phone** (Settings tab): drop threshold, minimum
+market cap, max forward P/E, dividend payers only, excluded sectors, how many
+to show. There is a live preview line so the combination is never a guess.
 
-## Updating
+These apply **instantly**, because the morning run deliberately screens wider
+than he needs — 8 candidates at a 10% threshold — and the phone narrows that
+to his thresholds locally. Tightening a filter re-filters the list immediately
+instead of waiting for tomorrow.
 
-Nothing to do. The service worker re-fetches the shell on each visit and the
-new version activates on next launch. This is the one place the PWA is
-genuinely better than the sideloaded APK, which would have needed the
-`version.json` check in §18 or manual reinstalls twice a year.
+One rule matters in that filter: **an unknown value is never filtered out.**
+Only a value that definitely fails a test removes a candidate. "Never invent a
+figure" cuts both ways — a P/E the model could not confirm must not quietly
+hide a company.
+
+**The watchlist lives in the repo**, at `hunt/watchlist.json`, because the
+morning run is what checks those tickers. The Watch tab links straight to
+GitHub's editor for it, which works fine on a phone.
+
+## What is degraded compared to the spec
+
+- **No on-demand single-ticker check.** §10.2 had tapping a watchlist row run
+  a live check. Without an API key there is no live call, so the Watch tab
+  shows that morning's check instead. Given §24 — his bottleneck is gathering,
+  not judging — pre-gathered each morning still solves the actual problem.
+- **Adding a watchlist ticker is not one tap in the app.** It is an edit to
+  `watchlist.json` on GitHub, linked from the Watch tab.
+- **Settings shape the output, not the prompt.** §9 wanted every setting to
+  change the prompt. Here the broad screen is fixed and settings filter the
+  result. The trade is deliberate: settings became instant instead of
+  next-morning.
 
 ## Deviations from the spec, and why
 
-All in the API call (§8), all deliberate:
-
 | Spec | Built | Why |
 |---|---|---|
-| `claude-sonnet-5` | `claude-opus-5` | Chosen explicitly after weighing cost. The one thing this app exists to do is judge whether a fall is an overreaction or a real impairment, and Opus 5 is markedly better at that call. About $3/month more than Sonnet 5 at a daily run. |
-| `web_search_20250305` | `web_search_20260318`, `response_inclusion: "excluded"` | The current search tool. Dynamic filtering means the model filters result pages in code before they reach the context window, which matters when it reads a lot of market pages per run. This is a one-shot request that never sends results back for a second turn, so `excluded` drops raw result blocks the parser would discard anyway, and stops us paying output tokens to echo them. |
-| `max_tokens: 3000` | `max_tokens: 16000` | Opus 5 runs adaptive thinking **by default**, and `max_tokens` caps thinking and response text together. At 3000, with search results in context, the JSON truncates mid-object — the malformed-JSON path on nearly every run. Unused headroom costs nothing. |
-| 150s call timeout | 240s | Opus 5 at the default `high` effort thinks and searches for longer than Sonnet 5 did. 150s was too tight to be safe. |
-| *(not in spec)* | `fallbacks: "default"` | Opus 5's safety classifiers can decline a request, returning HTTP **200** with `stop_reason: "refusal"` and empty content. Server-side fallbacks re-serve a declined request on Anthropic's recommended fallback model inside the same call, so a rare false positive becomes a slightly different brief instead of an error at 6:30am. A refusal that survives the fallback is reported plainly and **not** retried — a retry would be declined too. |
-| Canvas for the range bar | CSS/DOM | The web equivalent of hand-drawing on Canvas. It reflows with the container and with system font scaling for free, which a fixed-size canvas does not. Same geometry, same degradation rule. |
+| App calls the API with an on-device key (§3, §8, §15) | App reads a published `brief.json`; the hunt runs in a scheduled Claude Code session | The requirement was zero additional cost. A Claude subscription does not include API credits — those are billed separately per token — so an on-device key meant a real monthly bill. This removes the cost *and* the secret, and makes the daily refresh reliable. |
+| `EncryptedSharedPreferences` for the key (§15) | No key at all | Nothing to protect. |
+| Canvas for the range bar (§11) | CSS/DOM | The web equivalent of hand-drawing on Canvas, and it reflows with the container and with system font scaling for free. Same geometry, same degradation rule. |
+| `refreshHour` / `refreshMinute` setting (§9) | Removed | The schedule belongs to the scheduled job now, not the phone. Leaving a time picker that changed nothing would be a lie. |
 
-The request also downgrades itself rather than dead-ending. If the API returns
-a 400 — which would mean it rejected the request *shape*, not the key or the
-prompt — the app retries once without the optional extras (`fallbacks`,
-`response_inclusion`, and on the older `web_search_20260209`) and remembers
-that choice for the rest of the session. This exists because the request shape
-could not be validated against the live API from the build environment, and a
-rejected optional parameter should never be what stops the brief.
-
-Two smaller ones. Swipe-to-dismiss on the watchlist is a remove button with the
-same undo snackbar — swipe has no discoverable affordance on the web and no
-platform convention behind it. And shared state lives in IndexedDB rather than
-`localStorage`, because a service worker cannot read `localStorage`, and
-without shared state the background refresh could not run at all.
+Everything else is as specified: the tearsheet, the 52-week range bar and its
+degradation case, the cache-first brief screen, the empty / error / stale
+states, the verdict-first layout, the design system, notifications, dark mode,
+and font scaling to 200%.
 
 ## Layout
 
 ```
 bargain-hunt/
-├── index.html     shell, bottom nav, non-render-blocking font load
-├── core.js        state (IndexedDB), the prompt, the API call — shared with the worker
-├── app.js         the three screens, tearsheet, range bar
-├── sw.js          offline shell cache + periodicsync + notifications
-├── styles.css     design system (§12), light and dark
-└── manifest.json  standalone display, 192/512/maskable icons
+├── index.html          shell, bottom nav, non-render-blocking font load
+├── core.js             IndexedDB, brief fetch, local filtering — shared with the worker
+├── app.js              the three screens, tearsheet, range bar
+├── sw.js               offline shell cache + background sync + notifications
+├── styles.css          design system (§12), light and dark
+├── manifest.json       standalone display, 192/512/maskable icons
+└── hunt/
+    ├── PROMPT.md       the hunt itself, in plain English — this is the product
+    ├── RUN.md          what the scheduled session does each morning
+    └── watchlist.json  tickers checked daily; editable on github.com
 ```
 
-`core.js` is loaded by the page as a plain script and by the service worker via
-`importScripts()`, so the background hunt runs exactly the same prompt and
-parser as the foreground one.
+`hunt/PROMPT.md` is deliberately prose, not code. It is the part worth editing
+and it should never require touching a source file.
 
 ## Testing
 
-Verified in headless Chromium at 412×915 against a mocked API, covering the
-spec's §23 acceptance criteria that apply to this build: cache-first render
-(54 ms cold), the null-`low52` degradation case, `n/a` metrics rendering as
-dashes, the settings-to-prompt wiring, bad-key and malformed-JSON handling with
-the previous brief left intact, exactly one retry on bad JSON, no retry on 429,
-refusals reported without a retry, the outgoing request shape, the 400
-downgrade path and that it is remembered, offline reads, the stale banner, dark
-mode, and 200% font scaling with no clipping or horizontal overflow.
+Verified in headless Chromium at 412×915 against a mocked publish endpoint:
+cache-first render (53 ms cold), the null-`low52` degradation case, `n/a`
+metrics rendering as dashes, each filter dimension (threshold, market cap,
+sector) narrowing the list, unknown values surviving a filter, the
+filtered-to-zero state explaining itself, the watchlist view and its edit link,
+a 404 before the first publish, a failed sync leaving the cached brief intact,
+the stale banner, dark mode, offline reads, and 200% font scaling with no
+clipping or horizontal overflow. A guard asserts the app never calls the
+Anthropic API.
 
-Three things could not be tested here and are the ones to watch on the phone:
-
-- **The live request shape.** No API key was available in the build
-  environment, so the request was never sent to the real API. The downgrade
-  path above exists to absorb this, but the first real run is the actual proof.
-- **Background refresh surviving a reboot.** Chrome's decision, not the app's.
-- **Real end-to-end latency** of an Opus 5 run with web search. The 240s
-  timeout and the pacing of the progress labels are estimates.
+Two things could not be tested here and are worth watching on the first real
+run: the quality of an actual morning brief, and whether the scheduled session
+reliably publishes at the hour you set.

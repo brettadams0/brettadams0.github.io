@@ -1,35 +1,23 @@
 /* The Bargain Hunt — UI.
  *
- * All shared state and API work lives in core.js so the service worker can
- * run the same hunt in the background. This file hydrates that state into
- * memory once at boot, then every render is synchronous.
+ * A reader over the brief the morning run publishes. No API key, no network
+ * cost. All shared state lives in core.js so the service worker can sync the
+ * same brief in the background.
  */
 (() => {
   "use strict";
 
   const BH = self.BH;
 
-  /* ----------------------------------------------------------- app state */
-
   const state = {
     screen: "brief",
     settings: Object.assign({}, BH.DEFAULTS),
     cached: null, // { brief, generatedAtEpochMs, seen }
-    watchMeta: {},
-    hasKey: false,
     busy: false,
-    step: 0,
     error: null,
-    detail: null, // a single-ticker result being shown
+    detail: null, // a watchlist entry being shown
     ready: false,
   };
-
-  const STEPS = [
-    "Scanning decliners",
-    "Filtering for size and quality",
-    "Pulling valuation numbers",
-    "Grading candidates",
-  ];
 
   /* ------------------------------------------------------------ helpers */
 
@@ -68,12 +56,6 @@
     });
     const time = d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
     return `${day} · ${time}`;
-  }
-
-  function timeLabel(s) {
-    const d = new Date();
-    d.setHours(s.refreshHour, s.refreshMinute, 0, 0);
-    return d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
   }
 
   function announce(msg) {
@@ -129,8 +111,6 @@
     const prev = isNum(prevClose) ? at(prevClose) : null;
     const pct = (n) => `${(n * 100).toFixed(2)}%`;
 
-    // Track, with the fall segment laid over it. Percentage widths mean the
-    // bar reflows with the container and with font scaling.
     const track = el("div", {
       style:
         "position:relative;height:8px;border-radius:4px;background:var(--line);overflow:hidden",
@@ -278,88 +258,30 @@
     );
   }
 
-  /* --------------------------------------------------------- running work */
+  /* ------------------------------------------------------------- syncing */
 
-  let stepTimer = null;
-  function startSteps() {
-    state.step = 0;
-    clearInterval(stepTimer);
-    stepTimer = setInterval(() => {
-      if (state.step < STEPS.length - 1) {
-        state.step += 1;
-        render();
-      }
-      // Opus 5 thinks and searches for longer than Sonnet 5 did, so pace the
-      // labels to the real run rather than racing to the last one.
-    }, 20000);
-  }
-  function stopSteps() {
-    clearInterval(stepTimer);
-    stepTimer = null;
-  }
-
-  function needKey() {
-    state.screen = "settings";
-    state.error = "Add your Anthropic API key first.";
-    render();
-  }
-
-  async function runHunt() {
+  async function syncNow(quiet) {
     if (state.busy) return;
-    if (!state.hasKey) return needKey();
-
     state.busy = true;
-    state.error = null;
-    state.detail = null;
-    startSteps();
-    render();
-    announce("Running the hunt.");
-
-    try {
-      const apiKey = await BH.getApiKey();
-      const brief = await BH.runPrompt(BH.buildHuntPrompt(state.settings), apiKey);
-      await BH.putBrief(brief, true); // he is looking at it right now
-      state.cached = await BH.getBrief();
+    if (!quiet) {
       state.error = null;
-      announce(`${brief.candidates.length} candidates found.`);
-      // Ask for notifications only after the value is obvious (spec §14).
-      maybeAskForNotifications();
-    } catch (err) {
-      // Never clear a good cached brief because a refresh failed.
-      state.error = (err && err.message) || "Something went wrong.";
-      announce("The run failed.");
-    } finally {
-      state.busy = false;
-      stopSteps();
       render();
+      announce("Checking for today's brief.");
     }
-  }
-
-  async function checkTicker(ticker) {
-    if (state.busy) return;
-    if (!state.hasKey) return needKey();
-
-    state.busy = true;
-    state.error = null;
-    state.detail = { ticker, candidate: null };
-    startSteps();
-    render();
 
     try {
-      const apiKey = await BH.getApiKey();
-      const res = await BH.runPrompt(BH.buildCheckPrompt(ticker), apiKey);
-      const cand = res.candidates && res.candidates[0];
-      if (!cand) throw new Error(`Nothing came back for ${ticker}.`);
-      state.detail = { ticker, candidate: cand };
-
-      state.watchMeta[ticker] = { name: cand.name || "", verdict: cand.verdict || "" };
-      await BH.putWatchMeta(state.watchMeta);
+      const result = await BH.syncPublished();
+      state.cached = result.cached;
+      state.error = null;
+      if (!quiet) {
+        announce(result.changed ? "Brief updated." : "Already up to date.");
+        if (!result.changed) snackbar("Already up to date.");
+      }
     } catch (err) {
-      state.error = (err && err.message) || "Something went wrong.";
-      state.detail = null;
+      // A failed sync must never clear a good cached brief.
+      if (!quiet || !state.cached) state.error = (err && err.message) || "Something went wrong.";
     } finally {
       state.busy = false;
-      stopSteps();
       render();
     }
   }
@@ -377,17 +299,12 @@
 
   /* --------------------------------------------------------- brief screen */
 
-  function progressView() {
-    const pct = ((state.step + 1) / STEPS.length) * 100;
+  function loadingView() {
     return el(
       "div",
       { class: "progress" },
-      el("div", { class: "track" }, el("div", { class: "fill", style: `width:${pct}%` })),
-      el("div", { class: "step", text: `${STEPS[state.step]}…` }),
-      el("p", {
-        class: "range-caption",
-        text: "Reading live sources. This usually takes a minute or two.",
-      })
+      el("div", { class: "track" }, el("div", { class: "fill", style: "width:60%" })),
+      el("div", { class: "step", text: "Checking for today's brief…" })
     );
   }
 
@@ -407,7 +324,7 @@
 
   function briefScreen() {
     const nodes = [];
-    if (state.busy) nodes.push(progressView());
+    if (state.busy) nodes.push(loadingView());
     if (state.error) nodes.push(errorBanner());
 
     if (!state.cached) {
@@ -418,9 +335,9 @@
             { class: "state" },
             el("h2", { text: "No brief yet" }),
             el("p", {
-              text: `The first one arrives tomorrow at ${timeLabel(state.settings)}. Or run it now.`,
+              text: "The first one arrives after tomorrow morning's run. Or check now.",
             }),
-            el("button", { class: "btn", type: "button", text: "Run the hunt", onclick: runHunt })
+            el("button", { class: "btn", type: "button", text: "Check now", onclick: () => syncNow() })
           )
         );
       }
@@ -438,9 +355,34 @@
       );
     }
 
-    const cands = brief.candidates;
+    const all = brief.candidates;
+    const shown = BH.filterCandidates(all, state.settings);
+
+    if (!shown.length) {
+      nodes.push(
+        el(
+          "div",
+          { class: "state" },
+          el("h2", { text: "Nothing matches your settings" }),
+          el("p", {
+            text:
+              `The morning run found ${all.length} candidate${all.length === 1 ? "" : "s"}, ` +
+              "but none get through your filters. Loosen them in Settings.",
+          }),
+          el("button", {
+            class: "btn ghost",
+            type: "button",
+            text: "Open Settings",
+            onclick: () => go("settings"),
+          })
+        )
+      );
+      nodes.push(disclaimerBlock());
+      return nodes;
+    }
+
     const counts = {};
-    for (const c of cands) {
+    for (const c of shown) {
       const v = String(c.verdict || "").toLowerCase();
       counts[v] = (counts[v] || 0) + 1;
     }
@@ -455,41 +397,36 @@
         { class: "summary" },
         el("div", {
           class: "count",
-          text: `${cands.length} candidate${cands.length === 1 ? "" : "s"}`,
+          text: `${shown.length} candidate${shown.length === 1 ? "" : "s"}`,
         }),
         parts.length ? el("div", { class: "breakdown", text: parts.join(" · ") }) : null,
-        brief.note ? el("p", { class: "note", text: brief.note }) : null
+        brief.note ? el("p", { class: "note", text: brief.note }) : null,
+        // Be explicit that a wider screen ran behind this, so a thin list
+        // reads as "my filters are tight", not "nothing happened today".
+        all.length > shown.length
+          ? el("p", {
+              class: "range-caption",
+              text: `Screened ${all.length}, showing the ${shown.length} that match your settings.`,
+            })
+          : null
       )
     );
 
-    nodes.push(...cands.map(tearsheet));
+    nodes.push(...shown.map(tearsheet));
     nodes.push(disclaimerBlock());
     return nodes;
   }
 
   /* ----------------------------------------------------------- watchlist */
 
-  async function removeTicker(t) {
-    const idx = state.settings.watchlist.indexOf(t);
-    if (idx === -1) return;
-    state.settings.watchlist = state.settings.watchlist.filter((x) => x !== t);
-    await BH.putSettings(state.settings);
-    render();
-    snackbar(`Removed ${t}.`, "Undo", async () => {
-      const next = state.settings.watchlist.slice();
-      next.splice(Math.min(idx, next.length), 0, t);
-      state.settings.watchlist = next;
-      await BH.putSettings(state.settings);
-      render();
-    });
-  }
-
   function watchScreen() {
     const nodes = [];
-    if (state.busy) nodes.push(progressView());
     if (state.error) nodes.push(errorBanner());
 
-    if (state.detail && state.detail.candidate) {
+    const watch =
+      state.cached && Array.isArray(state.cached.brief.watch) ? state.cached.brief.watch : [];
+
+    if (state.detail) {
       nodes.push(
         el("button", {
           class: "btn ghost",
@@ -501,92 +438,64 @@
           },
         })
       );
-      nodes.push(tearsheet(state.detail.candidate));
+      nodes.push(tearsheet(state.detail));
       nodes.push(disclaimerBlock());
       return nodes;
     }
-
-    const list = state.settings.watchlist;
-
-    const input = el("input", {
-      type: "text",
-      class: "ticker-input",
-      maxlength: "6",
-      placeholder: "Ticker",
-      "aria-label": "Ticker to add",
-      autocapitalize: "characters",
-      autocomplete: "off",
-      spellcheck: "false",
-    });
-    input.addEventListener("input", () => {
-      input.value = input.value.toUpperCase().replace(/[^A-Z.\-]/g, "").slice(0, 6);
-    });
-
-    const addTicker = async () => {
-      const t = input.value.trim();
-      if (!t) return;
-      if (state.settings.watchlist.includes(t)) {
-        input.value = "";
-        snackbar(`${t} is already on the list.`);
-        return;
-      }
-      state.settings.watchlist = state.settings.watchlist.concat(t);
-      await BH.putSettings(state.settings);
-      input.value = "";
-      render();
-    };
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") addTicker();
-    });
 
     nodes.push(
       el(
         "div",
         { class: "group" },
         el("h2", { text: "Watchlist" }),
+        watch.length
+          ? watch.map((c) => {
+              const vclass = VERDICT_CLASS[String(c.verdict || "").toLowerCase()];
+              return el(
+                "div",
+                { class: "watch-row" },
+                el(
+                  "button",
+                  {
+                    class: "w-main",
+                    type: "button",
+                    onclick: () => {
+                      state.detail = c;
+                      render();
+                      window.scrollTo({ top: 0 });
+                    },
+                    "aria-label": `Open ${c.ticker}`,
+                  },
+                  el("span", { class: "w-ticker", text: c.ticker || "—" }),
+                  c.name ? el("span", { class: "w-name", text: c.name }) : null
+                ),
+                c.verdict
+                  ? el("span", { class: `pill ${vclass || "neutral"}`, text: c.verdict })
+                  : null
+              );
+            })
+          : null,
         el(
           "div",
-          { class: "add-row" },
-          input,
-          el("button", { class: "btn", type: "button", text: "Add", onclick: addTicker })
-        ),
-        list.map((t) => {
-          const m = state.watchMeta[t] || {};
-          const vclass = VERDICT_CLASS[String(m.verdict || "").toLowerCase()];
-          return el(
-            "div",
-            { class: "watch-row" },
-            el(
-              "button",
-              {
-                class: "w-main",
-                type: "button",
-                onclick: () => checkTicker(t),
-                "aria-label": `Check ${t} now`,
-              },
-              el("span", { class: "w-ticker", text: t }),
-              m.name ? el("span", { class: "w-name", text: m.name }) : null
-            ),
-            m.verdict ? el("span", { class: `pill ${vclass || "neutral"}`, text: m.verdict }) : null,
-            el("button", {
-              class: "remove",
-              type: "button",
-              text: "✕",
-              "aria-label": `Remove ${t}`,
-              onclick: () => removeTicker(t),
-            })
-          );
-        })
+          { class: "preview" },
+          "These are checked every morning alongside the screen. ",
+          el(
+            "a",
+            { href: BH.WATCHLIST_EDIT_URL, target: "_blank", rel: "noopener noreferrer" },
+            "Edit the list"
+          ),
+          " — it opens the file on GitHub, which works fine on a phone."
+        )
       )
     );
 
-    if (!list.length) {
+    if (!watch.length) {
       nodes.push(
         el(
           "div",
           { class: "state" },
           el("h2", { text: "Nothing on the watchlist" }),
-          el("p", { text: "Add a ticker to check it any time." })
+          el("p", { text: "Add a ticker to have it checked every morning." })
         )
       );
     }
@@ -705,46 +614,27 @@
           )
         ),
         // He should never have to guess what the toggles combine to.
-        el("div", { class: "preview" }, el("strong", { text: "Looking for: " }), BH.previewLine(s))
+        el("div", { class: "preview" }, el("strong", { text: "Looking for: " }), BH.previewLine(s)),
+        el("div", {
+          class: "preview",
+          text:
+            "These apply instantly to the morning's results — no waiting for " +
+            "tomorrow's run.",
+        })
       )
     );
 
-    const hh = String(s.refreshHour).padStart(2, "0");
-    const mm = String(s.refreshMinute).padStart(2, "0");
     nodes.push(
       el(
         "div",
         { class: "group" },
-        el("h2", { text: "Daily brief" }),
-        el(
-          "div",
-          { class: "row" },
-          el(
-            "div",
-            { class: "row-label" },
-            el("span", { text: "Refresh time" }),
-            el("span", {
-              class: "hint",
-              text: "A target, not a guarantee — the browser sets the real cadence.",
-            })
-          ),
-          el("input", {
-            type: "time",
-            value: `${hh}:${mm}`,
-            "aria-label": "Refresh time",
-            onchange: (e) => {
-              const [h, m] = String(e.target.value).split(":").map(Number);
-              if (Number.isFinite(h) && Number.isFinite(m))
-                update({ refreshHour: h, refreshMinute: m });
-            },
-          })
-        ),
-        toggleRow("Notify me about a new brief", null, s.notifyOnNewBrief, async (v) => {
+        el("h2", { text: "Notifications" }),
+        toggleRow("Tell me about a new brief", null, s.notifyOnNewBrief, async (v) => {
           await update({ notifyOnNewBrief: v });
           if (v) maybeAskForNotifications();
         }),
         toggleRow(
-          "Notify me when a watchlist name drops",
+          "Tell me when a watchlist name drops",
           "The highest-signal event the app can produce.",
           s.notifyOnWatchlistDrop,
           async (v) => {
@@ -755,93 +645,30 @@
       )
     );
 
-    const keyInput = el("input", {
-      type: "password",
-      placeholder: "sk-ant-…",
-      "aria-label": "Anthropic API key",
-      autocomplete: "off",
-      spellcheck: "false",
-    });
-
     nodes.push(
       el(
         "div",
         { class: "group" },
-        el("h2", { text: "API key" }),
+        el("h2", { text: "How it updates" }),
+        el("div", {
+          class: "preview",
+          text:
+            "A scheduled job runs the hunt every morning and publishes the " +
+            "brief. This app just reads it — there is no API key on your " +
+            "phone and it costs nothing to run.",
+        }),
         el(
           "div",
           { class: "row" },
-          el(
-            "div",
-            { class: "row-label" },
-            el("span", { text: state.hasKey ? "Key is set" : "No key yet" }),
-            el("span", {
-              class: `hint key-state ${state.hasKey ? "ok" : "bad"}`,
-              text: state.hasKey
-                ? "✓ stored on this device"
-                : "the app can't run without one",
-            })
-          )
-        ),
-        el(
-          "div",
-          { class: "add-row" },
-          keyInput,
           el("button", {
-            class: "btn",
+            class: "btn ghost",
             type: "button",
-            text: state.hasKey ? "Change" : "Save",
-            onclick: async () => {
-              const v = keyInput.value.trim();
-              if (!v) return;
-              await BH.putApiKey(v);
-              state.hasKey = true;
-              keyInput.value = "";
-              state.error = null;
-              // Show him the app working within a minute of setup, rather
-              // than waiting until tomorrow (spec §13).
-              if (!state.cached) {
-                state.screen = "brief";
-                render();
-                runHunt();
-              } else {
-                render();
-                snackbar("Key saved.");
-              }
+            text: "Check for a new brief",
+            onclick: () => {
+              go("brief");
+              syncNow();
             },
           })
-        ),
-        state.hasKey
-          ? el(
-              "div",
-              { class: "row" },
-              el("button", {
-                class: "btn ghost",
-                type: "button",
-                text: "Forget key",
-                onclick: async () => {
-                  await BH.putApiKey("");
-                  state.hasKey = false;
-                  render();
-                  snackbar("Key removed from this device.");
-                },
-              })
-            )
-          : null,
-        el(
-          "div",
-          { class: "preview" },
-          "Set a spend limit in the Anthropic console (Settings → Limits) so a bug can't run away. ",
-          el(
-            "a",
-            {
-              href: "https://console.anthropic.com/settings/limits",
-              target: "_blank",
-              rel: "noopener noreferrer",
-            },
-            "Open limits"
-          ),
-          "."
         )
       )
     );
@@ -858,7 +685,12 @@
             "div",
             { class: "row-label" },
             el("span", { text: "The Bargain Hunt" }),
-            el("span", { class: "hint", text: `Web app · model ${BH.MODEL}` })
+            el("span", {
+              class: "hint",
+              text: state.cached
+                ? `Brief from ${fmtWhen(state.cached.generatedAtEpochMs)}`
+                : "No brief yet",
+            })
           )
         ),
         el("div", { class: "preview", text: BH.DISCLAIMER })
@@ -882,7 +714,7 @@
     if (state.screen === "brief") {
       title.textContent = "The Bargain Hunt";
       sub.textContent = state.busy
-        ? "Running…"
+        ? "Checking…"
         : state.cached
         ? fmtWhen(state.cached.generatedAtEpochMs)
         : state.ready
@@ -892,7 +724,7 @@
       refreshBtn.classList.remove("hidden");
     } else if (state.screen === "watch") {
       title.textContent = "Watchlist";
-      sub.textContent = state.detail ? state.detail.ticker : "Your own tickers";
+      sub.textContent = state.detail ? state.detail.ticker : "Checked every morning";
       nodes = watchScreen();
       refreshBtn.classList.add("hidden");
     } else {
@@ -919,20 +751,22 @@
     }
   }
 
+  function go(screen) {
+    state.screen = screen;
+    state.error = null;
+    state.detail = null;
+    render();
+    document.getElementById("view").focus({ preventScroll: true });
+    window.scrollTo({ top: 0 });
+  }
+
   /* ------------------------------------------------------------- wiring */
 
   document.querySelectorAll(".nav button").forEach((b) => {
-    b.addEventListener("click", () => {
-      state.screen = b.dataset.screen;
-      state.error = null;
-      state.detail = null;
-      render();
-      document.getElementById("view").focus({ preventScroll: true });
-      window.scrollTo({ top: 0 });
-    });
+    b.addEventListener("click", () => go(b.dataset.screen));
   });
 
-  document.getElementById("refresh-btn").addEventListener("click", runHunt);
+  document.getElementById("refresh-btn").addEventListener("click", () => syncNow());
 
   /* Pull-to-refresh, only from the top of the brief screen. */
   (() => {
@@ -956,7 +790,7 @@
         if (startY === null) return;
         dist = Math.max(0, e.touches[0].clientY - startY);
         hint.style.height = `${Math.min(56, dist * 0.5)}px`;
-        hint.textContent = dist > THRESHOLD ? "Release to run" : "Pull to refresh";
+        hint.textContent = dist > THRESHOLD ? "Release to check" : "Pull to refresh";
       },
       { passive: true }
     );
@@ -968,11 +802,11 @@
       dist = 0;
       hint.style.height = "0px";
       hint.textContent = "";
-      if (go) runHunt();
+      if (go) syncNow();
     });
   })();
 
-  /* Service worker + best-effort periodic background refresh (spec §21). */
+  /* Service worker + best-effort periodic background sync. */
   if ("serviceWorker" in navigator) {
     addEventListener("load", async () => {
       try {
@@ -982,7 +816,6 @@
             .query({ name: "periodic-background-sync" })
             .catch(() => ({ state: "denied" }));
           if (status.state === "granted") {
-            // Chrome decides the real cadence no matter what we ask for.
             await reg.periodicSync
               .register("daily-hunt", { minInterval: 12 * 60 * 60 * 1000 })
               .catch(() => {});
@@ -996,37 +829,30 @@
     navigator.serviceWorker.addEventListener("message", async (e) => {
       if (e.data && e.data.type === "brief-updated") {
         state.cached = await BH.getBrief();
-        state.screen = "brief";
         render();
       }
     });
   }
 
-  // Re-render on resume so "generated at" and the stale banner stay honest.
+  // Re-render on resume, and quietly pick up a brief published since.
   document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) render();
+    if (document.hidden) return;
+    render();
+    if (state.ready) syncNow(true);
   });
 
   /* ---------------------------------------------------------------- boot */
 
   (async () => {
     render(); // paint the shell immediately
-    const [settings, cached, watchMeta, apiKey] = await Promise.all([
-      BH.getSettings(),
-      BH.getBrief(),
-      BH.getWatchMeta(),
-      BH.getApiKey(),
-    ]);
+    const [settings, cached] = await Promise.all([BH.getSettings(), BH.getBrief()]);
     state.settings = settings;
     state.cached = cached;
-    state.watchMeta = watchMeta || {};
-    state.hasKey = !!apiKey;
     state.ready = true;
+    render(); // cache-first: on screen before any network call
 
-    // A brand-new install with no key should land on Settings, not on an
-    // empty brief with a button that bounces him there.
-    if (!state.hasKey && !state.cached) state.screen = "settings";
-
-    render();
+    // Then quietly pick up anything newer. A failure here is silent when we
+    // already have a brief to show.
+    syncNow(!!cached);
   })();
 })();
