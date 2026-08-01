@@ -20,3 +20,4 @@ exclude:
   - scss
   - README.md
   - TODO.md
+  - bargain-hunt/README.md
