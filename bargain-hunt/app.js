@@ -289,7 +289,9 @@
         state.step += 1;
         render();
       }
-    }, 12000);
+      // Opus 5 thinks and searches for longer than Sonnet 5 did, so pace the
+      // labels to the real run rather than racing to the last one.
+    }, 20000);
   }
   function stopSteps() {
     clearInterval(stepTimer);
@@ -384,7 +386,7 @@
       el("div", { class: "step", text: `${STEPS[state.step]}…` }),
       el("p", {
         class: "range-caption",
-        text: "Searching live sources. This usually takes under a minute.",
+        text: "Reading live sources. This usually takes a minute or two.",
       })
     );
   }

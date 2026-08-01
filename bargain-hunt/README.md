@@ -57,6 +57,33 @@ mode, and font scaling to 200%.
 
 ---
 
+## What this costs, and why it is not your Claude Pro plan
+
+**A Claude Pro subscription does not pay for this.** Pro covers claude.ai and
+Claude Code. This app calls the Anthropic **API**, which is a separate product
+with separate billing: you need an `sk-ant-` key from
+[console.anthropic.com](https://console.anthropic.com) with credit on it. API
+usage never draws down Pro plan quota, and a Pro subscription grants no API
+credits. If the account has no credits, the first run fails with "that key was
+rejected".
+
+Rough cost of one daily run on Opus 5, at published rates ($5/M input,
+$25/M output, and $10 per 1,000 web searches):
+
+| | per run | per month, daily |
+|---|---|---|
+| Web searches (~10–15) | $0.10–0.15 | $3–5 |
+| Input tokens (search results dominate) | ~$0.12 | ~$4 |
+| Output tokens incl. thinking | ~$0.10 | ~$3 |
+| **Total** | **~$0.30–0.40** | **~$10–12** |
+
+That is on top of Pro, not included in it. Costs scale with how many searches a
+run needs, so a volatile week costs more than a quiet one. Checking a watchlist
+ticker is a smaller version of the same call, a few cents each.
+
+**Set a spend limit.** It is the only thing standing between a bug and the
+card on file.
+
 ## Setup
 
 1. Open the link on the phone in Chrome.
@@ -104,13 +131,24 @@ genuinely better than the sideloaded APK, which would have needed the
 
 ## Deviations from the spec, and why
 
-Three, all in the API call (§8), all deliberate:
+All in the API call (§8), all deliberate:
 
 | Spec | Built | Why |
 |---|---|---|
-| `web_search_20250305` | `web_search_20260209` | The dynamic-filtering search variant, supported on Sonnet 5. It filters result pages before they reach the context window, which matters when the model reads a lot of market pages per run. The pinned version still works; this one works better. |
-| `max_tokens: 3000` | `max_tokens: 8000` | Sonnet 5 runs adaptive thinking **by default**, and `max_tokens` caps thinking and response text together. At 3000, with search results in context, the JSON gets truncated mid-object — which shows up as the malformed-JSON path on nearly every run. |
+| `claude-sonnet-5` | `claude-opus-5` | Chosen explicitly after weighing cost. The one thing this app exists to do is judge whether a fall is an overreaction or a real impairment, and Opus 5 is markedly better at that call. About $3/month more than Sonnet 5 at a daily run. |
+| `web_search_20250305` | `web_search_20260318`, `response_inclusion: "excluded"` | The current search tool. Dynamic filtering means the model filters result pages in code before they reach the context window, which matters when it reads a lot of market pages per run. This is a one-shot request that never sends results back for a second turn, so `excluded` drops raw result blocks the parser would discard anyway, and stops us paying output tokens to echo them. |
+| `max_tokens: 3000` | `max_tokens: 16000` | Opus 5 runs adaptive thinking **by default**, and `max_tokens` caps thinking and response text together. At 3000, with search results in context, the JSON truncates mid-object — the malformed-JSON path on nearly every run. Unused headroom costs nothing. |
+| 150s call timeout | 240s | Opus 5 at the default `high` effort thinks and searches for longer than Sonnet 5 did. 150s was too tight to be safe. |
+| *(not in spec)* | `fallbacks: "default"` | Opus 5's safety classifiers can decline a request, returning HTTP **200** with `stop_reason: "refusal"` and empty content. Server-side fallbacks re-serve a declined request on Anthropic's recommended fallback model inside the same call, so a rare false positive becomes a slightly different brief instead of an error at 6:30am. A refusal that survives the fallback is reported plainly and **not** retried — a retry would be declined too. |
 | Canvas for the range bar | CSS/DOM | The web equivalent of hand-drawing on Canvas. It reflows with the container and with system font scaling for free, which a fixed-size canvas does not. Same geometry, same degradation rule. |
+
+The request also downgrades itself rather than dead-ending. If the API returns
+a 400 — which would mean it rejected the request *shape*, not the key or the
+prompt — the app retries once without the optional extras (`fallbacks`,
+`response_inclusion`, and on the older `web_search_20260209`) and remembers
+that choice for the rest of the session. This exists because the request shape
+could not be validated against the live API from the build environment, and a
+rejected optional parameter should never be what stops the brief.
 
 Two smaller ones. Swipe-to-dismiss on the watchlist is a remove button with the
 same undo snackbar — swipe has no discoverable affordance on the web and no
@@ -138,12 +176,18 @@ parser as the foreground one.
 
 Verified in headless Chromium at 412×915 against a mocked API, covering the
 spec's §23 acceptance criteria that apply to this build: cache-first render
-(52 ms cold), the null-`low52` degradation case, `n/a` metrics rendering as
+(54 ms cold), the null-`low52` degradation case, `n/a` metrics rendering as
 dashes, the settings-to-prompt wiring, bad-key and malformed-JSON handling with
 the previous brief left intact, exactly one retry on bad JSON, no retry on 429,
-offline reads, the stale banner, dark mode, and 200% font scaling with no
-clipping or horizontal overflow.
+refusals reported without a retry, the outgoing request shape, the 400
+downgrade path and that it is remembered, offline reads, the stale banner, dark
+mode, and 200% font scaling with no clipping or horizontal overflow.
 
-Two criteria could not be tested here and are the ones to watch on the actual
-phone: whether background refresh survives a reboot (Chrome's decision, not the
-app's), and the real end-to-end latency of a live run with web search.
+Three things could not be tested here and are the ones to watch on the phone:
+
+- **The live request shape.** No API key was available in the build
+  environment, so the request was never sent to the real API. The downgrade
+  path above exists to absorb this, but the first real run is the actual proof.
+- **Background refresh surviving a reboot.** Chrome's decision, not the app's.
+- **Real end-to-end latency** of an Opus 5 run with web search. The 240s
+  timeout and the pacing of the progress labels are estimates.

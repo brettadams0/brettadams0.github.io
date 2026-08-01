@@ -18,12 +18,24 @@
   const K_WATCH_META = "watchMeta";
 
   const API_URL = "https://api.anthropic.com/v1/messages";
-  const MODEL = "claude-sonnet-5";
-  // Dynamic-filtering web search. Supported on Sonnet 5, and it filters
-  // result pages before they reach the context window — which matters when
-  // the model reads a lot of market pages in one run.
-  const SEARCH_TOOL = "web_search_20260209";
-  const CALL_TIMEOUT_MS = 150000;
+  const MODEL = "claude-opus-5";
+  // Opus 5's safety classifiers can decline a request. "default" lets the API
+  // re-serve a declined request on Anthropic's recommended fallback model
+  // inside the same call, so a rare false positive on a market screen becomes
+  // a slightly different brief rather than an error at 6:30am.
+  const FALLBACK_BETA = "server-side-fallback-2026-07-01";
+  // Dynamic filtering (the model filters result pages in code before they
+  // reach the context window) plus response_inclusion. This is a one-shot
+  // request — we never send search results back for a second turn — so
+  // "excluded" drops the raw result blocks we would only throw away, and
+  // stops us paying output tokens to echo them.
+  const SEARCH_TOOL = "web_search_20260318";
+  const SEARCH_RESPONSE_INCLUSION = "excluded";
+  // The conservative tool version used by the `plain` retry below.
+  const PLAIN_SEARCH_TOOL = "web_search_20260209";
+  // Opus 5 at the default "high" effort thinks and searches for longer than
+  // Sonnet 5 did, so the spec's 150s ceiling is too tight to be safe here.
+  const CALL_TIMEOUT_MS = 240000;
   const STALE_AFTER_MS = 36 * 60 * 60 * 1000;
 
   const SECTORS = [
@@ -214,7 +226,11 @@ ${JSON_CONTRACT}`;
     }
   }
 
-  async function callAnthropic(prompt, apiKey) {
+  // `plain` drops the optional extras (server-side fallbacks and the newer
+  // search tool's response_inclusion) and asks for the conservative tool
+  // version instead. Used to recover from a 400 rather than dead-ending on
+  // one, since a rejected optional parameter should not stop the brief.
+  async function callAnthropic(prompt, apiKey, plain) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), CALL_TIMEOUT_MS);
 
@@ -223,21 +239,40 @@ ${JSON_CONTRACT}`;
       res = await fetch(API_URL, {
         method: "POST",
         signal: controller.signal,
-        headers: {
-          "content-type": "application/json",
-          "x-api-key": apiKey,
-          "anthropic-version": "2023-06-01",
-          "anthropic-dangerous-direct-browser-access": "true",
-        },
-        body: JSON.stringify({
-          model: MODEL,
-          // Sonnet 5 runs adaptive thinking by default, and max_tokens caps
-          // thinking and response text together — 3000 truncates the JSON
-          // once search results are in context.
-          max_tokens: 8000,
-          messages: [{ role: "user", content: prompt }],
-          tools: [{ type: SEARCH_TOOL, name: "web_search" }],
-        }),
+        headers: Object.assign(
+          {
+            "content-type": "application/json",
+            "x-api-key": apiKey,
+            "anthropic-version": "2023-06-01",
+            "anthropic-dangerous-direct-browser-access": "true",
+          },
+          plain ? {} : { "anthropic-beta": FALLBACK_BETA }
+        ),
+        body: JSON.stringify(
+          Object.assign(
+            {
+              model: MODEL,
+              // Opus 5 runs adaptive thinking by default, and max_tokens caps
+              // thinking and response text together — the spec's 3000
+              // truncates the JSON mid-object once search results are in
+              // context. Unused headroom costs nothing, so leave plenty.
+              max_tokens: 16000,
+              messages: [{ role: "user", content: prompt }],
+            },
+            plain
+              ? { tools: [{ type: PLAIN_SEARCH_TOOL, name: "web_search" }] }
+              : {
+                  fallbacks: "default",
+                  tools: [
+                    {
+                      type: SEARCH_TOOL,
+                      name: "web_search",
+                      response_inclusion: SEARCH_RESPONSE_INCLUSION,
+                    },
+                  ],
+                }
+          )
+        ),
       });
     } catch (err) {
       clearTimeout(timer);
@@ -282,17 +317,55 @@ ${JSON_CONTRACT}`;
     return data;
   }
 
+  // A declined request comes back as a successful HTTP 200 with
+  // stop_reason "refusal" and empty content — not an error status. Without
+  // this check it would fall through to the malformed-JSON path, burn a
+  // pointless retry, and report the wrong reason.
+  function assertNotRefused(body) {
+    if (!body || body.stop_reason !== "refusal") return;
+    const category = body.stop_details && body.stop_details.category;
+    throw new ApiError(
+      `The safety filter declined that request${category ? ` (${category})` : ""}. ` +
+        "That's unusual for a market screen — try again, and if it keeps happening " +
+        "adjust the excluded sectors in Settings.",
+      0
+    );
+  }
+
+  // Once we learn this account rejects the optional extras, stay on the
+  // conservative body for the rest of the session rather than paying a
+  // failed call every run.
+  let usePlain = false;
+
+  async function call(prompt, apiKey) {
+    if (usePlain) return callAnthropic(prompt, apiKey, true);
+    try {
+      return await callAnthropic(prompt, apiKey, false);
+    } catch (err) {
+      // A 400 here means the API rejected the request shape, not the key or
+      // the prompt — almost certainly one of the optional extras. Drop them
+      // and try once more before giving up.
+      if (err instanceof ApiError && err.status === 400) {
+        usePlain = true;
+        return callAnthropic(prompt, apiKey, true);
+      }
+      throw err;
+    }
+  }
+
   async function runPrompt(prompt, apiKey) {
-    const body = await callAnthropic(prompt, apiKey);
+    const body = await call(prompt, apiKey);
+    assertNotRefused(body); // never retried — a retry would be declined too
     try {
       return parseBrief(extractText(body));
     } catch {
       // One retry on malformed JSON, then surface the error state. Do not
       // retry on 401 or 429 — callAnthropic throws those before we get here.
-      const retry = await callAnthropic(
+      const retry = await call(
         prompt + "\n\nYour previous reply was not valid JSON. Reply with the JSON object only.",
         apiKey
       );
+      assertNotRefused(retry);
       try {
         return parseBrief(extractText(retry));
       } catch {
