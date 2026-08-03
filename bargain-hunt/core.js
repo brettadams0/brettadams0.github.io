@@ -34,7 +34,13 @@
     "bargain-hunt/hunt/watchlist.json";
 
   const FETCH_TIMEOUT_MS = 20000;
-  const STALE_AFTER_MS = 36 * 60 * 60 * 1000;
+
+  // The morning run is Tuesday to Saturday, so each brief covers the previous
+  // trading session and there is a deliberate ~60-hour gap from Saturday's run
+  // to Tuesday's. Over a weekend, Friday's close IS the freshest data there is,
+  // so the spec's 36 hours would raise a false alarm every Sunday and Monday.
+  // 60 hours keeps the warning meaning "a run was actually missed".
+  const STALE_AFTER_MS = 60 * 60 * 60 * 1000;
 
   const SECTORS = [
     "Biotech",

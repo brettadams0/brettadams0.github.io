@@ -64,11 +64,13 @@ git push -u origin bargain-hunt-data
 git checkout main
 ```
 
-**2. Schedule the morning run.** In Claude Code, create a recurring task
-pointing at `bargain-hunt/hunt/RUN.md`, e.g. daily at 06:00 local:
+**2. Schedule the morning run.** A Claude Code Routine, **Tuesday to Saturday
+at 06:30 Eastern** (`30 10 * * 2-6` UTC). Each run reports the previous trading
+session's close, so five runs cover all five sessions with nothing duplicated —
+a Sunday or Monday run would only re-report Friday's close.
 
-> Follow the instructions in `bargain-hunt/hunt/RUN.md` in
-> `brettadams0/brettadams0.github.io`. Use web search for every figure.
+The Routine fetches `hunt/PROMPT.md` and `hunt/watchlist.json` over HTTPS rather
+than cloning this repo, and clones only the single-file data branch to publish.
 
 **3. Install it on the phone.** Open the link in Chrome, accept **Add to Home
 screen**, and launch it from the icon. There is nothing to configure — no key,
@@ -96,6 +98,11 @@ GitHub's editor for it, which works fine on a phone.
 
 ## What is degraded compared to the spec
 
+- **The stale marker fires at 60 hours, not §10.1's 36.** With a Tuesday-to-
+  Saturday schedule there is a deliberate ~60-hour gap from Saturday's run to
+  Tuesday's, and over a weekend Friday's close *is* the freshest data there is.
+  At 36 hours the warning would cry wolf every Sunday and Monday; at 60 it still
+  means "a run was actually missed".
 - **No on-demand single-ticker check.** §10.2 had tapping a watchlist row run
   a live check. Without an API key there is no live call, so the Watch tab
   shows that morning's check instead. Given §24 — his bottleneck is gathering,
@@ -132,13 +139,33 @@ bargain-hunt/
 ├── styles.css          design system (§12), light and dark
 ├── manifest.json       standalone display, 192/512/maskable icons
 └── hunt/
-    ├── PROMPT.md       the hunt itself, in plain English — this is the product
-    ├── RUN.md          what the scheduled session does each morning
+    ├── PROMPT.md       the whole job, in plain English — this is the product
     └── watchlist.json  tickers checked daily; editable on github.com
 ```
 
 `hunt/PROMPT.md` is deliberately prose, not code. It is the part worth editing
-and it should never require touching a source file.
+and it should never require touching a source file. It is also the **only** file
+the morning run reads, which is as much about cost as about clarity.
+
+## Keeping the morning run cheap
+
+The run costs quota on the Claude subscription, and search results are by far
+the largest part of it — every result page becomes input tokens. `PROMPT.md`
+therefore builds in:
+
+- **Two passes.** One broad search for the day's decliners, *then* research only
+  the shortlist. Without this the model deep-dives names it later discards.
+- **A search budget.** Roughly 12-16 searches, hard ceiling 25, with an explicit
+  preference for one quote page carrying many fields over a separate query per
+  number. This was learned the hard way: researching field-by-field produced
+  contradictory figures *and* burned the budget.
+- **Stop-when-confirmed.** No re-verifying a figure already confirmed once.
+- **Write, don't print.** The JSON goes straight to the file; printing it into
+  the reply first doubles the output cost for no benefit.
+- **No repo clone.** Two `curl`s for the instructions, and a `--depth 1
+  --single-branch` clone of the data branch, which holds one file.
+- **Five runs, not seven.** Tuesday to Saturday covers all five trading
+  sessions; Sunday and Monday runs would only re-report Friday's close.
 
 ## Testing
 
