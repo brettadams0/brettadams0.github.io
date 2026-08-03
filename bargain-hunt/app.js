@@ -515,6 +515,38 @@
 
   /* ------------------------------------------------------------- settings */
 
+  // Shows what these settings do to the brief he actually has, and says so
+  // when a limit cannot bite because the figure is missing. A setting that
+  // changes nothing should never be mistakable for a setting that is broken.
+  function liveEffect(s) {
+    if (!state.cached) {
+      return el("div", {
+        class: "preview effect",
+        text: "No brief yet, so there is nothing to filter.",
+      });
+    }
+
+    const stats = BH.filterStats(state.cached.brief.candidates, s);
+    const gaps = BH.blindSpots(stats, s);
+
+    return el(
+      "div",
+      { class: "preview effect" },
+      el(
+        "div",
+        { class: "effect-count" },
+        el("strong", { text: `${stats.shown} of ${stats.total}` }),
+        ` in today's brief match`
+      ),
+      gaps.length
+        ? el("div", {
+            class: "effect-gap",
+            text: `${gaps.join(", ")} — those can't be ruled out, so they stay.`,
+          })
+        : null
+    );
+  }
+
   function settingsScreen() {
     const s = state.settings;
     const nodes = [];
@@ -625,12 +657,7 @@
         ),
         // He should never have to guess what the toggles combine to.
         el("div", { class: "preview" }, el("strong", { text: "Looking for: " }), BH.previewLine(s)),
-        el("div", {
-          class: "preview",
-          text:
-            "These apply instantly to the morning's results — no waiting for " +
-            "tomorrow's run.",
-        })
+        liveEffect(s)
       )
     );
 

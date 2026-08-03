@@ -119,12 +119,16 @@ Rules:
 - `verdict` is exactly one of `"real bargain"`, `"wait and see"`, `"value trap"`.
 - `causeType` is exactly one of `"one-off"`, `"fixable"`, `"permanent"`.
 - Prices, `marketCapUsd` and `fwdPe` are plain numbers, never strings.
-- `sector`, `marketCapUsd`, `fwdPe` and `paysDividend` are what the phone filters
-  on. Get them right or use `null` — `null` means "unknown" and is never
-  silently filtered out.
+- **`sector`, `marketCapUsd`, `fwdPe` and `paysDividend` are load-bearing.**
+  They are the four fields his settings filter on, so a `null` there does not
+  just lose a number — it makes his drop-threshold, market-cap, P/E and sector
+  controls do nothing for that candidate, because an unknown value is never
+  filtered out. Spend one of your searches getting these if you must: a single
+  quote or profile page normally carries all four at once. Only use `null` when
+  a page you actually looked at did not have it.
 - Use one of `Biotech`, `Crypto & digital assets`, `China-domiciled`, `Airlines`,
-  `Energy`, `Banks` for `sector` when one fits, since those are what he can
-  exclude. Otherwise a plain description.
+  `Energy`, `Banks` for `sector` when one fits, since those are exactly what he
+  can exclude. Otherwise give the real sector, never a blank.
 - `generatedAt` is the real UTC time of the run, ISO 8601.
 - If prices are a previous session's close (a Monday run, say), say so in `note`.
 
