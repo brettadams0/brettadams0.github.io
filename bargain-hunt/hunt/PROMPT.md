@@ -1,64 +1,81 @@
-# The hunt prompt
+# The hunt
 
-This is the product. It is kept in plain English on purpose so it can be read
-and edited without touching any code. The scheduled Claude Code session reads
-this file each morning and follows it.
-
-Two things it produces: the daily screen, and a check on each watchlist ticker.
+This is the product and the whole job. It is kept in plain English on purpose
+so it can be read and edited without touching code. The scheduled session reads
+**this file only** — there is nothing else to open.
 
 ---
 
-## Part 1 — the screen
+## Work in two passes. Do not skip to pass 2.
 
-Search the web for current data. Do not answer from memory.
+**Pass 1 — one broad search.** Find the day's biggest decliners with a single
+query such as *"biggest stock decliners today"* or *"stocks down 10% today
+earnings"*. Take the headline names and drops. **Do not research anyone yet.**
 
-Look for stocks or ETFs that have fallen **10% or more in a single day or over
-one week, within the last 7 days**.
+**Pass 2 — research only the shortlist.** From pass 1, pick the **6** most
+interesting that have fallen **10% or more in a single day or over one week,
+within the last 7 days**, favouring those also cheap on the numbers — low
+forward P/E, low price-to-book.
 
-Then discard the junk. Skip anything trading under $1 a share, anything below
-$500 million market cap, shell companies, companies listed within the last
-year, and biotechs whose value rests on a single drug trial.
+Before researching, discard: anything under $1 a share, anything below $500
+million market cap, shell companies, anything listed within the last year, and
+biotechs whose value rests on a single drug trial.
 
-From what survives, return the **8 most interesting**, favouring those that are
-also cheap on the numbers — low forward P/E and low price-to-book.
+Screen broadly and apply **no tighter filters than those**. The phone narrows
+the list to his personal thresholds locally, so returning more than he sees is
+deliberate — it means changing a setting takes effect instantly rather than
+tomorrow.
 
-Screen broadly here and do not apply any tighter filters. The phone narrows
-this list down to his personal thresholds locally, so returning more than he
-will see is deliberate — it means changing a setting takes effect instantly
-instead of waiting for tomorrow's run.
-
-For each one, judge whether the fall is an overreaction or a genuine
-impairment. The distinction that matters is whether the cause is a one-off
-event, a fixable problem with a credible timeline, or a permanent change to the
-business.
-
-## Part 2 — the watchlist
-
-Read `watchlist.json` in this folder. For **each** ticker listed there, look it
-up and produce the same tearsheet, whatever its size, sector, or recent price
-action. Do not filter these out and do not substitute a different company —
+Then also look up every ticker in `watchlist.json`, whatever its size, sector or
+price action. Do not filter those out and do not substitute a different company:
 if he explicitly asked about a stock, answer about that stock.
 
----
+## Searching efficiently
 
-## Accuracy
+Search results are the expensive part of this job. Keep it to roughly **12–16
+searches total**, and never more than 25.
 
-- Market data more than a day old is worse than useless here. Search for it.
-- If you cannot confirm a number, say so. Use `null` for any price you cannot
-  confirm and `"n/a"` for any metric you cannot confirm. **Never invent a
-  figure.** A wrong P/E is a much worse failure than a missing one.
+- **One page with many fields beats many pages with one field each.** A single
+  quote or profile page usually carries price, previous close, 52-week range,
+  market cap, P/E, sector and dividend together. Prefer those over a separate
+  query per number.
+- **Budget about two searches per name**: one for the numbers, one for the
+  cause. Only spend a third if the first two genuinely conflict.
+- **Stop when you have enough.** Do not keep searching to raise confidence in a
+  figure you have already confirmed once from a credible source.
+- Do not re-read files you have already read, and do not re-verify your own
+  output by reading it back.
+
+## Judging
+
+For each name, decide whether the fall is an overreaction or a genuine
+impairment. The distinction that matters is whether the cause is a **one-off**
+event, a **fixable** problem with a credible timeline, or a **permanent** change
+to the business.
+
+## Accuracy — the one rule that matters
+
+Market data more than a day old is worse than useless, so search for it rather
+than answering from memory.
+
+**Never invent a figure.** Use `null` for any price you cannot confirm and
+`"n/a"` for any metric you cannot confirm. A missing number is fine; a wrong one
+is not. If two sources disagree materially and a third would cost another
+search, publish `null` — the app renders it as a dash and that is the correct
+outcome, not a failure.
 
 ---
 
 ## Output
 
-Write the result to `brief.json` as a single JSON object, nothing else:
+Write **directly to `brief.json`** — do not print the JSON into the reply first,
+that doubles the cost for no benefit. One object, nothing else:
 
 ```json
 {
-  "generatedAt": "2026-08-02T10:30:00Z",
+  "generatedAt": "2026-08-04T10:35:00Z",
   "brief": {
-    "asOf": "2 August 2026",
+    "asOf": "4 August 2026",
     "note": "<=20 words on what is driving drops right now",
     "candidates": [ ... ],
     "watch": [ ... ]
@@ -66,7 +83,7 @@ Write the result to `brief.json` as a single JSON object, nothing else:
 }
 ```
 
-`candidates` is Part 1, `watch` is Part 2. Both are arrays of the same shape:
+`candidates` is the screen, `watch` is the watchlist. Both are arrays of:
 
 ```json
 {
@@ -99,15 +116,31 @@ Write the result to `brief.json` as a single JSON object, nothing else:
 
 Rules:
 
-- `verdict` must be exactly one of: `"real bargain"`, `"wait and see"`,
-  `"value trap"`.
-- `causeType` must be exactly one of: `"one-off"`, `"fixable"`, `"permanent"`.
+- `verdict` is exactly one of `"real bargain"`, `"wait and see"`, `"value trap"`.
+- `causeType` is exactly one of `"one-off"`, `"fixable"`, `"permanent"`.
 - Prices, `marketCapUsd` and `fwdPe` are plain numbers, never strings.
-- `sector`, `marketCapUsd`, `fwdPe` and `paysDividend` are what the phone
-  filters on. Get them right or use `null` — a `null` is treated as "unknown"
-  and is never silently filtered out.
-- `sector` should be one of `Biotech`, `Crypto & digital assets`,
-  `China-domiciled`, `Airlines`, `Energy`, `Banks` when one of those fits,
-  since those are the sectors he can exclude. Otherwise use a plain
-  description.
-- `generatedAt` is the actual UTC time of the run, in ISO 8601.
+- **`sector`, `marketCapUsd`, `fwdPe` and `paysDividend` are load-bearing.**
+  They are the four fields his settings filter on, so a `null` there does not
+  just lose a number — it makes his drop-threshold, market-cap, P/E and sector
+  controls do nothing for that candidate, because an unknown value is never
+  filtered out. Spend one of your searches getting these if you must: a single
+  quote or profile page normally carries all four at once. Only use `null` when
+  a page you actually looked at did not have it.
+- Use one of `Biotech`, `Crypto & digital assets`, `China-domiciled`, `Airlines`,
+  `Energy`, `Banks` for `sector` when one fits, since those are exactly what he
+  can exclude. Otherwise give the real sector, never a blank.
+- `generatedAt` is the real UTC time of the run, ISO 8601.
+- If prices are a previous session's close (a Monday run, say), say so in `note`.
+
+## Publishing
+
+Validate before writing: it parses, `candidates` is non-empty, and every entry
+has an allowed `verdict` and `causeType`.
+
+Then commit `brief.json` and push. **If anything fails, publish nothing and
+stop** — the app keeps showing the previous brief with its real date and a
+"this brief is from Saturday" bar, which degrades honestly. A stale brief
+clearly labelled stale beats a wrong one.
+
+Finish with two or three sentences: how many candidates, and anything that went
+wrong. No summary of the brief itself — he reads that in the app.

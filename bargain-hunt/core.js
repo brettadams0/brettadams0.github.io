@@ -34,7 +34,13 @@
     "bargain-hunt/hunt/watchlist.json";
 
   const FETCH_TIMEOUT_MS = 20000;
-  const STALE_AFTER_MS = 36 * 60 * 60 * 1000;
+
+  // The morning run is Tuesday to Saturday, so each brief covers the previous
+  // trading session and there is a deliberate ~60-hour gap from Saturday's run
+  // to Tuesday's. Over a weekend, Friday's close IS the freshest data there is,
+  // so the spec's 36 hours would raise a false alarm every Sunday and Monday.
+  // 60 hours keeps the warning meaning "a run was actually missed".
+  const STALE_AFTER_MS = 60 * 60 * 60 * 1000;
 
   const SECTORS = [
     "Biotech",
@@ -223,6 +229,33 @@
     return kept.slice(0, s.candidateCount);
   }
 
+  // What the current settings actually do to the brief in hand, and which
+  // limits cannot bite because the figure is missing. Without this, a setting
+  // that changes nothing is indistinguishable from a setting that is broken.
+  function filterStats(candidates, s) {
+    const all = Array.isArray(candidates) ? candidates : [];
+    const missing = { fwdPe: 0, marketCapUsd: 0, sector: 0 };
+    for (const c of all) {
+      if (typeof c.fwdPe !== "number") missing.fwdPe += 1;
+      if (typeof c.marketCapUsd !== "number") missing.marketCapUsd += 1;
+      if (!c.sector) missing.sector += 1;
+    }
+    return { shown: filterCandidates(all, s).length, total: all.length, missing };
+  }
+
+  // Only mention a gap when the matching limit is actually switched on —
+  // otherwise it is noise about a filter he is not using.
+  function blindSpots(stats, s) {
+    const out = [];
+    if (s.maxPe && stats.missing.fwdPe)
+      out.push(`${stats.missing.fwdPe} with no P/E on file`);
+    if (s.minMarketCap !== "M500" && stats.missing.marketCapUsd)
+      out.push(`${stats.missing.marketCapUsd} with no market cap`);
+    if (s.excludedSectors.length && stats.missing.sector)
+      out.push(`${stats.missing.sector} with no sector`);
+    return out;
+  }
+
   function previewLine(s) {
     const bits = [`falls of ${s.dropThreshold}%+ in a day or week`];
     bits.push(`above ${CAPS[s.minMarketCap].short} market cap`);
@@ -262,6 +295,7 @@
     idbGet, idbSet,
     getSettings, putSettings, getBrief,
     fetchPublished, syncPublished, filterCandidates, previewLine,
+    filterStats, blindSpots,
     refreshBrief, BriefError,
   };
 
