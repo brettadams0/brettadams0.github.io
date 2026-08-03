@@ -27,12 +27,6 @@
     "https://raw.githubusercontent.com/brettadams0/brettadams0.github.io/" +
     "bargain-hunt-data/brief.json";
 
-  // Where to edit the tickers checked each morning. GitHub's file editor
-  // works fine on a phone.
-  const WATCHLIST_EDIT_URL =
-    "https://github.com/brettadams0/brettadams0.github.io/edit/main/" +
-    "bargain-hunt/hunt/watchlist.json";
-
   const FETCH_TIMEOUT_MS = 20000;
 
   // The morning run is Tuesday to Saturday, so each brief covers the previous
@@ -69,6 +63,10 @@
     dividendPayersOnly: false,
     excludedSectors: [],
     candidateCount: 3,
+    // His own tickers, kept on the phone. No account, no sign-in, and he can
+    // change them himself — the previous design needed a GitHub login he
+    // does not have.
+    watchlist: [],
     notifyOnNewBrief: true,
     notifyOnWatchlistDrop: true,
   };
@@ -256,6 +254,40 @@
     return out;
   }
 
+  // What the Watch tab shows: one row per ticker he is watching, carrying
+  // today's tearsheet when the morning run covered it.
+  //
+  // Two sources feed it. `brief.watch` is the deep list the morning run
+  // researches by name every day, whatever the price did. The day's screen
+  // covers everything else — so a ticker he added on the phone gets a full
+  // tearsheet on any morning it actually fell, and is honestly marked quiet
+  // otherwise. That keeps the tab useful without needing the phone to write
+  // anywhere, which is what would have required an account.
+  function watchEntries(brief, s) {
+    const byTicker = new Map();
+    const add = (c, deep) => {
+      const t = String(c && c.ticker ? c.ticker : "").toUpperCase();
+      if (!t || byTicker.has(t)) return;
+      byTicker.set(t, { ticker: t, candidate: c, deep });
+    };
+
+    for (const c of Array.isArray(brief && brief.watch) ? brief.watch : []) add(c, true);
+
+    const screen = new Map();
+    for (const c of Array.isArray(brief && brief.candidates) ? brief.candidates : []) {
+      screen.set(String(c.ticker || "").toUpperCase(), c);
+    }
+
+    for (const raw of s.watchlist || []) {
+      const t = String(raw).toUpperCase();
+      if (byTicker.has(t)) continue;
+      const hit = screen.get(t);
+      byTicker.set(t, { ticker: t, candidate: hit || null, deep: false });
+    }
+
+    return Array.from(byTicker.values());
+  }
+
   function previewLine(s) {
     const bits = [`falls of ${s.dropThreshold}%+ in a day or week`];
     bits.push(`above ${CAPS[s.minMarketCap].short} market cap`);
@@ -281,21 +313,24 @@
     const shown = filterCandidates(brief.candidates, settings);
 
     // The highest-signal event the app can produce: a name he already watches
-    // has taken a real hit.
-    const watchlistHit = (Array.isArray(brief.watch) ? brief.watch : []).find(
-      (c) => typeof c.dropPct === "number" && Math.abs(c.dropPct) >= settings.dropThreshold
-    );
+    // has taken a real hit. Covers both the deep list and anything on his own
+    // phone list that turned up in today's screen.
+    const watched = new Set((settings.watchlist || []).map((t) => String(t).toUpperCase()));
+    const watchlistHit = []
+      .concat(Array.isArray(brief.watch) ? brief.watch : [])
+      .concat(brief.candidates.filter((c) => watched.has(String(c.ticker || "").toUpperCase())))
+      .find((c) => typeof c.dropPct === "number" && Math.abs(c.dropPct) >= settings.dropThreshold);
 
     return { ok: true, brief, shown, settings, watchlistHit: watchlistHit || null };
   }
 
   const BH = {
     STALE_AFTER_MS, SECTORS, CAPS, DISCLAIMER, DEFAULTS,
-    BRIEF_URL, WATCHLIST_EDIT_URL, K_BRIEF,
+    BRIEF_URL, K_BRIEF,
     idbGet, idbSet,
     getSettings, putSettings, getBrief,
     fetchPublished, syncPublished, filterCandidates, previewLine,
-    filterStats, blindSpots,
+    filterStats, blindSpots, watchEntries,
     refreshBrief, BriefError,
   };
 
