@@ -323,7 +323,12 @@
   }
 
   function footnote() {
-    return el("p", { class: "footnote", text: "A new brief arrives each morning" });
+    // Tuesday to Saturday, each covering the previous trading session. Saying
+    // so stops the Sunday/Monday gap reading as a failure.
+    return el("p", {
+      class: "footnote",
+      text: "New brief each morning, Tuesday to Saturday",
+    });
   }
 
   function briefScreen() {
@@ -429,12 +434,40 @@
 
   /* ----------------------------------------------------------- watchlist */
 
+  async function addTicker(raw) {
+    const t = String(raw).trim().toUpperCase();
+    if (!t) return;
+    if (state.settings.watchlist.includes(t)) {
+      snackbar(`${t} is already on your list.`);
+      return;
+    }
+    state.settings.watchlist = state.settings.watchlist.concat(t);
+    await BH.putSettings(state.settings);
+    render();
+  }
+
+  async function removeTicker(t) {
+    const idx = state.settings.watchlist.indexOf(t);
+    if (idx === -1) return;
+    state.settings.watchlist = state.settings.watchlist.filter((x) => x !== t);
+    await BH.putSettings(state.settings);
+    render();
+    snackbar(`Removed ${t}.`, "Undo", async () => {
+      const next = state.settings.watchlist.slice();
+      next.splice(Math.min(idx, next.length), 0, t);
+      state.settings.watchlist = next;
+      await BH.putSettings(state.settings);
+      render();
+    });
+  }
+
   function watchScreen() {
     const nodes = [];
     if (state.error) nodes.push(errorBanner());
 
-    const watch =
-      state.cached && Array.isArray(state.cached.brief.watch) ? state.cached.brief.watch : [];
+    const entries = state.cached
+      ? BH.watchEntries(state.cached.brief, state.settings)
+      : (state.settings.watchlist || []).map((t) => ({ ticker: t, candidate: null, deep: false }));
 
     if (state.detail) {
       nodes.push(
@@ -453,59 +486,106 @@
       return nodes;
     }
 
+    const input = el("input", {
+      type: "text",
+      class: "ticker-input",
+      maxlength: "6",
+      placeholder: "Add a ticker",
+      "aria-label": "Ticker to add",
+      autocapitalize: "characters",
+      autocomplete: "off",
+      spellcheck: "false",
+      enterkeyhint: "done",
+    });
+    input.addEventListener("input", () => {
+      input.value = input.value.toUpperCase().replace(/[^A-Z.\-]/g, "").slice(0, 6);
+    });
+    const submit = async () => {
+      const v = input.value;
+      input.value = "";
+      await addTicker(v);
+    };
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") submit();
+    });
+
     nodes.push(
       el(
         "div",
         { class: "group" },
         el("h2", { text: "Watchlist" }),
-        watch.length
-          ? watch.map((c) => {
-              const vclass = VERDICT_CLASS[String(c.verdict || "").toLowerCase()];
-              return el(
-                "div",
-                { class: "watch-row" },
-                el(
-                  "button",
-                  {
-                    class: "w-main",
-                    type: "button",
-                    onclick: () => {
+        el(
+          "div",
+          { class: "add-row" },
+          input,
+          el("button", { class: "btn", type: "button", text: "Add", onclick: submit })
+        ),
+        entries.map((entry) => {
+          const c = entry.candidate;
+          const vclass = c ? VERDICT_CLASS[String(c.verdict || "").toLowerCase()] : null;
+          const openable = !!c;
+          return el(
+            "div",
+            { class: "watch-row" },
+            el(
+              "button",
+              {
+                class: "w-main",
+                type: "button",
+                disabled: !openable,
+                onclick: openable
+                  ? () => {
                       state.detail = c;
                       render();
                       window.scrollTo({ top: 0 });
-                    },
-                    "aria-label": `Open ${c.ticker}`,
-                  },
-                  el("span", { class: "w-ticker", text: c.ticker || "—" }),
-                  c.name ? el("span", { class: "w-name", text: c.name }) : null
-                ),
-                c.verdict
-                  ? el("span", { class: `pill ${vclass || "neutral"}`, text: c.verdict })
-                  : null
-              );
-            })
-          : null,
-        el(
-          "div",
-          { class: "preview" },
-          "These are checked every morning alongside the screen. ",
-          el(
-            "a",
-            { href: BH.WATCHLIST_EDIT_URL, target: "_blank", rel: "noopener noreferrer" },
-            "Edit the list"
-          ),
-          " — it opens the file on GitHub, which works fine on a phone."
-        )
+                    }
+                  : null,
+                "aria-label": openable ? `Open ${entry.ticker}` : `${entry.ticker}, nothing today`,
+              },
+              el("span", { class: "w-ticker", text: entry.ticker }),
+              el("span", {
+                class: "w-name",
+                // Be plain about why a row is empty rather than looking broken.
+                text: c
+                  ? c.name || ""
+                  : entry.deep
+                  ? "no reading this morning"
+                  : "no double-digit fall today",
+              })
+            ),
+            c && c.verdict
+              ? el("span", { class: `pill ${vclass || "neutral"}`, text: c.verdict })
+              : null,
+            entry.deep
+              ? null
+              : el("button", {
+                  class: "remove",
+                  type: "button",
+                  text: "✕",
+                  "aria-label": `Remove ${entry.ticker}`,
+                  onclick: () => removeTicker(entry.ticker),
+                })
+          );
+        }),
+        el("div", {
+          class: "preview",
+          text:
+            "Your tickers are kept on this phone — nothing to sign into. Each " +
+            "morning they are matched against the day's screen, and any that " +
+            "fell get the full write-up here.",
+        })
       )
     );
 
-    if (!watch.length) {
+    if (!entries.length) {
       nodes.push(
         el(
           "div",
           { class: "state" },
-          el("h2", { text: "Nothing on the watchlist" }),
-          el("p", { text: "Add a ticker to have it checked every morning." })
+          el("h2", { text: "Nothing on the watchlist yet" }),
+          el("p", {
+            text: "Add a ticker above and it'll be checked against each morning's screen.",
+          })
         )
       );
     }
@@ -690,9 +770,11 @@
         el("div", {
           class: "preview",
           text:
-            "A scheduled job runs the hunt every morning and publishes the " +
-            "brief. This app just reads it — there is no API key on your " +
-            "phone and it costs nothing to run.",
+            "A scheduled job runs the hunt each morning from Tuesday to " +
+            "Saturday and publishes the brief — each one covers the previous " +
+            "trading day. On Sunday and Monday it keeps Saturday's, because " +
+            "Friday's close is still the newest there is. This app only " +
+            "reads it: no API key on your phone, nothing to run.",
         }),
         el(
           "div",

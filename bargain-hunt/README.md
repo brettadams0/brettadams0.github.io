@@ -14,7 +14,7 @@ Claude Code session**, which searches the web, writes the brief, and publishes
 it. The app is a **reader**: it fetches that file, caches it, and renders it.
 
 ```
-  Scheduled Claude Code session (every morning)
+  Scheduled Claude Code session (Tue-Sat, 06:30 ET)
         │  reads hunt/PROMPT.md + hunt/watchlist.json
         │  searches the web, judges each candidate
         ▼
@@ -83,7 +83,7 @@ market cap, max forward P/E, dividend payers only, excluded sectors, how many
 to show. There is a live preview line so the combination is never a guess.
 
 These apply **instantly**, because the morning run deliberately screens wider
-than he needs — 8 candidates at a 10% threshold — and the phone narrows that
+than he needs — 6 candidates at a 10% threshold — and the phone narrows that
 to his thresholds locally. Tightening a filter re-filters the list immediately
 instead of waiting for tomorrow.
 
@@ -92,9 +92,24 @@ Only a value that definitely fails a test removes a candidate. "Never invent a
 figure" cuts both ways — a P/E the model could not confirm must not quietly
 hide a company.
 
-**The watchlist lives in the repo**, at `hunt/watchlist.json`, because the
-morning run is what checks those tickers. The Watch tab links straight to
-GitHub's editor for it, which works fine on a phone.
+**The watchlist lives on the phone.** He adds and removes tickers in the Watch
+tab — no account, no sign-in, and it persists in IndexedDB like the settings do.
+Each morning his tickers are matched against the day's screen: any that fell get
+the full write-up, and any that did not are marked "no double-digit fall today"
+rather than left looking broken.
+
+An earlier version kept the watchlist in `hunt/watchlist.json` and linked to
+GitHub's editor. That was wrong — **he does not have a GitHub account**, so the
+one control that was supposed to be his was the one he could not touch.
+
+`hunt/watchlist.json` still exists and is still read by the morning run, but it
+is now the optional *deep* list: names researched by ticker every morning
+whatever the price did, for anyone maintaining the repo. Entries from it appear
+in the Watch tab without a remove button, because the phone does not own them.
+
+There is deliberately no write-back from phone to repo. That would need a
+credential in a public web app, and GitHub revokes tokens it finds in public
+source — so it would break, and it would deserve to.
 
 ## What is degraded compared to the spec
 
@@ -105,10 +120,10 @@ GitHub's editor for it, which works fine on a phone.
   means "a run was actually missed".
 - **No on-demand single-ticker check.** §10.2 had tapping a watchlist row run
   a live check. Without an API key there is no live call, so the Watch tab
-  shows that morning's check instead. Given §24 — his bottleneck is gathering,
-  not judging — pre-gathered each morning still solves the actual problem.
-- **Adding a watchlist ticker is not one tap in the app.** It is an edit to
-  `watchlist.json` on GitHub, linked from the Watch tab.
+  shows that morning's reading instead. Given §24 — his bottleneck is gathering,
+  not judging — pre-gathered each morning still solves the actual problem. The
+  cost is that a watched name which did not fall gets no tearsheet that day
+  unless it is on the deep list.
 - **Settings shape the output, not the prompt.** §9 wanted every setting to
   change the prompt. Here the broad screen is fixed and settings filter the
   result. The trade is deliberate: settings became instant instead of
@@ -140,7 +155,7 @@ bargain-hunt/
 ├── manifest.json       standalone display, 192/512/maskable icons
 └── hunt/
     ├── PROMPT.md       the whole job, in plain English — this is the product
-    └── watchlist.json  tickers checked daily; editable on github.com
+    └── watchlist.json  optional deep list, researched by name every morning
 ```
 
 `hunt/PROMPT.md` is deliberately prose, not code. It is the part worth editing
