@@ -1,5 +1,124 @@
 {
-  "generatedAt": null,
-  "brief": null,
-  "_note": "Placeholder. The first real brief is published by the scheduled morning run; see bargain-hunt/hunt/RUN.md on main. The app treats this as \"no brief yet\" rather than showing invented figures."
+  "generatedAt": "2026-08-03T15:45:48Z",
+  "brief": {
+    "asOf": "3 August 2026",
+    "note": "Prices are Friday's close. A hawkish Fed hold and AI-spending fears drove last week's selloff.",
+    "candidates": [
+      {
+        "ticker": "LII",
+        "name": "Lennox International",
+        "dropPct": -19.0,
+        "dropWindow": "one day",
+        "price": 434.06,
+        "prevClose": null,
+        "low52": 434.06,
+        "high52": null,
+        "verdict": "real bargain",
+        "business": "Designs and makes heating, ventilation, air conditioning and refrigeration equipment",
+        "cause": "Cut 2026 EPS guidance to $23.00-$24.00, a 4.7% miss on the midpoint, as residential HVAC demand stayed weak. Commercial held up and revenue growth was reaffirmed.",
+        "causeType": "fixable",
+        "sector": "Industrials",
+        "marketCapUsd": 15000000000,
+        "fwdPe": 18.5,
+        "paysDividend": true,
+        "metrics": [
+          {
+            "label": "Fwd P/E",
+            "value": "18.5x"
+          },
+          {
+            "label": "Yield",
+            "value": "1.3%"
+          },
+          {
+            "label": "Market cap",
+            "value": "$15.0bn"
+          },
+          {
+            "label": "2026 EPS guide",
+            "value": "$23.00-24.00"
+          }
+        ],
+        "right": "Residential HVAC demand turns before the commercial side softens.",
+        "wrong": "Housing stays weak into 2027 and this cut is the first of several."
+      },
+      {
+        "ticker": "RBLX",
+        "name": "Roblox",
+        "dropPct": -26.9,
+        "dropWindow": "one day",
+        "price": 35.6,
+        "prevClose": 48.67,
+        "low52": null,
+        "high52": null,
+        "verdict": "value trap",
+        "business": "Runs an online platform where users build and play each other's games",
+        "cause": "Revenue missed at $1.47bn against $1.6bn expected, third-quarter bookings were guided down 14-18% year on year, and management withdrew annual guidance.",
+        "causeType": "permanent",
+        "sector": "Technology",
+        "marketCapUsd": null,
+        "fwdPe": null,
+        "paysDividend": false,
+        "metrics": [
+          {
+            "label": "Fwd P/E",
+            "value": "n/a"
+          },
+          {
+            "label": "Yield",
+            "value": "None"
+          },
+          {
+            "label": "Q2 revenue",
+            "value": "$1.47bn"
+          },
+          {
+            "label": "Q3 bookings",
+            "value": "-14% to -18%"
+          }
+        ],
+        "right": "Spending per user stabilises and management restores annual guidance.",
+        "wrong": "Bookings keep shrinking and the decline in spending per user proves structural."
+      },
+      {
+        "ticker": "GLW",
+        "name": "Corning",
+        "dropPct": -18.0,
+        "dropWindow": "one day",
+        "price": 138.2,
+        "prevClose": null,
+        "low52": 61.44,
+        "high52": 271.78,
+        "verdict": "wait and see",
+        "business": "Makes specialty glass and optical fibre for displays, telecoms and data centres",
+        "cause": "Guided current-quarter revenue to $4.9-5.0bn against $5.0bn consensus despite beating on Q2, triggering its worst day since 2002 as money rotated out of AI infrastructure.",
+        "causeType": "one-off",
+        "sector": "Technology",
+        "marketCapUsd": null,
+        "fwdPe": null,
+        "paysDividend": true,
+        "metrics": [
+          {
+            "label": "Fwd P/E",
+            "value": "n/a"
+          },
+          {
+            "label": "Yield",
+            "value": "0.8%"
+          },
+          {
+            "label": "Q2 revenue",
+            "value": "+17% y/y"
+          },
+          {
+            "label": "Q2 core EPS",
+            "value": "$0.78"
+          }
+        ],
+        "right": "Data-centre demand for optical fibre keeps compounding into next year.",
+        "wrong": "The AI infrastructure trade keeps unwinding from a still-rich multiple."
+      }
+    ],
+    "watch": []
+  }
 }
