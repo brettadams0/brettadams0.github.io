@@ -102,7 +102,7 @@
 
     // Never draw a bar from invented numbers (spec §11 degradation).
     if (!isNum(price) || !isNum(low52) || !isNum(high52) || high52 <= low52) {
-      return el("p", { class: "range-caption", text: "52-week range not confirmed." });
+      return el("div", { class: "range-unknown" }, "52-week range not confirmed");
     }
 
     const span = high52 - low52;
@@ -169,7 +169,7 @@
 
     return el(
       "article",
-      { class: "card" },
+      { class: `card v-${VERDICT_CLASS[verdict] || "neutral"}` },
       el(
         "div",
         { class: "card-head" },
@@ -241,7 +241,7 @@
       c.right
         ? el(
             "div",
-            { class: "section" },
+            { class: "section pair right" },
             el("div", { class: "label" }, "Must go right"),
             el("p", { text: c.right })
           )
@@ -250,7 +250,7 @@
       c.wrong
         ? el(
             "div",
-            { class: "section" },
+            { class: "section pair wrong" },
             el("div", { class: "label" }, "Could go wrong"),
             el("p", { text: c.wrong })
           )
@@ -317,9 +317,13 @@
     return el(
       "details",
       { class: "disclaimer" },
-      el("summary", { text: "Important" }),
+      el("summary", { text: "Not investment advice — tap to read" }),
       el("p", { text: BH.DISCLAIMER })
     );
+  }
+
+  function footnote() {
+    return el("p", { class: "footnote", text: "A new brief arrives each morning" });
   }
 
   function briefScreen() {
@@ -386,10 +390,15 @@
       const v = String(c.verdict || "").toLowerCase();
       counts[v] = (counts[v] || 0) + 1;
     }
-    const parts = [];
-    if (counts["real bargain"]) parts.push(`${counts["real bargain"]} real bargain`);
-    if (counts["wait and see"]) parts.push(`${counts["wait and see"]} to watch`);
-    if (counts["value trap"]) parts.push(`${counts["value trap"]} value trap`);
+    const tallies = [
+      ["real bargain", "bargain", "real bargain"],
+      ["wait and see", "wait", "to watch"],
+      ["value trap", "trap", "value trap"],
+    ]
+      .filter(([key]) => counts[key])
+      .map(([key, cls, label]) =>
+        el("span", { class: `tally ${cls}`, text: `${counts[key]} ${label}` })
+      );
 
     nodes.push(
       el(
@@ -399,14 +408,14 @@
           class: "count",
           text: `${shown.length} candidate${shown.length === 1 ? "" : "s"}`,
         }),
-        parts.length ? el("div", { class: "breakdown", text: parts.join(" · ") }) : null,
+        tallies.length ? el("div", { class: "breakdown" }, tallies) : null,
         brief.note ? el("p", { class: "note", text: brief.note }) : null,
         // Be explicit that a wider screen ran behind this, so a thin list
         // reads as "my filters are tight", not "nothing happened today".
         all.length > shown.length
           ? el("p", {
-              class: "range-caption",
-              text: `Screened ${all.length}, showing the ${shown.length} that match your settings.`,
+              class: "screened",
+              text: `Screened ${all.length} · showing the ${shown.length} that match your settings`,
             })
           : null
       )
@@ -414,6 +423,7 @@
 
     nodes.push(...shown.map(tearsheet));
     nodes.push(disclaimerBlock());
+    nodes.push(footnote());
     return nodes;
   }
 
