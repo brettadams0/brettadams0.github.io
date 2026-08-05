@@ -8,16 +8,26 @@ so it can be read and edited without touching code. The scheduled session reads
 
 ## Work in two passes. Do not skip to pass 2.
 
-**Pass 1 — one broad search.** Find the day's biggest decliners with a single
+**Pass 1 — two broad searches.** Find the day's biggest decliners with a single
 query such as *"biggest stock decliners today"* or *"stocks down 10% today
-earnings"*. Take the headline names and drops. **Do not research anyone yet.**
+earnings"*. Then spend one more on the Canadian market — *"TSX biggest decliners
+today"* — because US decliner lists almost never surface Toronto listings, and
+without asking separately the TSX half of his account never gets screened. Take
+the headline names and drops. **Do not research anyone yet.**
 
 **Pass 2 — research only the shortlist.** From pass 1, pick the **6** most
 interesting that have fallen **10% or more in a single day or over one week,
 within the last 7 days**, favouring those also cheap on the numbers — low
 forward P/E, low price-to-book.
 
-Before researching, discard: anything under $1 a share, anything below $500
+**Only the NYSE, the Nasdaq and the TSX count.** Those are the three exchanges
+he can actually trade on, so a name listed anywhere else is not a candidate —
+it is a frustration. Discard it however good it looks, and do not substitute an
+over-the-counter or foreign-listed line in a company whose real listing is
+elsewhere. If a company trades on one of the three *and* over the counter, use
+the proper listing.
+
+Before researching, also discard: anything under $1 a share, anything below $500
 million market cap, shell companies, anything listed within the last year, and
 biotechs whose value rests on a single drug trial.
 
@@ -89,6 +99,7 @@ that doubles the cost for no benefit. One object, nothing else:
 {
   "ticker": "LKQ",
   "name": "LKQ Corporation",
+  "exchange": "NASDAQ",
   "dropPct": -15.8,
   "dropWindow": "one day",
   "price": 22.73,
@@ -118,6 +129,16 @@ Rules:
 
 - `verdict` is exactly one of `"real bargain"`, `"wait and see"`, `"value trap"`.
 - `causeType` is exactly one of `"one-off"`, `"fixable"`, `"permanent"`.
+- `exchange` is exactly one of `"NYSE"`, `"NASDAQ"`, `"TSX"` — never blank, and
+  never anything else. Writing it down is what makes the listing rule checkable
+  rather than a promise, so state the one you actually confirmed.
+- **TSX names are quoted in Canadian dollars.** Add `"currency": "CAD"` to those
+  entries and the app labels the price `C$`; leave it off for New York, where
+  the default is US dollars. `price`, `prevClose`, `low52` and `high52` all stay
+  in the listing's own currency — do not convert them. `marketCapUsd` is the one
+  exception: it is the field his size filter compares against every other
+  candidate, so it must be in **US dollars**. Convert it, or leave it `null` if
+  you cannot; never put Canadian dollars in it.
 - Prices, `marketCapUsd` and `fwdPe` are plain numbers, never strings.
 - **`sector`, `marketCapUsd`, `fwdPe` and `paysDividend` are load-bearing.**
   They are the four fields his settings filter on, so a `null` there does not

@@ -39,7 +39,12 @@
   };
 
   const isNum = (v) => typeof v === "number" && Number.isFinite(v);
-  const money = (v) => (isNum(v) ? `$${v.toFixed(2)}` : "—");
+
+  // TSX names are quoted in Canadian dollars. A bare "$" beside a New York
+  // listing would read as US dollars and quietly overstate the price by a
+  // third, so Canadian ones say so.
+  const money = (v, currency) =>
+    isNum(v) ? `${currency === "CAD" ? "C$" : "$"}${v.toFixed(2)}` : "—";
 
   const VERDICT_CLASS = {
     "real bargain": "bargain",
@@ -99,6 +104,7 @@
 
   function rangeBar(c) {
     const { price, prevClose, low52, high52 } = c;
+    const cur = c.currency;
 
     // Never draw a bar from invented numbers (spec §11 degradation).
     if (!isNum(price) || !isNum(low52) || !isNum(high52) || high52 <= low52) {
@@ -141,7 +147,8 @@
     bar.setAttribute("role", "img");
     bar.setAttribute(
       "aria-label",
-      `52-week range ${money(low52)} to ${money(high52)}; trading at ${money(price)}.`
+      `52-week range ${money(low52, cur)} to ${money(high52, cur)}; ` +
+        `trading at ${money(price, cur)}.`
     );
 
     return el(
@@ -151,8 +158,8 @@
       el(
         "div",
         { class: "range-labels" },
-        el("span", { text: `${money(low52)} low` }),
-        el("span", { text: `${money(high52)} high` })
+        el("span", { text: `${money(low52, cur)} low` }),
+        el("span", { text: `${money(high52, cur)} high` })
       ),
       el("p", { class: "range-caption", text: rangeCaption(now) })
     );
@@ -174,6 +181,9 @@
         "div",
         { class: "card-head" },
         el("span", { class: "ticker", text: c.ticker || "—" }),
+        // Where to place the trade — it matters most for the TSX names, which
+        // are the ones he can't assume are in New York.
+        c.exchange ? el("span", { class: "exchange", text: c.exchange }) : null,
         el("span", {
           class: `pill ${VERDICT_CLASS[verdict] || "neutral"}`,
           text: c.verdict || "unrated",
@@ -184,8 +194,10 @@
       el(
         "div",
         { class: "prices" },
-        el("span", { class: "now", text: money(c.price) }),
-        isNum(c.prevClose) ? el("span", { class: "prev", text: money(c.prevClose) }) : null,
+        el("span", { class: "now", text: money(c.price, c.currency) }),
+        isNum(c.prevClose)
+          ? el("span", { class: "prev", text: money(c.prevClose, c.currency) })
+          : null,
         el("span", {
           class: "drop",
           text: isNum(c.dropPct) ? `${c.dropPct.toFixed(1)}%` : "—",

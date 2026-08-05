@@ -299,6 +299,21 @@ main {
   letter-spacing: 0.01em;
 }
 
+/* Sits beside the ticker, not on its own line — it is a label, not a fact he
+   reads every time. Quiet enough to ignore until a TSX name turns up. */
+.exchange {
+  align-self: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+
 .name {
   width: 100%;
   color: var(--ink-muted);
