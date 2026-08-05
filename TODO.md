@@ -7,17 +7,18 @@ them. Not published to the site (see `exclude` in `_config.yml`).
 
 ## 1. Security — rotate the TechNest database credential
 
-`TechNest/includes/config.php` has a database username and password committed
-as the fallback values behind `getenv()`. The repo is public, so treat that
-credential as compromised regardless of whether anything still uses it.
+`TechNest/includes/config.php` used to carry a database username and password
+as the fallback values behind `getenv()`. Those fallbacks have since been
+removed and the app now fails with a message naming the missing environment
+variables — but the values are still in git history, so treat the credential
+as compromised.
 
-- [ ] Rotate/delete the database user on whatever host it belongs to
-- [ ] Replace the fallbacks with empty defaults so the app fails loudly instead
-      of silently trying a real credential
-- [ ] Decide about history: removing it from the current file does **not**
-      remove it from git history. Either rewrite history (`git filter-repo
-      --replace-text`) and force-push, or accept it as burned once the
-      credential is dead. Rotating is what actually matters.
+- [ ] **Rotate/delete the database user** on whatever host it belongs to.
+      This is the step that actually matters; nothing else undoes the exposure.
+- [x] ~~Replace the fallbacks with empty defaults so the app fails loudly~~
+- [ ] Decide about history: the old values remain reachable in past commits.
+      Either rewrite history (`git filter-repo --replace-text`) and force-push,
+      or accept it as burned once the credential is dead.
 
 Do this one first — it is the only item with a real-world consequence.
 
@@ -50,6 +51,9 @@ Settings → Public profile. The current bio predates `mcp-surface`:
 
 - [ ] `mcp-surface` has no `homepage` set — point it at
       https://www.npmjs.com/package/mcp-surface
+
+There is no REST endpoint exposed for this; it is Settings → the "Website"
+field on the repo page, or the gear next to **About**.
 
 ## 5. TechNest screenshots
 
