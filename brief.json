@@ -1,122 +1,138 @@
 {
-  "generatedAt": "2026-08-03T15:45:48Z",
+  "generatedAt": "2026-08-05T11:05:00Z",
   "brief": {
-    "asOf": "3 August 2026",
-    "note": "Prices are Friday's close. A hawkish Fed hold and AI-spending fears drove last week's selloff.",
+    "asOf": "5 August 2026",
+    "note": "Indexes at records — these are single-name earnings reactions, not a selloff. Prices are Tuesday's close.",
     "candidates": [
       {
-        "ticker": "LII",
-        "name": "Lennox International",
-        "dropPct": -19.0,
-        "dropWindow": "one day",
-        "price": 434.06,
-        "prevClose": null,
-        "low52": 434.06,
-        "high52": null,
-        "verdict": "real bargain",
-        "business": "Designs and makes heating, ventilation, air conditioning and refrigeration equipment",
-        "cause": "Cut 2026 EPS guidance to $23.00-$24.00, a 4.7% miss on the midpoint, as residential HVAC demand stayed weak. Commercial held up and revenue growth was reaffirmed.",
-        "causeType": "fixable",
-        "sector": "Industrials",
-        "marketCapUsd": 15000000000,
-        "fwdPe": 18.5,
-        "paysDividend": true,
-        "metrics": [
-          {
-            "label": "Fwd P/E",
-            "value": "18.5x"
-          },
-          {
-            "label": "Yield",
-            "value": "1.3%"
-          },
-          {
-            "label": "Market cap",
-            "value": "$15.0bn"
-          },
-          {
-            "label": "2026 EPS guide",
-            "value": "$23.00-24.00"
-          }
-        ],
-        "right": "Residential HVAC demand turns before the commercial side softens.",
-        "wrong": "Housing stays weak into 2027 and this cut is the first of several."
-      },
-      {
-        "ticker": "RBLX",
-        "name": "Roblox",
-        "dropPct": -26.9,
-        "dropWindow": "one day",
-        "price": 35.6,
-        "prevClose": 48.67,
-        "low52": null,
-        "high52": null,
-        "verdict": "value trap",
-        "business": "Runs an online platform where users build and play each other's games",
-        "cause": "Revenue missed at $1.47bn against $1.6bn expected, third-quarter bookings were guided down 14-18% year on year, and management withdrew annual guidance.",
+        "ticker": "ALNY",
+        "name": "Alnylam Pharmaceuticals",
+        "dropPct": -22.4,
+        "dropWindow": "one week",
+        "price": 222.54,
+        "prevClose": 286.62,
+        "low52": 205.48,
+        "high52": 491.22,
+        "verdict": "wait and see",
+        "business": "RNA-silencing drugs for rare inherited and heart diseases",
+        "cause": "Cut 2026 product revenue guidance by $200m as second-line demand for Amvuttra normalised after a pent-up launch surge.",
         "causeType": "permanent",
-        "sector": "Technology",
-        "marketCapUsd": null,
-        "fwdPe": null,
+        "sector": "Biotech",
+        "marketCapUsd": 27500000000,
+        "fwdPe": 16.15,
         "paysDividend": false,
         "metrics": [
-          {
-            "label": "Fwd P/E",
-            "value": "n/a"
-          },
-          {
-            "label": "Yield",
-            "value": "None"
-          },
-          {
-            "label": "Q2 revenue",
-            "value": "$1.47bn"
-          },
-          {
-            "label": "Q3 bookings",
-            "value": "-14% to -18%"
-          }
+          {"label": "Fwd P/E", "value": "16.2x"},
+          {"label": "Off 52wk high", "value": "55%"},
+          {"label": "Yield", "value": "None"},
+          {"label": "2026 guidance", "value": "$4.7-5.1bn"}
         ],
-        "right": "Spending per user stabilises and management restores annual guidance.",
-        "wrong": "Bookings keep shrinking and the decline in spending per user proves structural."
+        "right": "Amvuttra demand has to settle at a level the new guidance already assumes",
+        "wrong": "Normalisation keeps going, and the whole growth rate resets lower again"
       },
       {
-        "ticker": "GLW",
-        "name": "Corning",
-        "dropPct": -18.0,
+        "ticker": "SRAD",
+        "name": "Sportradar Group",
+        "dropPct": -18.3,
         "dropWindow": "one day",
-        "price": 138.2,
-        "prevClose": null,
-        "low52": 61.44,
-        "high52": 271.78,
+        "price": 11.88,
+        "prevClose": 14.54,
+        "low52": 11.66,
+        "high52": 32.22,
         "verdict": "wait and see",
-        "business": "Makes specialty glass and optical fibre for displays, telecoms and data centres",
-        "cause": "Guided current-quarter revenue to $4.9-5.0bn against $5.0bn consensus despite beating on Q2, triggering its worst day since 2002 as money rotated out of AI infrastructure.",
-        "causeType": "one-off",
+        "business": "Sells live sports data and odds to betting operators",
+        "cause": "Q2 revenue rose 19% to EUR378m but missed forecasts, and guidance was cut on delayed prediction-market deals and US softness.",
+        "causeType": "fixable",
         "sector": "Technology",
-        "marketCapUsd": null,
-        "fwdPe": null,
+        "marketCapUsd": 3821000000,
+        "fwdPe": 26.3,
+        "paysDividend": false,
+        "metrics": [
+          {"label": "Fwd P/E", "value": "26.3x"},
+          {"label": "Revenue growth", "value": "+19%"},
+          {"label": "Yield", "value": "None"},
+          {"label": "Off 52wk high", "value": "63%"}
+        ],
+        "right": "The delayed prediction-market contracts have to actually land, not disappear",
+        "wrong": "Still 26x earnings after the fall, so a second miss hurts twice"
+      },
+      {
+        "ticker": "APTV",
+        "name": "Aptiv PLC",
+        "dropPct": -16.6,
+        "dropWindow": "one day",
+        "price": 47.72,
+        "prevClose": 57.23,
+        "low52": 46.42,
+        "high52": 78.49,
+        "verdict": "real bargain",
+        "business": "Wiring, connectors and electronics that make vehicles work",
+        "cause": "Beat on earnings but trimmed 2026 revenue guidance by $300m — about 2% — on China weakness and delayed programme launches.",
+        "causeType": "fixable",
+        "sector": "Consumer discretionary",
+        "marketCapUsd": 10100000000,
+        "fwdPe": 8.4,
+        "paysDividend": false,
+        "metrics": [
+          {"label": "Fwd P/E", "value": "8.4x"},
+          {"label": "Guidance cut", "value": "2% of revenue"},
+          {"label": "Yield", "value": "None"},
+          {"label": "Q2 EPS", "value": "Beat"}
+        ],
+        "right": "China has to stop deteriorating, and the delayed launches have to arrive",
+        "wrong": "China is a structural loss rather than a delay, and the cuts keep coming"
+      },
+      {
+        "ticker": "BRKR",
+        "name": "Bruker Corporation",
+        "dropPct": -11.9,
+        "dropWindow": "one day",
+        "price": 52.47,
+        "prevClose": null,
+        "low52": 28.53,
+        "high52": 64.54,
+        "verdict": "real bargain",
+        "business": "Makes scientific instruments for labs — mass spectrometry, imaging",
+        "cause": "Q2 revenue of $838m missed by under 2% and full-year guidance came in 1% light, despite an earnings beat and margins up 510bps.",
+        "causeType": "one-off",
+        "sector": "Health care",
+        "marketCapUsd": 8840000000,
+        "fwdPe": 22.41,
         "paysDividend": true,
         "metrics": [
-          {
-            "label": "Fwd P/E",
-            "value": "n/a"
-          },
-          {
-            "label": "Yield",
-            "value": "0.8%"
-          },
-          {
-            "label": "Q2 revenue",
-            "value": "+17% y/y"
-          },
-          {
-            "label": "Q2 core EPS",
-            "value": "$0.78"
-          }
+          {"label": "Fwd P/E", "value": "22.4x"},
+          {"label": "Revenue miss", "value": "1.8%"},
+          {"label": "Yield", "value": "0.3%"},
+          {"label": "Margins", "value": "+510bps"}
         ],
-        "right": "Data-centre demand for optical fibre keeps compounding into next year.",
-        "wrong": "The AI infrastructure trade keeps unwinding from a still-rich multiple."
+        "right": "Lab spending has to hold up, so a 2% miss stays a wobble not a trend",
+        "wrong": "Academic and pharma budgets tighten further and instrument orders keep slipping"
+      },
+      {
+        "ticker": "CMG",
+        "name": "Chipotle Mexican Grill",
+        "dropPct": -9.7,
+        "dropWindow": "one day",
+        "price": 33.81,
+        "prevClose": 37.45,
+        "low52": 28.04,
+        "high52": 44.27,
+        "verdict": "wait and see",
+        "business": "Fast-casual burrito chain, roughly 3,700 restaurants",
+        "cause": "Pulled jalapenos from Minnesota restaurants after 110 people fell ill in a salmonella outbreak traced to one supplier lot.",
+        "causeType": "one-off",
+        "sector": "Consumer discretionary",
+        "marketCapUsd": 42800000000,
+        "fwdPe": 25.48,
+        "paysDividend": false,
+        "metrics": [
+          {"label": "Fwd P/E", "value": "25.5x"},
+          {"label": "Trailing P/E", "value": "27.9x"},
+          {"label": "Yield", "value": "None"},
+          {"label": "Cases reported", "value": "110"}
+        ],
+        "right": "It has to stay one supplier lot in one state, and traffic has to come back",
+        "wrong": "It spreads beyond Minnesota and becomes 2015 again, which took years to undo"
       }
     ],
     "watch": []
