@@ -7,6 +7,7 @@
       {
         "ticker": "ALNY",
         "name": "Alnylam Pharmaceuticals",
+        "exchange": "NASDAQ",
         "dropPct": -22.4,
         "dropWindow": "one week",
         "price": 222.54,
@@ -22,10 +23,22 @@
         "fwdPe": 16.15,
         "paysDividend": false,
         "metrics": [
-          {"label": "Fwd P/E", "value": "16.2x"},
-          {"label": "Off 52wk high", "value": "55%"},
-          {"label": "Yield", "value": "None"},
-          {"label": "2026 guidance", "value": "$4.7-5.1bn"}
+          {
+            "label": "Fwd P/E",
+            "value": "16.2x"
+          },
+          {
+            "label": "Off 52wk high",
+            "value": "55%"
+          },
+          {
+            "label": "Yield",
+            "value": "None"
+          },
+          {
+            "label": "2026 guidance",
+            "value": "$4.7-5.1bn"
+          }
         ],
         "right": "Amvuttra demand has to settle at a level the new guidance already assumes",
         "wrong": "Normalisation keeps going, and the whole growth rate resets lower again"
@@ -33,6 +46,7 @@
       {
         "ticker": "SRAD",
         "name": "Sportradar Group",
+        "exchange": "NASDAQ",
         "dropPct": -18.3,
         "dropWindow": "one day",
         "price": 11.88,
@@ -48,10 +62,22 @@
         "fwdPe": 26.3,
         "paysDividend": false,
         "metrics": [
-          {"label": "Fwd P/E", "value": "26.3x"},
-          {"label": "Revenue growth", "value": "+19%"},
-          {"label": "Yield", "value": "None"},
-          {"label": "Off 52wk high", "value": "63%"}
+          {
+            "label": "Fwd P/E",
+            "value": "26.3x"
+          },
+          {
+            "label": "Revenue growth",
+            "value": "+19%"
+          },
+          {
+            "label": "Yield",
+            "value": "None"
+          },
+          {
+            "label": "Off 52wk high",
+            "value": "63%"
+          }
         ],
         "right": "The delayed prediction-market contracts have to actually land, not disappear",
         "wrong": "Still 26x earnings after the fall, so a second miss hurts twice"
@@ -59,6 +85,7 @@
       {
         "ticker": "APTV",
         "name": "Aptiv PLC",
+        "exchange": "NYSE",
         "dropPct": -16.6,
         "dropWindow": "one day",
         "price": 47.72,
@@ -74,10 +101,22 @@
         "fwdPe": 8.4,
         "paysDividend": false,
         "metrics": [
-          {"label": "Fwd P/E", "value": "8.4x"},
-          {"label": "Guidance cut", "value": "2% of revenue"},
-          {"label": "Yield", "value": "None"},
-          {"label": "Q2 EPS", "value": "Beat"}
+          {
+            "label": "Fwd P/E",
+            "value": "8.4x"
+          },
+          {
+            "label": "Guidance cut",
+            "value": "2% of revenue"
+          },
+          {
+            "label": "Yield",
+            "value": "None"
+          },
+          {
+            "label": "Q2 EPS",
+            "value": "Beat"
+          }
         ],
         "right": "China has to stop deteriorating, and the delayed launches have to arrive",
         "wrong": "China is a structural loss rather than a delay, and the cuts keep coming"
@@ -85,6 +124,7 @@
       {
         "ticker": "BRKR",
         "name": "Bruker Corporation",
+        "exchange": "NASDAQ",
         "dropPct": -11.9,
         "dropWindow": "one day",
         "price": 52.47,
@@ -100,10 +140,22 @@
         "fwdPe": 22.41,
         "paysDividend": true,
         "metrics": [
-          {"label": "Fwd P/E", "value": "22.4x"},
-          {"label": "Revenue miss", "value": "1.8%"},
-          {"label": "Yield", "value": "0.3%"},
-          {"label": "Margins", "value": "+510bps"}
+          {
+            "label": "Fwd P/E",
+            "value": "22.4x"
+          },
+          {
+            "label": "Revenue miss",
+            "value": "1.8%"
+          },
+          {
+            "label": "Yield",
+            "value": "0.3%"
+          },
+          {
+            "label": "Margins",
+            "value": "+510bps"
+          }
         ],
         "right": "Lab spending has to hold up, so a 2% miss stays a wobble not a trend",
         "wrong": "Academic and pharma budgets tighten further and instrument orders keep slipping"
@@ -111,6 +163,7 @@
       {
         "ticker": "CMG",
         "name": "Chipotle Mexican Grill",
+        "exchange": "NYSE",
         "dropPct": -9.7,
         "dropWindow": "one day",
         "price": 33.81,
@@ -126,10 +179,22 @@
         "fwdPe": 25.48,
         "paysDividend": false,
         "metrics": [
-          {"label": "Fwd P/E", "value": "25.5x"},
-          {"label": "Trailing P/E", "value": "27.9x"},
-          {"label": "Yield", "value": "None"},
-          {"label": "Cases reported", "value": "110"}
+          {
+            "label": "Fwd P/E",
+            "value": "25.5x"
+          },
+          {
+            "label": "Trailing P/E",
+            "value": "27.9x"
+          },
+          {
+            "label": "Yield",
+            "value": "None"
+          },
+          {
+            "label": "Cases reported",
+            "value": "110"
+          }
         ],
         "right": "It has to stay one supplier lot in one state, and traffic has to come back",
         "wrong": "It spreads beyond Minnesota and becomes 2015 again, which took years to undo"
