@@ -1,203 +1,89 @@
 {
-  "generatedAt": "2026-08-05T11:05:00Z",
+  "generatedAt": "2026-08-06T14:20:00Z",
   "brief": {
-    "asOf": "5 August 2026",
-    "note": "Indexes at records — these are single-name earnings reactions, not a selloff. Prices are Tuesday's close.",
+    "asOf": "6 August 2026",
+    "note": "S&P slipped from a record; these are earnings reactions. Prices are Wednesday's close.",
     "candidates": [
       {
-        "ticker": "ALNY",
-        "name": "Alnylam Pharmaceuticals",
+        "ticker": "PODD",
+        "name": "Insulet Corporation",
         "exchange": "NASDAQ",
-        "dropPct": -22.4,
-        "dropWindow": "one week",
-        "price": 222.54,
-        "prevClose": 286.62,
-        "low52": 205.48,
-        "high52": 491.22,
+        "dropPct": -16.8,
+        "dropWindow": "one day",
+        "price": 138.79,
+        "prevClose": 166.82,
+        "low52": 138.79,
+        "high52": 354.88,
         "verdict": "wait and see",
-        "business": "RNA-silencing drugs for rare inherited and heart diseases",
-        "cause": "Cut 2026 product revenue guidance by $200m as second-line demand for Amvuttra normalised after a pent-up launch surge.",
-        "causeType": "permanent",
-        "sector": "Biotech",
-        "marketCapUsd": 27500000000,
-        "fwdPe": 16.15,
-        "paysDividend": false,
-        "metrics": [
-          {
-            "label": "Fwd P/E",
-            "value": "16.2x"
-          },
-          {
-            "label": "Off 52wk high",
-            "value": "55%"
-          },
-          {
-            "label": "Yield",
-            "value": "None"
-          },
-          {
-            "label": "2026 guidance",
-            "value": "$4.7-5.1bn"
-          }
-        ],
-        "right": "Amvuttra demand has to settle at a level the new guidance already assumes",
-        "wrong": "Normalisation keeps going, and the whole growth rate resets lower again"
-      },
-      {
-        "ticker": "SRAD",
-        "name": "Sportradar Group",
-        "exchange": "NASDAQ",
-        "dropPct": -18.3,
-        "dropWindow": "one day",
-        "price": 11.88,
-        "prevClose": 14.54,
-        "low52": 11.66,
-        "high52": 32.22,
-        "verdict": "wait and see",
-        "business": "Sells live sports data and odds to betting operators",
-        "cause": "Q2 revenue rose 19% to EUR378m but missed forecasts, and guidance was cut on delayed prediction-market deals and US softness.",
+        "business": "Makes the Omnipod tubeless insulin pump for diabetics",
+        "cause": "Beat on both lines but trimmed 2026 growth guidance to 20-22% from 21-23%, and flagged Type 2 patient attrition.",
         "causeType": "fixable",
-        "sector": "Technology",
-        "marketCapUsd": 3821000000,
-        "fwdPe": 26.3,
-        "paysDividend": false,
-        "metrics": [
-          {
-            "label": "Fwd P/E",
-            "value": "26.3x"
-          },
-          {
-            "label": "Revenue growth",
-            "value": "+19%"
-          },
-          {
-            "label": "Yield",
-            "value": "None"
-          },
-          {
-            "label": "Off 52wk high",
-            "value": "63%"
-          }
-        ],
-        "right": "The delayed prediction-market contracts have to actually land, not disappear",
-        "wrong": "Still 26x earnings after the fall, so a second miss hurts twice"
-      },
-      {
-        "ticker": "APTV",
-        "name": "Aptiv PLC",
-        "exchange": "NYSE",
-        "dropPct": -16.6,
-        "dropWindow": "one day",
-        "price": 47.72,
-        "prevClose": 57.23,
-        "low52": 46.42,
-        "high52": 78.49,
-        "verdict": "real bargain",
-        "business": "Wiring, connectors and electronics that make vehicles work",
-        "cause": "Beat on earnings but trimmed 2026 revenue guidance by $300m — about 2% — on China weakness and delayed programme launches.",
-        "causeType": "fixable",
-        "sector": "Consumer discretionary",
-        "marketCapUsd": 10100000000,
-        "fwdPe": 8.4,
-        "paysDividend": false,
-        "metrics": [
-          {
-            "label": "Fwd P/E",
-            "value": "8.4x"
-          },
-          {
-            "label": "Guidance cut",
-            "value": "2% of revenue"
-          },
-          {
-            "label": "Yield",
-            "value": "None"
-          },
-          {
-            "label": "Q2 EPS",
-            "value": "Beat"
-          }
-        ],
-        "right": "China has to stop deteriorating, and the delayed launches have to arrive",
-        "wrong": "China is a structural loss rather than a delay, and the cuts keep coming"
-      },
-      {
-        "ticker": "BRKR",
-        "name": "Bruker Corporation",
-        "exchange": "NASDAQ",
-        "dropPct": -11.9,
-        "dropWindow": "one day",
-        "price": 52.47,
-        "prevClose": null,
-        "low52": 28.53,
-        "high52": 64.54,
-        "verdict": "real bargain",
-        "business": "Makes scientific instruments for labs — mass spectrometry, imaging",
-        "cause": "Q2 revenue of $838m missed by under 2% and full-year guidance came in 1% light, despite an earnings beat and margins up 510bps.",
-        "causeType": "one-off",
         "sector": "Health care",
-        "marketCapUsd": 8840000000,
-        "fwdPe": 22.41,
+        "marketCapUsd": 11550000000,
+        "fwdPe": null,
+        "paysDividend": false,
+        "metrics": [
+          {"label": "Fwd P/E", "value": "n/a"},
+          {"label": "Trailing P/E", "value": "38.8x"},
+          {"label": "Off 52wk high", "value": "61%"},
+          {"label": "Yield", "value": "None"}
+        ],
+        "right": "Type 2 attrition has to be a wobble, not the start of the growth story ending",
+        "wrong": "Attrition keeps compounding and 38x trailing earnings has much further to fall"
+      },
+      {
+        "ticker": "CDW",
+        "name": "CDW Corporation",
+        "exchange": "NASDAQ",
+        "dropPct": -12.3,
+        "dropWindow": "one day",
+        "price": null,
+        "prevClose": null,
+        "low52": 97.12,
+        "high52": 171.55,
+        "verdict": "real bargain",
+        "business": "Resells and installs IT kit for business and government",
+        "cause": "Record quarter — sales up 10% to $6.57bn, beating by 5.2% — but margins squeezed and the CFO announced his retirement.",
+        "causeType": "one-off",
+        "sector": "Technology",
+        "marketCapUsd": 18920000000,
+        "fwdPe": 12.2,
         "paysDividend": true,
         "metrics": [
-          {
-            "label": "Fwd P/E",
-            "value": "22.4x"
-          },
-          {
-            "label": "Revenue miss",
-            "value": "1.8%"
-          },
-          {
-            "label": "Yield",
-            "value": "0.3%"
-          },
-          {
-            "label": "Margins",
-            "value": "+510bps"
-          }
+          {"label": "Fwd P/E", "value": "12.2x"},
+          {"label": "Sales growth", "value": "+10%"},
+          {"label": "Yield", "value": "1.8%"},
+          {"label": "Revenue beat", "value": "5.2%"}
         ],
-        "right": "Lab spending has to hold up, so a 2% miss stays a wobble not a trend",
-        "wrong": "Academic and pharma budgets tighten further and instrument orders keep slipping"
+        "right": "The margin squeeze has to be AI kit mix, which carries lower margin but more volume",
+        "wrong": "Margins keep compressing and the CFO leaving turns out to have been a signal"
       },
       {
-        "ticker": "CMG",
-        "name": "Chipotle Mexican Grill",
+        "ticker": "FLUT",
+        "name": "Flutter Entertainment",
         "exchange": "NYSE",
-        "dropPct": -9.7,
+        "dropPct": -11.5,
         "dropWindow": "one day",
-        "price": 33.81,
-        "prevClose": 37.45,
-        "low52": 28.04,
-        "high52": 44.27,
-        "verdict": "wait and see",
-        "business": "Fast-casual burrito chain, roughly 3,700 restaurants",
-        "cause": "Pulled jalapenos from Minnesota restaurants after 110 people fell ill in a salmonella outbreak traced to one supplier lot.",
-        "causeType": "one-off",
+        "price": 92.91,
+        "prevClose": 104.96,
+        "low52": 91.52,
+        "high52": 313.69,
+        "verdict": "value trap",
+        "business": "Owns FanDuel and Paddy Power; online sports betting",
+        "cause": "Swung to a $296m loss, cut profit guidance by $210m, group margin fell 1,020bps, and the chief executive is leaving.",
+        "causeType": "permanent",
         "sector": "Consumer discretionary",
-        "marketCapUsd": 42800000000,
-        "fwdPe": 25.48,
+        "marketCapUsd": 18260000000,
+        "fwdPe": null,
         "paysDividend": false,
         "metrics": [
-          {
-            "label": "Fwd P/E",
-            "value": "25.5x"
-          },
-          {
-            "label": "Trailing P/E",
-            "value": "27.9x"
-          },
-          {
-            "label": "Yield",
-            "value": "None"
-          },
-          {
-            "label": "Cases reported",
-            "value": "110"
-          }
+          {"label": "Fwd P/E", "value": "n/a"},
+          {"label": "Trailing P/E", "value": "Negative"},
+          {"label": "Net debt", "value": "4.3x EBITDA"},
+          {"label": "Off 52wk high", "value": "70%"}
         ],
-        "right": "It has to stay one supplier lot in one state, and traffic has to come back",
-        "wrong": "It spreads beyond Minnesota and becomes 2015 again, which took years to undo"
+        "right": "Prediction markets have to stop taking share before leverage at 4.3x starts to bite",
+        "wrong": "They don't, and a levered loss-maker with no permanent chief executive has no floor"
       }
     ],
     "watch": []
