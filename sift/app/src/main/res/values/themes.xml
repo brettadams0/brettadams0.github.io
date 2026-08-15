@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      A bare splash theme only. All real styling lives in Compose
+      (ui/theme/Theme.kt), deliberately neutral so the UI never shifts how a
+      photograph's colour reads.
+    -->
+    <style name="Theme.Sift" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#121314</item>
+        <item name="android:statusBarColor">#121314</item>
+        <item name="android:navigationBarColor">#121314</item>
+    </style>
+</resources>
