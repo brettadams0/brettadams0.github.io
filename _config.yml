@@ -21,3 +21,7 @@ exclude:
   - README.md
   - TODO.md
   - bargain-hunt/README.md
+  # Android app source, not site content. Unlike bargain-hunt (a PWA that is
+  # served), nothing under sift/ is meant to be published, and leaving it in
+  # would copy a Gradle project into _site on every build.
+  - sift
