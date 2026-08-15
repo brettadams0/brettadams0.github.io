@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-14T10:40:00Z",
+  "generatedAt": "2026-08-15T10:35:32Z",
   "brief": {
-    "asOf": "14 August 2026",
-    "note": "Earnings misses and cut guidance driving single-name crashes while indexes sit near records. Prices are latest confirmed closes.",
+    "asOf": "15 August 2026",
+    "note": "Saturday run: prices are each name's last confirmed close, not all Friday's. No new double-digit fallers Friday.",
     "candidates": [
       {
         "ticker": "CLBT",
@@ -16,7 +16,7 @@
         "high52": 19.98,
         "verdict": "wait and see",
         "business": "Digital forensics software used by police and agencies to extract phone evidence",
-        "cause": "Q2 sales grew 16% but missed estimates; 2026 growth guidance cut to 15% and Q3 to 19.5%, with net income down year on year.",
+        "cause": "Cut 2026 revenue guidance to 15% growth, missed on annual recurring revenue, and replaced its chief executive in the same announcement.",
         "causeType": "fixable",
         "sector": "Technology",
         "marketCapUsd": 1900000000,
@@ -28,8 +28,8 @@
           {"label": "P/B", "value": "n/a"},
           {"label": "Yield", "value": "None"}
         ],
-        "right": "Law enforcement budgets must hold and the guidance cut prove a one-year reset",
-        "wrong": "Growth keeps decelerating, leaving a software multiple attached to a mid-teens grower"
+        "right": "New chief executive must stabilise recurring revenue and rebuild credibility on guidance",
+        "wrong": "The ARR shortfall proves structural as police budgets tighten and rivals undercut"
       },
       {
         "ticker": "ONON",
@@ -37,8 +37,8 @@
         "exchange": "NYSE",
         "dropPct": -19.0,
         "dropWindow": "one week",
-        "price": 30.88,
-        "prevClose": 31.01,
+        "price": 31.53,
+        "prevClose": 30.88,
         "low52": 30.11,
         "high52": 52.20,
         "verdict": "real bargain",
@@ -46,12 +46,12 @@
         "cause": "Q2 revenue of $1.05bn missed the $1.08bn expected; 2026 constant-currency growth guidance cut to low-20% from at least 23%. Worst day since listing.",
         "causeType": "fixable",
         "sector": "Consumer discretionary",
-        "marketCapUsd": 10230000000,
-        "fwdPe": 16.6,
+        "marketCapUsd": 10450000000,
+        "fwdPe": 17.0,
         "paysDividend": false,
         "metrics": [
-          {"label": "Fwd P/E", "value": "16.6x"},
-          {"label": "Trailing P/E", "value": "40.4x"},
+          {"label": "Fwd P/E", "value": "17.0x"},
+          {"label": "Trailing P/E", "value": "41x"},
           {"label": "P/B", "value": "n/a"},
           {"label": "Yield", "value": "None"}
         ],
@@ -70,7 +70,7 @@
         "high52": 22.84,
         "verdict": "value trap",
         "business": "Online marketplace matching businesses with freelance contractors, earning fees per contract",
-        "cause": "Cut full-year revenue outlook to $730-750m, blaming worsening Google search referrals, weak freelance labour demand and AI automating the work it brokers.",
+        "cause": "Cut full-year revenue outlook to $730-750m; gross services volume fell 4% as Google referrals decayed and AI automated the work it brokers.",
         "causeType": "permanent",
         "sector": "Communication services",
         "marketCapUsd": 1030000000,
@@ -79,7 +79,7 @@
         "metrics": [
           {"label": "Fwd P/E", "value": "6.0x on guided FY26 EPS"},
           {"label": "P/B", "value": "3.9x"},
-          {"label": "Adj. EBITDA margin", "value": "33.4%"},
+          {"label": "Q2 gross services volume", "value": "-4% y/y"},
           {"label": "Yield", "value": "None"}
         ],
         "right": "AI must create more freelance projects than it automates away from the platform",
@@ -100,7 +100,7 @@
         "cause": "Q2 adjusted EPS of $0.73 missed the $1.04 expected as gold output lagged guidance and the effective tax rate jumped to about 37%.",
         "causeType": "one-off",
         "sector": "Materials",
-        "marketCapUsd": 20000000000,
+        "marketCapUsd": 23930000000,
         "fwdPe": 10.6,
         "paysDividend": true,
         "metrics": [
