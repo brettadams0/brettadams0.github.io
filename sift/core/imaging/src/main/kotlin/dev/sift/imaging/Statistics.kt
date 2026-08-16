@@ -200,6 +200,31 @@ object Statistics {
         variance(Convolve.laplacian(plane, width, height))
 
     /**
+     * Laplacian variance estimated from a row subsample.
+     *
+     * The full-frame figure requires materialising a Laplacian over every pixel.
+     * Where the number is only used to *choose a strength* — as in §6.10's
+     * output sharpening — sampling every [VARIANCE_ROW_STRIDE]th row gives the
+     * same answer to well within the precision the decision needs.
+     */
+    fun sampledLaplacianVariance(
+        plane: FloatArray,
+        width: Int,
+        height: Int,
+        stride: Int = VARIANCE_ROW_STRIDE,
+    ): Float {
+        if (height < stride * 4) return laplacianVariance(plane, width, height)
+        val rows = height / stride
+        val sampled = FloatArray(width * rows)
+        for (r in 0 until rows) {
+            System.arraycopy(plane, r * stride * width, sampled, r * width, width)
+        }
+        return variance(Convolve.laplacian(sampled, width, rows))
+    }
+
+    const val VARIANCE_ROW_STRIDE = 4
+
+    /**
      * Sharpness of the *sharpest* regions: P90 of per-tile Laplacian variance.
      *
      * Trap #11 — a shallow-depth-of-field portrait has a sharp subject against a

@@ -60,11 +60,12 @@ object JpegEncoder {
         val cbBlocks = Array(blockCount) { IntArray(64) }
         val crBlocks = Array(blockCount) { IntArray(64) }
 
-        val yPatch = FloatArray(64)
-        val cbPatch = FloatArray(64)
-        val crPatch = FloatArray(64)
-
-        for (by in 0 until blocksHigh) {
+        // Per-block and independent, so it parallelises cleanly. Entropy coding
+        // below cannot: it is a single bit stream with a running DC predictor.
+        Parallel.range(blocksHigh, blocksWide * 64) { by ->
+            val yPatch = FloatArray(64)
+            val cbPatch = FloatArray(64)
+            val crPatch = FloatArray(64)
             for (bx in 0 until blocksWide) {
                 for (row in 0 until 8) {
                     val sy = (by * 8 + row).coerceAtMost(height - 1)

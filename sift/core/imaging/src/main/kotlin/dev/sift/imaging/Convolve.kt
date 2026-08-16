@@ -66,7 +66,7 @@ object Convolve {
         for (i in kernel.indices) kernel[i] = (kernel[i] / sum).toFloat()
 
         // Horizontal
-        for (y in 0 until height) {
+        Parallel.rows(width, height) { y ->
             val row = y * width
             for (x in 0 until width) {
                 var acc = 0f
@@ -78,7 +78,7 @@ object Convolve {
             }
         }
         // Vertical
-        for (y in 0 until height) {
+        Parallel.rows(width, height) { y ->
             for (x in 0 until width) {
                 var acc = 0f
                 for (k in -radius..radius) {
@@ -133,7 +133,7 @@ object Convolve {
         radius: Int,
     ) {
         val norm = 1f / (2 * radius + 1)
-        for (y in 0 until height) {
+        Parallel.rows(width, height) { y ->
             val row = y * width
             // Prime the running sum with the clamped left edge.
             var acc = src[row] * (radius + 1)
@@ -155,7 +155,7 @@ object Convolve {
         radius: Int,
     ) {
         val norm = 1f / (2 * radius + 1)
-        for (x in 0 until width) {
+        Parallel.rows(height, width) { x ->
             var acc = src[x] * (radius + 1)
             for (y in 1..radius) acc += src[y.coerceAtMost(height - 1) * width + x]
             for (y in 0 until height) {
@@ -175,7 +175,7 @@ object Convolve {
      */
     fun laplacian(plane: FloatArray, width: Int, height: Int): FloatArray {
         val out = FloatArray(plane.size)
-        for (y in 0 until height) {
+        Parallel.rows(width, height) { y ->
             val up = (y - 1).coerceAtLeast(0) * width
             val mid = y * width
             val down = (y + 1).coerceAtMost(height - 1) * width
@@ -193,7 +193,7 @@ object Convolve {
     /** Sobel gradient magnitude, used for [dev.sift.model.FrameAnalysis.edgeDensity]. */
     fun sobelMagnitude(plane: FloatArray, width: Int, height: Int): FloatArray {
         val out = FloatArray(plane.size)
-        for (y in 0 until height) {
+        Parallel.rows(width, height) { y ->
             val up = (y - 1).coerceAtLeast(0) * width
             val mid = y * width
             val down = (y + 1).coerceAtMost(height - 1) * width
@@ -228,7 +228,7 @@ object Convolve {
         val cols = (width + blockSize - 1) / blockSize
         val rows = (height + blockSize - 1) / blockSize
         val std = FloatArray(cols * rows)
-        for (by in 0 until rows) {
+        Parallel.range(rows, cols * blockSize * blockSize) { by ->
             for (bx in 0 until cols) {
                 val x0 = bx * blockSize
                 val y0 = by * blockSize

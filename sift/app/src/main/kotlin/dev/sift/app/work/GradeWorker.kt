@@ -11,8 +11,9 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import dev.sift.data.db.MediaAssetDao
+import dev.sift.data.db.EditJobDao
 import dev.sift.data.db.EditJob
-import dev.sift.data.db.SiftDatabase
 import dev.sift.data.di.ImagingDispatcher
 import dev.sift.data.media.LifecycleRepository
 import dev.sift.data.media.MediaStoreRepository
@@ -25,6 +26,7 @@ import dev.sift.model.LifecycleState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.util.UUID
 
@@ -44,7 +46,8 @@ import java.util.UUID
 class GradeWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted params: WorkerParameters,
-    private val db: SiftDatabase,
+    private val mediaAssets: MediaAssetDao,
+    private val editJobs: EditJobDao,
     private val media: MediaStoreRepository,
     private val lifecycle: LifecycleRepository,
     private val settings: SettingsRepository,
@@ -64,10 +67,10 @@ class GradeWorker @AssistedInject constructor(
         }
 
         val current = settings.settings.first()
-        val queued = db.mediaAssets().inStateNow(LifecycleState.QUEUED_FOR_GRADE)
+        val queued = mediaAssets.inStateNow(LifecycleState.QUEUED_FOR_GRADE)
         if (queued.isEmpty()) return Result.success()
 
-        setForeground(GradeNotifications.foregroundInfo(applicationContext, 0, queued.size))
+        showProgress(0, queued.size)
 
         var completed = 0
         for (asset in queued) {
@@ -80,38 +83,104 @@ class GradeWorker @AssistedInject constructor(
 
             val outcome = runCatching {
                 withContext(imagingDispatcher) {
-                    gradeOne(asset.id, Uri.parse(asset.uri), current)
+                    try {
+                        gradeOne(asset.id, Uri.parse(asset.uri), settingsFor(asset, current), decodeLongEdge = null)
+                    } catch (oom: OutOfMemoryError) {
+                        // §12: "OOM during processing — catch, release Mats,
+                        // retry once at half resolution, then fail the job."
+                        // A 12MP frame is ~144MB as unbounded float and the
+                        // pipeline holds several buffers at once, so this is a
+                        // routine outcome on a loaded device, not a corrupt file.
+                        GradeLog.record(asset.id, oom)
+                        System.gc()
+                        gradeOne(
+                            asset.id,
+                            Uri.parse(asset.uri),
+                            settingsFor(asset, current),
+                            decodeLongEdge = HALF_RESOLUTION_LONG_EDGE,
+                        )
+                    }
                 }
             }
 
             outcome.onSuccess { job ->
-                db.editJobs().upsert(job)
-                lifecycle.transition(
-                    asset.id,
-                    LifecycleState.PENDING_REVIEW,
-                    if (job.fellBackToOriginal) "fell back to original" else "graded",
-                )
+                editJobs.upsert(job)
+                mediaAssets.clearRegradeOverride(asset.id)
+                if (job.fellBackToOriginal) {
+                    // Terminal, not pending: there is no decision for the user to
+                    // make. Parking these in the review queue meant scrolling
+                    // through photos that were never changed, rejecting each one.
+                    lifecycle.transition(
+                        asset.id,
+                        LifecycleState.REJECTED,
+                        "quality gate failed; original kept unchanged",
+                    )
+                } else {
+                    lifecycle.transition(asset.id, LifecycleState.PENDING_REVIEW, "graded")
+                }
             }.onFailure { error ->
                 // One bad frame never fails the batch (§12).
-                db.editJobs().upsert(failedJob(asset.id, error))
+                editJobs.upsert(failedJob(asset.id, error))
                 lifecycle.transition(asset.id, LifecycleState.UNREADABLE, "decode/grade failed: $error")
             }
 
             completed++
-            setForeground(
-                GradeNotifications.foregroundInfo(applicationContext, completed, queued.size),
-            )
+            showProgress(completed, queued.size)
         }
 
         return Result.success()
+    }
+
+    /**
+     * Fold any one-shot regrade override into the settings for this asset (§9.5).
+     *
+     * "Regrade at reduced strength" and "regrade with the other profile" are
+     * per-asset decisions, but grading reads global settings — so without this
+     * both actions re-derived exactly the same grade they had just been asked to
+     * change.
+     */
+    private fun settingsFor(
+        asset: dev.sift.data.db.MediaAsset,
+        base: dev.sift.model.GradeSettings,
+    ): dev.sift.model.GradeSettings {
+        var result = base
+        asset.pendingStrengthScale?.let { result = result.copy(strengthScale = it) }
+        asset.pendingProfile?.let {
+            result = result.copy(
+                routing = when (it) {
+                    dev.sift.model.GradeProfile.PORTRAIT ->
+                        dev.sift.model.GradeSettings.RoutingMode.FORCE_PORTRAIT
+                    dev.sift.model.GradeProfile.SCENE ->
+                        dev.sift.model.GradeSettings.RoutingMode.FORCE_SCENE
+                    dev.sift.model.GradeProfile.NONE ->
+                        dev.sift.model.GradeSettings.RoutingMode.OFF
+                },
+            )
+        }
+        return result
+    }
+
+    /**
+     * Show batch progress, tolerating a refusal.
+     *
+     * `setForeground` throws on Android 12+ when the system declines to let a
+     * background app start a foreground service. That is a notification
+     * problem, not a grading problem — losing the progress bar must not abandon
+     * a batch of photos halfway through.
+     */
+    private suspend fun showProgress(completed: Int, total: Int) {
+        runCatching {
+            setForeground(GradeNotifications.foregroundInfo(applicationContext, completed, total))
+        }
     }
 
     private suspend fun gradeOne(
         assetId: Long,
         uri: Uri,
         gradeSettings: dev.sift.model.GradeSettings,
+        decodeLongEdge: Int?,
     ): EditJob {
-        val decoded = media.decode(uri)
+        val decoded = media.decode(uri, maxLongEdge = decodeLongEdge)
 
         // The master is always produced; §10's other presets derive from it and
         // are exported alongside when enabled.
@@ -127,19 +196,47 @@ class GradeWorker @AssistedInject constructor(
             ),
         )
 
+        // A fallback means a quality gate rejected the graded result and the
+        // pipeline shipped the source unchanged (§6.12). The "export" would be a
+        // byte-for-byte re-encode of a photo you already have: nothing to review,
+        // nothing to approve, and §9.3 forbids ever trashing its original. Writing
+        // it anyway just fills Pictures/Sift — and the gallery — with duplicates.
+        if (result.fellBackToOriginal) {
+            return EditJob(
+                id = UUID.randomUUID().toString(),
+                sourceAssetId = assetId,
+                outputUri = null,
+                profile = result.profile,
+                profileWasManual = false,
+                derivedParamsJson = json.encodeToString(result.derived),
+                upscaleFactor = 1f,
+                gateResultsJson = json.encodeToString(result.gates),
+                fellBackToOriginal = true,
+                processingMs = result.processingMs,
+                state = JobState.DONE,
+                approvedAt = null,
+                rejectedAt = System.currentTimeMillis(),
+                rejectionReason = null,
+                originalTrashedAt = null,
+            )
+        }
+
         val outputUri = media.writeExport(
             jpeg = result.jpeg,
             displayName = "sift_${assetId}_${System.currentTimeMillis()}.jpg",
             width = result.width,
             height = result.height,
             sourceUri = uri,
+            // The graded frame is the same photograph, so it belongs on the same
+            // day in the gallery as the original — not on the day it was graded.
+            dateTakenMillis = mediaAssets.byId(assetId)?.dateTaken,
         )
 
-        db.mediaAssets().setAnalysis(
+        mediaAssets.setAnalysis(
             id = assetId,
             json = json.encodeToString(result.analysisBefore),
             contentClass = result.contentClass,
-            dHash = db.mediaAssets().byId(assetId)?.dHash ?: 0L,
+            dHash = mediaAssets.byId(assetId)?.dHash ?: 0L,
         )
 
         return EditJob(
@@ -183,6 +280,13 @@ class GradeWorker @AssistedInject constructor(
     companion object {
         const val WORK_NAME = "sift-grade"
         const val KEY_ERROR = "error"
+
+        /**
+         * Retry ceiling after an OOM (§12). Roughly a quarter of the pixels of a
+         * 12MP frame, which is the difference between a ~144MB float buffer and
+         * a ~36MB one.
+         */
+        const val HALF_RESOLUTION_LONG_EDGE = 2048
 
         /**
          * §9.2 — battery > 30% or charging starts immediately; otherwise the

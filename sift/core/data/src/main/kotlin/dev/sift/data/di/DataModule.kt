@@ -36,6 +36,7 @@ object DataModule {
         Room.databaseBuilder(context, SiftDatabase::class.java, SiftDatabase.NAME)
             // No destructive fallback: this database is the only record of which
             // originals have been trashed (§9.1).
+            .addMigrations(*SiftDatabase.MIGRATIONS)
             .build()
 
     @Provides fun mediaAssetDao(db: SiftDatabase) = db.mediaAssets()

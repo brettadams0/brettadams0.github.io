@@ -31,8 +31,16 @@ tasks.test {
     // A 12MP frame is ~144MB as unbounded float RGB; the gate tests hold a
     // source and an output simultaneously.
     maxHeapSize = "3g"
+
+    // Forwards -Dsift.bench=true into the test JVM so PipelineBenchmark can be
+    // switched on from the command line. Gradle's daemon properties are not
+    // inherited by the forked test process, so without this the benchmark is
+    // unconditionally skipped and reports success while measuring nothing.
+    System.getProperty("sift.bench")?.let { systemProperty("sift.bench", it) }
+
     testLogging {
         events("passed", "failed", "skipped")
-        showStandardStreams = false
+        // The benchmark's only output is what it prints.
+        showStandardStreams = System.getProperty("sift.bench") == "true"
     }
 }

@@ -4,12 +4,15 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.sift.data.db.EditJobDao
+import dev.sift.data.db.MediaAssetDao
+import dev.sift.data.db.TriageDecisionDao
 import dev.sift.data.db.MediaAsset
-import dev.sift.data.db.SiftDatabase
 import dev.sift.data.media.LifecycleRepository
 import dev.sift.data.media.TrashCoordinator
 import dev.sift.data.settings.SettingsRepository
 import dev.sift.app.work.GradeWorker
+import dev.sift.app.work.IngestWorker
 import dev.sift.model.ContentClass
 import dev.sift.model.LifecycleState
 import dev.sift.model.Verdict
@@ -36,7 +39,9 @@ import javax.inject.Inject
 @HiltViewModel
 class TriageViewModel @Inject constructor(
     application: Application,
-    private val db: SiftDatabase,
+    private val mediaAssets: MediaAssetDao,
+    private val triageDecisions: TriageDecisionDao,
+    private val editJobs: EditJobDao,
     private val lifecycle: LifecycleRepository,
     private val settings: SettingsRepository,
 ) : AndroidViewModel(application) {
@@ -65,18 +70,24 @@ class TriageViewModel @Inject constructor(
     private val internal = MutableStateFlow(UiState())
 
     val state: StateFlow<UiState> = combine(
-        db.mediaAssets().deck(),
-        db.mediaAssets().seenCount(),
-        db.mediaAssets().totalCount(),
+        mediaAssets.deck(),
+        mediaAssets.seenCount(),
+        mediaAssets.totalCount(),
         lifecycle.pendingTossCount(),
-        internal,
-    ) { deck, seen, total, pendingToss, base ->
+        combine(lifecycle.undoableCount(), editJobs.pendingReview(), internal) { undoable, review, base ->
+            Triple(undoable, review.size, base)
+        },
+    ) { deck, seen, total, pendingToss, (undoable, pendingReview, base) ->
         base.copy(
             deck = deck,
             reviewed = seen,
             total = total,
             pendingToss = pendingToss,
-            canUndo = undoStack.isNotEmpty(),
+            pendingReview = pendingReview,
+            // Derived from the database, not from an in-memory stack: the stack
+            // empties on rotation or process death while the decisions it would
+            // reverse are still sitting there.
+            canUndo = undoable > 0,
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), UiState())
 
@@ -113,7 +124,7 @@ class TriageViewModel @Inject constructor(
      */
     fun tossAllNonPhotographic() {
         viewModelScope.launch {
-            val candidates = db.mediaAssets()
+            val candidates = mediaAssets
                 .inStateNow(LifecycleState.UNTRIAGED)
                 .filter { it.contentClass == ContentClass.NON_PHOTOGRAPHIC }
             for (asset in candidates) lifecycle.recordDecision(asset.id, Verdict.TOSS)
@@ -127,11 +138,33 @@ class TriageViewModel @Inject constructor(
     fun commit() {
         viewModelScope.launch {
             val request = lifecycle.buildTriageTrashRequest()
+            if (request != null) {
+                // Keepers are promoted once the trash dialog resolves, so a
+                // cancelled dialog leaves the whole commit untouched.
+                internal.value = internal.value.copy(trashRequest = request, message = null)
+                return@launch
+            }
+
+            // Nothing to delete, but there may still be keepers waiting. This
+            // path exists because a session with no rejects used to commit
+            // nothing at all.
+            val queued = startGrading()
             internal.value = internal.value.copy(
-                trashRequest = request,
-                message = if (request == null) "Nothing to commit" else null,
+                message = when {
+                    queued > 0 -> "Grading $queued photos."
+                    else -> "Nothing to commit"
+                },
             )
         }
+    }
+
+    /** Promote keepers and kick the grader if settings allow. */
+    private suspend fun startGrading(): Int {
+        val queued = lifecycle.commitKeepers()
+        if (queued > 0 && settings.settings.first().autoGradeOnCommit) {
+            GradeWorker.enqueue(getApplication())
+        }
+        return queued
     }
 
     /**
@@ -145,10 +178,10 @@ class TriageViewModel @Inject constructor(
             undoStack.clear()
 
             val message = if (granted) {
-                if (settings.settings.first().autoGradeOnCommit) {
-                    // §9.2 — grading starts on commit, battery permitting.
-                    GradeWorker.enqueue(getApplication())
-                    "Trashed ${request.assetIds.size}. Grading your keepers now."
+                // §9.2 — grading starts on commit, battery permitting.
+                val queued = startGrading()
+                if (queued > 0) {
+                    "Trashed ${request.assetIds.size}. Grading $queued keepers now."
                 } else {
                     "Trashed ${request.assetIds.size}."
                 }
@@ -157,6 +190,18 @@ class TriageViewModel @Inject constructor(
             }
             internal.value = internal.value.copy(trashRequest = null, message = message)
         }
+    }
+
+    /**
+     * Kick the library scan again.
+     *
+     * The deck is fed from the database, not from MediaStore directly, so if
+     * ingest never ran or died the deck is empty and stays empty. Without a way
+     * to retry, the only recovery is reinstalling.
+     */
+    fun rescanLibrary() {
+        IngestWorker.enqueue(getApplication(), force = true)
+        internal.value = internal.value.copy(message = "Rescanning your library\u2026")
     }
 
     fun consumeMessage() {
@@ -169,7 +214,7 @@ class TriageViewModel @Inject constructor(
             internal.value = internal.value.copy(cluster = emptyList(), suggestedKeeperId = null)
             return
         }
-        val members = db.mediaAssets().inCluster(clusterId)
+        val members = mediaAssets.inCluster(clusterId)
         internal.value = internal.value.copy(
             cluster = members,
             // §7 — pre-select the sharpest, ranked on P90 not mean (trap #11).

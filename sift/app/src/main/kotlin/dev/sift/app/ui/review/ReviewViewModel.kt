@@ -5,9 +5,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.sift.app.work.GradeWorker
+import dev.sift.data.db.MediaAssetDao
+import dev.sift.data.db.EditJobDao
 import dev.sift.data.db.EditJob
 import dev.sift.data.db.MediaAsset
-import dev.sift.data.db.SiftDatabase
 import dev.sift.data.media.ApprovalGuard
 import dev.sift.data.media.LifecycleRepository
 import dev.sift.data.media.TrashCoordinator
@@ -23,6 +24,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.serialization.encodeToString
+import kotlin.math.abs
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
@@ -36,7 +39,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ReviewViewModel @Inject constructor(
     application: Application,
-    private val db: SiftDatabase,
+    private val mediaAssets: MediaAssetDao,
+    private val editJobs: EditJobDao,
     private val lifecycle: LifecycleRepository,
     private val trash: TrashCoordinator,
     private val json: Json,
@@ -59,6 +63,61 @@ class ReviewViewModel @Inject constructor(
          * "Surface fallbacks in the UI — a silent fallback teaches you nothing"
          * (§6.12).
          */
+        /**
+         * One line saying, in plain terms, whether this photo actually moved.
+         *
+         * The parameter dump below answers "what did it do" but not the question
+         * people actually ask first, which is "did it do anything at all". That
+         * matters most when the honest answer is *barely* — Scene is supposed to
+         * leave an already well-exposed frame almost alone (§14.3), so an export
+         * that looks identical to the original is often correct behaviour rather
+         * than a broken pipeline. Saying so is the difference between trusting it
+         * and assuming it is broken.
+         */
+        fun changeSummary(): String {
+            if (gates?.fellBackToOriginal == true) {
+                return "Not graded — a quality check failed, so your original was kept as-is."
+            }
+            val portrait = derived?.portrait
+            if (portrait != null) {
+                val moved = abs(portrait.appliedDeltaL) + abs(portrait.appliedDeltaA) +
+                    abs(portrait.appliedDeltaB)
+                val warmth = when {
+                    portrait.appliedDeltaB > 0.5f -> "warmed"
+                    portrait.appliedDeltaB < -0.5f -> "cooled"
+                    else -> null
+                }
+                val exposure = when {
+                    portrait.exposureAmount > 0.5f -> "brightened the background"
+                    portrait.exposureAmount < -0.5f -> "pulled the background down"
+                    else -> null
+                }
+                if (moved < 1f && exposure == null) {
+                    return "Barely changed — the skin was already on target."
+                }
+                val parts = listOfNotNull(warmth?.let { "$it the skin" }, exposure)
+                return "Skin corrected" + if (parts.isEmpty()) "." else ": ${parts.joinToString(", ")}."
+            }
+            val scene = derived?.scene
+            if (scene != null) {
+                val parts = buildList {
+                    if (scene.shadowLift > 0.01f) add("lifted shadows")
+                    if (scene.highlightRolloffStrength > 0.01f) add("recovered highlights")
+                    if (scene.contrastAmplitude > 0.05f) add("added contrast")
+                    if (scene.vibranceAmount > 0.02f) add("boosted muted colour")
+                    if (abs(scene.whiteBalanceDeltaA) + abs(scene.whiteBalanceDeltaB) > 1f) {
+                        add("neutralised a colour cast")
+                    }
+                }
+                return if (parts.isEmpty()) {
+                    "Barely changed — this one was already well exposed."
+                } else {
+                    parts.joinToString(", ").replaceFirstChar { it.uppercase() } + "."
+                }
+            }
+            return "Exported without grading."
+        }
+
         fun verdictLines(): List<String> = buildList {
             add("Profile: ${job.profile.name.lowercase()}${if (job.profileWasManual) " (manual)" else ""}")
             derived?.portrait?.let { p ->
@@ -88,6 +147,7 @@ class ReviewViewModel @Inject constructor(
         val flaggedIds: Set<String> = emptySet(),
         val message: String? = null,
         val pendingReasonForJobId: String? = null,
+        val reasonOfferedForJobId: String? = null,
         val trashRequest: TrashCoordinator.Request? = null,
         val storageReadout: String = "",
         val rejectionHistogram: List<Pair<RejectionReason, Int>> = emptyList(),
@@ -109,12 +169,12 @@ class ReviewViewModel @Inject constructor(
 
     val state: StateFlow<UiState> = combine(
         lifecycle.pendingReview(),
-        db.editJobs().rejectionHistogram(),
-        db.editJobs().rejectionTotal(),
+        editJobs.rejectionHistogram(),
+        editJobs.rejectionTotal(),
         internal,
     ) { jobs, histogram, total, base ->
         val items = jobs.mapNotNull { job ->
-            db.mediaAssets().byId(job.sourceAssetId)?.let { asset ->
+            mediaAssets.byId(job.sourceAssetId)?.let { asset ->
                 Item(
                     job = job,
                     asset = asset,
@@ -155,19 +215,41 @@ class ReviewViewModel @Inject constructor(
         }
     }
 
-    /** Rejection always asks why — it is the only tuning signal there is (§9.5). */
-    fun beginReject() {
+    /**
+     * Reject and move on. No modal.
+     *
+     * §9.5 is right that the reason is the only tuning signal there is, but a
+     * required dialog after every single reject turns a swipe-speed review into
+     * a form-filling exercise, and a reason given to dismiss a dialog is noise
+     * rather than signal. The reject lands immediately; the reason is offered as
+     * an action on the confirmation, so it is there when you have an opinion and
+     * costs nothing when you do not.
+     */
+    fun rejectCurrent() {
         val item = state.value.current ?: return
-        internal.value = internal.value.copy(pendingReasonForJobId = item.job.id)
+        viewModelScope.launch {
+            lifecycle.reject(item.job, null)
+            internal.value = internal.value.copy(
+                message = "Rejected",
+                // Kept so the snackbar action can attach a reason afterwards.
+                reasonOfferedForJobId = item.job.id,
+            )
+            advance()
+        }
     }
 
+    /** Open the reason picker for the reject that just happened. */
+    fun offerReason() {
+        val jobId = internal.value.reasonOfferedForJobId ?: return
+        internal.value = internal.value.copy(pendingReasonForJobId = jobId)
+    }
+
+    /** Attach a reason after the fact. */
     fun confirmReject(reason: RejectionReason?) {
         val jobId = internal.value.pendingReasonForJobId ?: return
-        val item = state.value.items.firstOrNull { it.job.id == jobId } ?: return
         viewModelScope.launch {
-            lifecycle.reject(item.job, reason)
+            if (reason != null) editJobs.markRejected(jobId, System.currentTimeMillis(), reason)
             internal.value = internal.value.copy(pendingReasonForJobId = null)
-            advance()
         }
     }
 
@@ -187,12 +269,16 @@ class ReviewViewModel @Inject constructor(
                         GradeProfile.PORTRAIT
                     }
                     lifecycle.reject(item.job, null)
+                    // Armed on the asset, not stamped onto the discarded job:
+                    // the worker re-routes from scratch and would otherwise pick
+                    // the same profile again.
+                    mediaAssets.setRegradeOverride(item.asset.id, other, null)
                     lifecycle.requeueForGrade(item.asset.id, "regrade as ${other.name.lowercase()}")
-                    db.editJobs().upsert(item.job.copy(profile = other, profileWasManual = true))
                     GradeWorker.enqueue(getApplication(), force = true)
                 }
                 RegradeAction.REDUCED_STRENGTH -> {
                     lifecycle.reject(item.job, null)
+                    mediaAssets.setRegradeOverride(item.asset.id, null, REDUCED_STRENGTH_SCALE)
                     lifecycle.requeueForGrade(item.asset.id, "regrade at reduced strength")
                     GradeWorker.enqueue(getApplication(), force = true)
                 }
@@ -304,6 +390,11 @@ class ReviewViewModel @Inject constructor(
                 "Most rejections are 'lost detail'. Try turning upscale off, or check denoise strength."
             RejectionReason.PREFER_ORIGINAL -> "Most rejections prefer the original as shot."
         }
+    }
+
+    companion object {
+        /** §9.5: "regrade at reduced strength — all adaptive amounts x 0.5". */
+        const val REDUCED_STRENGTH_SCALE = 0.5f
     }
 
     private fun advance() {

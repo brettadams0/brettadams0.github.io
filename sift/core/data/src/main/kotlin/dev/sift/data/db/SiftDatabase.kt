@@ -4,6 +4,8 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import dev.sift.model.ContentClass
 import dev.sift.model.GradeProfile
 import dev.sift.model.JobState
@@ -77,7 +79,7 @@ class Converters {
         EditJob::class,
         LifecycleEvent::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 @TypeConverters(Converters::class)
@@ -89,5 +91,22 @@ abstract class SiftDatabase : RoomDatabase() {
 
     companion object {
         const val NAME = "sift.db"
+
+        /**
+         * v1 → v2: the §9.5 regrade overrides.
+         *
+         * Explicit rather than destructive (§4.2). This database is the only
+         * record of which originals have already been trashed and which grades
+         * fell back; recreating it would strand assets mid-lifecycle with no way
+         * to tell which, so every schema change gets a real migration.
+         */
+        val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE media_assets ADD COLUMN pendingProfile TEXT")
+                db.execSQL("ALTER TABLE media_assets ADD COLUMN pendingStrengthScale REAL")
+            }
+        }
+
+        val MIGRATIONS = arrayOf(MIGRATION_1_2)
     }
 }

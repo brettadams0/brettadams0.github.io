@@ -21,9 +21,10 @@ android {
         jvmTarget = "17"
     }
 
-    ndk {
-        abiFilters += "arm64-v8a"
-    }
+    // No abiFilters: there is no native code in this project. §3 restricts ABIs
+    // because OpenCV ships ~40MB of .so per ABI, but the imaging pipeline is pure
+    // Kotlin (see core/imaging) and ONNX is not a dependency, so the APK is
+    // ABI-agnostic and the filter would save nothing.
 }
 
 dependencies {

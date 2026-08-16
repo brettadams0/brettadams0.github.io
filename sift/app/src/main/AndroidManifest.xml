@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!--
       §3 — the complete permission list.
@@ -18,16 +19,50 @@
       inserts into Pictures/Sift (§6.11).
     -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <!-- READ_MEDIA_IMAGES is API 33+. Android 11 and 12 are inside minSdk 30
+         and need the older permission, capped so it is not requested above 32. -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+    <!--
+      WorkManager pulls ACCESS_NETWORK_STATE in through manifest merging so it
+      can evaluate NetworkType constraints. Sift never sets one — grading is
+      gated on battery and charging only (§9.2) — and an app whose entire pitch
+      is that nothing leaves the device should not list a network permission on
+      its settings page. Removed explicitly; the `verifyNoNetworkPermissions`
+      task in app/build.gradle.kts fails the build if it ever comes back.
+    -->
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE"
+        tools:node="remove" />
+
+    <!--
+      Two others arrive from WorkManager and are kept deliberately: WAKE_LOCK
+      holds the CPU during the foreground grading service (§9.2), and
+      RECEIVE_BOOT_COMPLETED lets a batch deferred until charging survive a
+      reboot instead of being silently dropped.
+    -->
+
+    <!--
+      largeHeap is requested because the working format is unbounded 32-bit
+      float (§2.1): a single 12MP frame is ~144MB as RGB float, and the pipeline
+      holds a source, a working copy and a resize reference at once. The default
+      per-app heap on many devices is smaller than that on its own. §12 still
+      requires an OOM to be caught and retried at half resolution — this reduces
+      how often that path is taken, it does not replace it.
+    -->
     <application
         android:name=".SiftApplication"
         android:allowBackup="false"
+        android:largeHeap="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sift">
 
@@ -51,21 +86,18 @@
         <service
             android:name="androidx.work.impl.foreground.SystemForegroundService"
             android:foregroundServiceType="dataSync"
-            tools:node="merge"
-            xmlns:tools="http://schemas.android.com/tools" />
+            tools:node="merge" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
-            tools:node="merge"
-            xmlns:tools="http://schemas.android.com/tools">
+            tools:node="merge">
             <!-- Hilt supplies the WorkerFactory, so the default initializer is removed. -->
             <meta-data
                 android:name="androidx.work.WorkManagerInitializer"
                 android:value="androidx.startup"
-                tools:node="remove"
-                xmlns:tools="http://schemas.android.com/tools" />
+                tools:node="remove" />
         </provider>
     </application>
 </manifest>

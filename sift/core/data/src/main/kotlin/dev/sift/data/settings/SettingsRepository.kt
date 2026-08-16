@@ -22,7 +22,7 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 /**
  * Settings (§11).
  *
- * The portrait L\*/a\*/b\* targets are editable on purpose: §11 notes that
+ * The portrait L*, a* and b* targets are editable on purpose: §11 notes that
  * hardcoding them means editing Kotlin to change a number, and §9.5 exists
  * specifically so a run of `TOO_WARM` rejections tells you which number to move.
  */

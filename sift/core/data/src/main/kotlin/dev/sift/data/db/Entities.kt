@@ -47,6 +47,19 @@ data class MediaAsset(
     val lifecycleState: LifecycleState,
     /** Null means never triaged. */
     val seenAt: Long?,
+
+    /**
+     * A one-shot override for the next grade, set by §9.5's inline recovery
+     * actions and cleared once consumed.
+     *
+     * Without these the recovery actions were decorative: "regrade with the
+     * other profile" and "regrade at reduced strength" both simply re-queued the
+     * asset, and the worker then re-derived the identical profile from the
+     * identical router and applied the identical global strength — producing a
+     * byte-identical result to the one just rejected.
+     */
+    val pendingProfile: GradeProfile? = null,
+    val pendingStrengthScale: Float? = null,
 )
 
 @Entity(tableName = "triage_decisions")

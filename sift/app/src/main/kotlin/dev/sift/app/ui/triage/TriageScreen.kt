@@ -23,8 +23,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.RateReview
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Undo
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -76,6 +79,7 @@ fun TriageScreen(
     onOpenReview: () -> Unit,
     onOpenGrid: () -> Unit,
     onOpenSettings: () -> Unit,
+    onOpenPending: () -> Unit,
     viewModel: TriageViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -123,7 +127,22 @@ fun TriageScreen(
                             Icon(Icons.Default.Undo, contentDescription = "Undo last decision")
                         }
                     }
-                    IconButton(onClick = onOpenGrid) { Text("Grid") }
+                    // Review used to be reachable only from the empty state,
+                    // which meant graded photos could pile up unreviewed with no
+                    // visible way in — and §9 only works if you actually look at
+                    // them before the originals go.
+                    if (state.pendingReview > 0) {
+                        BadgedBox(
+                            badge = { Badge { Text("${state.pendingReview}") } },
+                        ) {
+                            IconButton(onClick = onOpenReview) {
+                                Icon(
+                                    Icons.Default.RateReview,
+                                    contentDescription = "${state.pendingReview} photos to review",
+                                )
+                            }
+                        }
+                    }
                     IconButton(onClick = onOpenSettings) {
                         Icon(Icons.Default.Settings, contentDescription = "Settings")
                     }
@@ -137,9 +156,12 @@ fun TriageScreen(
         ) {
             if (state.isEmpty) {
                 EmptyState(
+                    libraryTotal = state.total,
+                    reviewed = state.reviewed,
                     pendingToss = state.pendingToss,
-                    onCommit = viewModel::commit,
+                    onCommit = onOpenPending,
                     onReview = onOpenReview,
+                    onRescan = viewModel::rescanLibrary,
                 )
             } else {
                 Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
@@ -182,8 +204,13 @@ fun TriageScreen(
                     IconButton(onClick = { viewModel.decide(Verdict.TOSS) }) {
                         Icon(Icons.Default.Close, contentDescription = "Toss")
                     }
-                    OutlinedButton(onClick = viewModel::commit) {
-                        Text("Commit ${state.pendingToss}")
+                    // Goes to the bin rather than straight to the trash dialog:
+                    // the last chance to pull one photo back out is worth more
+                    // than one saved tap.
+                    OutlinedButton(
+                        onClick = { if (state.pendingToss > 0) onOpenPending() else viewModel.commit() },
+                    ) {
+                        Text(if (state.pendingToss > 0) "Bin ${state.pendingToss}" else "Commit")
                     }
                     IconButton(onClick = { viewModel.decide(Verdict.KEEP) }) {
                         Icon(Icons.Default.Check, contentDescription = "Keep")
@@ -333,26 +360,55 @@ private fun ClusterFilmstrip(
     }
 }
 
-/** §8 — the empty state offers the next thing to do rather than a blank screen. */
+/**
+ * §8 — the empty state offers the next thing to do rather than a blank screen.
+ *
+ * It also has to tell the truth about *why* it is empty. "Deck clear" in front of
+ * someone who has just installed the app and whose library never scanned is
+ * actively misleading: it reads as "nothing to do" when the real state is
+ * "nothing was found", and it leaves no next action. The three cases are
+ * genuinely different and each gets its own wording and its own button.
+ */
 @Composable
-private fun EmptyState(pendingToss: Int, onCommit: () -> Unit, onReview: () -> Unit) {
+private fun EmptyState(
+    libraryTotal: Int,
+    reviewed: Int,
+    pendingToss: Int,
+    onCommit: () -> Unit,
+    onReview: () -> Unit,
+    onRescan: () -> Unit,
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("Deck clear", style = MaterialTheme.typography.headlineSmall)
-        Text(
+        if (libraryTotal == 0) {
+            // Nothing in the database at all: the scan has not finished, or it
+            // failed, or the permission was granted to a subset that excludes
+            // everything.
+            Text("No photos yet", style = MaterialTheme.typography.headlineSmall)
+            Text(
+                "Sift has not found anything in your library. The first scan runs in " +
+                    "the background and can take a minute or two on a large roll.\n\n" +
+                    "If it stays empty, check that Sift has access to all your photos " +
+                    "rather than a selected few, then rescan.",
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            Button(onClick = onRescan) { Text("Rescan library") }
+        } else {
+            Text("Deck clear", style = MaterialTheme.typography.headlineSmall)
+            Text(
+                "You have been through all $libraryTotal photos" +
+                    if (reviewed > 0) " ($reviewed reviewed)." else ".",
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
             if (pendingToss > 0) {
-                "$pendingToss photos are waiting to go to the bin."
-            } else {
-                "Nothing left to triage right now."
-            },
-            textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        if (pendingToss > 0) {
-            Button(onClick = onCommit) { Text("Commit $pendingToss deletions") }
+                Button(onClick = onCommit) { Text("Commit $pendingToss deletions") }
+            }
+            OutlinedButton(onClick = onRescan) { Text("Rescan library") }
         }
         OutlinedButton(onClick = onReview) { Text("Review graded photos") }
     }
