@@ -1,5 +1,11 @@
 # Sift
 
+> **This is a source mirror.** Sift lives at
+> **[github.com/brettadams0/sift](https://github.com/brettadams0/sift)** — that
+> is where CI runs, where issues belong, and where the downloadable APK is.
+> This copy exists because the project was built here first; it carries no
+> binaries and is synced on release.
+
 A swipe-based triage deck over the Android camera roll that batches deletions
 into a single confirmation, then puts keepers through a per-image adaptive
 grading pipeline and exports to a watched folder.
@@ -9,34 +15,46 @@ grading pipeline and exports to a watched folder.
 
 Built to [`SIFT_SPEC.md`](docs/SIFT_SPEC.md) v3.
 
+**→ [Install and first-run guide](docs/INSTALL.md)**
+
 ---
 
 ## Status
 
+Current build: **0.2.0** (`versionCode` 6). `./gradlew build` is green, and
+`./gradlew assembleRelease` produces a **3.0 MB signed APK** that `apksigner`
+verifies as installable across API 30–35.
+[Download it here.](https://github.com/brettadams0/sift/raw/main/dist/sift-0.2.0-release.apk)
+
 | Milestone | Deliverable | State |
 |---|---|---|
-| **M0** | Permissions, MediaStore, thumbnail grid | Written, not yet run on device |
-| **M1** | Swipe deck, Room, undo, batched trash | Written, not yet run on device |
-| **M2** | dHash, clustering, screenshot detection | **Logic tested** (JVM), UI unverified |
+| **M0** | Permissions, MediaStore, thumbnail grid | **Run on a device**; empty-library bug fixed in 0.1.2 |
+| **M1** | Swipe deck, Room, undo, batched trash | **Run on a device**; per-photo rescue added in 0.1.4 |
+| **M2** | dHash, clustering, screenshot detection | Logic tested; run on a device, thresholds unvalidated |
 | **M3** | Float pipeline + `FrameAnalysis` + Portrait grade | **Done and tested** |
 | **M4** | Scene grade + router | **Done and tested** |
 | **M5** | Quality gates + fallback | **Done and tested** |
-| **M6** | Export presets, encode, EXIF, settings | Encode+presets tested; EXIF path unverified |
-| **M7** | Review UI, lifecycle, deferred original-trashing | Written, not yet run on device |
+| **M6** | Export presets, encode, EXIF, settings | **Run on a device**; capture date preserved since 0.1.2 |
+| **M7** | Review UI, lifecycle, deferred original-trashing | **Run on a device**; approve-and-trash still unproven |
 | **M8** | Upscale | **Deliberately not built** — see below |
 
-`:core:model`, `:core:imaging` and `:core:testing` build and test on any JDK 17+
-with no Android SDK. **Of 47 tests, 46 pass and 1 is deliberately skipped**
-(§14.1, which needs your own fixtures — see below).
+**Of 48 tests, 46 pass and 2 are skipped by design** — §14.1 needs your own
+fixtures (see below), and `PipelineBenchmark` is opt-in because it takes a
+minute.
 
-The Android modules (`:app`, `:core:data`, `:core:ml`) have never been compiled:
-this project was assembled in an environment with no Android SDK. They are
-written to the spec but should be treated as a first draft until they build.
+> **It now runs on real hardware, and that is where every bug since 0.1.0 came
+> from.** An empty library (MediaStore paging), exports landing in the gallery
+> with today's date, undo that never returned a photo, and a run where most
+> frames failed a quality gate and were shipped as originals — none of those
+> were visible from a green test suite. What is *still* unproven is the
+> approve-and-trash step, because its failure mode is permanent photo loss and
+> no instrumented test covers it yet. See
+> [what is not proven](#what-is-not-proven).
 
 ```sh
-cd sift
-gradle :core:imaging:test          # the pipeline — runs anywhere
-gradle build                       # everything, needs ANDROID_HOME
+./gradlew :core:imaging:test   # the pipeline — needs only a JDK, no Android SDK
+./gradlew build                # everything, needs local.properties → sdk.dir
+./gradlew assembleRelease      # the sideloadable APK
 ```
 
 ---
@@ -71,8 +89,8 @@ Three things follow from it:
 - The ~15MB native dependency and its ABI restriction go away.
 
 The cost is real: several hundred lines of image maths that OpenCV would have
-provided, and no SIMD. §13's performance budgets are consequently **unmeasured**
-— see below.
+provided, and no SIMD. It shows up in §13's budgets — see
+[performance](#performance) below.
 
 ### 2. The JPEG encoder is hand-written.
 
@@ -153,14 +171,83 @@ new clipping. See `SceneGrade.COMPOSED_BLACK_FLOOR_L`.
   the test turns on. It reports as *skipped* rather than passing vacuously,
   because a green parity test with no fixtures is worse than none on the one gate
   §6.2 calls the only defence against the LAB trap.
-- **§13's performance budgets are unmeasured.** No device, no numbers. The pure
-  Kotlin pipeline has no SIMD, and the analysis pass takes a full-resolution
-  Laplacian and a cube root per pixel. §13 says a miss means stop and fix — that
-  measurement has not happened, and the 12MP figures are the ones to check first.
-- **Everything Android is uncompiled.** See the status table.
+- **§13's 12MP budget is missed on the JVM and unmeasured on a phone.** See
+  [performance](#performance).
+- **The approve-and-trash step has never been exercised end to end.** The rest
+  of the app has now run on hardware, but nothing has yet confirmed that
+  `createTrashRequest` returns what the code expects for approved originals, or
+  that a cancelled dialog leaves state consistent. There are no instrumented
+  tests — §14's device-dependent cases (§14.7 memory, §14.8 cancelled dialog,
+  §14.10 original-retention) are specified and unwritten. §14.10 is the one
+  whose failure mode is permanent photo loss.
 - **§14.4 router accuracy, §14.5 clustering precision/recall** need hand-labelled
   real photographs; the synthetic fixtures show the mechanisms work, not that the
   thresholds are right for your library.
+
+### What *is* mechanically enforced
+
+Three properties that would otherwise erode silently are checked by the build,
+and each has been verified to actually fail when violated rather than passing
+vacuously:
+
+- **No network permission (§3).** `verifyNoNetworkPermissionsRelease` reads the
+  *merged* manifest — the one that ships — and fails on `INTERNET`,
+  `ACCESS_NETWORK_STATE` or `ACCESS_WIFI_STATE`. WorkManager pulls
+  `ACCESS_NETWORK_STATE` in through manifest merging; it is removed explicitly,
+  and the guard is what stops the next dependency putting it back.
+- **Room schemas stay committed (§4.2).** CI fails if an entity changed without
+  its schema being regenerated, so migrations never stop being reviewable.
+- **R8 does not strip the serializers.** `derivedParamsJson` and
+  `gateResultsJson` are not optional (§6.3, §5) — a minified build that lost
+  `FrameAnalysis$$serializer` would throw at runtime on the first graded photo.
+  The release APK is checked to still contain them.
+
+---
+
+## Performance
+
+§13 budgets a 12MP grade at **2.5s**. It is not met.
+
+Measured on a 4-core x86 JVM (`./gradlew :core:imaging:test -Dsift.bench=true`,
+`PipelineBenchmark`, 4000×3000 portrait, MASTER preset):
+
+| | 12MP grade |
+|---|---|
+| cold (first frame, JIT warming) | 8.7s |
+| warm median | **5.4s** |
+| §13 budget | 2.5s |
+
+The same benchmark on the 0.1.4 pipeline measured a 12.1s warm median, so this
+is roughly a 2× improvement that still lands at a bit over twice the budget.
+Where it came from, in rough order of contribution:
+
+- **Row-parallel per-pixel passes** (`Parallel`). Every colour conversion, tone
+  curve, blur and DCT is independent per row and was running on one thread.
+  §4.3's limit of 2 concurrent frames is a cap on how many photos are in flight
+  — a 12MP frame is ~144MB as float and three at once will OOM — not on how
+  many cores may work on one of them. Dither is deliberately excluded: it draws
+  from a seeded RNG in a fixed sequence (§2.3), and reproducibility is what
+  lets `BandingTest` assert anything, so it parallelises over fixed chunks with
+  per-chunk seeds rather than over rows.
+- **sRGB transfer functions became table lookups.** A `pow(x, 1/2.4)` per
+  channel per pixel is 36M calls on a 12MP frame; an 8192-entry LUT with
+  interpolation is within float precision of the exact curve, and the exact
+  form is still used outside [0,1] where §2.1's unbounded values live.
+- **Local contrast blurs at quarter scale** and expands bilinearly. A
+  large-radius low-frequency blur has nothing above the Nyquist limit of the
+  downscaled grid to lose.
+- **The sharpness gate samples** rather than taking a full-resolution Laplacian,
+  and reuses the source's variance when the geometry did not change.
+- **Ingest stopped decoding at full resolution.** The dHash needs 1024px on the
+  long edge, and it was decoding 12MP frames to compute a 64-bit number.
+
+The honest caveat: this is a JVM measurement, so it says the pipeline got
+roughly twice as fast and does not say what a phone does. A phone has different
+memory bandwidth, a big.LITTLE core mix and thermal throttling, none of which
+are represented here. §13 says a missed budget means stop and fix; the next
+step is an instrumented run, and closing the remaining gap is likely to need
+either a fixed-point path or NDK/SIMD — which would reopen the OpenCV decision
+above.
 
 ---
 
@@ -215,6 +302,11 @@ And one added here:
    "targeting a consistent apparent sharpness", which requires a target to aim
    at. The current value is defensible, not measured. Same treatment as the
    detail blend: tune once against real photographs, then commit it.
+5. **Instrumented tests.** §14.7, §14.8 and §14.10 all need a device or an
+   emulator. §14.10 is the one that matters — its failure mode is permanent
+   photo loss — and until it exists, the §9.3 invariants are enforced by
+   `ApprovalGuard` and reviewed by eye, not proven. Treat the approve-and-trash
+   step with more suspicion than the rest of the app.
 
 ---
 

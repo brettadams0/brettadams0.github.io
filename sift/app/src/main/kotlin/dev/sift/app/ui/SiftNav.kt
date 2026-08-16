@@ -5,4 +5,5 @@ object SiftNav {
     const val REVIEW = "review"
     const val GRID = "grid"
     const val SETTINGS = "settings"
+    const val PENDING = "pending"
 }

@@ -158,6 +158,57 @@ object FrameAnalyzer {
         )
     }
 
+    /**
+     * The subset of [FrameAnalysis] that §6.12's gates actually read.
+     *
+     * Verifying an output needs three numbers: how much it clips, how much it
+     * crushes, and whether its mean chroma has run away. A full [analyze] also
+     * builds sharpness tiles, two noise estimates, an edge map, a skin mask and
+     * the document signals — none of which any gate consults, and all of which
+     * were being computed on every graded frame purely to be discarded.
+     *
+     * Fields the gates do not use are left at their defaults; this struct is for
+     * verification only and is never persisted as the frame's analysis.
+     */
+    fun analyzeForGates(image: FloatImage): FrameAnalysis {
+        image.requireSpace(ColorSpaceTag.LINEAR_SRGB, "analyzeForGates")
+
+        val lPlane = lightnessPlane(image)
+        val histogram = Statistics.histogram(lPlane, 0f, 100f)
+        val proxy = strideProxy(image)
+        val chroma = measureChroma(ColorSpaces.linearToLab(proxy))
+
+        return FrameAnalysis(
+            medianL = histogram.median(),
+            clippedHighlightFraction = histogram.fractionAtOrAbove(CLIPPED_HIGHLIGHT_L),
+            crushedShadowFraction = histogram.fractionBelow(CRUSHED_SHADOW_L),
+            blackPointL = histogram.percentile(0.001f),
+            whitePointL = histogram.percentile(0.999f),
+            dynamicRange = histogram.percentile(0.999f) - histogram.percentile(0.001f),
+            histogramEntropy = histogram.normalisedEntropy(),
+            channelClipFractions = measureChannelClipping(image),
+            greyWorldCastA = chroma.midBandA,
+            greyWorldCastB = chroma.midBandB,
+            meanChroma = chroma.mean,
+            chromaP95 = chroma.p95,
+            skinFraction = 0f,
+            largestSkinRegionFraction = 0f,
+            skinMedianL = null, skinMedianA = null, skinMedianB = null,
+            laplacianVariance = 0f,
+            laplacianVarianceP90 = 0f,
+            noiseSigmaLuma = 0f,
+            noiseSigmaChroma = 0f,
+            flatRegionFraction = 0f,
+            faceCount = 0,
+            faceBoxes = emptyList(),
+            isLikelyScreenshot = false,
+            isLikelyDocument = false,
+            edgeDensity = 0f,
+            sourceWidth = image.width,
+            sourceHeight = image.height,
+        )
+    }
+
     // ---- Building blocks ---------------------------------------------------
 
     private const val YR = 0.2126729
@@ -179,12 +230,14 @@ object FrameAnalyzer {
         linearImage.requireSpace(ColorSpaceTag.LINEAR_SRGB, "lightnessPlane")
         val d = linearImage.data
         val out = FloatArray(linearImage.pixelCount)
-        var i = 0
-        for (p in out.indices) {
-            val y = YR * d[i] + YG * d[i + 1] + YB * d[i + 2]
-            val fy = if (y > DELTA_CUBED) cbrt(y) else y / DELTA_SQ_TIMES_3 + FOUR_TWENTY_NINTHS
-            out[p] = (116.0 * fy - 16.0).toFloat()
-            i += 3
+        Parallel.chunks(out.size) { from, to ->
+            var i = from * 3
+            for (p in from until to) {
+                val y = YR * d[i] + YG * d[i + 1] + YB * d[i + 2]
+                val fy = if (y > DELTA_CUBED) cbrt(y) else y / DELTA_SQ_TIMES_3 + FOUR_TWENTY_NINTHS
+                out[p] = (116.0 * fy - 16.0).toFloat()
+                i += 3
+            }
         }
         return out
     }
@@ -227,14 +280,14 @@ object FrameAnalyzer {
         return out
     }
 
-    private class ChromaStats(
+    internal class ChromaStats(
         val mean: Float,
         val p95: Float,
         val midBandA: Float,
         val midBandB: Float,
     )
 
-    private fun measureChroma(labImage: FloatImage): ChromaStats {
+    internal fun measureChroma(labImage: FloatImage): ChromaStats {
         labImage.requireSpace(ColorSpaceTag.LAB, "measureChroma")
         val d = labImage.data
         val n = labImage.pixelCount
@@ -279,7 +332,7 @@ object FrameAnalyzer {
      * *reconstructible* from the ratio of the survivors. A luminance-only
      * highlight measurement cannot see this case at all.
      */
-    private fun measureChannelClipping(linearImage: FloatImage): List<Float> {
+    internal fun measureChannelClipping(linearImage: FloatImage): List<Float> {
         val threshold = ColorSpaces.srgbToLinear(254f / 255f)
         val d = linearImage.data
         val n = linearImage.pixelCount

@@ -28,12 +28,10 @@ android {
         jvmTarget = "17"
     }
 
-    // §3 — OpenCV across all ABIs would be ~40MB; arm64 is the only ABI the
-    // target device needs. Kept even though the pipeline is now pure Kotlin,
-    // because ONNX Runtime would reintroduce native code if M8 ever lands.
-    ndk {
-        abiFilters += "arm64-v8a"
-    }
+    // No abiFilters: there is no native code in this project. §3 restricts ABIs
+    // because OpenCV ships ~40MB of .so per ABI, but the imaging pipeline is pure
+    // Kotlin (see core/imaging) and ONNX is not a dependency, so the APK is
+    // ABI-agnostic and the filter would save nothing.
 }
 
 dependencies {

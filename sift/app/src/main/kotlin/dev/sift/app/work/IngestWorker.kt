@@ -10,7 +10,7 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import dev.sift.data.db.SiftDatabase
+import dev.sift.data.db.MediaAssetDao
 import dev.sift.data.di.ImagingDispatcher
 import dev.sift.data.media.MediaStoreRepository
 import dev.sift.imaging.BurstClustering
@@ -19,6 +19,7 @@ import dev.sift.imaging.FrameAnalyzer
 import dev.sift.imaging.PerceptualHash
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 /**
@@ -33,7 +34,7 @@ import kotlinx.serialization.json.Json
 class IngestWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted params: WorkerParameters,
-    private val db: SiftDatabase,
+    private val mediaAssets: MediaAssetDao,
     private val media: MediaStoreRepository,
     private val json: Json,
     @ImagingDispatcher private val imagingDispatcher: CoroutineDispatcher,
@@ -46,7 +47,7 @@ class IngestWorker @AssistedInject constructor(
             if (isStopped) return Result.retry()
             val page = media.page(MediaStoreRepository.PAGE_SIZE, offset)
             if (page.isEmpty()) break
-            db.mediaAssets().insertAll(page)
+            mediaAssets.insertAll(page)
             offset += page.size
         }
 
@@ -54,18 +55,21 @@ class IngestWorker @AssistedInject constructor(
         //    so the job is interruptible and resumable.
         while (true) {
             if (isStopped) return Result.retry()
-            val batch = db.mediaAssets().needingAnalysis(ANALYSIS_CHUNK)
+            val batch = mediaAssets.needingAnalysis(ANALYSIS_CHUNK)
             if (batch.isEmpty()) break
 
             for (asset in batch) {
                 runCatching {
                     withContext(imagingDispatcher) {
-                        val decoded = media.decode(Uri.parse(asset.uri))
+                        val decoded = media.decode(
+                            Uri.parse(asset.uri),
+                            maxLongEdge = MediaStoreRepository.SCAN_LONG_EDGE,
+                        )
                         val linear = ColorSpaces.toLinear(decoded.image)
                         val analysis = FrameAnalyzer.analyze(linear, decoded.metadata)
                         val hash = PerceptualHash.dHash(linear)
 
-                        db.mediaAssets().setAnalysis(
+                        mediaAssets.setAnalysis(
                             id = asset.id,
                             json = json.encodeToString(analysis),
                             contentClass = analysis.route(),
@@ -75,7 +79,7 @@ class IngestWorker @AssistedInject constructor(
                 }.onFailure {
                     // §12 — a frame that will not decode is skipped, not fatal.
                     GradeLog.record(asset.id, it)
-                    db.mediaAssets().setAnalysis(asset.id, "{}", null, 0L)
+                    mediaAssets.setAnalysis(asset.id, "{}", null, 0L)
                 }
             }
         }
@@ -91,7 +95,7 @@ class IngestWorker @AssistedInject constructor(
         var offset = 0
         val candidates = mutableListOf<BurstClustering.Candidate>()
         while (true) {
-            val page = db.mediaAssets().page(CLUSTER_CHUNK, offset)
+            val page = mediaAssets.page(CLUSTER_CHUNK, offset)
             if (page.isEmpty()) break
             for (asset in page) {
                 if (asset.dHash == 0L) continue
@@ -114,7 +118,7 @@ class IngestWorker @AssistedInject constructor(
             // lone frame without counting members.
             val id = if (cluster.isBurst) cluster.id else null
             for (member in cluster.members) {
-                db.mediaAssets().setCluster(member.id, id)
+                mediaAssets.setCluster(member.id, id)
             }
         }
     }
@@ -124,10 +128,16 @@ class IngestWorker @AssistedInject constructor(
         private const val ANALYSIS_CHUNK = 25
         private const val CLUSTER_CHUNK = 500
 
-        fun enqueue(context: Context) {
+        /**
+         * @param force replaces work already in flight. Used by the manual
+         *   "Rescan library" action: with [ExistingWorkPolicy.KEEP] a scan that
+         *   is wedged or waiting can never be restarted by the user, which
+         *   leaves an empty deck with no way out.
+         */
+        fun enqueue(context: Context, force: Boolean = false) {
             WorkManager.getInstance(context).enqueueUniqueWork(
                 WORK_NAME,
-                ExistingWorkPolicy.KEEP,
+                if (force) ExistingWorkPolicy.REPLACE else ExistingWorkPolicy.KEEP,
                 OneTimeWorkRequestBuilder<IngestWorker>().addTag(WORK_NAME).build(),
             )
         }

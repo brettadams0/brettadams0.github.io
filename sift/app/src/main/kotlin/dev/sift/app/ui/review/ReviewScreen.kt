@@ -29,7 +29,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -72,8 +74,13 @@ fun ReviewScreen(onBack: () -> Unit, viewModel: ReviewViewModel = hiltViewModel(
         }
     }
     LaunchedEffect(state.message) {
-        state.message?.let {
-            snackbar.showSnackbar(it)
+        state.message?.let { message ->
+            val result = snackbar.showSnackbar(
+                message = message,
+                actionLabel = if (state.reasonOfferedForJobId != null) "Why?" else null,
+                duration = SnackbarDuration.Short,
+            )
+            if (result == SnackbarResult.ActionPerformed) viewModel.offerReason()
             viewModel.consumeMessage()
         }
     }
@@ -153,7 +160,7 @@ fun ReviewScreen(onBack: () -> Unit, viewModel: ReviewViewModel = hiltViewModel(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                OutlinedButton(onClick = viewModel::beginReject, modifier = Modifier.weight(1f)) {
+                OutlinedButton(onClick = viewModel::rejectCurrent, modifier = Modifier.weight(1f)) {
                     Text("Reject")
                 }
                 Button(onClick = viewModel::approveCurrent, modifier = Modifier.weight(1f)) {
@@ -245,20 +252,30 @@ private fun ComparableFrame(
                     )
                 },
         ) {
+            // Both images stay loaded and only their opacity swaps. Swapping the
+            // model instead made every press-and-hold a fresh decode, so the
+            // comparison flickered and arrived late — and a colour comparison you
+            // cannot make instantly is one you cannot make at all (§9.4).
+            val frame = Modifier
+                .fillMaxSize()
+                .graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                    translationX = offsetX
+                    translationY = offsetY
+                }
+
             AsyncImage(
-                // Swapping only the model keeps the transform state intact, so
-                // the comparison holds at whatever zoom and pan you were at.
-                model = if (comparing) originalUri else gradedUri,
+                model = gradedUri,
                 contentDescription = null,
                 contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .graphicsLayer {
-                        scaleX = scale
-                        scaleY = scale
-                        translationX = offsetX
-                        translationY = offsetY
-                    },
+                modifier = frame.graphicsLayer { alpha = if (comparing) 0f else 1f },
+            )
+            AsyncImage(
+                model = originalUri,
+                contentDescription = null,
+                contentScale = ContentScale.Fit,
+                modifier = frame.graphicsLayer { alpha = if (comparing) 1f else 0f },
             )
         }
     }
@@ -273,6 +290,11 @@ private fun VerdictStrip(item: ReviewViewModel.Item) {
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(2.dp),
         ) {
+            Text(
+                item.changeSummary(),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
             for (line in item.verdictLines()) {
                 Text(
                     line,
@@ -295,12 +317,12 @@ private fun RejectionReasonDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("What was wrong?") },
+        title = { Text("What was wrong? (optional)") },
         text = {
             Column {
                 Text(
-                    "One tap. This is the only signal Sift gets about whether its " +
-                        "targets suit your photographs.",
+                    "Only if you have an opinion. This is the one signal Sift gets " +
+                        "about whether its targets suit your photographs.",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

@@ -15,6 +15,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -25,8 +26,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.sift.data.db.MediaAssetDao
 import dev.sift.data.db.MediaAsset
-import dev.sift.data.db.SiftDatabase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -43,7 +44,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class GridViewModel @Inject constructor(
-    private val db: SiftDatabase,
+    private val mediaAssets: MediaAssetDao,
 ) : ViewModel() {
 
     private val internal = MutableStateFlow<List<MediaAsset>>(emptyList())
@@ -59,7 +60,7 @@ class GridViewModel @Inject constructor(
     fun loadMore() {
         if (exhausted) return
         viewModelScope.launch {
-            val page = db.mediaAssets().page(PAGE, offset)
+            val page = mediaAssets.page(PAGE, offset)
             if (page.isEmpty()) {
                 exhausted = true
                 return@launch
@@ -106,7 +107,13 @@ fun GridScreen(onBack: () -> Unit, viewModel: GridViewModel = hiltViewModel()) {
             item {
                 // Paging on reaching the tail keeps the first frame cheap; the
                 // §13 cold-start budget is 1.5s to a usable deck.
-                viewModel.loadMore()
+                //
+                // Inside LaunchedEffect, not called directly: a bare call here
+                // would run during composition, and since it mutates the state
+                // this grid reads from, each load would schedule another
+                // recomposition that loads again. Keyed on the current size so
+                // it fires once per page rather than once per frame.
+                LaunchedEffect(assets.size) { viewModel.loadMore() }
             }
         }
     }

@@ -64,6 +64,16 @@ object PortraitGrade {
         analysis: FrameAnalysis,
         settings: GradeSettings,
         damping: Float = GradeSettings.PORTRAIT_DAMPING,
+        /**
+         * §6.12's "reduce contrast/exposure terms 50%, retry once".
+         *
+         * This used to be plumbed only into [SceneGrade], which meant the remedy
+         * did nothing at all for a portrait: the retry recomputed exactly the
+         * same correction, failed exactly the same gate, and fell back. Any
+         * portrait needing a real exposure move was therefore guaranteed to ship
+         * ungraded.
+         */
+        toneScale: Float = 1f,
     ): Result {
         image.requireSpace(ColorSpaceTag.LINEAR_SRGB, "PortraitGrade.apply")
 
@@ -146,16 +156,16 @@ object PortraitGrade {
 
         // "Reduced strength" regrades (§9.5) scale the colour move too — the
         // whole point is a gentler version of the same decision.
-        val scale = settings.strengthScale
+        val scale = settings.strengthScale * toneScale
         val appliedL = accumulatedL * scale
         val appliedA = accumulatedA * scale
         val appliedB = accumulatedB * scale
 
         // ---- 3. Apply the delta globally to the entire frame. -------------
         ColorSpaces.linearToLab(image)
-        shiftLab(image, appliedL, appliedA, appliedB)
+        shiftWithRolloff(image, appliedL, appliedA, appliedB)
 
-        val finalSkinL = current.first + (appliedL - accumulatedL)
+        val finalSkinL = initial.first + appliedL
         val finalSkinA = current.second + (appliedA - accumulatedA)
         val finalSkinB = current.third + (appliedB - accumulatedB)
 
@@ -182,7 +192,7 @@ object PortraitGrade {
         )
     }
 
-    /** Add a constant offset to every pixel of a LAB image. */
+    /** Add a constant offset to every pixel of a LAB image. Proxy measurement only. */
     private fun shiftLab(labImage: FloatImage, dl: Float, da: Float, db: Float) {
         labImage.requireSpace(ColorSpaceTag.LAB, "shiftLab")
         if (dl == 0f && da == 0f && db == 0f) return
@@ -195,6 +205,76 @@ object PortraitGrade {
             i += 3
         }
     }
+
+    /**
+     * Apply the skin correction to the whole frame, rolling off only the end of
+     * the range that would otherwise clip.
+     *
+     * A flat `L += delta` is the obvious reading of §6.7's "apply the delta
+     * globally", and it is wrong in a way that only shows up on real
+     * photographs. An indoor portrait with skin at L*45 and a target of 68 needs
+     * +23, and translating everything by +23 drives every highlight above L*77
+     * into clipping. §6.12's no-new-clipping gate then rejects the result —
+     * correctly — and the original ships. The subject would have been right and
+     * everything bright behind them destroyed.
+     *
+     * The fix is *not* to pin white and compress everything below it. That
+     * scales down contrast across the whole upper half of the range, which reads
+     * as lost detail and trips the sharpness gate instead — trading one
+     * false rejection for another.
+     *
+     * Instead the translation is exact everywhere except a band at the very top
+     * as wide as the shift itself, where an exponential shoulder bends the
+     * overflow back under 100. The shoulder is C1-continuous at the knee, so
+     * there is no tonal step, and when the shift is zero the band has zero width
+     * and the map is the identity. A frame that needs no correction is therefore
+     * untouched, and a frame that needs a large one keeps its midtone contrast
+     * intact while its brightest few percent compress rather than clip.
+     *
+     * The same shape is mirrored at the bottom for negative shifts. Chroma stays
+     * a straight translation: the a* and b* moves are small and cannot clip
+     * luminance.
+     */
+    private fun shiftWithRolloff(
+        labImage: FloatImage,
+        dl: Float,
+        da: Float,
+        db: Float,
+    ) {
+        labImage.requireSpace(ColorSpaceTag.LAB, "shiftWithRolloff")
+        if (dl == 0f && da == 0f && db == 0f) return
+
+        // Only the overflow needs bending, so the band is as wide as the shift.
+        val band = kotlin.math.abs(dl).coerceAtMost(MAX_ROLLOFF_BAND_L)
+        val liftingUp = dl > 0f
+        val knee = if (liftingUp) 100f - band else band
+
+        val d = labImage.data
+        var i = 0
+        while (i < d.size) {
+            val shifted = d[i] + dl
+            d[i] = when {
+                band <= 0.01f -> shifted
+                liftingUp && shifted > knee ->
+                    knee + band * (1f - exp(-(shifted - knee) / band))
+                !liftingUp && shifted < knee ->
+                    knee - band * (1f - exp(-(knee - shifted) / band))
+                else -> shifted
+            }
+            d[i + 1] += da
+            d[i + 2] += db
+            i += 3
+        }
+    }
+
+    /**
+     * Widest tonal band the roll-off may occupy, in L*.
+     *
+     * A bound. Beyond about 20 L* the shoulder would start eating real midtone
+     * contrast, and a correction that large is better served by the exposure
+     * term than by bending the curve further.
+     */
+    const val MAX_ROLLOFF_BAND_L = 20f
 
     private fun exposureShift(analysis: FrameAnalysis, strengthScale: Float): Float {
         val raw = (EXPOSURE_TARGET_L - analysis.medianL)

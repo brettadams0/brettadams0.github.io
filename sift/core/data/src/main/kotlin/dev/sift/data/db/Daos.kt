@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
+import dev.sift.model.GradeProfile
 import dev.sift.model.JobState
 import dev.sift.model.LifecycleState
 import dev.sift.model.RejectionReason
@@ -71,8 +72,30 @@ interface MediaAssetDao {
     @Query("UPDATE media_assets SET seenAt = :at WHERE id = :id")
     suspend fun markSeen(id: Long, at: Long)
 
+    /**
+     * Put an asset back in the deck.
+     *
+     * Must set `seenAt` to NULL, not to 0: the deck query filters on
+     * `seenAt IS NULL`, so a zero timestamp still reads as "already triaged"
+     * and the photo would vanish from the deck permanently even though its
+     * decision had been reversed.
+     */
+    @Query("UPDATE media_assets SET seenAt = NULL WHERE id = :id")
+    suspend fun clearSeen(id: Long)
+
     @Query("UPDATE media_assets SET clusterId = :clusterId WHERE id = :id")
     suspend fun setCluster(id: Long, clusterId: String?)
+
+    /** Arm a one-shot override for the next grade of this asset (§9.5). */
+    @Query(
+        "UPDATE media_assets SET pendingProfile = :profile, pendingStrengthScale = :strength " +
+            "WHERE id = :id",
+    )
+    suspend fun setRegradeOverride(id: Long, profile: GradeProfile?, strength: Float?)
+
+    /** Clear it once the grade has consumed it, so a later grade is unaffected. */
+    @Query("UPDATE media_assets SET pendingProfile = NULL, pendingStrengthScale = NULL WHERE id = :id")
+    suspend fun clearRegradeOverride(id: Long)
 
     @Query("UPDATE media_assets SET analysisJson = :json, contentClass = :contentClass, dHash = :dHash WHERE id = :id")
     suspend fun setAnalysis(
@@ -113,6 +136,28 @@ interface TriageDecisionDao {
     /** Undo support — §8 requires the last ten decisions to be reversible. */
     @Query("SELECT * FROM triage_decisions ORDER BY decidedAt DESC LIMIT :limit")
     suspend fun mostRecent(limit: Int): List<TriageDecision>
+
+    /**
+     * Uncommitted decisions, newest first, as a live count.
+     *
+     * Undo availability is derived from this rather than from an in-memory
+     * stack: a ViewModel-scoped stack silently empties on process death or a
+     * screen rotation, so the undo control would disappear while the decisions
+     * it would reverse are still sitting in the database.
+     */
+    @Query("SELECT COUNT(*) FROM triage_decisions WHERE committed = 0")
+    fun uncommittedCount(): Flow<Int>
+
+    /** The photos currently queued for deletion, so one can be pulled back out. */
+    @Query(
+        """
+        SELECT a.* FROM media_assets a
+        INNER JOIN triage_decisions d ON d.assetId = a.id
+        WHERE d.committed = 0 AND d.verdict = :verdict
+        ORDER BY d.decidedAt DESC
+        """,
+    )
+    fun pendingWithVerdict(verdict: Verdict): Flow<List<MediaAsset>>
 }
 
 @Dao
@@ -130,14 +175,42 @@ interface EditJobDao {
     @Query("SELECT * FROM edit_jobs WHERE state = :state")
     suspend fun inState(state: JobState): List<EditJob>
 
+    /**
+     * Jobs genuinely awaiting a decision.
+     *
+     * `fellBackToOriginal = 0` is not a nicety. A fallback produced no new
+     * image — the gate rejected the grade and the original was kept — so there
+     * is nothing to compare, nothing to approve, and §9.3 forbids trashing its
+     * original in any case. Including them turned Review into a queue of
+     * unchanged photos that had to be rejected one by one.
+     */
     @Query(
         """
         SELECT * FROM edit_jobs
         WHERE state = :done AND approvedAt IS NULL AND rejectedAt IS NULL
+          AND fellBackToOriginal = 0
         ORDER BY processingMs DESC
         """,
     )
     fun pendingReview(done: JobState = JobState.DONE): Flow<List<EditJob>>
+
+    /** §6.12: "surface fallbacks in the UI — a silent fallback teaches you nothing." */
+    @Query("SELECT COUNT(*) FROM edit_jobs WHERE fellBackToOriginal = 1")
+    fun fallbackCount(): Flow<Int>
+
+    /**
+     * Fallback jobs that still have a file on disk.
+     *
+     * Versions before 0.1.4 wrote an export even when a gate failed, which
+     * produced a byte-identical re-encode of a photo the library already had.
+     * Those files are still sitting in Pictures/Sift; this is how they get found
+     * so the user can clear them out.
+     */
+    @Query("SELECT * FROM edit_jobs WHERE fellBackToOriginal = 1 AND outputUri IS NOT NULL")
+    suspend fun fallbacksWithOutput(): List<EditJob>
+
+    @Query("UPDATE edit_jobs SET outputUri = NULL WHERE id = :id")
+    suspend fun clearOutputUri(id: String)
 
     @Query(
         """

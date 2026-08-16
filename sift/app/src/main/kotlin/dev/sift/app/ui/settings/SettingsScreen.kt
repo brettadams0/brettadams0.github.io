@@ -23,6 +23,10 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,8 +36,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.sift.data.db.EditJobDao
 import dev.sift.app.work.GradeLog
-import dev.sift.data.db.SiftDatabase
 import dev.sift.data.settings.SettingsRepository
 import dev.sift.model.ExportPreset
 import dev.sift.model.GradeSettings
@@ -47,7 +51,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val repository: SettingsRepository,
-    db: SiftDatabase,
+    private val lifecycle: dev.sift.data.media.LifecycleRepository,
+    editJobs: EditJobDao,
 ) : ViewModel() {
 
     data class UiState(
@@ -58,8 +63,8 @@ class SettingsViewModel @Inject constructor(
 
     val state: StateFlow<UiState> = combine(
         repository.settings,
-        db.editJobs().rejectionHistogram(),
-        db.editJobs().rejectionTotal(),
+        editJobs.rejectionHistogram(),
+        editJobs.rejectionTotal(),
     ) { settings, histogram, total ->
         UiState(settings, histogram.map { it.reason to it.count }, total)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), UiState())
@@ -84,6 +89,23 @@ class SettingsViewModel @Inject constructor(
     fun reset() = launch { repository.resetToValidatedDefaults() }
 
     fun failureLog(): String = GradeLog.read()
+
+    private val cleanupState = kotlinx.coroutines.flow.MutableStateFlow<String?>(null)
+    val cleanupMessage: kotlinx.coroutines.flow.StateFlow<String?> = cleanupState
+
+    fun refreshStaleExports() = launch {
+        val n = lifecycle.staleExportCount()
+        cleanupState.value = if (n > 0) {
+            "$n duplicate export(s) from an older version are still in Pictures/Sift."
+        } else {
+            null
+        }
+    }
+
+    fun cleanUpStaleExports() = launch {
+        val removed = lifecycle.cleanUpStaleExports()
+        cleanupState.value = "Removed $removed duplicate export(s)."
+    }
 
     private fun launch(block: suspend () -> Unit) {
         viewModelScope.launch { block() }
@@ -232,6 +254,23 @@ fun SettingsScreen(onBack: () -> Unit, viewModel: SettingsViewModel = hiltViewMo
                 }
             }
 
+            val cleanup by viewModel.cleanupMessage.collectAsStateWithLifecycle()
+            LaunchedEffect(Unit) { viewModel.refreshStaleExports() }
+            cleanup?.let { message ->
+                Section("Housekeeping") {
+                    Text(message, style = MaterialTheme.typography.bodyMedium)
+                    Hint(
+                        "Before 0.1.4, a photo whose grade failed its quality check still " +
+                            "wrote an export — a byte-identical copy of a photo you already " +
+                            "had. Removing them touches only those duplicates; your originals " +
+                            "and your graded photos are not affected.",
+                    )
+                    OutlinedButton(onClick = viewModel::cleanUpStaleExports) {
+                        Text("Remove duplicate exports")
+                    }
+                }
+            }
+
             OutlinedButton(onClick = viewModel::reset, modifier = Modifier.fillMaxWidth()) {
                 Text("Reset to validated defaults")
             }
@@ -256,6 +295,14 @@ private fun Hint(text: String) {
     )
 }
 
+/**
+ * A slider that commits on release.
+ *
+ * Writing through on every `onValueChange` meant one DataStore write per frame
+ * of the drag — dozens of disk commits to set a single number, and every one of
+ * them re-emitted the settings flow and recomposed the screen underneath the
+ * finger. The position is local while dragging and persisted once, on release.
+ */
 @Composable
 private fun LabeledSlider(
     label: String,
@@ -263,8 +310,14 @@ private fun LabeledSlider(
     range: ClosedFloatingPointRange<Float>,
     onChange: (Float) -> Unit,
 ) {
+    var local by remember(value) { mutableStateOf(value) }
     Column {
-        Text("$label ${"%.1f".format(value)}", style = MaterialTheme.typography.labelMedium)
-        Slider(value = value, onValueChange = onChange, valueRange = range)
+        Text("$label ${"%.1f".format(local)}", style = MaterialTheme.typography.labelMedium)
+        Slider(
+            value = local,
+            onValueChange = { local = it },
+            onValueChangeFinished = { onChange(local) },
+            valueRange = range,
+        )
     }
 }

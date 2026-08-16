@@ -1,6 +1,5 @@
 package dev.sift.imaging
 
-import kotlin.math.roundToInt
 import kotlin.random.Random
 
 /**
@@ -45,14 +44,22 @@ object Quantize {
             ColorSpaceTag.LAB -> ColorSpaces.toGamma(ColorSpaces.labToLinear(image))
         }
 
-        val rng = Random(seed)
         val out = ByteArray(working.data.size)
         val d = working.data
 
-        for (i in d.indices) {
-            val dithered = if (dither) d[i] + tpdf(rng) else d[i]
-            val level = (dithered * 255f).roundToInt().coerceIn(0, 255)
-            out[i] = level.toByte()
+        // Parallel, but still exactly reproducible: each chunk seeds its own
+        // generator from the frame seed and the chunk's start index, so a given
+        // sample always draws the same noise regardless of scheduling. A single
+        // shared generator would have made the output depend on thread
+        // interleaving, and §14.6 can only assert anything about banding if the
+        // same input yields the same bytes every time.
+        Parallel.chunks(d.size) { from, to ->
+            val rng = Random(seed * 31L + from)
+            for (i in from until to) {
+                val dithered = if (dither) d[i] + tpdf(rng) else d[i]
+                val level = (dithered * 255f + 0.5f).toInt().coerceIn(0, 255)
+                out[i] = level.toByte()
+            }
         }
         return out
     }

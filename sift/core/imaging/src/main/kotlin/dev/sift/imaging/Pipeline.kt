@@ -271,7 +271,8 @@ object Pipeline {
         var sceneParams: DerivedParams.SceneParams? = null
         when (profile) {
             GradeProfile.PORTRAIT -> {
-                portraitParams = PortraitGrade.apply(upscaled, analysis, settings, damping).params
+                portraitParams =
+                    PortraitGrade.apply(upscaled, analysis, settings, damping, toneScale).params
             }
             GradeProfile.SCENE -> {
                 sceneParams = SceneGrade.apply(upscaled, analysis, settings, toneScale)
@@ -297,12 +298,23 @@ object Pipeline {
         // Like-for-like sharpness reference: the untouched source put through
         // the same geometry. Comparing a 1080px export against a 12MP original
         // would fail every downscaled preset for reasons unrelated to quality.
-        val reference = Resample.resize(
-            cropFor(request.preset, linear.copy(), analysis, 1f),
-            outputSize.width,
-            outputSize.height,
-        )
-        val sharpnessBefore = FrameAnalyzer.sharpnessP90(reference)
+        //
+        // When the output has the source's geometry — the common case for the
+        // master preset — that reference *is* the source, and its P90 was
+        // already measured by the analysis pass. Rebuilding it meant a redundant
+        // full-frame copy, resize and Laplacian per photo.
+        val sameGeometry = outputSize.width == linear.width && outputSize.height == linear.height
+        val sharpnessBefore = if (sameGeometry) {
+            analysis.laplacianVarianceP90
+        } else {
+            FrameAnalyzer.sharpnessP90(
+                Resample.resize(
+                    cropFor(request.preset, linear.copy(), analysis, 1f),
+                    outputSize.width,
+                    outputSize.height,
+                ),
+            )
+        }
         val sharpnessAfter = FrameAnalyzer.sharpnessP90(resized)
 
         // ---- 13. Quantise + dither, exactly once ---------------------------
@@ -315,7 +327,11 @@ object Pipeline {
         val outputLinear = ColorSpaces.toLinear(
             FloatImage.fromBytes(outputSize.width, outputSize.height, rgb),
         )
-        val analysisAfter = FrameAnalyzer.analyze(outputLinear, request.source.metadata)
+        // Gate-only measurement. The gates need three figures — clipped
+        // highlights, crushed shadows and mean chroma — and a full analysis pass
+        // additionally computes sharpness tiles, noise sigmas, edge density, the
+        // skin mask and document detection, none of which any gate reads.
+        val analysisAfter = FrameAnalyzer.analyzeForGates(outputLinear)
         val banding = QualityGates.bandingScore(rgb, outputSize.width, outputSize.height)
 
         val gateResults = QualityGates.evaluate(
