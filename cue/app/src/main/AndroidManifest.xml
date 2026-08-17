@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+      §2.3. There is no INTERNET permission, and that is the point.
+
+      Not "we don't make network calls" — the process cannot open a socket. OCR is
+      ML Kit on-device, inference is MediaPipe on-device, storage is local and
+      encrypted, and the model file arrives by a separate act (§3.3). The
+      "What leaves your device" screen says: nothing. With this manifest that is
+      a property of the binary rather than a claim in a settings page.
+
+      The removals below are not decoration. ML Kit and MediaPipe both pull in
+      transitive libraries that declare INTERNET, and manifest merging is silent
+      about it — so the permission is explicitly revoked here, and :app's
+      verifyDebugManifestOffline task fails the build if it comes back.
+    -->
+    <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" tools:node="remove" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove" />
+
+    <application
+        android:name=".CueApplication"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Cue">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          §5.1. The share sheet: screenshot the chat, share, Cue.
+
+          "Three taps, no special permissions, identical across both apps,
+          immune to redesigns. Ugly and unbreakable." It is also the entire
+          capture surface in v1, because §15 puts the AccessibilityService at M8
+          and only if this proves annoying enough to justify it.
+        -->
+        <activity
+            android:name=".ShareTargetActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="@string/share_target_label"
+            android:noHistory="true"
+            android:theme="@style/Theme.Cue.Transparent">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+
+        <!-- ML Kit's bundled text recogniser, so the model is in the APK and
+             nothing is fetched on first use. -->
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ocr" />
+    </application>
+</manifest>

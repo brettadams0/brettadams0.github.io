@@ -95,11 +95,22 @@ val verifyNoInternetPermission = tasks.register("verifyNoInternetPermission") {
     outputs.upToDateWhen { false }
 
     doLast {
-        val hits = manifests.filter { it.readText().contains("android.permission.INTERNET") }
-            .map { it.relativeTo(rootDir).toString() }
+        // A line naming the permission is only a problem if it *grants* it.
+        // :app names it deliberately, with tools:node="remove", to revoke what a
+        // dependency merged in — that line is the enforcement, not a violation.
+        val hits = mutableListOf<String>()
+        manifests.forEach { file ->
+            file.readLines().forEachIndexed { index, line ->
+                if (line.contains("android.permission.INTERNET") &&
+                    !line.contains("""tools:node="remove"""")
+                ) {
+                    hits += "${file.relativeTo(rootDir)}:${index + 1}: ${line.trim()}"
+                }
+            }
+        }
         if (hits.isNotEmpty()) {
             throw GradleException(
-                "§2.3: the app ships with no INTERNET permission. Declared in:\n" +
+                "§2.3: the app ships with no INTERNET permission. Granted in:\n" +
                     hits.joinToString("\n") +
                     "\n\nModel download is a separate flow (§3.3), not a permission the " +
                     "drafting app holds.",

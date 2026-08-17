@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Cue",
+  "version": "0.1.0",
+  "description": "Drafts replies for Tinder web in your voice, on your machine. Never sends anything.",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "sidePanel",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://tinder.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "src/panel/panel.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://tinder.com/*"],
+      "js": ["src/content/read-conversation.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Draft a reply with Cue"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cue</title>
+    <link rel="stylesheet" href="panel.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Cue</h1>
+      <p id="status">Reading the conversation…</p>
+    </header>
+
+    <main>
+      <div id="banners"></div>
+      <div id="drafts"></div>
+    </main>
+
+    <footer>
+      <button id="refresh" type="button">Draft again</button>
+      <details>
+        <summary>Your voice profile</summary>
+        <p id="profile-summary">No profile imported. Drafts will use a generic casual baseline.</p>
+        <label for="profile-json">Paste the JSON exported from the Android app</label>
+        <textarea id="profile-json" rows="4" spellcheck="false"></textarea>
+        <button id="import-profile" type="button">Import</button>
+      </details>
+      <p class="fine">
+        Cue reads this page and drafts a reply. It never types into Tinder and
+        never sends anything. Nothing leaves this machine.
+      </p>
+    </footer>
+
+    <script type="module" src="panel.js"></script>
+  </body>
+</html>

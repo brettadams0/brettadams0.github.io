@@ -8,3 +8,8 @@ captures/
 keystore.properties
 *.jks
 *.keystore
+
+# WebLLM, dropped in by hand per extension/README.md. Not committed: it is a
+# multi-megabyte third-party bundle with its own licence, and vendoring it here
+# would make this repository the distribution channel for someone else's build.
+extension/vendor/

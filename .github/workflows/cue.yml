@@ -1,0 +1,54 @@
+name: Cue
+
+# The site CI builds Jekyll, which now excludes cue/ — so without this job the
+# 173 tests the README claims would be checked exactly once, by hand, on the day
+# they were written.
+on:
+  push:
+    branches: [main]
+    paths: ['cue/**', '.github/workflows/cue.yml']
+  pull_request:
+    paths: ['cue/**', '.github/workflows/cue.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  jvm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      # No Android SDK on purpose. settings.gradle.kts configures only the
+      # pure-JVM modules when one is absent, and those modules carry everything
+      # that decides draft quality (§4, §6, §7). A job that needed an emulator
+      # would run in twenty minutes instead of two and cover no more logic.
+      - name: Test the core
+        working-directory: cue
+        run: ./gradlew test --no-daemon
+
+      - name: Check the architectural invariants
+        working-directory: cue
+        run: ./gradlew verifyArchitecturalInvariants --no-daemon
+
+  extension:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      # src/lib is a hand port of :core:voice and :core:draft. This suite is the
+      # only thing that catches it drifting from the Kotlin.
+      - name: Test the browser port
+        working-directory: cue/extension
+        run: node --test "test/*.test.js"

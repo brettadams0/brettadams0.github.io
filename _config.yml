@@ -25,3 +25,8 @@ exclude:
   # served), nothing under sift/ is meant to be published, and leaving it in
   # would copy a Gradle project into _site on every build.
   - sift
+  # Same reasoning for cue/: a Gradle project plus an unpacked Chrome extension,
+  # neither of which is served. The extension in particular must not be
+  # published — a sideloaded MV3 directory reachable over HTTPS is a liability,
+  # not a distribution channel.
+  - cue
