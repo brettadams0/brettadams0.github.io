@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -41,6 +42,11 @@ import dev.cue.model.ConversationStage
  * app with. A chronological list of every match answers "what happened", which
  * you already know.
  */
+// TopAppBar is still @ExperimentalMaterial3Api, so its use has to be opted into
+// explicitly. Scoped to the one composable that needs it rather than set as a
+// module-wide compiler flag: a blanket -opt-in would silence the next
+// experimental API to arrive, which is the warning worth reading.
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InboxScreen(
     onOpenConversation: (String) -> Unit,

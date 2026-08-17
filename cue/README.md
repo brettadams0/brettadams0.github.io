@@ -15,8 +15,10 @@ Built to [`CUE_SPEC.md`](docs/CUE_SPEC.md) v2.
 **173 tests pass. Nothing has run on a phone.**
 
 That split is the honest summary. Everything that decides what a draft says and
-how it sounds is pure Kotlin with a test suite; everything that touches a device
-is written and unverified, because this machine has no Android SDK.
+how it sounds is pure Kotlin with a test suite. Everything that touches a device
+compiles — GitHub's runners ship an Android SDK, so CI builds `:core:data`,
+`:core:inference` and `:app`, and Room's schema export, KSP and Hilt all run
+there — but no APK has been installed, no model loaded, and no database opened.
 
 ```sh
 gradle test                          # 132 tests, JVM only — no Android SDK needed
@@ -26,10 +28,10 @@ node --test "extension/test/*.test.js"  # 41 tests for the browser port
 
 | M | Deliverable | State |
 |---|---|---|
-| **M0** | Share-sheet intake, OCR, bounding-box attribution | Attribution **done and tested**; OCR bridge written, never run |
-| **M1** | Voice profile extraction + onboarding confirmation | Extraction **done and tested**; the confirmation screen is written, never run |
+| **M0** | Share-sheet intake, OCR, bounding-box attribution | Attribution **done and tested**; OCR bridge compiles, never run |
+| **M1** | Voice profile extraction + onboarding confirmation | Extraction **done and tested**; the confirmation screen compiles, never run |
 | **M2** | **Voice compiler + template opener path — no model** | **Done and tested.** §14.2 passes |
-| **M3** | MediaPipe, tiering, Gemma 3n, single draft | Written. Never compiled, never loaded |
+| **M3** | MediaPipe, tiering, Gemma 3n, single draft | Compiles. No model has ever been loaded |
 | **M4** | Three variants + distinctness + grounding gate | **Done and tested** against a scripted model. §14.4 at 100%, §14.5 passes |
 | **M5** | Outcome loop feeding the retrieval index | **Done and tested** |
 | **M6** | Conversation health + ball-in-your-court | **Done and tested** |
@@ -185,10 +187,11 @@ does.
 
 Everything above the `:core:*` line.
 
-- **Nothing has been compiled for Android.** No SDK on the build machine. The
-  `settings.gradle.kts` guard means `gradle test` works anyway, and it also means
-  `:app`, `:core:data` and `:core:inference` have never seen a compiler. Expect
-  the first `assembleDebug` to be a bug-fixing session, not a build.
+- **The Android modules compile, and that is all.** They were written on a
+  machine with no SDK — `settings.gradle.kts` detects that and configures the JVM
+  modules only, which is why `gradle test` works anywhere — and CI, which does
+  have an SDK, compiles all three. So Room's generated DAOs, Hilt's graph and
+  every Compose signature are checked. Nothing beyond the type system is.
 - **§14.1's 50 screenshots are synthetic.** They are generated from the geometry
   both apps use — a bubble hugging one margin, a wrapped message arriving as
   several same-extent lines, headers, timestamps, a composer — with the sender

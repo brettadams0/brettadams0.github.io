@@ -16,6 +16,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
@@ -39,6 +40,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
  * notice a reversal, and noticing it later means a poisoned profile and drafts
  * that sound like the person you are talking to.
  */
+// TopAppBar is still @ExperimentalMaterial3Api, so its use has to be opted into
+// explicitly. Scoped to the one composable that needs it rather than set as a
+// module-wide compiler flag: a blanket -opt-in would silence the next
+// experimental API to arrive, which is the warning worth reading.
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OnboardingScreen(
     onDone: () -> Unit,

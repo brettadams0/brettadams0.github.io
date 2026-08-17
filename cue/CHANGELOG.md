@@ -51,7 +51,8 @@ nothing has run on a phone** — see the [status table](README.md#status).
 
 ### Written, unverified
 
-`:app`, `:core:data` and `:core:inference` have never been compiled — no Android
-SDK on the build machine. The extension has never been loaded into a browser. No
-model has been loaded, so every §12 budget and §3.3's CPU-vs-GPU question are
-open.
+`:app`, `:core:data` and `:core:inference` compile in CI — GitHub's runners have
+an Android SDK, so Room's KSP processor, Hilt's, and the schema export all run
+there. Nothing past the type system is checked: no APK installed, no model
+loaded, no database opened, and every §12 budget plus §3.3's CPU-vs-GPU question
+still open. The extension has never been loaded into a browser.
