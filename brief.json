@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-15T10:35:32Z",
+  "generatedAt": "2026-08-18T10:35:21Z",
   "brief": {
-    "asOf": "15 August 2026",
-    "note": "Saturday run: prices are each name's last confirmed close, not all Friday's. No new double-digit fallers Friday.",
+    "asOf": "18 August 2026",
+    "note": "Quiet stretch: no new double-digit fallers since Thursday. Prices are each name's last confirmed close.",
     "candidates": [
       {
         "ticker": "CLBT",
@@ -10,8 +10,8 @@
         "exchange": "NASDAQ",
         "dropPct": -29.2,
         "dropWindow": "one day",
-        "price": 10.80,
-        "prevClose": 15.25,
+        "price": 10.50,
+        "prevClose": null,
         "low52": 9.58,
         "high52": 19.98,
         "verdict": "wait and see",
@@ -19,11 +19,11 @@
         "cause": "Cut 2026 revenue guidance to 15% growth, missed on annual recurring revenue, and replaced its chief executive in the same announcement.",
         "causeType": "fixable",
         "sector": "Technology",
-        "marketCapUsd": 1900000000,
-        "fwdPe": 22.9,
+        "marketCapUsd": 1850000000,
+        "fwdPe": 22.3,
         "paysDividend": false,
         "metrics": [
-          {"label": "Fwd P/E", "value": "22.9x"},
+          {"label": "Fwd P/E", "value": "22.3x"},
           {"label": "2026 EPS est.", "value": "$0.56"},
           {"label": "P/B", "value": "n/a"},
           {"label": "Yield", "value": "None"}
@@ -59,39 +59,12 @@
         "wrong": "Brand heat fades in a discount-led market and premium pricing stops holding"
       },
       {
-        "ticker": "UPWK",
-        "name": "Upwork Inc.",
-        "exchange": "NASDAQ",
-        "dropPct": -15.0,
-        "dropWindow": "one day",
-        "price": 8.36,
-        "prevClose": 9.83,
-        "low52": 7.44,
-        "high52": 22.84,
-        "verdict": "value trap",
-        "business": "Online marketplace matching businesses with freelance contractors, earning fees per contract",
-        "cause": "Cut full-year revenue outlook to $730-750m; gross services volume fell 4% as Google referrals decayed and AI automated the work it brokers.",
-        "causeType": "permanent",
-        "sector": "Communication services",
-        "marketCapUsd": 1030000000,
-        "fwdPe": 5.95,
-        "paysDividend": false,
-        "metrics": [
-          {"label": "Fwd P/E", "value": "6.0x on guided FY26 EPS"},
-          {"label": "P/B", "value": "3.9x"},
-          {"label": "Q2 gross services volume", "value": "-4% y/y"},
-          {"label": "Yield", "value": "None"}
-        ],
-        "right": "AI must create more freelance projects than it automates away from the platform",
-        "wrong": "AI keeps absorbing routine freelance work while Google referrals decay, shrinking the marketplace"
-      },
-      {
         "ticker": "PAAS",
         "name": "Pan American Silver Corp.",
         "exchange": "NYSE",
         "dropPct": -10.3,
         "dropWindow": "one day",
-        "price": 47.40,
+        "price": 48.37,
         "prevClose": null,
         "low52": 30.59,
         "high52": 69.99,
@@ -100,11 +73,11 @@
         "cause": "Q2 adjusted EPS of $0.73 missed the $1.04 expected as gold output lagged guidance and the effective tax rate jumped to about 37%.",
         "causeType": "one-off",
         "sector": "Materials",
-        "marketCapUsd": 23930000000,
-        "fwdPe": 10.6,
+        "marketCapUsd": 24420000000,
+        "fwdPe": 10.8,
         "paysDividend": true,
         "metrics": [
-          {"label": "Fwd P/E", "value": "10.6x"},
+          {"label": "Fwd P/E", "value": "10.8x"},
           {"label": "P/B", "value": "2.6x"},
           {"label": "Yield", "value": "1.4%"},
           {"label": "Q2 free cash flow", "value": "$344m"}
