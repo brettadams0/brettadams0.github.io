@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-21T10:35:36Z",
+  "generatedAt": "2026-08-22T10:34:28Z",
   "brief": {
-    "asOf": "21 August 2026",
-    "note": "Weak retail earnings and rising bond yields drove Thursday's falls; consumer spending the common thread.",
+    "asOf": "22 August 2026",
+    "note": "Saturday run: prices are Thursday's closes, Friday's unavailable. Consumer weakness and AI-capex doubts driving falls.",
     "candidates": [
       {
         "ticker": "FN",
@@ -35,25 +35,25 @@
         "ticker": "AAP",
         "name": "Advance Auto Parts, Inc.",
         "exchange": "NYSE",
-        "dropPct": -23.0,
+        "dropPct": -24.5,
         "dropWindow": "one day",
-        "price": 43.26,
+        "price": 42.39,
         "prevClose": 56.18,
         "low52": 37.89,
         "high52": 65.21,
         "verdict": "wait and see",
         "business": "Retailer of vehicle replacement parts to DIY customers and professional garages",
-        "cause": "Q2 comparable sales fell 0.5% against 1.4% growth expected as tight household budgets hit DIY demand, though adjusted EPS beat and full-year guidance rose.",
+        "cause": "Q2 sales of $2.00bn missed the $2.04bn expected and comparable sales fell as tight household budgets hit DIY demand, though adjusted EPS beat.",
         "causeType": "fixable",
         "sector": "Consumer discretionary",
-        "marketCapUsd": 2610000000,
-        "fwdPe": 16.4,
+        "marketCapUsd": 2560000000,
+        "fwdPe": 16.0,
         "paysDividend": true,
         "metrics": [
-          {"label": "Fwd P/E", "value": "16.4x"},
+          {"label": "Fwd P/E", "value": "16.0x"},
           {"label": "Q2 adj. EPS", "value": "$1.03 vs $0.81 est."},
           {"label": "FY26 adj. EPS guide", "value": "$2.95 midpoint, raised"},
-          {"label": "Yield", "value": "2.3%"}
+          {"label": "Yield", "value": "2.4%"}
         ],
         "right": "DIY demand must stabilise so the raised profit guidance survives a second weak quarter",
         "wrong": "Consumer spending weakens further and the long-running turnaround stalls again on falling comparable sales"
