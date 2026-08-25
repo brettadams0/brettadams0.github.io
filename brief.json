@@ -1,9 +1,36 @@
 {
-  "generatedAt": "2026-08-22T10:34:28Z",
+  "generatedAt": "2026-08-25T10:34:57Z",
   "brief": {
-    "asOf": "22 August 2026",
-    "note": "Saturday run: prices are Thursday's closes, Friday's unavailable. Consumer weakness and AI-capex doubts driving falls.",
+    "asOf": "25 August 2026",
+    "note": "AI-infrastructure selling continues; nothing new cleared 10%. Fabrinet's price is Thursday's close, no newer quote available.",
     "candidates": [
+      {
+        "ticker": "AAP",
+        "name": "Advance Auto Parts, Inc.",
+        "exchange": "NYSE",
+        "dropPct": -26.5,
+        "dropWindow": "one week",
+        "price": 41.29,
+        "prevClose": null,
+        "low52": 37.89,
+        "high52": 65.21,
+        "verdict": "wait and see",
+        "business": "Retailer of vehicle replacement parts to DIY customers and professional garages",
+        "cause": "Q2 sales of $2.00bn missed the $2.04bn expected and comparable sales fell as tight household budgets hit DIY demand, though adjusted EPS beat.",
+        "causeType": "fixable",
+        "sector": "Consumer discretionary",
+        "marketCapUsd": 2490000000,
+        "fwdPe": 15.6,
+        "paysDividend": true,
+        "metrics": [
+          {"label": "Fwd P/E", "value": "15.6x"},
+          {"label": "Q2 adj. EPS", "value": "$1.03 vs $0.81 est."},
+          {"label": "FY26 adj. EPS guide", "value": "$2.95 midpoint, raised"},
+          {"label": "Yield", "value": "2.4%"}
+        ],
+        "right": "DIY demand must stabilise so the raised profit guidance survives a second weak quarter",
+        "wrong": "Consumer spending weakens further and the long-running turnaround stalls again on falling comparable sales"
+      },
       {
         "ticker": "FN",
         "name": "Fabrinet",
@@ -26,37 +53,10 @@
           {"label": "Fwd P/E", "value": "28.9x"},
           {"label": "Q4 adj. EPS", "value": "$4.10 vs $3.81 est."},
           {"label": "Free cash flow", "value": "Negative"},
-          {"label": "Yield", "value": "None"}
+          {"label": "Price as of", "value": "20 August close"}
         ],
         "right": "Cash generation must recover once the capex and inventory build works through",
         "wrong": "Datacom demand from its largest customers softens while margins stay under pressure"
-      },
-      {
-        "ticker": "AAP",
-        "name": "Advance Auto Parts, Inc.",
-        "exchange": "NYSE",
-        "dropPct": -24.5,
-        "dropWindow": "one day",
-        "price": 42.39,
-        "prevClose": 56.18,
-        "low52": 37.89,
-        "high52": 65.21,
-        "verdict": "wait and see",
-        "business": "Retailer of vehicle replacement parts to DIY customers and professional garages",
-        "cause": "Q2 sales of $2.00bn missed the $2.04bn expected and comparable sales fell as tight household budgets hit DIY demand, though adjusted EPS beat.",
-        "causeType": "fixable",
-        "sector": "Consumer discretionary",
-        "marketCapUsd": 2560000000,
-        "fwdPe": 16.0,
-        "paysDividend": true,
-        "metrics": [
-          {"label": "Fwd P/E", "value": "16.0x"},
-          {"label": "Q2 adj. EPS", "value": "$1.03 vs $0.81 est."},
-          {"label": "FY26 adj. EPS guide", "value": "$2.95 midpoint, raised"},
-          {"label": "Yield", "value": "2.4%"}
-        ],
-        "right": "DIY demand must stabilise so the raised profit guidance survives a second weak quarter",
-        "wrong": "Consumer spending weakens further and the long-running turnaround stalls again on falling comparable sales"
       }
     ],
     "watch": []
