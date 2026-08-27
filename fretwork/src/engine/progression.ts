@@ -1,4 +1,4 @@
-// Dexie schema and migrations. All persistence is local. (Phase 3)
+// XP, levels, curriculum stage gating. (Phase 7)
 //
 // Placeholder created in Phase 0. The phase named above fills it.
 export {};

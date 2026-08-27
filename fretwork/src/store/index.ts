@@ -1,4 +1,4 @@
-// Dexie schema and migrations. All persistence is local. (Phase 3)
+// Zustand slices. (Phase 1)
 //
 // Placeholder created in Phase 0. The phase named above fills it.
 export {};

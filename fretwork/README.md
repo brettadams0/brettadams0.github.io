@@ -3,8 +3,9 @@
 A free, offline PWA that listens to an electric guitar and teaches a complete
 beginner. No backend, no accounts, all DSP client-side.
 
-The working brief for this project is [CLAUDE.md](CLAUDE.md); the full spec
-belongs at `docs/SPEC.md`.
+The full build specification is [docs/SPEC.md](docs/SPEC.md). [CLAUDE.md](CLAUDE.md)
+distils it into the rules that are expensive to get wrong, and is what each
+working session reads.
 
 ```sh
 npm install

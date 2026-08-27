@@ -2,11 +2,17 @@
 
 /* Every colour, face and touch dimension in §9 lives here and only here.
    Components reference them as utilities (bg-chassis, text-lamp, min-h-touch);
-   a hex code in a component is a bug. */
-@theme {
+   a hex code in a component is a bug.
+
+   `static` matters: by default Tailwind only emits the tokens some utility
+   already uses, which silently drops hit, miss and panel-hi until the first
+   phase that happens to reference them. §9 is the palette whether or not
+   today's screen uses all of it. */
+@theme static {
   /* Amplifier faceplate. */
   --color-chassis: #1b211f;
   --color-panel: #262e2b;
+  --color-panel-hi: #313b37;
   --color-silk: #eae4d2;
   --color-dim: #8e9891;
   --color-lamp: #f0a868;

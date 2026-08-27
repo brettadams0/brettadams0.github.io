@@ -1,4 +1,4 @@
-// Dexie schema and migrations. All persistence is local. (Phase 3)
+// Change Race. Stage 2. (Phase 5)
 //
 // Placeholder created in Phase 0. The phase named above fills it.
 export {};

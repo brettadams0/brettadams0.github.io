@@ -1,4 +1,4 @@
-// Lookahead scheduler against AudioContext.currentTime. Never setInterval or setTimeout. (Phase 3)
+// Sample-accurate metronome and rhythm timeline. Lookahead against AudioContext.currentTime, never setInterval or setTimeout for note timing. (Phase 4)
 //
-// Placeholder. Phase 0 creates the file; the phase named above fills it.
+// Placeholder created in Phase 0. The phase named above fills it.
 export {};

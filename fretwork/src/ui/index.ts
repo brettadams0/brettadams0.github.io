@@ -1,4 +1,4 @@
-// Shared faceplate components. (Phase 2)
+// Shared components and the fretboard renderer that drives chord diagrams, the fret trainer and the Riff Runner highway. (Phase 1 onward)
 //
-// Placeholder. Phase 0 creates the file; the phase named above fills it.
+// Placeholder created in Phase 0. The phase named above fills it.
 export {};
