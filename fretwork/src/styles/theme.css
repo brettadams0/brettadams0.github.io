@@ -1,0 +1,100 @@
+@import 'tailwindcss';
+
+/* Every colour, face and touch dimension in §9 lives here and only here.
+   Components reference them as utilities (bg-chassis, text-lamp, min-h-touch);
+   a hex code in a component is a bug. */
+@theme {
+  /* Amplifier faceplate. */
+  --color-chassis: #1b211f;
+  --color-panel: #262e2b;
+  --color-silk: #eae4d2;
+  --color-dim: #8e9891;
+  --color-lamp: #f0a868;
+  --color-hit: #7fd1b9;
+  --color-miss: #c4614a;
+  --color-edge: #3a4441;
+
+  /* Barlow Condensed for panel labels, IBM Plex Mono for every numeral,
+     system sans for body prose. Both files are self-hosted under
+     public/fonts so the app still reads correctly with the radio off. */
+  --font-panel: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-sans:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+
+  /* 56px is the floor for anything you tap with a guitar in your lap. */
+  --spacing-touch: 3.5rem;
+}
+
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/barlow-condensed-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/barlow-condensed-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-600.woff2') format('woff2');
+}
+
+@layer base {
+  html {
+    /* The faceplate runs behind the Android gesture bar too. */
+    background-color: var(--color-chassis);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-chassis);
+    color: var(--color-silk);
+    font-family: var(--font-sans);
+    /* Nothing in this app is a document; rubber-band scrolling and
+       double-tap zoom only get in the way of playing. */
+    overscroll-behavior: none;
+    touch-action: manipulation;
+  }
+
+  /* Panel labels are set in condensed caps, tracked out like silkscreen. */
+  .panel-label {
+    font-family: var(--font-panel);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  /* Every numeral on screen is monospaced so digits do not jitter as they
+     change — cents, BPM, counts, timers. */
+  .numeral {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

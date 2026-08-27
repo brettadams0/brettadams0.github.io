@@ -25,3 +25,7 @@ exclude:
   # served), nothing under sift/ is meant to be published, and leaving it in
   # would copy a Gradle project into _site on every build.
   - sift
+  # Vite app source. Fretwork is built and served from Vercel, not from
+  # Pages, so nothing here should be copied into _site — least of all
+  # node_modules.
+  - fretwork
