@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/fetch-fonts.mjs && node scripts/make-icons.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "icons": "node scripts/make-icons.mjs"
+    "icons": "node scripts/make-icons.mjs",
+    "fonts": "node scripts/fetch-fonts.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
