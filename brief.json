@@ -1,32 +1,32 @@
 {
-  "generatedAt": "2026-08-26T10:34:54Z",
+  "generatedAt": "2026-08-27T10:34:59Z",
   "brief": {
-    "asOf": "26 August 2026",
-    "note": "Dick's crashed 30% on Foot Locker losses; the warning spread across footwear and sportswear names.",
+    "asOf": "27 August 2026",
+    "note": "Quiet midweek; nothing new cleared 10%. Both names have bounced off their post-earnings lows.",
     "candidates": [
       {
         "ticker": "DKS",
         "name": "DICK'S Sporting Goods, Inc.",
         "exchange": "NYSE",
-        "dropPct": -30.7,
-        "dropWindow": "one day",
-        "price": 124.32,
-        "prevClose": null,
-        "low52": 124.00,
+        "dropPct": -27.7,
+        "dropWindow": "one week",
+        "price": 129.59,
+        "prevClose": 124.40,
+        "low52": 120.40,
         "high52": 244.38,
         "verdict": "wait and see",
         "business": "Largest US sporting goods retailer, now also owner of Foot Locker",
         "cause": "Q2 missed on both lines and full-year sales and profit guidance was cut, with losses at newly acquired Foot Locker driving the shortfall.",
         "causeType": "fixable",
         "sector": "Consumer discretionary",
-        "marketCapUsd": 11130000000,
-        "fwdPe": 8.7,
+        "marketCapUsd": 11600000000,
+        "fwdPe": 9.1,
         "paysDividend": true,
         "metrics": [
-          {"label": "Fwd P/E", "value": "8.7x"},
-          {"label": "Yield", "value": "4.0%"},
+          {"label": "Fwd P/E", "value": "9.1x"},
+          {"label": "Yield", "value": "3.9%"},
           {"label": "Dividend", "value": "$1.25 a quarter, 47% payout"},
-          {"label": "52-week low", "value": "Trading at it"}
+          {"label": "52-week low", "value": "$120.40, set 26 August"}
         ],
         "right": "Foot Locker's losses must narrow on schedule without further cuts to guidance",
         "wrong": "The Foot Locker acquisition keeps draining profit while athletic footwear demand stays weak"
@@ -35,10 +35,10 @@
         "ticker": "AAP",
         "name": "Advance Auto Parts, Inc.",
         "exchange": "NYSE",
-        "dropPct": -25.2,
+        "dropPct": -22.0,
         "dropWindow": "one week",
-        "price": 42.04,
-        "prevClose": 56.18,
+        "price": 43.81,
+        "prevClose": 43.64,
         "low52": 37.89,
         "high52": 65.21,
         "verdict": "wait and see",
@@ -46,14 +46,14 @@
         "cause": "Q2 sales of $2.00bn missed the $2.04bn expected and comparable sales fell as tight household budgets hit DIY demand, though adjusted EPS beat.",
         "causeType": "fixable",
         "sector": "Consumer discretionary",
-        "marketCapUsd": 2540000000,
-        "fwdPe": 15.9,
+        "marketCapUsd": 2640000000,
+        "fwdPe": 16.6,
         "paysDividend": true,
         "metrics": [
-          {"label": "Fwd P/E", "value": "15.9x"},
+          {"label": "Fwd P/E", "value": "16.6x"},
           {"label": "Q2 adj. EPS", "value": "$1.03 vs $0.81 est."},
           {"label": "FY26 adj. EPS guide", "value": "$2.95 midpoint, raised"},
-          {"label": "Yield", "value": "2.4%"}
+          {"label": "Yield", "value": "2.3%"}
         ],
         "right": "DIY demand must stabilise so the raised profit guidance survives a second weak quarter",
         "wrong": "Consumer spending weakens further and the long-running turnaround stalls again on falling comparable sales"
