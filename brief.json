@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-08-27T10:34:59Z",
+  "generatedAt": "2026-08-28T10:35:31Z",
   "brief": {
-    "asOf": "27 August 2026",
-    "note": "Quiet midweek; nothing new cleared 10%. Both names have bounced off their post-earnings lows.",
+    "asOf": "28 August 2026",
+    "note": "Retail earnings still driving the biggest falls; consumer demand and guidance cuts the recurring theme.",
     "candidates": [
       {
         "ticker": "DKS",
         "name": "DICK'S Sporting Goods, Inc.",
         "exchange": "NYSE",
-        "dropPct": -27.7,
+        "dropPct": -26.7,
         "dropWindow": "one week",
-        "price": 129.59,
-        "prevClose": 124.40,
+        "price": 131.37,
+        "prevClose": null,
         "low52": 120.40,
         "high52": 244.38,
         "verdict": "wait and see",
@@ -19,12 +19,12 @@
         "cause": "Q2 missed on both lines and full-year sales and profit guidance was cut, with losses at newly acquired Foot Locker driving the shortfall.",
         "causeType": "fixable",
         "sector": "Consumer discretionary",
-        "marketCapUsd": 11600000000,
-        "fwdPe": 9.1,
+        "marketCapUsd": 11760000000,
+        "fwdPe": 9.2,
         "paysDividend": true,
         "metrics": [
-          {"label": "Fwd P/E", "value": "9.1x"},
-          {"label": "Yield", "value": "3.9%"},
+          {"label": "Fwd P/E", "value": "9.2x"},
+          {"label": "Yield", "value": "3.8%"},
           {"label": "Dividend", "value": "$1.25 a quarter, 47% payout"},
           {"label": "52-week low", "value": "$120.40, set 26 August"}
         ],
@@ -32,31 +32,31 @@
         "wrong": "The Foot Locker acquisition keeps draining profit while athletic footwear demand stays weak"
       },
       {
-        "ticker": "AAP",
-        "name": "Advance Auto Parts, Inc.",
-        "exchange": "NYSE",
-        "dropPct": -22.0,
+        "ticker": "AAOI",
+        "name": "Applied Optoelectronics, Inc.",
+        "exchange": "NASDAQ",
+        "dropPct": -11.6,
         "dropWindow": "one week",
-        "price": 43.81,
-        "prevClose": 43.64,
-        "low52": 37.89,
-        "high52": 65.21,
+        "price": 113.84,
+        "prevClose": null,
+        "low52": 18.50,
+        "high52": 233.67,
         "verdict": "wait and see",
-        "business": "Retailer of vehicle replacement parts to DIY customers and professional garages",
-        "cause": "Q2 sales of $2.00bn missed the $2.04bn expected and comparable sales fell as tight household budgets hit DIY demand, though adjusted EPS beat.",
-        "causeType": "fixable",
-        "sector": "Consumer discretionary",
-        "marketCapUsd": 2640000000,
-        "fwdPe": 16.6,
-        "paysDividend": true,
+        "business": "Maker of optical transceivers and lasers for data centres and cable networks",
+        "cause": "Launched a $600m at-the-market share sale to fund a capacity build, and investors marked the stock down on dilution risk.",
+        "causeType": "one-off",
+        "sector": "Technology",
+        "marketCapUsd": 9620000000,
+        "fwdPe": null,
+        "paysDividend": false,
         "metrics": [
-          {"label": "Fwd P/E", "value": "16.6x"},
-          {"label": "Q2 adj. EPS", "value": "$1.03 vs $0.81 est."},
-          {"label": "FY26 adj. EPS guide", "value": "$2.95 midpoint, raised"},
-          {"label": "Yield", "value": "2.3%"}
+          {"label": "Fwd P/E", "value": "n/a, still loss-making"},
+          {"label": "2025 revenue", "value": "$456m, up 83%"},
+          {"label": "FY26 revenue outlook", "value": "Above $1.1bn"},
+          {"label": "Yield", "value": "None"}
         ],
-        "right": "DIY demand must stabilise so the raised profit guidance survives a second weak quarter",
-        "wrong": "Consumer spending weakens further and the long-running turnaround stalls again on falling comparable sales"
+        "right": "The capacity funded by the raise must convert into the guided revenue ramp",
+        "wrong": "Further equity raises dilute holders while the company stays unprofitable"
       }
     ],
     "watch": []
