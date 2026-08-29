@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-08-28T10:35:31Z",
+  "generatedAt": "2026-08-29T10:34:55Z",
   "brief": {
-    "asOf": "28 August 2026",
-    "note": "Retail earnings still driving the biggest falls; consumer demand and guidance cuts the recurring theme.",
+    "asOf": "29 August 2026",
+    "note": "PayPal's takeover collapsed and Marvell's outlook underwhelmed; Friday's falls were deal and expectations driven.",
     "candidates": [
       {
         "ticker": "DKS",
         "name": "DICK'S Sporting Goods, Inc.",
         "exchange": "NYSE",
-        "dropPct": -26.7,
+        "dropPct": -26.4,
         "dropWindow": "one week",
-        "price": 131.37,
-        "prevClose": null,
+        "price": 131.97,
+        "prevClose": 131.37,
         "low52": 120.40,
         "high52": 244.38,
         "verdict": "wait and see",
@@ -19,7 +19,7 @@
         "cause": "Q2 missed on both lines and full-year sales and profit guidance was cut, with losses at newly acquired Foot Locker driving the shortfall.",
         "causeType": "fixable",
         "sector": "Consumer discretionary",
-        "marketCapUsd": 11760000000,
+        "marketCapUsd": 11810000000,
         "fwdPe": 9.2,
         "paysDividend": true,
         "metrics": [
@@ -30,6 +30,33 @@
         ],
         "right": "Foot Locker's losses must narrow on schedule without further cuts to guidance",
         "wrong": "The Foot Locker acquisition keeps draining profit while athletic footwear demand stays weak"
+      },
+      {
+        "ticker": "PYPL",
+        "name": "PayPal Holdings, Inc.",
+        "exchange": "NASDAQ",
+        "dropPct": -12.7,
+        "dropWindow": "one day",
+        "price": 53.66,
+        "prevClose": 61.47,
+        "low52": 38.46,
+        "high52": 79.22,
+        "verdict": "wait and see",
+        "business": "Online payments network running PayPal, Venmo and Braintree checkout",
+        "cause": "A Stripe and Advent consortium abandoned its $53bn takeover at $60.50 a share after failing to agree a higher price, unwinding the bid premium.",
+        "causeType": "one-off",
+        "sector": "Financials",
+        "marketCapUsd": 45900000000,
+        "fwdPe": 10.0,
+        "paysDividend": true,
+        "metrics": [
+          {"label": "Fwd P/E", "value": "10.0x on guided FY26 EPS"},
+          {"label": "Trailing P/E", "value": "11.6x"},
+          {"label": "Withdrawn bid", "value": "$60.50 a share"},
+          {"label": "Yield", "value": "0.7%"}
+        ],
+        "right": "Management must deliver the turnaround alone now that no buyer is bidding",
+        "wrong": "Apple Pay and Google keep taking checkout share and branded volume keeps shrinking"
       },
       {
         "ticker": "AAOI",
@@ -57,6 +84,33 @@
         ],
         "right": "The capacity funded by the raise must convert into the guided revenue ramp",
         "wrong": "Further equity raises dilute holders while the company stays unprofitable"
+      },
+      {
+        "ticker": "MRVL",
+        "name": "Marvell Technology, Inc.",
+        "exchange": "NASDAQ",
+        "dropPct": -10.3,
+        "dropWindow": "one day",
+        "price": 216.62,
+        "prevClose": 241.45,
+        "low52": 61.44,
+        "high52": 329.88,
+        "verdict": "wait and see",
+        "business": "Designs custom silicon and networking chips for data centre operators",
+        "cause": "Record Q2 revenue up 37% and raised guidance for both fiscal years, but the fiscal 2028 outlook fell short of what investors had priced in.",
+        "causeType": "one-off",
+        "sector": "Technology",
+        "marketCapUsd": 189200000000,
+        "fwdPe": 50.2,
+        "paysDividend": true,
+        "metrics": [
+          {"label": "Fwd P/E", "value": "50.2x"},
+          {"label": "Trailing P/E", "value": "79.2x"},
+          {"label": "Q2 revenue", "value": "$2.74bn, up 37%"},
+          {"label": "Yield", "value": "0.1%"}
+        ],
+        "right": "The raised fiscal 2028 revenue target must arrive with margins that justify 50x earnings",
+        "wrong": "Custom silicon wins slip or a key customer designs Marvell out of its roadmap"
       }
     ],
     "watch": []
