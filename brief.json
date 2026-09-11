@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-09-10T10:34:49Z",
+  "generatedAt": "2026-09-11T10:35:22Z",
   "brief": {
-    "asOf": "10 September 2026",
-    "note": "Casey's and ServiceTitan both fell hard on soft guidance despite beating; oil above $100 pressured everything.",
+    "asOf": "11 September 2026",
+    "note": "Oil above $100 and a fourth straight down day; guidance cuts kept claiming individual names.",
     "candidates": [
       {
         "ticker": "CASY",
@@ -32,6 +32,60 @@
         "wrong": "The guided profit slowdown proves the start of a longer deceleration, not a reset"
       },
       {
+        "ticker": "COO",
+        "name": "The Cooper Companies, Inc.",
+        "exchange": "NASDAQ",
+        "dropPct": -18.1,
+        "dropWindow": "one day",
+        "price": 63.48,
+        "prevClose": null,
+        "low52": 58.89,
+        "high52": 89.83,
+        "verdict": "wait and see",
+        "business": "Makes contact lenses and women's health and fertility medical devices",
+        "cause": "Revenue missed and full-year guidance was cut, while a long-running strategic review ended with no sale. Several brokers downgraded the shares.",
+        "causeType": "fixable",
+        "sector": "Healthcare",
+        "marketCapUsd": 12070000000,
+        "fwdPe": 14.0,
+        "paysDividend": false,
+        "metrics": [
+          {"label": "Fwd P/E", "value": "14.0x on guided FY26 EPS"},
+          {"label": "FY26 EPS guide", "value": "$4.51 to $4.55"},
+          {"label": "Q3 EPS", "value": "$1.15 vs $1.11 est."},
+          {"label": "Yield", "value": "None"}
+        ],
+        "right": "Organic growth must improve now that no buyer is going to pay a premium",
+        "wrong": "Contact lens growth stays near 1% and the guidance cuts keep coming"
+      },
+      {
+        "ticker": "LULU",
+        "name": "lululemon athletica inc.",
+        "exchange": "NASDAQ",
+        "dropPct": -18.1,
+        "dropWindow": "one week",
+        "price": 99.72,
+        "prevClose": null,
+        "low52": 99.72,
+        "high52": 225.98,
+        "verdict": "wait and see",
+        "business": "Athletic apparel brand selling leggings and activewear through its own stores",
+        "cause": "Cut full-year guidance for the third time, now seeing sales fall 5% to 7% and EPS near $9.60, with China continuing to disappoint.",
+        "causeType": "fixable",
+        "sector": "Consumer discretionary",
+        "marketCapUsd": 11320000000,
+        "fwdPe": 10.4,
+        "paysDividend": false,
+        "metrics": [
+          {"label": "Fwd P/E", "value": "10.4x on guided FY26 EPS"},
+          {"label": "FY26 sales", "value": "Falling 5% to 7%"},
+          {"label": "52-week low", "value": "Made a fresh low on Thursday"},
+          {"label": "Yield", "value": "None"}
+        ],
+        "right": "Product newness must revive North American demand before discounting erodes the brand",
+        "wrong": "Competitors keep taking share and a fourth guidance cut follows this one"
+      },
+      {
         "ticker": "TTAN",
         "name": "ServiceTitan, Inc.",
         "exchange": "NASDAQ",
@@ -53,7 +107,7 @@
           {"label": "Fwd P/E", "value": "n/a, no current estimate"},
           {"label": "Q2 revenue", "value": "$292.8m, up 21%"},
           {"label": "Q2 EPS", "value": "$0.40 vs $0.35 est."},
-          {"label": "Yield", "value": "None"}
+          {"label": "Price as of", "value": "9 September close"}
         ],
         "right": "Growth must stop decelerating before the market re-rates a software business at this price",
         "wrong": "Trade contractors cut software spend and revenue growth keeps stepping down each quarter"
@@ -64,8 +118,8 @@
         "exchange": "NYSE",
         "dropPct": -16.7,
         "dropWindow": "one day",
-        "price": 905.00,
-        "prevClose": 932.26,
+        "price": 983.19,
+        "prevClose": 933.30,
         "low52": 870.01,
         "high52": 1998.01,
         "verdict": "wait and see",
@@ -73,44 +127,17 @@
         "cause": "The federal housing regulator told Fannie Mae and Freddie Mac to accept rival VantageScore credit scores, opening FICO's mortgage-scoring monopoly to competition.",
         "causeType": "permanent",
         "sector": "Technology",
-        "marketCapUsd": 19540000000,
-        "fwdPe": 21.4,
+        "marketCapUsd": 21230000000,
+        "fwdPe": 23.2,
         "paysDividend": false,
         "metrics": [
-          {"label": "Fwd P/E", "value": "21.4x"},
-          {"label": "Trailing P/E", "value": "27.2x"},
+          {"label": "Fwd P/E", "value": "23.2x"},
           {"label": "52-week high", "value": "$1,998"},
-          {"label": "Price as of", "value": "8 September close"}
+          {"label": "Since the fall", "value": "Recovered about 5%"},
+          {"label": "Yield", "value": "None"}
         ],
         "right": "Lenders must stick with FICO scores despite now being free to switch",
         "wrong": "VantageScore takes mortgage share and FICO loses pricing power on its best scores"
-      },
-      {
-        "ticker": "LULU",
-        "name": "lululemon athletica inc.",
-        "exchange": "NASDAQ",
-        "dropPct": -15.3,
-        "dropWindow": "one week",
-        "price": 103.19,
-        "prevClose": 100.61,
-        "low52": 100.61,
-        "high52": 225.98,
-        "verdict": "wait and see",
-        "business": "Athletic apparel brand selling leggings and activewear through its own stores",
-        "cause": "Cut full-year guidance for the third time, now seeing sales fall 5% to 7% and EPS near $9.60, with China continuing to disappoint.",
-        "causeType": "fixable",
-        "sector": "Consumer discretionary",
-        "marketCapUsd": 11720000000,
-        "fwdPe": 10.7,
-        "paysDividend": false,
-        "metrics": [
-          {"label": "Fwd P/E", "value": "10.7x on guided FY26 EPS"},
-          {"label": "FY26 sales", "value": "Falling 5% to 7%"},
-          {"label": "52-week low", "value": "$100.61, an eight-year low"},
-          {"label": "Yield", "value": "None"}
-        ],
-        "right": "Product newness must revive North American demand before discounting erodes the brand",
-        "wrong": "Competitors keep taking share and a fourth guidance cut follows this one"
       }
     ],
     "watch": []
