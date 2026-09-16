@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-09-15T10:34:13Z",
+  "generatedAt": "2026-09-16T10:34:22Z",
   "brief": {
-    "asOf": "15 September 2026",
-    "note": "AI and semiconductor selling dominated Monday; ServiceTitan has now fallen 41% over five sessions.",
+    "asOf": "16 September 2026",
+    "note": "Rising yields and oil kept pressure on; prices are Monday's close, Tuesday's not yet available.",
     "candidates": [
       {
         "ticker": "TTAN",
@@ -11,12 +11,12 @@
         "dropPct": -41.0,
         "dropWindow": "one week",
         "price": 58.70,
-        "prevClose": null,
+        "prevClose": 54.68,
         "low52": 53.80,
         "high52": 119.60,
         "verdict": "wait and see",
         "business": "Software for plumbing, heating and electrical contractors to run their businesses",
-        "cause": "Q2 beat but third-quarter revenue guidance came in below consensus, and the shares have fallen every session since on decelerating growth fears.",
+        "cause": "Q2 beat but third-quarter revenue guidance came in below consensus, and the shares fell every session for a week on decelerating growth fears.",
         "causeType": "one-off",
         "sector": "Technology",
         "marketCapUsd": 5690000000,
@@ -65,7 +65,7 @@
         "dropPct": -15.2,
         "dropWindow": "one week",
         "price": 621.66,
-        "prevClose": 614.93,
+        "prevClose": 615.47,
         "low52": 497.38,
         "high52": 927.85,
         "verdict": "wait and see",
