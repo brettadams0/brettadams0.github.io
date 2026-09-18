@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-09-17T10:34:40Z",
+  "generatedAt": "2026-09-18T10:34:34Z",
   "brief": {
-    "asOf": "17 September 2026",
-    "note": "The Fed raised rates and signalled more; Enova's abandoned bank deal and J.B. Hunt's cost warning led falls.",
+    "asOf": "18 September 2026",
+    "note": "Fluence cut guidance hard and pulled back from the US; prices for the older names are a session behind.",
     "candidates": [
       {
         "ticker": "ENVA",
@@ -32,31 +32,31 @@
         "wrong": "Funding costs stay high and the failed deal signals deeper regulatory hostility to nonbank lenders"
       },
       {
-        "ticker": "COO",
-        "name": "The Cooper Companies, Inc.",
+        "ticker": "FLNC",
+        "name": "Fluence Energy, Inc.",
         "exchange": "NASDAQ",
-        "dropPct": -13.8,
-        "dropWindow": "one week",
-        "price": 54.74,
+        "dropPct": -21.8,
+        "dropWindow": "one day",
+        "price": 7.66,
         "prevClose": null,
-        "low52": 53.91,
-        "high52": 89.83,
+        "low52": 3.46,
+        "high52": 33.51,
         "verdict": "wait and see",
-        "business": "Makes contact lenses and women's health and fertility medical devices",
-        "cause": "Revenue missed and full-year guidance was cut, while a long-running strategic review ended with no sale. Several brokers downgraded the shares.",
+        "business": "Builds grid-scale battery storage systems and sells optimisation software for renewables",
+        "cause": "Cut full-year revenue guidance to about $2.4bn from $3bn and now expects a $200m adjusted EBITDA loss, blaming supply chain and Houston ramp problems.",
         "causeType": "fixable",
-        "sector": "Healthcare",
-        "marketCapUsd": 10410000000,
-        "fwdPe": 12.1,
+        "sector": "Industrials",
+        "marketCapUsd": 1920000000,
+        "fwdPe": null,
         "paysDividend": false,
         "metrics": [
-          {"label": "Fwd P/E", "value": "12.1x on guided FY26 EPS"},
-          {"label": "FY26 EPS guide", "value": "$4.51 to $4.55"},
-          {"label": "Q3 EPS", "value": "$1.15 vs $1.11 est."},
-          {"label": "Off its low", "value": "Barely, at $53.91"}
+          {"label": "Fwd P/E", "value": "n/a, loss-making"},
+          {"label": "FY26 revenue guide", "value": "$2.4bn, cut from $3bn"},
+          {"label": "FY26 adj. EBITDA", "value": "About minus $200m"},
+          {"label": "Yield", "value": "None"}
         ],
-        "right": "Organic growth must improve now that no buyer is going to pay a premium",
-        "wrong": "Contact lens growth stays near 1% and the guidance cuts keep coming"
+        "right": "The Houston ramp and supply chain must resolve before the cash burn forces a raise",
+        "wrong": "Liquidity tightens as losses widen and the retreat from US business becomes permanent"
       },
       {
         "ticker": "JBHT",
