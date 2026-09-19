@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-09-18T10:34:34Z",
+  "generatedAt": "2026-09-19T10:33:29Z",
   "brief": {
-    "asOf": "18 September 2026",
-    "note": "Fluence cut guidance hard and pulled back from the US; prices for the older names are a session behind.",
+    "asOf": "19 September 2026",
+    "note": "Quiet end to the week; Jefferies cut Fluence again. Prices are each name's latest confirmed close.",
     "candidates": [
       {
         "ticker": "ENVA",
@@ -37,23 +37,23 @@
         "exchange": "NASDAQ",
         "dropPct": -21.8,
         "dropWindow": "one day",
-        "price": 7.66,
-        "prevClose": null,
-        "low52": 3.46,
+        "price": 7.34,
+        "prevClose": 7.66,
+        "low52": 7.01,
         "high52": 33.51,
         "verdict": "wait and see",
         "business": "Builds grid-scale battery storage systems and sells optimisation software for renewables",
         "cause": "Cut full-year revenue guidance to about $2.4bn from $3bn and now expects a $200m adjusted EBITDA loss, blaming supply chain and Houston ramp problems.",
         "causeType": "fixable",
         "sector": "Industrials",
-        "marketCapUsd": 1920000000,
+        "marketCapUsd": 1840000000,
         "fwdPe": null,
         "paysDividend": false,
         "metrics": [
           {"label": "Fwd P/E", "value": "n/a, loss-making"},
           {"label": "FY26 revenue guide", "value": "$2.4bn, cut from $3bn"},
           {"label": "FY26 adj. EBITDA", "value": "About minus $200m"},
-          {"label": "Yield", "value": "None"}
+          {"label": "52-week low", "value": "$7.01, just below"}
         ],
         "right": "The Houston ramp and supply chain must resolve before the cash burn forces a raise",
         "wrong": "Liquidity tightens as losses widen and the retreat from US business becomes permanent"
@@ -64,8 +64,8 @@
         "exchange": "NASDAQ",
         "dropPct": -13.3,
         "dropWindow": "one day",
-        "price": 236.73,
-        "prevClose": null,
+        "price": 236.80,
+        "prevClose": 236.73,
         "low52": 130.12,
         "high52": 289.95,
         "verdict": "wait and see",
