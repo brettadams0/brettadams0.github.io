@@ -20,6 +20,7 @@ exclude:
   - scss
   - README.md
   - TODO.md
+  - ANALYTICS.md
   - bargain-hunt/README.md
   # Android app source, not site content. Unlike bargain-hunt (a PWA that is
   # served), nothing under sift/ is meant to be published, and leaving it in
