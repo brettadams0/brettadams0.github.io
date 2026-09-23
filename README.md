@@ -48,6 +48,37 @@ failures but will happily publish a page pointing at a renamed image or a delete
 failure mode the link checker exists to catch. It reads only the built output: no network, no
 dependencies.
 
+## Analytics
+
+Google Analytics 4 is loaded from [`_includes/analytics.html`](_includes/analytics.html), which both
+`index.html` and `_layouts/default.html` pull into `<head>`. The measurement ID lives in
+`_config.yml` as `google_analytics`, and the include emits nothing whatsoever when that key is
+absent — so a fork, or a local build with the key commented out, ships no beacon. `bargain-hunt/` is
+deliberately left out of all of this: it is `noindex, nofollow`, a private tool rather than part of
+the public site.
+
+Page-level reporting is the wrong granularity for this site. The landing page is a single URL
+holding six sections, so GA can report that `/` was viewed without saying whether anyone scrolled as
+far as Education, or ever opened a project card.
+[`assets/js/analytics-events.js`](assets/js/analytics-events.js) closes that gap with six custom
+events. `section_view` fires once per section per page load, after that section has spent a
+continuous second at least half in view, which is what separates reading from scrolling past.
+`section_dwell` accumulates that visible time and flushes it in whole seconds when the page is
+hidden or unloaded, dropping anything under two seconds as noise. `project_click` reports which card
+a reader cared enough to open, by name and destination; `resume_download` records the résumé,
+duplicating enhanced measurement's `file_download` under a name that cannot be renamed out from
+under us. `contact_submit` is the one unambiguous win on the site, and is sent **with no parameters
+at all** — the form carries a name, an email address and a message body, and none of that may reach
+GA. `scroll_depth` marks the quarter points, because GA's own scroll event only fires at 90%, too
+coarse to tell a skim from a read.
+
+The script is inert wherever it has nothing to do: it returns immediately if the visitor sends Do
+Not Track, guards every send so a blocked `gtag` throws nothing, and simply never arms the section
+events on blog pages, which have no `section[id]`. Note that the event parameters — `section_id`,
+`project_name`, `percent`, `seconds` — are collected from the moment the script ships, but stay
+invisible in GA's reports until they are registered under Admin → Custom definitions, and that
+registration is not retroactive.
+
 ## Contact
 
 - GitHub: [brettadams0](https://github.com/brettadams0)
