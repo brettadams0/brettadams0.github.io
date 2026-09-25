@@ -7,6 +7,8 @@ url: "https://brettadams0.github.io"
 logo: /dist/img/logo.png
 author:
   name: Brett Adams
+# Consumed by _includes/analytics.html, which emits nothing when this is unset.
+google_analytics: G-EBYB5MK388
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/
 plugins:
