@@ -1,16 +1,43 @@
 {
-  "generatedAt": "2026-09-24T10:36:15Z",
+  "generatedAt": "2026-09-25T10:35:19Z",
   "brief": {
-    "asOf": "24 September 2026",
-    "note": "Endeavour Silver joins on a three-week mill repair; Fluence is on its last day in the window.",
+    "asOf": "25 September 2026",
+    "note": "Alignment Healthcare halved in a fortnight and joins; Fluence aged out, Endeavour Silver fell further.",
     "candidates": [
+      {
+        "ticker": "ALHC",
+        "name": "Alignment Healthcare, Inc.",
+        "exchange": "NASDAQ",
+        "dropPct": -13.0,
+        "dropWindow": "one week",
+        "price": 7.60,
+        "prevClose": null,
+        "low52": 7.37,
+        "high52": 25.12,
+        "verdict": "wait and see",
+        "business": "Runs Medicare Advantage health plans for seniors across several US states",
+        "cause": "Flagged $10-11m of unplanned second-half spending and worsening medical costs from hospital billing disputes at an investor conference, without changing guidance; law firms opened investigations.",
+        "causeType": "fixable",
+        "sector": "Healthcare",
+        "marketCapUsd": 1591000000,
+        "fwdPe": 79.5,
+        "paysDividend": false,
+        "metrics": [
+          {"label": "Fwd P/E", "value": "79.5x"},
+          {"label": "Extra H2 spend", "value": "$10m to $11m"},
+          {"label": "52-week range", "value": "$7.37 to $25.12"},
+          {"label": "Guidance", "value": "Q3 and full year unchanged"}
+        ],
+        "right": "Medical cost trend settles and the extra second-half spending stays a one-year drag",
+        "wrong": "Utilisation keeps climbing, margins compress and the unchanged guidance has to be cut"
+      },
       {
         "ticker": "EXK",
         "name": "Endeavour Silver Corp.",
         "exchange": "NYSE",
         "dropPct": -12.2,
         "dropWindow": "one day",
-        "price": 9.66,
+        "price": 9.18,
         "prevClose": null,
         "low52": 6.60,
         "high52": 15.15,
@@ -19,44 +46,17 @@
         "cause": "Took the main ball mill at its Guanacevi mine offline on 21 September for a three-week trunnion replacement, cutting throughput from 1,100 to 600 tonnes daily.",
         "causeType": "one-off",
         "sector": "Materials",
-        "marketCapUsd": 2860000000,
-        "fwdPe": 10.81,
+        "marketCapUsd": 2720000000,
+        "fwdPe": 10.3,
         "paysDividend": false,
         "metrics": [
-          {"label": "Fwd P/E", "value": "10.81x"},
+          {"label": "Fwd P/E", "value": "10.3x"},
           {"label": "Guanacevi throughput", "value": "600 t/d, from 1,100"},
           {"label": "Outage", "value": "About three weeks, mining continues"},
           {"label": "CIBC target", "value": "C$20, cut from C$25"}
         ],
         "right": "The mill repair finishes on schedule and Guanacevi throughput returns by mid-October",
         "wrong": "The trunnion damage proves deeper, the outage drags on and guidance is cut"
-      },
-      {
-        "ticker": "FLNC",
-        "name": "Fluence Energy, Inc.",
-        "exchange": "NASDAQ",
-        "dropPct": -21.8,
-        "dropWindow": "one day",
-        "price": 7.40,
-        "prevClose": null,
-        "low52": 7.01,
-        "high52": 33.51,
-        "verdict": "wait and see",
-        "business": "Builds grid-scale battery storage systems and sells optimisation software for renewables",
-        "cause": "Cut full-year revenue guidance to about $2.4bn from $3bn and now expects a $200m adjusted EBITDA loss, blaming supply chain and Houston ramp problems.",
-        "causeType": "fixable",
-        "sector": "Industrials",
-        "marketCapUsd": 1860000000,
-        "fwdPe": null,
-        "paysDividend": false,
-        "metrics": [
-          {"label": "Fwd P/E", "value": "n/a, loss-making"},
-          {"label": "FY26 revenue guide", "value": "$2.4bn, cut from $3bn"},
-          {"label": "FY26 adj. EBITDA", "value": "About minus $200m"},
-          {"label": "52-week low", "value": "$7.01, just below"}
-        ],
-        "right": "The Houston ramp and supply chain must resolve before the cash burn forces a raise",
-        "wrong": "Liquidity tightens as losses widen and the retreat from US business becomes permanent"
       }
     ],
     "watch": []
