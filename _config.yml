@@ -7,8 +7,17 @@ url: "https://brettadams0.github.io"
 logo: /dist/img/logo.png
 author:
   name: Brett Adams
-# Consumed by _includes/analytics.html, which emits nothing when this is unset.
-google_analytics: G-EBYB5MK388
+# Google Analytics 4 measurement ID, consumed by _includes/analytics.html, which
+# emits nothing at all when this key is unset: no gtag snippet, no events script,
+# no request to googletagmanager.com.
+#
+# Deliberately unset. The ID used here from August 2025 (G-EBYB5MK388, added in
+# 48a495b) resolves to a live GA4 property that does not exist under this site's
+# Google account — that address has no Analytics accounts at all — so it almost
+# certainly arrived with an uploaded template and belongs to its author. Every
+# visitor's behaviour was being reported to a stranger. Do not restore that ID;
+# set this key to a new property we own.
+# google_analytics:
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/
 plugins:
