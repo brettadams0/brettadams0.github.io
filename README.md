@@ -57,6 +57,12 @@ absent — so a fork, or a local build with the key commented out, ships no beac
 deliberately left out of all of this: it is `noindex, nofollow`, a private tool rather than part of
 the public site.
 
+**Collection is currently off, on purpose.** `google_analytics` is commented out, so the site sends
+no analytics at all. The ID it carried from August 2025 belongs to a GA4 property that is not under
+this site's Google account — that address has no Analytics accounts whatsoever, so the ID almost
+certainly came in with an uploaded template and has been reporting visitors to its author. Setting
+the key to a property we own re-enables everything below, unchanged, in one line.
+
 Page-level reporting is the wrong granularity for this site. The landing page is a single URL
 holding six sections, so GA can report that `/` was viewed without saying whether anyone scrolled as
 far as Education, or ever opened a project card.
