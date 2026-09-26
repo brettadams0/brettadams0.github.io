@@ -11,13 +11,11 @@ author:
 # emits nothing at all when this key is unset: no gtag snippet, no events script,
 # no request to googletagmanager.com.
 #
-# Deliberately unset. The ID used here from August 2025 (G-EBYB5MK388, added in
-# 48a495b) resolves to a live GA4 property that does not exist under this site's
-# Google account — that address has no Analytics accounts at all — so it almost
-# certainly arrived with an uploaded template and belongs to its author. Every
-# visitor's behaviour was being reported to a stranger. Do not restore that ID;
-# set this key to a new property we own.
-# google_analytics:
+# Not G-EBYB5MK388. That ID shipped here from August 2025 (48a495b) until #35 and
+# belongs to a property under no Google account of ours — almost certainly the
+# author of an uploaded template, who was receiving our visitors' behaviour the
+# whole time. Never restore it.
+google_analytics: G-Z3KW627PQQ
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/
 plugins:
