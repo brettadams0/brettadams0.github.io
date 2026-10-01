@@ -1,32 +1,60 @@
 {
-  "generatedAt": "2026-09-30T10:34:55Z",
+  "generatedAt": "2026-10-01T10:35:01Z",
   "brief": {
-    "asOf": "30 September 2026",
-    "note": "Fair Isaac joins after losing its mortgage-scoring monopoly; Endeavour Silver ages out of the window.",
+    "asOf": "1 October 2026",
+    "note": "First Quantum joins after Panama urged closing its biggest mine; Kinross ages out of the window.",
     "candidates": [
+      {
+        "ticker": "FM",
+        "name": "First Quantum Minerals Ltd.",
+        "exchange": "TSX",
+        "currency": "CAD",
+        "dropPct": -31.1,
+        "dropWindow": "one day",
+        "price": 31.10,
+        "prevClose": 45.12,
+        "low52": 27.06,
+        "high52": 49.27,
+        "verdict": "wait and see",
+        "business": "Mines copper, nickel and gold, mostly in Zambia and Panama",
+        "cause": "A Panamanian commission recommended the orderly closure of the Cobre Panama copper mine, which has sat idle since 2023 and was the company's largest asset.",
+        "causeType": "permanent",
+        "sector": "Materials",
+        "marketCapUsd": 18800000000,
+        "fwdPe": 27.8,
+        "paysDividend": false,
+        "metrics": [
+          {"label": "Fwd P/E", "value": "27.8x"},
+          {"label": "Cobre Panama", "value": "Idle since 2023, closure urged"},
+          {"label": "52-week range", "value": "C$27.06 to C$49.27"},
+          {"label": "Day's fall", "value": "C$45.12 to C$31.10"}
+        ],
+        "right": "Panama's government ignores the recommendation, or Zambian copper earnings alone justify the lower price",
+        "wrong": "The closure is confirmed and the restart option that supported the shares disappears entirely"
+      },
       {
         "ticker": "FICO",
         "name": "Fair Isaac Corporation",
         "exchange": "NYSE",
         "dropPct": -26.5,
         "dropWindow": "one day",
-        "price": 617.87,
-        "prevClose": null,
-        "low52": 617.87,
+        "price": 592.47,
+        "prevClose": 617.87,
+        "low52": 592.47,
         "high52": 1998.01,
         "verdict": "wait and see",
         "business": "Sells the FICO credit score and decision software to lenders and banks",
         "cause": "The housing regulator said Fannie Mae and Freddie Mac will move to unified mortgage pricing that uses VantageScore, ending FICO's decades-long monopoly on mortgage credit scores.",
         "causeType": "permanent",
         "sector": "Information Technology",
-        "marketCapUsd": 13344000000,
-        "fwdPe": 11.4,
+        "marketCapUsd": 12795000000,
+        "fwdPe": 11.0,
         "paysDividend": false,
         "metrics": [
-          {"label": "Fwd P/E", "value": "11.4x, on pre-ruling estimates"},
+          {"label": "Fwd P/E", "value": "11.0x, on pre-ruling estimates"},
           {"label": "Mortgage market", "value": "Fannie and Freddie, about 70%"},
-          {"label": "Year to date", "value": "Down 63.5%"},
-          {"label": "52-week low", "value": "$617.87, set Tuesday"}
+          {"label": "Year to date", "value": "Down 65%"},
+          {"label": "52-week low", "value": "$592.47, set Wednesday"}
         ],
         "right": "Lenders keep buying FICO scores by habit and the card and software businesses carry earnings",
         "wrong": "VantageScore takes real mortgage share and the royalty per score falls for good"
@@ -37,8 +65,8 @@
         "exchange": "NASDAQ",
         "dropPct": -19.0,
         "dropWindow": "one day",
-        "price": 330.74,
-        "prevClose": 335.32,
+        "price": 348.61,
+        "prevClose": 337.19,
         "low52": 215.68,
         "high52": 473.10,
         "verdict": "wait and see",
@@ -53,37 +81,10 @@
           {"label": "Fwd P/E", "value": "46.5x"},
           {"label": "Interim CEO", "value": "Founder Dev Ittycheria"},
           {"label": "52-week range", "value": "$215.68 to $473.10"},
-          {"label": "Investor day", "value": "Held Tuesday, agentic AI launches"}
+          {"label": "Since the drop", "value": "Recovered about 4%"}
         ],
         "right": "A permanent chief arrives quickly and Atlas growth continues through the handover",
         "wrong": "The departure signals trouble the guidance has not shown and more executives follow"
-      },
-      {
-        "ticker": "KGC",
-        "name": "Kinross Gold Corporation",
-        "exchange": "NYSE",
-        "dropPct": -11.6,
-        "dropWindow": "one day",
-        "price": 24.11,
-        "prevClose": null,
-        "low52": 22.01,
-        "high52": 39.11,
-        "verdict": "wait and see",
-        "business": "Mines gold in the Americas and West Africa, from Nevada to Mauritania",
-        "cause": "Cut production guidance for 2026 and 2027 by about 8% and raised cost guidance, blaming harsh winter weather and processing problems at the La Coipa mine in Chile.",
-        "causeType": "fixable",
-        "sector": "Materials",
-        "marketCapUsd": 29450000000,
-        "fwdPe": 8.8,
-        "paysDividend": true,
-        "metrics": [
-          {"label": "Fwd P/E", "value": "8.8x, on pre-cut estimates"},
-          {"label": "Guidance", "value": "2026 and 2027 cut about 8%"},
-          {"label": "Dividend", "value": "$0.16 a year, under 1%"},
-          {"label": "52-week range", "value": "$22.01 to $39.11"}
-        ],
-        "right": "The weather and processing problems pass and costs per ounce stop climbing",
-        "wrong": "Costs keep rising and the lower output persists well beyond next year"
       }
     ],
     "watch": []
