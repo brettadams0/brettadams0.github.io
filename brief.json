@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-06T10:34:46Z",
+  "generatedAt": "2026-10-07T10:34:45Z",
   "brief": {
-    "asOf": "6 October 2026",
-    "note": "C.H. Robinson joins on its RXO deal; the storage pair bounced as analysts called Friday's selloff overdone.",
+    "asOf": "7 October 2026",
+    "note": "Nothing new cleared 10%; the storage pair gave back Monday's bounce and First Quantum aged out.",
     "candidates": [
       {
         "ticker": "CHRW",
@@ -10,23 +10,23 @@
         "exchange": "NASDAQ",
         "dropPct": -10.9,
         "dropWindow": "one day",
-        "price": 140.61,
+        "price": null,
         "prevClose": null,
         "low52": 123.64,
         "high52": 210.33,
         "verdict": "wait and see",
         "business": "Arranges truck freight for shippers as North America's largest freight broker",
-        "cause": "Agreed to buy rival broker RXO for $5.8bn in cash and stock, and investors balked at the financing and integration risk despite $300m of promised synergies.",
+        "cause": "Agreed to buy rival broker RXO for $5.8bn in cash and stock, and investors balked at the debt, integration and antitrust risk despite $300m of promised synergies.",
         "causeType": "fixable",
         "sector": "Industrials",
         "marketCapUsd": 16400000000,
         "fwdPe": null,
         "paysDividend": true,
         "metrics": [
-          {"label": "Fwd P/E", "value": "n/a, the deal changes the base"},
-          {"label": "Deal", "value": "$5.8bn cash and stock for RXO"},
+          {"label": "Last close", "value": "$140.61 on 5 October, from $157.72"},
+          {"label": "Deal", "value": "$5.8bn, RXO holders get 11%"},
           {"label": "Synergies", "value": "$300m within two years"},
-          {"label": "Dividend", "value": "$2.52 a year, about 1.8%"}
+          {"label": "Credit", "value": "S&P kept BBB+, outlook negative"}
         ],
         "right": "The $300m of synergies arrives on schedule and the combined broker gains pricing power",
         "wrong": "Integration drags, leverage bites and a soft freight market delays the promised earnings boost"
@@ -37,8 +37,8 @@
         "exchange": "NASDAQ",
         "dropPct": -10.2,
         "dropWindow": "one day",
-        "price": 442.44,
-        "prevClose": 415.29,
+        "price": 411.04,
+        "prevClose": null,
         "low52": 112.52,
         "high52": 799.87,
         "verdict": "wait and see",
@@ -46,14 +46,14 @@
         "cause": "Toshiba said it will spend about $400m to double hard drive output by fiscal 2027, threatening the tight supply that drove storage shares up all year.",
         "causeType": "permanent",
         "sector": "Information Technology",
-        "marketCapUsd": 159500000000,
-        "fwdPe": 22.0,
+        "marketCapUsd": 148200000000,
+        "fwdPe": 20.5,
         "paysDividend": true,
         "metrics": [
-          {"label": "Fwd P/E", "value": "22.0x"},
-          {"label": "This year", "value": "Still up about 170%"},
-          {"label": "Analysts", "value": "Bernstein called the selloff overdone"},
-          {"label": "Dividend", "value": "$0.60 a year, 0.14%"}
+          {"label": "Fwd P/E", "value": "20.5x"},
+          {"label": "In a year", "value": "Still up about 230%"},
+          {"label": "Toshiba share", "value": "Just over 10%, targeting 30%"},
+          {"label": "Dividend", "value": "$0.60 a year, 0.15%"}
         ],
         "right": "AI data centre demand absorbs the extra drives and prices hold through 2027",
         "wrong": "Supply catches up with demand and the pricing cycle turns before the capacity arrives"
@@ -64,8 +64,8 @@
         "exchange": "NASDAQ",
         "dropPct": -10.2,
         "dropWindow": "one day",
-        "price": 891.76,
-        "prevClose": 848.99,
+        "price": 805.63,
+        "prevClose": null,
         "low52": 209.00,
         "high52": 1145.00,
         "verdict": "wait and see",
@@ -73,45 +73,17 @@
         "cause": "Toshiba said it will spend about $400m to double hard drive output by fiscal 2027, threatening the tight supply that drove storage shares up all year.",
         "causeType": "permanent",
         "sector": "Information Technology",
-        "marketCapUsd": 182100000000,
-        "fwdPe": 22.4,
+        "marketCapUsd": 164500000000,
+        "fwdPe": 20.2,
         "paysDividend": true,
         "metrics": [
-          {"label": "Fwd P/E", "value": "22.4x"},
-          {"label": "This year", "value": "Still up about 240%"},
-          {"label": "Analysts", "value": "Drive shortage called still intact"},
-          {"label": "Dividend", "value": "$2.96 a year, 0.33%"}
+          {"label": "Fwd P/E", "value": "20.2x"},
+          {"label": "In a year", "value": "Still up about 250%"},
+          {"label": "Toshiba share", "value": "Just over 10%, targeting 30%"},
+          {"label": "Dividend", "value": "$2.96 a year, 0.37%"}
         ],
         "right": "Cloud customers keep signing long contracts and drive prices stay firm into 2027",
-        "wrong": "The 240% run unwinds as new capacity arrives and pricing power fades"
-      },
-      {
-        "ticker": "FM",
-        "name": "First Quantum Minerals Ltd.",
-        "exchange": "TSX",
-        "currency": "CAD",
-        "dropPct": -15.3,
-        "dropWindow": "one day",
-        "price": 40.63,
-        "prevClose": 39.35,
-        "low52": 27.06,
-        "high52": 49.27,
-        "verdict": "wait and see",
-        "business": "Mines copper, nickel and gold, mostly in Zambia and Panama",
-        "cause": "A Panamanian ministerial commission sent the president its audit of the idled Cobre Panama mine and recommended an orderly closure of the company's largest asset.",
-        "causeType": "permanent",
-        "sector": "Materials",
-        "marketCapUsd": 24560000000,
-        "fwdPe": 27.8,
-        "paysDividend": false,
-        "metrics": [
-          {"label": "Fwd P/E", "value": "27.8x"},
-          {"label": "Audit score", "value": "88% across 370 commitments"},
-          {"label": "Cobre Panama", "value": "Idle since 2023, closure urged"},
-          {"label": "52-week range", "value": "C$27.06 to C$49.27"}
-        ],
-        "right": "Panama's government ignores the recommendation, or Zambian copper earnings alone justify the lower price",
-        "wrong": "The closure is confirmed and the restart option that supported the shares disappears entirely"
+        "wrong": "The run unwinds as new capacity arrives and pricing power quietly fades"
       }
     ],
     "watch": []
