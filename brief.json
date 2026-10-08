@@ -1,17 +1,44 @@
 {
-  "generatedAt": "2026-10-07T10:34:45Z",
+  "generatedAt": "2026-10-08T10:35:30Z",
   "brief": {
-    "asOf": "7 October 2026",
-    "note": "Nothing new cleared 10%; the storage pair gave back Monday's bounce and First Quantum aged out.",
+    "asOf": "8 October 2026",
+    "note": "Webull joins after a House panel flagged its China ties; the others' prices are last confirmed closes.",
     "candidates": [
+      {
+        "ticker": "BULL",
+        "name": "Webull Corporation",
+        "exchange": "NASDAQ",
+        "dropPct": -19.1,
+        "dropWindow": "one day",
+        "price": 5.89,
+        "prevClose": 7.28,
+        "low52": 4.50,
+        "high52": 13.25,
+        "verdict": "wait and see",
+        "business": "Runs a commission-free share and options trading app for retail investors",
+        "cause": "A bipartisan House committee called the broker tied in structural ways to China's government, noting a mainland subsidiary employs about 62% of staff; Webull disputes the findings.",
+        "causeType": "permanent",
+        "sector": "Financials",
+        "marketCapUsd": 3180000000,
+        "fwdPe": null,
+        "paysDividend": false,
+        "metrics": [
+          {"label": "Fwd P/E", "value": "n/a, estimates disagree"},
+          {"label": "Workforce", "value": "62% in a mainland subsidiary"},
+          {"label": "52-week range", "value": "$4.50 to $13.25"},
+          {"label": "Past month", "value": "Down about 40%"}
+        ],
+        "right": "Washington takes no action and the China findings prove political noise rather than a business restriction",
+        "wrong": "Regulators force a restructuring, or US brokers and partners quietly step away from Webull"
+      },
       {
         "ticker": "CHRW",
         "name": "C.H. Robinson Worldwide, Inc.",
         "exchange": "NASDAQ",
         "dropPct": -10.9,
         "dropWindow": "one day",
-        "price": null,
-        "prevClose": null,
+        "price": 140.61,
+        "prevClose": 157.72,
         "low52": 123.64,
         "high52": 210.33,
         "verdict": "wait and see",
@@ -23,7 +50,7 @@
         "fwdPe": null,
         "paysDividend": true,
         "metrics": [
-          {"label": "Last close", "value": "$140.61 on 5 October, from $157.72"},
+          {"label": "Price as of", "value": "5 October close, $140.61"},
           {"label": "Deal", "value": "$5.8bn, RXO holders get 11%"},
           {"label": "Synergies", "value": "$300m within two years"},
           {"label": "Credit", "value": "S&P kept BBB+, outlook negative"}
@@ -38,7 +65,7 @@
         "dropPct": -10.2,
         "dropWindow": "one day",
         "price": 411.04,
-        "prevClose": null,
+        "prevClose": 441.64,
         "low52": 112.52,
         "high52": 799.87,
         "verdict": "wait and see",
@@ -50,10 +77,10 @@
         "fwdPe": 20.5,
         "paysDividend": true,
         "metrics": [
+          {"label": "Price as of", "value": "6 October close, $411.04"},
           {"label": "Fwd P/E", "value": "20.5x"},
           {"label": "In a year", "value": "Still up about 230%"},
-          {"label": "Toshiba share", "value": "Just over 10%, targeting 30%"},
-          {"label": "Dividend", "value": "$0.60 a year, 0.15%"}
+          {"label": "Toshiba share", "value": "Just over 10%, targeting 30%"}
         ],
         "right": "AI data centre demand absorbs the extra drives and prices hold through 2027",
         "wrong": "Supply catches up with demand and the pricing cycle turns before the capacity arrives"
@@ -65,7 +92,7 @@
         "dropPct": -10.2,
         "dropWindow": "one day",
         "price": 805.63,
-        "prevClose": null,
+        "prevClose": 887.09,
         "low52": 209.00,
         "high52": 1145.00,
         "verdict": "wait and see",
@@ -77,10 +104,10 @@
         "fwdPe": 20.2,
         "paysDividend": true,
         "metrics": [
+          {"label": "Price as of", "value": "6 October close, $805.63"},
           {"label": "Fwd P/E", "value": "20.2x"},
           {"label": "In a year", "value": "Still up about 250%"},
-          {"label": "Toshiba share", "value": "Just over 10%, targeting 30%"},
-          {"label": "Dividend", "value": "$2.96 a year, 0.37%"}
+          {"label": "Toshiba share", "value": "Just over 10%, targeting 30%"}
         ],
         "right": "Cloud customers keep signing long contracts and drive prices stay firm into 2027",
         "wrong": "The run unwinds as new capacity arrives and pricing power quietly fades"
