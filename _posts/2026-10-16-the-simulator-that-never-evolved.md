@@ -27,7 +27,7 @@ There was a second bug underneath the first. Food was never consumed. An agent t
 
 Neither bug was visible in the window. It rendered, agents wandered around, some of them blundered into food and some into hazards, the generation counter ticked up. Random agents in a world full of targets look a lot like agents that are learning, and nothing on screen says that every generation is a fresh roll of the dice.
 
-Which is the [same lesson as my last post](/blog/2026/07/28/connected-is-not-a-health-check/), arriving from a different direction: the process ran to completion every single time. What it produced was nothing.
+It's the gap between "it ran" and "it worked", and nothing about a running program closes it for you. The process ran to completion every single time. What it produced was nothing.
 
 ## Fixing it is easy. Knowing it's fixed isn't
 

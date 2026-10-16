@@ -1,604 +1,216 @@
 ---
+layout: default
 ---
-<!DOCTYPE html>
-<html lang="en" class="no-js">
-  <head>
-    <!-- AOS's CSS gates its opacity:0 fade-in prep behind html:not(.no-js) --
-         this removes that class the instant JS is confirmed running. Without
-         it, any user with JS disabled (or a failed/blocked AOS script load)
-         would see every [data-aos] section stay invisible forever, since
-         nothing would ever add the .aos-animate class that reveals them. -->
-    <script>document.documentElement.classList.remove('no-js');</script>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="dist/img/logo.png" />
-    {% seo %}
+<section class="intro" aria-labelledby="intro-name">
+  <p class="status"><span class="status-dot" aria-hidden="true"></span>Graduating 2027 · Open to full-time roles</p>
+  <h1 id="intro-name">Brett Adams</h1>
+  <p class="lede">
+    Data Analyst Intern at <a href="https://www.geotab.com">Geotab</a>, working on production data
+    pipelines in BigQuery and Airflow. Computer Science student at the University of Windsor.
+  </p>
+  <p class="actions">
+    <a class="button button-primary" href="{{ '/assets/resume/Resume_BrettAdams.pdf' | relative_url }}">Résumé (PDF)</a>
+    <a class="button" href="https://github.com/brettadams0" data-contact="github">GitHub</a>
+    <a class="button" href="https://www.linkedin.com/in/bretta/" data-contact="linkedin">LinkedIn</a>
+    <a class="button" href="mailto:adamsbrett00@gmail.com" data-contact="email">Email</a>
+  </p>
+</section>
 
-    <!-- Additional structured data (jekyll-seo-tag above covers title/meta/OG/Twitter/WebSite JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfilePage",
-      "mainEntity": {
-        "@type": "Person",
-        "name": "Brett Adams",
-        "jobTitle": "Data Analyst Intern",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Geotab"
-        },
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": "University of Windsor"
-        },
-        "url": "https://brettadams0.github.io/",
-        "sameAs": [
-          "https://github.com/brettadams0",
-          "https://www.linkedin.com/in/bretta/"
-        ]
-      }
-    }
-    </script>
+<section id="experience" class="section" aria-labelledby="experience-title">
+  <h2 id="experience-title" class="section-title">Experience</h2>
+  <div class="section-body">
+    <article class="entry">
+      <header class="entry-head">
+        <h3>Data Analyst Intern <span class="entry-org">Geotab</span></h3>
+        <p class="entry-dates">May 2026 – Present</p>
+      </header>
+      <p class="entry-meta">Oakville, ON · Hybrid</p>
+      <ul>
+        <li>Maintain and debug production Apache Airflow DAGs on Google Cloud Composer that run the SalesOps data pipelines.</li>
+        <li>Write and deploy production BigQuery SQL for Revenue Operations tables, including the device status, database dimension and accounts master datasets.</li>
+        <li>Ship changes through GitLab CI/CD, from branch development through staging validation to production.</li>
+        <li>Carry out live table migrations against fixed infrastructure deadlines, coordinating with dataset owners.</li>
+      </ul>
+      <p class="tags">BigQuery · Airflow · Cloud Composer · SQL · GitLab CI/CD</p>
+    </article>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <article class="entry">
+      <header class="entry-head">
+        <h3>Data Management Associate, Co-op <span class="entry-org">Ontario Ministry of Transportation</span></h3>
+        <p class="entry-dates">Jan – Aug 2025</p>
+      </header>
+      <p class="entry-meta">St. Catharines, ON · Hybrid</p>
+      <ul>
+        <li>Built Power BI dashboards on Azure Databricks and SQL that replaced manual reporting across business units.</li>
+        <li>Automated legacy workflows with SQL queries and VBA scripts, cutting processing time from hours to minutes.</li>
+        <li>Led the rollout of the internal Data Broker Tool, onboarding teams and standardizing the data vocabulary.</li>
+      </ul>
+      <p class="tags">Power BI · Azure Databricks · SQL · VBA</p>
+    </article>
 
-    <!-- IBM Plex Sans (headings/body) + IBM Plex Mono (technical/utility labels) -->
-    <!-- Loaded non-blocking: preload + swap to stylesheet on load, so the
-         browser doesn't stall first paint waiting on a third-party CSS
-         fetch. display=optional (not swap) because the CSS now arrives
-         later than it used to -- swapping in the real font after buttons/
-         nav have already laid out with the fallback causes visible reflow
-         (measured ~0.08 CLS). optional just keeps the fallback if the font
-         isn't ready almost immediately, so nothing shifts later. -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=optional"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=optional"></noscript>
+    <article class="entry">
+      <header class="entry-head">
+        <h3>Digital Solutions, Co-op <span class="entry-org">CIMCO Refrigeration</span></h3>
+        <p class="entry-dates">Apr – Sep 2024</p>
+      </header>
+      <p class="entry-meta">Burlington, ON · Hybrid</p>
+      <ul>
+        <li>Built Flask web applications that deliver real-time data and alarm information to NHL arena operations teams, including a thermal imagery viewer used by arena technicians.</li>
+        <li>Wrote a Python pipeline that aggregates data from two APIs into structured JSON for the arena interface.</li>
+        <li>Automated controller data collection for CAG engineers with a Python tool, replacing manual data entry.</li>
+        <li>Designed and ran hands-on Python training sessions for over 20 employees.</li>
+      </ul>
+      <p class="tags">Python · Flask · JavaScript</p>
+    </article>
 
-    <!-- Animation library styles (non-blocking, same preload/swap pattern) -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css"
-      integrity="sha384-6oNXtl81GMcKAnWPPXinWlPskKUQ0NGG1/XeyMfC5RgCJKPc03w0rHVt1jyoJLf0"
-      crossorigin="anonymous"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css"
-        integrity="sha384-6oNXtl81GMcKAnWPPXinWlPskKUQ0NGG1/XeyMfC5RgCJKPc03w0rHVt1jyoJLf0"
-        crossorigin="anonymous"
-      />
-    </noscript>
+    <article class="entry">
+      <header class="entry-head">
+        <h3>Digital Solutions <span class="entry-org">CIMCO Refrigeration</span></h3>
+        <p class="entry-dates">Apr – Sep 2023</p>
+      </header>
+      <p class="entry-meta">Burlington, ON · Hybrid</p>
+      <ul>
+        <li>Built Power Platform tools adopted by several departments to automate repetitive manual workflows.</li>
+        <li>Automated SharePoint document routing and approvals, cutting turnaround time between departments.</li>
+      </ul>
+      <p class="tags">Power Platform · SharePoint</p>
+    </article>
+  </div>
+</section>
 
-    <link rel="stylesheet" type="text/css" href="dist/css/styles.css" />
-
-    {% include analytics.html %}
-  </head>
-  <body>
-    {% include icon-sprite.html %}
-
-    <!-- HEADER -->
-    <header id="header">
-        <nav id="nav">
-          <div class="container nav-container">
-            <a href="index.html" id="logo">
-              <img src="dist/img/logo.png" alt="logo" width="1563" height="560">
-            </a>
-            <ul class="hide-for-mobile nav-links flex">
-              <li>
-                <a href="#experience" class="link"
-                  ><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-briefcase"></use></svg> Experience</a
-                >
-              </li>
-              <li>
-                <a href="#projects" class="link"
-                  ><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-code"></use></svg> Projects</a
-                >
-              </li>
-              <li>
-                <a href="#skills" class="link"
-                  ><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-tools"></use></svg> Skills</a
-                >
-              </li>
-              <li>
-                <a href="#education" class="link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-user-graduate"></use></svg> Education</a
-                >
-              </li>
-              <li>
-                <a href="blog/" class="link"
-                  ><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-pen"></use></svg> Blog</a
-                >
-              </li>
-              <li>
-                <a href="#contact" class="link"
-                  ><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-envelope"></use></svg> Contact</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div class="mobile-menu hide-for-desktop">
-            <div class="container">
-              <div class="mobile-menu-links">
-                <ul class="flex">
-                  <li>
-                    <a href="#experience" class="link blue-hover"
-                      >Experience</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#projects" class="link blue-hover"
-                      >Projects</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#skills" class="link blue-hover"
-                      >Skills</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#education" class="link blue-hover"
-                      >Education</a
-                    >
-                  </li>
-                  <li>
-                    <a href="blog/" class="link blue-hover"
-                      >Blog</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#contact" class="link blue-hover"
-                      >Contact</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
-              
-            </div>
-          </div>
-        </nav>
-
-        <!-- HERO -->
-        <div class="hero">
-          <div class="hero-pipeline" aria-hidden="true">
-            <svg viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg">
-              <g class="edge">
-                <path d="M30,60 L300,20" />
-                <path d="M30,60 L300,60" />
-                <path d="M30,60 L300,100" />
-                <path d="M300,20 L570,60" />
-                <path d="M300,60 L570,60" />
-                <path d="M300,100 L570,60" />
-              </g>
-              <g class="node node-endpoint">
-                <circle cx="30" cy="60" r="7" />
-                <circle cx="570" cy="60" r="7" />
-              </g>
-              <g class="node node-stage">
-                <circle cx="300" cy="20" r="7" />
-                <circle cx="300" cy="60" r="7" />
-                <circle cx="300" cy="100" r="7" />
-              </g>
-            </svg>
-          </div>
-          <div class="hero-content">
-            <h1 class="h1">
-              Hi, I'm <span class="main-font text-blue">Brett</span>
-            </h1>
-            <p class="student" id="student">
-              Data Analyst Intern at <a href="https://www.geotab.com" class="blue-link-underline" target="_blank">Geotab</a> — BigQuery, Airflow, SQL — and a Software Engineering student at <a href="https://www.uwindsor.ca" class="blue-link-underline" target="_blank">the University of Windsor</a>.
-            </p>
-            <div class="hero-btns">
-              <a href="#projects" class="btn-blue"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-code"></use></svg> Projects</a>
-              <a href="assets/resume/Resume_BrettAdams.pdf" class="btn-blue-outline mx-1"
-                target="_blank"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-file-download"></use></svg> Resume</a
-              >
-              <a href="https://github.com/brettadams0" class="btn-blue-outline mx-1" id="projects-btn"
-                target="_blank"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> GitHub</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- SOCIAL LINKS -->
-        <div class="socials">
-          <ul>
-            <li class="bg-blue"><a href="https://www.linkedin.com/in/bretta/"
-              target="_blank"><span class="socials-text">LinkedIn</span> <svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-linkedin"></use></svg></a></li>
-            <li class="bg-dark-grey"> <a href="https://github.com/brettadams0"
-              target="_blank"><span class="socials-text">GitHub</span><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg></a></li>
-            <li class="bg-white"><a class="text-dark-grey" href="mailto:adamsbrett00@gmail.com"><span class="socials-text">Email</span><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-envelope"></use></svg></a></li>
-          </ul>
-        </div>
-
-      <div class="seperator-skew">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
+<section id="projects" class="section" aria-labelledby="projects-title">
+  <h2 id="projects-title" class="section-title">Projects</h2>
+  <div class="section-body">
+    <article class="project" data-project="mcp-surface">
+      <a class="project-shot" href="https://github.com/brettadams0/mcp-surface" tabindex="-1" aria-hidden="true">
+        <img src="{{ '/assets/img/mcp-surface.webp' | relative_url }}" alt="" width="2200" height="823" loading="lazy" />
+      </a>
+      <div class="project-text">
+        <h3>mcp-surface</h3>
+        <p>
+          A command-line tool and GitHub Action for testing Model Context Protocol servers. It connects
+          the way a client does, lists the tools a server actually exposes, and runs 19 checks on their
+          schemas. It can also snapshot that tool list and fail CI when it changes.
+        </p>
+        <p class="tags">TypeScript · Node.js · Published on npm</p>
+        <p class="project-links">
+          <a href="https://www.npmjs.com/package/mcp-surface">npm</a>
+          <a href="https://github.com/brettadams0/mcp-surface">Source</a>
+        </p>
       </div>
+    </article>
 
-    </header>
-
-    <main>
-    <!-- EXPERIENCE -->
-    <section id="experience" class="experience">
-      <div class="container">
-        <h2 class="main-font" data-aos="fade-in">Work <span class="text-blue main-font">Experience</span></h2>
-
-        <div class="timeline">
-          <div class="timeline-item" data-aos="fade-up">
-            <div class="timeline-header">
-              <h3>Data Analyst Intern</h3>
-              <span class="timeline-date">May 2026 - Present</span>
-            </div>
-            <p class="timeline-company">Geotab &middot; Oakville, ON &middot; Hybrid</p>
-            <ul class="timeline-bullets">
-              <li>Maintain and debug Apache Airflow DAGs in Google Cloud Composer for production SalesOps data pipelines.</li>
-              <li>Write and deploy production BigQuery SQL for Revenue Operations tables, including device status, database dimensions, and accounts master datasets.</li>
-              <li>Manage the full GitLab CI/CD workflow, guiding changes from branch development through staging validation to production deployment.</li>
-              <li>Execute live table migrations against strict infrastructure deadlines while collaborating across cross-functional data owners.</li>
-            </ul>
-          </div>
-
-          <div class="timeline-item" data-aos="fade-up">
-            <div class="timeline-header">
-              <h3>Data Management Associate, Co-op</h3>
-              <span class="timeline-date">Jan 2025 - Aug 2025</span>
-            </div>
-            <p class="timeline-company">Ontario Ministry of Transportation &middot; St. Catharines, ON &middot; Hybrid</p>
-            <ul class="timeline-bullets">
-              <li>Engineered enterprise Power BI dashboards integrating large-scale datasets from Azure Databricks and SQL, replacing manual reporting processes across multiple business units.</li>
-              <li>Developed complex SQL queries and VBA automation scripts to modernize legacy workflows, reducing manual processing time from hours to minutes.</li>
-              <li>Spearheaded the technical rollout of the internal Data Broker Tool, driving cross-team onboarding and establishing a standardized data vocabulary.</li>
-            </ul>
-          </div>
-
-          <div class="timeline-item" data-aos="fade-up">
-            <div class="timeline-header">
-              <h3>Digital Solutions, Co-op</h3>
-              <span class="timeline-date">Apr 2024 - Sep 2024</span>
-            </div>
-            <p class="timeline-company">CIMCO Refrigeration &middot; Burlington, ON &middot; Hybrid</p>
-            <ul class="timeline-bullets">
-              <li>Built and shipped production Flask web applications delivering real-time analytics to NHL arena operations teams.</li>
-              <li>Developed a specialized thermal imagery visualization tool used by arena technicians to monitor refrigeration systems during live game environments.</li>
-              <li>Automated engineering data collection workflows, significantly reducing manual data entry across controller monitoring systems.</li>
-            </ul>
-          </div>
-
-          <div class="timeline-item" data-aos="fade-up">
-            <div class="timeline-header">
-              <h3>Digital Solutions</h3>
-              <span class="timeline-date">Apr 2023 - Sep 2023</span>
-            </div>
-            <p class="timeline-company">CIMCO Refrigeration &middot; Burlington, ON &middot; Hybrid</p>
-            <ul class="timeline-bullets">
-              <li>Built and deployed Microsoft Power Platform tools adopted across multiple departments to automate high-frequency manual workflows.</li>
-              <li>Implemented SharePoint-based document routing and approval automation, cutting cross-department turnaround times.</li>
-              <li>Delivered technical solutions iteratively through close, cross-functional collaboration with engineering, operations, and IT stakeholders.</li>
-            </ul>
-          </div>
-        </div>
+    <article class="project" data-project="mcp-servers">
+      <a class="project-shot" href="https://github.com/brettadams0?tab=repositories&amp;q=mcp" tabindex="-1" aria-hidden="true">
+        <img src="{{ '/assets/img/mcp-servers.webp' | relative_url }}" alt="" width="2200" height="591" loading="lazy" />
+      </a>
+      <div class="project-text">
+        <h3>MCP servers</h3>
+        <p>
+          Five servers that give AI assistants 69 tools across Google Workspace, Reddit, Yahoo Fantasy,
+          Chess.com and Supercell's game APIs. The Google Workspace server sends email and manages
+          Calendar, Drive, Sheets and YouTube with narrowly scoped OAuth. Each server has tests that
+          run offline and CI on Node 20 and 22.
+        </p>
+        <p class="tags">JavaScript · Node.js · OAuth 2.0</p>
+        <p class="project-links">
+          <a href="https://github.com/brettadams0/google-workspace-mcp">Google Workspace server</a>
+          <a href="https://github.com/brettadams0?tab=repositories&amp;q=mcp">All five</a>
+        </p>
       </div>
-    </section>
+    </article>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="projects">
-      <div class="container">
-        <h2 class="main-font">My<span class="text-blue main-font"> Projects</span></h2>
-
-
-        <div class="project-row project-featured" data-aos="fade-up">
-          <div class="project-left">
-            <img src="dist/img/mcp-surface.webp" alt="mcp-surface probing a live MCP server: nine tools listed with their descriptions, no findings, zero errors" width="2200" height="823" loading="lazy">
-          </div>
-          <div class="project-right">
-            <h3>mcp-surface</h3>
-            <p class="text-grey"><b>Made with: </b></p>
-            <ul class="tech-stack-list">
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-typescript-official"></use></svg></li>
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-javascript"></use></svg></li>
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-git-icon"></use></svg></li>
-            </ul>
-            <p>A broken MCP server usually doesn't look broken: it starts, it completes the handshake, the client prints <b>Connected</b> in green — and the model never calls anything, because the tool surface came back empty or a schema didn't compile. Nothing errors; you just get worse answers. <code>mcp-surface</code> connects the way a real client does, reports the surface it actually sees, validates every schema, and fails CI when that surface changes without you meaning it to. Published on npm and shipped as a GitHub Action.</p>
-            <div class="project-links">
-              <a href="https://www.npmjs.com/package/mcp-surface" class="btn-blue-outline btn-small mx-1" target="_blank"> <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-file-download"></use></svg> npm</a>
-              <a href="https://github.com/brettadams0/mcp-surface" class="btn-blue-outline btn-small mx-1" target="_blank"> <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-row project-featured" data-aos="fade-up">
-          <div class="project-left">
-            <img src="dist/img/mcp-servers.webp" alt="mcp-surface enumerating all five MCP servers — 69 tools across chesscom, reddit, supercell, yahoo-fantasy and google-workspace" width="2200" height="591" loading="lazy">
-          </div>
-          <div class="project-right">
-            <h3>MCP Servers for Claude Code</h3>
-            <p class="text-grey"><b>Made with: </b></p>
-            <ul class="tech-stack-list">
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-javascript"></use></svg></li>
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-git-icon"></use></svg></li>
-            </ul>
-            <p>Five Model Context Protocol servers — 69 tools across as many auth models — that let an AI assistant act on real systems rather than just describe them. The largest sends real email and manages Calendar, Drive, Sheets and YouTube through a Google OAuth client I own, deliberately requesting write-only scopes to stay clear of Google’s restricted-scope audit. The others cover Reddit, Yahoo Fantasy, Chess.com and three Supercell game APIs. Every one ships a test suite that runs with no network and no credentials, and CI on Node 20 and 22. Building five of these is what turned the recurring failure mode into <code>mcp-surface</code>.</p>
-            <div class="project-links">
-              <a href="https://github.com/brettadams0/google-workspace-mcp" class="btn-blue-outline btn-small mx-1" target="_blank"> <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-row" data-aos="fade-up">
-          <div class="project-left">
-            <img src="dist/img/neuronet-arena.webp" alt="The neuronet-arena live demo at generation 202: agents foraging among food and hazards, the leading agent highlighted with its vision radius, sight lines and trail" width="1280" height="800" loading="lazy">
-          </div>
-          <div class="project-right">
-            <h3>neuronet-arena</h3>
-            <p class="text-grey"><b>Made with: </b></p>
-            <ul class="tech-stack-list">
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-python"></use></svg></li>
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-javascript"></use></svg></li>
-            </ul>
-            <p>Forty agents, each steered by a 112-weight neural network, compete for food; the ones that eat the most breed the next generation. The network, the genetic algorithm and the random number generator are written from scratch in Python, then ported to JavaScript for a live demo that reproduces the Python engine <b>bit for bit</b> — CI replays one golden trace through both and compares every float. The first version never evolved at all: it rebuilt the population from scratch every generation. The rewrite proves it does now, against a control with selection switched off — 13.4 food per agent with selection, 1.0 without.</p>
-            <div class="project-links">
-              <a href="neuronet-arena/" class="btn-blue-outline btn-small mx-1"> <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-code"></use></svg> Live demo</a>
-              <a href="blog/2026/10/16/the-simulator-that-never-evolved/" class="btn-blue-outline btn-small mx-1"> <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-pen"></use></svg> Write-up</a>
-              <a href="https://github.com/brettadams0/neuronet-arena" class="btn-blue-outline btn-small mx-1" target="_blank"> <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-row" data-aos="fade-up">
-          <div class="project-left">
-            <img src="dist/img/promptpal-light.webp" alt="PromptPal landing page in light theme" width="1400" height="836" loading="lazy">
-          </div>
-          <div class="project-right">
-            <h3>PromptPal</h3>
-            <p class="text-grey"><b>Made with: </b></p>
-            <ul class="tech-stack-list">
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-typescript-official"></use></svg></li>
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-react"></use></svg></li>
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-css"></use></svg></li>
-            </ul>
-            <p>A Next.js App Router front end for composing LLM prompts from reusable parts. The typed domain model, the Radix + Tailwind component library and the theming are built and deployed; the builder route itself is still to come, so today it is a scaffold rather than a finished tool.</p>
-            <div class="project-links">
-              <a href="https://prompt-pal-gules.vercel.app" class="btn-blue-outline btn-small mx-1" target="_blank"> <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-code"></use></svg> Deployed</a>
-              <a href="https://github.com/brettadams0/PromptPal" class="btn-blue-outline btn-small mx-1" target="_blank"> <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-row" data-aos="fade-up">
-          <div class="project-left icon-tile">
-            <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-hockey-puck"></use></svg>
-          </div>
-          <div class="project-right">
-            <h3>NHL Arena Web Interface</h3>
-            <p class="text-grey"><b>Made with: </b></p>
-            <ul class="tech-stack-list">
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-python"></use></svg></li>
-              <li><svg class="icon" aria-hidden="true" focusable="false" style="width:30px;height:30px"><use href="#i-skill-icons-flask-light"></use></svg></li>
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-javascript"></use></svg></li>
-            </ul>
-            <p class="text-grey" style="font-size: 0.85rem; margin-bottom: 0.5rem;"><i>Built during my co-op at CIMCO Refrigeration</i></p>
-            <p>Led development of a Flask web application delivering real-time data and alarm information for NHL arenas, including a thermal imagery support system. Built a Python data aggregation pipeline integrating two APIs into structured, scalable JSON storage.</p>
-          </div>
-        </div>
-
-
-
-        <div class="project-row" data-aos="fade-up">
-          <div class="project-left icon-tile">
-            <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-shopping-cart"></use></svg>
-          </div>
-          <div class="project-right">
-            <h3>TechNest</h3>
-            <p class="text-grey"><b>Made with: </b></p>
-            <ul class="tech-stack-list">
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-php"></use></svg></li>
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-mysql"></use></svg></li>
-              <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-html"></use></svg></li>
-            </ul>
-            <p>A full-stack PHP/MySQL e-commerce platform for buying electronics — product catalog, user accounts, an admin dashboard for managing products/users/themes, and three switchable UI themes across a fully responsive design.</p>
-            <div class="project-links">
-              <a href="https://github.com/brettadams0/TechNest" class="btn-blue-outline btn-small mx-1" target="_blank"> <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
-            </div>
-          </div>
-        </div>
-
-
-
-        </div>
+    <article class="project" data-project="neuronet-arena">
+      <a class="project-shot" href="{{ '/neuronet-arena/' | relative_url }}" tabindex="-1" aria-hidden="true">
+        <img src="{{ '/assets/img/neuronet-arena.webp' | relative_url }}" alt="" width="1280" height="800" loading="lazy" />
+      </a>
+      <div class="project-text">
+        <h3>neuronet-arena</h3>
+        <p>
+          An evolution simulator. Forty agents, each steered by a small neural network, compete for
+          food, and the ones that eat the most breed the next generation. The network, the genetic
+          algorithm and the random number generator are written from scratch in Python, then ported
+          to JavaScript for a live demo that reproduces the Python engine bit for bit. Against a
+          control run with selection switched off, evolved agents eat 13.4 food each to the
+          control's 1.0.
+        </p>
+        <p class="tags">Python · JavaScript · Runs in the browser</p>
+        <p class="project-links">
+          <a href="{{ '/neuronet-arena/' | relative_url }}">Live demo</a>
+          <a href="{{ '/writing/the-simulator-that-never-evolved/' | relative_url }}">Write-up</a>
+          <a href="https://github.com/brettadams0/neuronet-arena">Source</a>
+        </p>
       </div>
-    </section>
-    
-     <!-- SKILLS -->
-    <section id="skills" class="skills">
-      <div class="seperator-skew-top">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div>
-      <div class="container" data-aos="fade-in"> 
-        <h2 class="text-white main-font">Technical <span class="text-blue main-font">Skills</span></h2>
-        <ul class="skills-icons">
-          
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-javascript"></use></svg><span>JavaScript</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-react"></use></svg><span>React</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-python"></use></svg><span>Python</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-typescript-official"></use></svg><span>TypeScript</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-java"></use></svg><span>Java</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-html"></use></svg><span>HTML</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-css"></use></svg><span>CSS</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-git-icon"></use></svg><span>Git</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-mysql"></use></svg><span>MySQL</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-gcp-bigquery"></use></svg><span>BigQuery</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-airflow-icon"></use></svg><span>Airflow</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-vscode-icons-file-type-databricks"></use></svg><span>Databricks</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill-icons-flask-light"></use></svg><span>Flask</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-flat-color-icons-linux"></use></svg><span>Linux</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-c"></use></svg><span>C</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-c-plusplus"></use></svg><span>C++</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-docker-icon"></use></svg><span>Docker</span></li>
-          <li><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-logos-bootstrap"></use></svg><span>Bootstrap</span></li>
-                  
-        </ul>
-      </div>
+    </article>
 
-      <div class="seperator-skew-bottom">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div>
-    </section>
+    <h3 class="subhead">Also</h3>
+    <ul class="also">
+      <li class="project" data-project="nhl-arena">
+        <span class="also-name">NHL Arena Web Interface</span>
+        <span class="also-desc">Flask app showing live refrigeration data and alarms for NHL arenas. Built at CIMCO; internal.</span>
+      </li>
+      <li class="project" data-project="mazefinder">
+        <a class="also-name" href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">MazeFinder</a>
+        <span class="also-desc">C++ genetic algorithm that solves 20×20 mazes, with fitness evaluation on a custom thread pool.</span>
+      </li>
+      <li class="project" data-project="technest">
+        <a class="also-name" href="https://github.com/brettadams0/TechNest">TechNest</a>
+        <span class="also-desc">PHP and MySQL electronics store with a catalog, accounts, an admin dashboard and switchable themes.</span>
+      </li>
+    </ul>
+    <p class="more"><a href="https://github.com/brettadams0?tab=repositories">More on GitHub</a></p>
+  </div>
+</section>
 
-     <!-- Education -->
-     <section id="education" class="education">
-      <div class="container">
-        <h2 class="main-font" data-aos="fade-in">My <span class="text-blue main-font">Education</span></h2>
+<section id="skills" class="section" aria-labelledby="skills-title">
+  <h2 id="skills-title" class="section-title">Skills</h2>
+  <div class="section-body">
+    <dl class="skills">
+      <div><dt>Languages</dt><dd>Python, SQL, TypeScript, JavaScript, Java, C++, C</dd></div>
+      <div><dt>Data</dt><dd>BigQuery, Apache Airflow, Cloud Composer, Azure Databricks, Power BI, MySQL</dd></div>
+      <div><dt>Tools</dt><dd>Git, GitLab CI/CD, GitHub Actions, Docker, Linux, Node.js</dd></div>
+      <div><dt>Web</dt><dd>Flask, React, HTML, CSS</dd></div>
+    </dl>
+  </div>
+</section>
 
-        <div class="education-card" data-aos="zoom-in">
-            <div class="education-card-column">
-              <div class="card-column-image">
-                 <img src="dist/img/uw_logo.webp" alt="University of Windsor Logo" width="330" height="368" loading="lazy" style="max-width: 100%; max-height: 100%; height: auto; width: auto;">
-              </div>
+<section id="education" class="section" aria-labelledby="education-title">
+  <h2 id="education-title" class="section-title">Education</h2>
+  <div class="section-body">
+    <article class="entry">
+      <header class="entry-head">
+        <h3>University of Windsor</h3>
+        <p class="entry-dates">2022 – 2027</p>
+      </header>
+      <p class="entry-meta">Honours Computer Science, Software Engineering Specialization (Co-op)</p>
+    </article>
+  </div>
+</section>
 
-              <div class="card-column-large">
-                <h3 class="education-year">2027</h3>
-                <h3><b>University of Windsor </b></h3>
-                <h4>Honours Computer Science with Software Engineering Specialization Co-op</h4>
-              </div>
-            </div>
-        </div>
-      </div>
-    </section>
+{% if site.posts.size > 0 %}
+<section id="writing" class="section" aria-labelledby="writing-title">
+  <h2 id="writing-title" class="section-title">Writing</h2>
+  <div class="section-body">
+    <ul class="posts">
+      {% for post in site.posts %}
+      <li>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %Y" }}</time>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
 
-    <!-- BLOG TEASER -->
-    <section id="blog-teaser" class="home-blog-teaser">
-      <div class="container">
-        <h2 class="main-font" data-aos="fade-in">From the <span class="text-blue main-font">Blog</span></h2>
-        <div class="home-blog-list">
-          {% for post in site.posts limit:3 %}
-          <a class="home-blog-card" href="{{ post.url }}" data-aos="fade-up">
-            <p class="home-blog-date">{{ post.date | date: "%B %-d, %Y" }}</p>
-            <h3>{{ post.title }}</h3>
-          </a>
-          {% endfor %}
-        </div>
-        <a href="blog/" class="home-blog-cta text-blue">Read more on the blog &rarr;</a>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <h2 class="section-title main-font" data-aos="fade-in">Contact <span class="text-blue main-font">Me</span></h2>
-        <div class="card-container">
-          <div class="card" data-aos="fade-in">
-            <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-envelope"></use></svg>
-            <h3>Email</h3>
-            <a href="mailto:adamsbrett00@gmail.com" class="text-blue" target="_blank">adamsbrett00@gmail.com</a>
-          </div>
-          <div class="card" data-aos="fade-in" data-aos-delay="100">
-            <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg>
-            <h3>GitHub</h3>
-            <a href="https://github.com/brettadams0" class="text-blue" target="_blank">brettadams0</a>
-          </div>
-          <div class="card" data-aos="fade-in" data-aos-delay="200">
-            <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-linkedin"></use></svg>
-            <h3>LinkedIn</h3>
-            <a href="https://www.linkedin.com/in/bretta/" class="text-blue" target="_blank">Brett Adams</a>
-          </div>
-        </div>
-        
-        <form id="contact-form" data-aos="zoom-in" data-aos-delay="300" action="https://formspree.io/f/mjvjylnp" method="POST">
-          <h2 class="main-font">Send <span class="text-blue main-font">Email</span></h2>
-
-          <div class="form-group">
-            <input type="text" id="name" name="name" placeholder="Name" required>
-          </div>
-
-          <div class="form-group">
-            <input type="email" id="email" name="email" placeholder="Your email" required>
-          </div>
-
-          <div class="form-group">
-            <textarea name="message" id="message" rows="7" placeholder="Message" required></textarea>
-          </div>
-
-          <button type="submit" class="btn-email">
-            <span class="default">Send</span>
-            <span class="success">
-                <svg viewBox="0 0 16 16">
-                    <polyline points="3.75 9 7 12 13 5"></polyline>
-                </svg>Sent
-            </span>
-            <svg class="trails" viewBox="0 0 33 64">
-                <path d="M26,4 C28,13.3333333 29,22.6666667 29,32 C29,41.3333333 28,50.6666667 26,60"></path>
-                <path d="M6,4 C8,13.3333333 9,22.6666667 9,32 C9,41.3333333 8,50.6666667 6,60"></path>
-            </svg>
-            <div class="plane">
-                <div class="left"></div>
-                <div class="right"></div>
-            </div>
-          </button>
-          <div id="status"></div>
-        </form>
-      </div>
-    </section>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="container">
-        <div class="footer-flex">
-          <img src="dist/img/logo.png" alt="logo" id="logo-footer" width="1563" height="560">
-
-          <div class="footer-icon-links">
-            <a href="https://github.com/brettadams0" aria-label="GitHub"
-              target="_blank"><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg></a>
-            <a href="https://www.linkedin.com/in/bretta/" aria-label="LinkedIn"
-              target="_blank"><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-linkedin"></use></svg></a>
-            <a href="mailto:adamsbrett00@gmail.com" aria-label="Email"
-              target="_blank"><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-envelope"></use></svg></a>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Back to top button in corner -->
-    <button id="backToTopBtn" class="btn-blue" aria-label="Back to top" type="button">
-      <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-chevron-up"></use></svg>
-    </button>
-
-    <!-- GSAP animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
-
-    <script defer src="dist/js/app.js"></script>
-
-    <!-- AOS Animations -->
-    <script
-      src="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.js"
-      integrity="sha384-ZGo5k5ISlEzWLoXyt+lnvKt9j03Z7GkxXh14zLqVy098XJhcdKHjL8pQYVMI8WiH"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      // AOS's own `disable` option shows content immediately (no opacity:0
-      // hold) for reduced-motion users, instead of just skipping init and
-      // leaving [data-aos] elements invisible.
-      AOS.init({
-        disable: function () {
-          return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        }
-      });
-    </script>
-
-  </body>
-</html>
+<section id="contact" class="section" aria-labelledby="contact-title">
+  <h2 id="contact-title" class="section-title">Contact</h2>
+  <div class="section-body">
+    <p class="contact-lede">Email is the quickest way to reach me.</p>
+    <p class="contact-email"><a href="mailto:adamsbrett00@gmail.com" data-contact="email">adamsbrett00@gmail.com</a></p>
+    <p class="contact-links">
+      <a href="https://www.linkedin.com/in/bretta/" data-contact="linkedin">LinkedIn</a>
+      <a href="https://github.com/brettadams0" data-contact="github">GitHub</a>
+    </p>
+  </div>
+</section>
