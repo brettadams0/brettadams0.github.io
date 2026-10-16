@@ -1,12 +1,10 @@
 /*
- * Section, click and scroll events for GA4. Loaded with `defer` from
- * _includes/analytics.html, so the blog gets it too -- the blog has no
- * `section[id]`, and the section events simply do not arm there.
+ * Section, click and scroll events for GA4, loaded with `defer` from
+ * _includes/analytics.html.
  *
- * The landing page is one URL holding six sections, so per-URL reporting
- * cannot say whether anyone reached #education or ever opened a project card.
- * These events answer that. gtag is assumed absent throughout: a real share of
- * this audience blocks googletagmanager.com, so every send is guarded.
+ * The homepage is one URL holding several sections, so per-URL reporting
+ * cannot say whether anyone reached #education or opened a project. These
+ * events answer that. gtag may be blocked, so every send is guarded.
  */
 (function () {
   'use strict';
@@ -30,11 +28,8 @@
   var states = {};
   var flushed = false;
 
-  // "At least half visible" means two things at once: half the section is on
-  // screen, or -- for a section taller than the viewport, whose ratio can never
-  // reach 0.5 -- it fills half the screen. Both come from the observer entry;
-  // nothing here reads opacity or measures layout, because AOS leaves these
-  // sections at opacity:0 until they animate in.
+  // "At least half visible": half the section is on screen or, for a section
+  // taller than the viewport, it fills half the screen.
   function visible(e) {
     if (!e.isIntersecting) return false;
     if (e.intersectionRatio >= 0.5) return true;
@@ -42,8 +37,7 @@
     return root > 0 && e.intersectionRect.height >= root / 2;
   }
 
-  // A continuous second at half visibility, so scrolling past at speed does not
-  // register as having looked at anything.
+  // A continuous second at half visibility, so scrolling past does not count.
   function armView(s) {
     s.timer = setTimeout(function () {
       s.timer = null;
@@ -78,8 +72,7 @@
     }
   }
 
-  // Browsers fire visibilitychange, pagehide, or both, in either order --
-  // whichever arrives first wins, and the rest are no-ops.
+  // Browsers fire visibilitychange, pagehide or both; the first one wins.
   function flushDwell() {
     if (flushed) return;
     flushed = true;
@@ -97,35 +90,28 @@
   });
   window.addEventListener('pagehide', flushDwell);
 
-  /* project_click, resume_download, contact_submit */
+  /* project_click, resume_download, contact_click */
 
-  var projects = document.getElementById('projects');
-  if (projects) {
-    projects.addEventListener('click', function (event) {
-      var link = closest(event.target, 'a');
-      var row = link && closest(link, '.project-row');
-      if (!row) return;
-      var h3 = row.querySelector('.project-right h3');
+  document.addEventListener('click', function (event) {
+    var link = closest(event.target, 'a');
+    if (!link) return;
+
+    var project = closest(link, '[data-project]');
+    if (project) {
       send('project_click', {
-        project_name: h3 ? h3.textContent.replace(/\s+/g, ' ').trim() : '',
+        project_name: project.getAttribute('data-project'),
         link_url: link.href
       });
-    });
-  }
+    }
 
-  // Enhanced measurement also records the résumé as file_download; the explicit
-  // event is for reliability, and for a name that cannot be renamed under us.
-  document.addEventListener('click', function (event) {
-    if (closest(event.target, 'a[href$="Resume_BrettAdams.pdf"]')) send('resume_download');
+    // Enhanced measurement also records this as file_download; this name is ours.
+    if (/Resume_BrettAdams\.pdf$/.test(link.getAttribute('href') || '')) send('resume_download');
+
+    var method = link.getAttribute('data-contact');
+    if (method) send('contact_click', { method: method });
   });
 
-  var form = document.getElementById('contact-form');
-  // Deliberately parameterless: the form carries a name, an email address and a
-  // message body, and none of that may reach GA.
-  if (form) form.addEventListener('submit', function () { send('contact_submit'); });
-
-  /* scroll_depth -- GA's built-in scroll event only fires at 90%, too coarse
-     to tell a skim from a read. */
+  /* scroll_depth: GA's built-in scroll event only fires at 90%. */
 
   var marks = [25, 50, 75, 100];
   var next = 0;

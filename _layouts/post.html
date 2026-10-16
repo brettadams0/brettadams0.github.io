@@ -1,11 +1,11 @@
 ---
 layout: default
 ---
-<article class="blog-post" data-aos="fade-up">
-  <a href="/blog/" class="back-link">&larr; Back to Blog</a>
-  <h1 class="main-font">{{ page.title }}</h1>
-  <p class="post-date">{{ page.date | date: "%B %-d, %Y" }}</p>
-  <div class="post-content">
+<article class="post">
+  <p class="post-back"><a href="{{ '/#writing' | relative_url }}">&larr; Brett Adams</a></p>
+  <h1>{{ page.title }}</h1>
+  <p class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time></p>
+  <div class="post-body">
     {{ content }}
   </div>
 </article>
