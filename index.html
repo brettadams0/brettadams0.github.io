@@ -90,10 +90,12 @@ layout: default
         <p>
           A command-line tool and GitHub Action for testing Model Context Protocol servers. It connects
           the way a client does, lists the tools a server actually exposes, and runs 19 checks on their
-          schemas. It can also snapshot that tool list and fail CI when it changes.
+          schemas. It can also snapshot that tool list and fail CI when it changes. All five of my MCP
+          servers run it in CI.
         </p>
         <p class="tags">TypeScript · Node.js · Published on npm</p>
         <p class="project-links">
+          <a href="{{ '/mcp/' | relative_url }}">Case study</a>
           <a href="https://www.npmjs.com/package/mcp-surface">npm</a>
           <a href="https://github.com/brettadams0/mcp-surface">Source</a>
         </p>
@@ -109,11 +111,13 @@ layout: default
         <p>
           Five servers that give AI assistants 69 tools across Google Workspace, Reddit, Yahoo Fantasy,
           Chess.com and Supercell's game APIs. The Google Workspace server sends email and manages
-          Calendar, Drive, Sheets and YouTube with narrowly scoped OAuth. Each server has tests that
-          run offline and CI on Node 20 and 22.
+          Calendar, Drive, Sheets and YouTube with narrowly scoped OAuth. Every server treats tool
+          inputs as untrusted, has tests that run offline on Node 20, 22 and 24, and checks its tool
+          list against a committed snapshot in CI.
         </p>
         <p class="tags">JavaScript · Node.js · OAuth 2.0</p>
         <p class="project-links">
+          <a href="{{ '/mcp/' | relative_url }}">Case study</a>
           <a href="https://github.com/brettadams0/google-workspace-mcp">Google Workspace server</a>
           <a href="https://github.com/brettadams0?tab=repositories&amp;q=mcp">All five</a>
         </p>

