@@ -46,6 +46,7 @@
 
     <link rel="stylesheet" type="text/css" href="/dist/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/blog.css" />
+    {% if page.extra_css %}<link rel="stylesheet" type="text/css" href="{{ page.extra_css }}" />{% endif %}
 
     {% include analytics.html %}
   </head>

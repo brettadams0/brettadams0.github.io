@@ -15,6 +15,7 @@ and a client-side icon script.
 | Path | |
 |---|---|
 | `index.html` | The landing page — experience, projects, skills, education, contact |
+| `mcp/index.html` | The MCP case study at `/mcp/`, styled by `assets/css/mcp.css` |
 | `_posts/` | Blog posts (Markdown, served at `/blog/:year/:month/:day/:title/`) |
 | `blog/index.html` | Blog index |
 | `_layouts/`, `_includes/` | Jekyll layouts and the icon sprite |
@@ -80,7 +81,9 @@ coarse to tell a skim from a read.
 
 The script is inert wherever it has nothing to do: it returns immediately if the visitor sends Do
 Not Track, guards every send so a blocked `gtag` throws nothing, and simply never arms the section
-events on blog pages, which have no `section[id]`. Note that the event parameters — `section_id`,
+events on blog pages, which have no `section[id]`. The `/mcp/` case study does have them, all prefixed `mcp-`
+(`#mcp-gate`, `#mcp-findings`, …), so its sections report under ids that cannot collide with the
+landing page's. Note that the event parameters — `section_id`,
 `project_name`, `percent`, `seconds` — are collected from the moment the script ships, but stay
 invisible in GA's reports until they are registered under Admin → Custom definitions, and that
 registration is not retroactive.
