@@ -120,6 +120,28 @@ layout: default
       </div>
     </article>
 
+    <article class="project" data-project="promptpal">
+      <a class="project-shot" href="https://prompt-pal-gules.vercel.app" tabindex="-1" aria-hidden="true">
+        <img src="{{ '/assets/img/promptpal.webp' | relative_url }}" alt="" width="1600" height="1000" loading="lazy" />
+      </a>
+      <div class="project-text">
+        <h3>PromptPal</h3>
+        <p>
+          A browser tool for writing prompt templates. Templates have fields and optional sections in a
+          small language with its own parser, which reports errors by line and column. PromptPal fills
+          the template in, checks the result for empty required fields and leftover text like
+          &ldquo;[insert&nbsp;topic]&rdquo;, and exports it as text or a ready-to-run Claude API call. There is no
+          backend; share links carry the prompt in the URL fragment. Unit, end-to-end and accessibility
+          tests run in CI.
+        </p>
+        <p class="tags">TypeScript · Next.js · React · Tailwind CSS</p>
+        <p class="project-links">
+          <a href="https://prompt-pal-gules.vercel.app">Live</a>
+          <a href="https://github.com/brettadams0/PromptPal">Source</a>
+        </p>
+      </div>
+    </article>
+
     <article class="project" data-project="neuronet-arena">
       <a class="project-shot" href="{{ '/neuronet-arena/' | relative_url }}" tabindex="-1" aria-hidden="true">
         <img src="{{ '/assets/img/neuronet-arena.webp' | relative_url }}" alt="" width="1280" height="800" loading="lazy" />
