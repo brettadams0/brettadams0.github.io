@@ -1,143 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
   <head>
-    <!-- See index.html for why this matters -- AOS's CSS hides [data-aos]
-         content behind html:not(.no-js), so without this, no-JS visitors
-         would never see most of the page. -->
-    <script>document.documentElement.classList.remove('no-js');</script>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/dist/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#fbfbfa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}" />
     {% seo %}
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Non-blocking (see index.html for the reasoning): preload + swap to
-         stylesheet on load, display=optional so a late-arriving font never
-         swaps in and reflows already-laid-out content. -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=optional"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=optional"></noscript>
-
-    <!-- Animation library styles (non-blocking, same pattern) -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css"
-      integrity="sha384-6oNXtl81GMcKAnWPPXinWlPskKUQ0NGG1/XeyMfC5RgCJKPc03w0rHVt1jyoJLf0"
-      crossorigin="anonymous"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css"
-        integrity="sha384-6oNXtl81GMcKAnWPPXinWlPskKUQ0NGG1/XeyMfC5RgCJKPc03w0rHVt1jyoJLf0"
-        crossorigin="anonymous"
-      />
-    </noscript>
-
-    <link rel="stylesheet" type="text/css" href="/dist/css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/blog.css" />
-
+    {% if page.url == "/" %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Brett Adams",
+        "jobTitle": "Data Analyst Intern",
+        "worksFor": { "@type": "Organization", "name": "Geotab" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Windsor" },
+        "url": "{{ site.url }}/",
+        "sameAs": [
+          "https://github.com/brettadams0",
+          "https://www.linkedin.com/in/bretta/"
+        ]
+      }
+    }
+    </script>
+    {% endif %}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" />
+    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
     {% include analytics.html %}
   </head>
   <body>
-    {% include icon-sprite.html %}
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <header id="blog-header">
-      <nav id="nav">
-        <div class="container nav-container">
-          <a href="/index.html" id="logo">
-            <img src="/dist/img/logo.png" alt="logo" width="1563" height="560">
-          </a>
-          <ul class="hide-for-mobile nav-links flex">
-            <li><a href="/index.html#projects" class="link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-code"></use></svg> Projects</a></li>
-            <li><a href="/index.html#skills" class="link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-tools"></use></svg> Skills</a></li>
-            <li><a href="/index.html#education" class="link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-user-graduate"></use></svg> Education</a></li>
-            <li><a href="/blog/" class="link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-pen"></use></svg> Blog</a></li>
-            <li><a href="/index.html#contact" class="link"><svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-envelope"></use></svg> Contact</a></li>
-          </ul>
-        </div>
-        <div class="mobile-menu hide-for-desktop">
-          <div class="container">
-            <div class="mobile-menu-links">
-              <ul class="flex">
-                <li><a href="/index.html#projects" class="link blue-hover">Projects</a></li>
-                <li><a href="/index.html#skills" class="link blue-hover">Skills</a></li>
-                <li><a href="/index.html#education" class="link blue-hover">Education</a></li>
-                <li><a href="/blog/" class="link blue-hover">Blog</a></li>
-                <li><a href="/index.html#contact" class="link blue-hover">Contact</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <header class="site-header">
+      <div class="wrap site-header-inner">
+        <a class="site-name" href="{{ '/' | relative_url }}">Brett Adams</a>
+        <nav class="site-nav" aria-label="Main">
+          <a class="nav-section" href="{{ '/#experience' | relative_url }}">Experience</a>
+          <a class="nav-section" href="{{ '/#projects' | relative_url }}">Projects</a>
+          <a class="nav-section" href="{{ '/#skills' | relative_url }}">Skills</a>
+          {% if site.posts.size > 0 %}<a class="nav-section" href="{{ '/#writing' | relative_url }}">Writing</a>{% endif %}
+          <a class="nav-section" href="{{ '/#contact' | relative_url }}">Contact</a>
+          <a class="nav-resume" href="{{ '/assets/resume/Resume_BrettAdams.pdf' | relative_url }}">Résumé</a>
+        </nav>
+      </div>
     </header>
 
-    <main class="blog-main container">
+    <main id="main" class="wrap">
       {{ content }}
     </main>
 
-    <footer id="footer" class="footer">
-      <div class="container">
-        <div class="footer-flex">
-          <img src="/dist/img/logo.png" alt="logo" id="logo-footer" width="1563" height="560">
-          <div class="footer-icon-links">
-            <a href="https://github.com/brettadams0" aria-label="GitHub" target="_blank"><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-github"></use></svg></a>
-            <a href="https://www.linkedin.com/in/BrettA/" aria-label="LinkedIn" target="_blank"><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-linkedin"></use></svg></a>
-            <a href="mailto:adamsbrett00@gmail.com" aria-label="Email" target="_blank"><svg class="icon icon-2x" aria-hidden="true" focusable="false"><use href="#fa-envelope"></use></svg></a>
-          </div>
-        </div>
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <p>&copy; {{ site.time | date: "%Y" }} Brett Adams</p>
+        <p>
+          <a href="https://github.com/brettadams0">GitHub</a>
+          <a href="https://www.linkedin.com/in/bretta/">LinkedIn</a>
+          <a href="mailto:adamsbrett00@gmail.com">Email</a>
+        </p>
       </div>
     </footer>
-
-    <button id="backToTopBtn" class="btn-blue" aria-label="Back to top" type="button">
-      <svg class="icon" aria-hidden="true" focusable="false"><use href="#fa-chevron-up"></use></svg>
-    </button>
-
-    <script>
-      const backToTopBtn = document.getElementById("backToTopBtn");
-      window.addEventListener("scroll", function () {
-        if (window.scrollY > 300) {
-          backToTopBtn.classList.add("show");
-        } else {
-          backToTopBtn.classList.remove("show");
-        }
-      });
-      backToTopBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        var prefersReducedMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches;
-        window.scrollTo({
-          // "auto" defers to CSS `scroll-behavior`, which is smooth site-wide —
-          // "instant" is required to actually bypass that for reduced-motion users.
-          top: 0,
-          behavior: prefersReducedMotion ? "instant" : "smooth",
-        });
-      });
-    </script>
-
-    <!-- AOS Animations -->
-    <script
-      src="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.js"
-      integrity="sha384-ZGo5k5ISlEzWLoXyt+lnvKt9j03Z7GkxXh14zLqVy098XJhcdKHjL8pQYVMI8WiH"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      AOS.init({
-        disable: function () {
-          return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        }
-      });
-    </script>
   </body>
 </html>

@@ -1,23 +1,17 @@
-title: Brett Adams | Data Analyst & Software Engineer
+title: Brett Adams
+tagline: Data & Software Engineering
 description: >-
-  Data Analyst Intern at Geotab (BigQuery, Airflow, SQL), CS Software
-  Engineering student at the University of Windsor. Portfolio of experience,
-  projects, and writing.
+  Data Analyst Intern at Geotab and Computer Science student at the University
+  of Windsor. Experience, projects and résumé.
 url: "https://brettadams0.github.io"
-logo: /dist/img/logo.png
 author:
   name: Brett Adams
-# Google Analytics 4 measurement ID, consumed by _includes/analytics.html, which
-# emits nothing at all when this key is unset: no gtag snippet, no events script,
-# no request to googletagmanager.com.
-#
-# Not G-EBYB5MK388. That ID shipped here from August 2025 (48a495b) until #35 and
-# belongs to a property under no Google account of ours — almost certainly the
-# author of an uploaded template, who was receiving our visitors' behaviour the
-# whole time. Never restore it.
+# GA4 property for this site. G-EBYB5MK388, which shipped with the original
+# template until #35, belongs to someone else's property; do not restore it.
 google_analytics: G-Z3KW627PQQ
 markdown: kramdown
-permalink: /blog/:year/:month/:day/:title/
+# Posts are optional. The homepage shows a Writing section once _posts/ has one.
+permalink: /writing/:title/
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
@@ -25,13 +19,20 @@ social:
   links:
     - https://github.com/brettadams0
     - https://www.linkedin.com/in/bretta/
+defaults:
+  # Social preview image for every page (jekyll-seo-tag reads it per page).
+  - scope:
+      path: ""
+    values:
+      image: /assets/img/social-card.png
+  # A private tool, not part of the public site.
+  - scope:
+      path: bargain-hunt
+    values:
+      sitemap: false
 exclude:
-  - scss
   - README.md
-  - TODO.md
-  - ANALYTICS.md
+  - resume
   - bargain-hunt/README.md
-  # Android app source, not site content. Unlike bargain-hunt (a PWA that is
-  # served), nothing under sift/ is meant to be published, and leaving it in
-  # would copy a Gradle project into _site on every build.
+  # Android app source, not site content.
   - sift

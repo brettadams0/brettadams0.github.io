@@ -1,0 +1,167 @@
+% Brett Adams - Resume
+%
+% Compile with XeLaTeX. On Overleaf: Menu > Settings > Compiler > XeLaTeX.
+% Fonts are Noto Sans and FontAwesome 4, both included in TeX Live.
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[left=0.5in,right=0.5in,top=0.25in,bottom=0.25in]{geometry}
+\usepackage{fontspec}
+\setmainfont{NotoSans}[
+  Extension      = .ttf,
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic
+]
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fontawesome}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle  = {Brett Adams - Resume},
+  pdfauthor = {Brett Adams}
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\frenchspacing
+\raggedbottom
+
+% ---------------------------------------------------------------------------
+% Layout
+
+% A blue bar with a narrow fixed gap after it.
+\newcommand{\sep}{\textcolor{MidnightBlue}{|}\hspace{0.2em}\ignorespaces}
+
+\newcommand{\contactlink}[3]{%
+  \href{#2}{\textcolor{NavyBlue}{#1\ {\small #3}}}}
+
+\newcommand{\resumesection}[1]{%
+  \par
+  {\color{MidnightBlue}\large\bfseries\scshape #1}\ %
+  {\color{MidnightBlue!40!black}\hrulefill}\par}
+
+% {title}{dates}{subtitle}{location}
+\newcommand{\resumeentry}[4]{%
+  \par\vspace{1.6pt}%
+  \hspace*{15.2pt}\textbf{#1}\hfill{\small\textbf{#2}}\hspace*{2.3pt}\par
+  \vspace{1.885pt}%
+  \hspace*{18.84pt}{\small\textit{#3}}\hfill{\small\textit{#4}}\hspace*{2.3pt}\par}
+
+\newenvironment{bullets}{%
+  \vspace{2.33pt}%
+  \begin{list}{}{%
+    \setlength{\leftmargin}{34pt}%
+    \setlength{\rightmargin}{0.5in}%
+    \setlength{\itemsep}{3pt}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\topsep}{0pt}%
+    \setlength{\partopsep}{0pt}%
+    \setlength{\labelwidth}{0pt}%
+    \setlength{\labelsep}{0pt}%
+    \setlength{\itemindent}{0pt}}%
+  \small}
+  {\end{list}}
+
+\newcommand{\resumeitem}{\item \textcolor{MidnightBlue}{\textbullet}\ }
+
+\newcommand{\skillrow}[2]{\textbf{#1} & #2}
+
+% ---------------------------------------------------------------------------
+
+\begin{document}
+
+\vspace*{-21.85pt}
+{\centering
+  {\LARGE\color{MidnightBlue} Brett Adams}\par
+  \vspace{1.423pt}
+  adamsbrett00@gmail.com \sep 289-783-1500\par
+  \contactlink{\faLinkedinSquare}{https://www.linkedin.com/in/bretta/}{linkedin}\sep
+  \contactlink{\faGithubSquare}{https://github.com/brettadams0}{github}\sep
+  \contactlink{\faLink}{https://brettadams0.github.io}{website}\par}
+
+\vspace{-2.921pt}
+
+\resumesection{Education}
+\resumeentry{Honours Computer Science with Software Engineering Specialization Co-op}
+  {Sep 2022 - Present}
+  {University of Windsor}{Windsor, ON}
+
+\vspace{5.884pt}
+\resumesection{Skills}
+\vspace{0.9pt}
+\hspace*{17pt}{\small
+\begin{tabular}[t]{rl}
+  \skillrow{Programming Languages}{Python \sep SQL \sep Java \sep C++ \sep C \sep JavaScript \sep TypeScript \sep HTML/CSS \sep VBA} \\[2.846pt]
+  \skillrow{Data \& Cloud}{BigQuery \sep Apache Airflow \sep Cloud Composer \sep Azure Databricks \sep Power BI \sep MySQL} \\[2.846pt]
+  \skillrow{Technologies}{Git \sep GitLab CI/CD \sep GitHub Actions \sep Docker \sep Node.js \sep Flask \sep React \sep Power Platform}
+\end{tabular}}
+
+\vspace{3.587pt}
+\resumesection{Experience}
+\resumeentry{Data Analyst Intern}{May 2026 - Present}
+  {Geotab}{Oakville, ON}
+\begin{bullets}
+  \resumeitem Maintain and debug production Apache Airflow DAGs on Cloud Composer that run the SalesOps data pipelines.
+  \resumeitem Write and deploy production BigQuery SQL for Revenue Operations tables, including the device status, database dimension and accounts master datasets.
+  \resumeitem Ship changes through GitLab CI/CD, from branch development through staging validation to production.
+  \resumeitem Carry out live table migrations against fixed infrastructure deadlines, coordinating with dataset owners.
+\end{bullets}
+
+\vspace{3pt}
+\resumeentry{Data Management Associate, Co-op}{Jan 2025 - Aug 2025}
+  {Ontario Ministry of Transportation}{St. Catharines, ON}
+\begin{bullets}
+  \resumeitem Built Power BI dashboards on Azure Databricks and SQL that replaced manual reporting across business units.
+  \resumeitem Automated legacy workflows with SQL queries and VBA scripts, cutting processing time from hours to minutes.
+  \resumeitem Led the rollout of the internal Data Broker Tool, onboarding teams and standardizing the data vocabulary.
+\end{bullets}
+
+\vspace{3pt}
+\resumeentry{Digital Solutions, Co-op}{Apr 2024 - Sep 2024}
+  {CIMCO Refrigeration}{Burlington, ON}
+\begin{bullets}
+  \resumeitem Built Flask web applications that deliver real-time data and alarm information to NHL arena operations teams, including a thermal imagery viewer used by arena technicians.
+  \resumeitem Wrote a Python pipeline that aggregates data from two APIs into structured JSON for the arena interface.
+  \resumeitem Automated controller data collection for CAG engineers with a Python tool, replacing manual data entry.
+  \resumeitem Designed and ran hands-on Python training sessions for over 20 employees.
+\end{bullets}
+
+\vspace{3pt}
+\resumeentry{Digital Solutions}{Apr 2023 - Sep 2023}
+  {CIMCO Refrigeration}{Burlington, ON}
+\begin{bullets}
+  \resumeitem Built Power Platform tools adopted by several departments to automate repetitive manual workflows.
+  \resumeitem Automated SharePoint document routing and approvals, cutting turnaround time between departments.
+\end{bullets}
+
+\vspace{10pt}
+\resumesection{Notable Projects}
+\resumeentry{mcp-surface}{Jul 2026 - Present}
+  {TypeScript CLI and GitHub Action for testing Model Context Protocol servers}{Independent}
+\begin{bullets}
+  \resumeitem Published on npm. Connects to an MCP server over stdio, Streamable HTTP or SSE the way a real client does, and reports the tools, resources and prompts it actually exposes.
+  \resumeitem Runs 19 checks against what the server returns, such as invalid JSON Schemas, unsatisfiable required fields and duplicate tool names.
+  \resumeitem Snapshots the tool surface and fails CI when it changes unexpectedly; also ships as a GitHub Action.
+\end{bullets}
+
+\vspace{3pt}
+\resumeentry{MCP Servers for Claude Code}{Jul 2026 - Present}
+  {Five Node.js servers exposing 69 tools to AI assistants}{Independent}
+\begin{bullets}
+  \resumeitem Covers Google Workspace, Reddit, Yahoo Fantasy, Chess.com and three Supercell game APIs, handling OAuth~2.0 and API-key auth.
+  \resumeitem The Google Workspace server (23 tools) sends email and manages Calendar, Drive, Sheets and YouTube through a self-registered OAuth client that requests only non-restricted scopes.
+  \resumeitem Each server has a test suite that runs with no network access or credentials, and CI on Node 20 and 22.
+\end{bullets}
+
+\vspace{3pt}
+\resumeentry{MazeFinder}{Mar 2024 - Sep 2024}
+  {C++ application for solving 20x20 mazes using genetic algorithms}{Independent}
+\begin{bullets}
+  \resumeitem Evolves paths through 20x20 mazes with a genetic algorithm using dynamic mutation and crossover strategies.
+  \resumeitem Parallelized genome fitness evaluation with a custom thread pool.
+  \resumeitem Stores mazes as 2D vectors so new maze configurations load without code changes.
+\end{bullets}
+
+\end{document}
