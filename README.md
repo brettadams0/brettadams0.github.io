@@ -20,6 +20,7 @@ and a client-side icon script.
 | `_layouts/`, `_includes/` | Jekyll layouts and the icon sprite |
 | `scss/` | Sass sources; compiled output lives in `dist/css/` |
 | `assets/resume/` | Résumé PDF linked from the hero |
+| `neuronet-arena/` | Live demo of [neuronet-arena](https://github.com/brettadams0/neuronet-arena), mirrored from its `web/` directory (see below) |
 | `.github/scripts/check-links.mjs` | Build-time internal link/asset checker |
 
 ## Running it locally
@@ -39,6 +40,22 @@ from `scss/`, so rebuild it by hand after touching anything in there:
 ```sh
 sass --load-path=scss dist/styles.scss dist/css/styles.css
 ```
+
+## The neuronet-arena demo
+
+`neuronet-arena/` is a verbatim copy of the runtime files in neuronet-arena's `web/` directory —
+plain ES modules with no build step, so Jekyll serves them as static files. The source of truth is
+that repo, where the JavaScript engine is tested bit-for-bit against the Python one; edit it there
+and re-sync from a sibling checkout:
+
+```sh
+rsync -a --delete --exclude node_modules --exclude test \
+  --exclude package.json --exclude package-lock.json --exclude tsconfig.json \
+  ../neuronet-arena/web/ neuronet-arena/
+```
+
+Being verbatim, the page carries no analytics include. Clicks on the project card's **Live demo**
+button are still recorded by `project_click`, with the demo URL as `link_url`.
 
 ## CI
 

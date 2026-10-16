@@ -30,7 +30,8 @@ github.com/brettadams0 → **Customize your pins**. Replace all six:
 2. `google-workspace-mcp` — 23 tools, least-privilege OAuth writeup
 3. `reddit-mcp` — the write-capable OAuth2 server
 4. `TechNest` — the complete full-stack app
-5. `neuronet-arena` — from-scratch neural net + genetic algorithm
+5. `neuronet-arena` — from-scratch neural net + GA, measured against a control, live
+   browser demo bit-for-bit identical to the Python engine
 6. `brettadams0.github.io` — this site
 
 Currently pinned, all to be removed: `CipherMaster`, `java-drawing-app`,
@@ -51,6 +52,8 @@ Settings → Public profile. The current bio predates `mcp-surface`:
 
 - [ ] `mcp-surface` has no `homepage` set — point it at
       https://www.npmjs.com/package/mcp-surface
+- [ ] `neuronet-arena` has no `homepage` set — point it at the demo,
+      https://brettadams0.github.io/neuronet-arena/
 
 There is no REST endpoint exposed for this; it is Settings → the "Website"
 field on the repo page, or the gear next to **About**.

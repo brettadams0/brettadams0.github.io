@@ -91,6 +91,15 @@
   margin-bottom: 1.25rem;
 }
 
+.post-content ul,
+.post-content ol {
+  margin: 0 0 1.25rem 1.25rem;
+}
+
+.post-content li {
+  margin-bottom: 0.5rem;
+}
+
 .post-content a {
   color: #ffb454;
   text-decoration: underline;
