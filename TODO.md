@@ -51,9 +51,34 @@ Settings → Public profile. The current bio predates `mcp-surface`:
 
 - [ ] `mcp-surface` has no `homepage` set — point it at
       https://www.npmjs.com/package/mcp-surface
+- [ ] The five server repos: set **Website** to https://brettadams0.github.io/mcp/
+      and add the topics `mcp`, `model-context-protocol`, `mcp-server`, `claude`.
+- [ ] On all six MCP repos, Settings → Code security: turn on **Dependabot
+      security updates** (the committed `dependabot.yml` only schedules version
+      updates) and **Private vulnerability reporting**, which each
+      `SECURITY.md` would then be able to point at.
 
 There is no REST endpoint exposed for this; it is Settings → the "Website"
 field on the repo page, or the gear next to **About**.
+
+## 4a. The October 2026 MCP hardening PRs
+
+One draft PR per repo, all on branch `ccr-6c6cdde7-w9q3h2`. Merge the six
+code PRs first and this site's PR last, so the `/mcp/` page never describes
+work that isn't on `main` yet.
+
+- [ ] Before merging each server, run its live check once — CI has no
+      credentials, so nothing below has touched a real account:
+      `npm run smoke-test` (Google; also create one calendar event with an
+      attendee to see the invite arrive), `npm run check-auth` (Reddit, Yahoo),
+      and one call per game for Supercell.
+- [ ] If `credentials/coc.json` exists on the machine, rename it to
+      `credentials/clashofclans.json` — the server now reads the documented name.
+- [ ] Re-run `npm run authorize` for Google only if the next call fails: PKCE
+      changes the consent flow, not the stored token.
+- [ ] Cut `mcp-surface` 0.3.1 so npm carries the audit fixes and the corrected
+      client version: `npm version patch && git push --follow-tags`, then publish
+      a GitHub release — `release.yml` takes it from there.
 
 ## 5. TechNest screenshots
 
