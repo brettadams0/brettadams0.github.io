@@ -163,18 +163,23 @@ layout: default
     </article>
 
     <article class="project" data-project="neuronet-arena">
-      <a class="project-shot" href="https://github.com/brettadams0/neuronet-arena" tabindex="-1" aria-hidden="true">
+      <a class="project-shot" href="{{ '/neuronet-arena/' | relative_url }}" tabindex="-1" aria-hidden="true">
         <img src="{{ '/assets/img/neuronet-arena.webp' | relative_url }}" alt="" width="1280" height="800" loading="lazy" />
       </a>
       <div class="project-text">
         <h3>neuronet-arena</h3>
         <p>
-          An evolution simulator. Agents controlled by small neural networks compete for food in a
-          graph-based arena, and the survivors pass their weights to the next generation. The network
-          and the genetic algorithm are written from scratch in Python, with no ML library.
+          An evolution simulator. Forty agents, each steered by a small neural network, compete for
+          food, and the ones that eat the most breed the next generation. The network, the genetic
+          algorithm and the random number generator are written from scratch in Python, then ported
+          to JavaScript for a live demo that reproduces the Python engine bit for bit. Against a
+          control run with selection switched off, evolved agents eat 13.4 food each to the
+          control's 1.0.
         </p>
-        <p class="tags">Python</p>
+        <p class="tags">Python · JavaScript · Runs in the browser</p>
         <p class="project-links">
+          <a href="{{ '/neuronet-arena/' | relative_url }}">Live demo</a>
+          <a href="{{ '/writing/the-simulator-that-never-evolved/' | relative_url }}">Write-up</a>
           <a href="https://github.com/brettadams0/neuronet-arena">Source</a>
         </p>
       </div>
