@@ -51,8 +51,8 @@ IEEE 754 requires addition, subtraction, multiplication, division and square roo
 
 So the engine only uses the operations IEEE pins down:
 
-- **Softsign instead of tanh.** `x / (1 + |x|)` has the same S-shape and needs nothing but an add, an abs and a divide.
-- **Turning without angles.** Heading is a unit vector, and a turn is a Cayley rotation, `cos θ = (1 − t²)/(1 + t²)` and `sin θ = 2t/(1 + t²)`. That is an exact rotation built from arithmetic alone.
+- **Softsign instead of tanh.** `x / (1 + |x|)` has the same S-shape and needs nothing but an add, an abs and a divide.
+- **Turning without angles.** Heading is a unit vector, and a turn is a Cayley rotation, `cos θ = (1 − t²)/(1 + t²)` and `sin θ = 2t/(1 + t²)`. That is an exact rotation built from arithmetic alone.
 - **A random number generator I own.** Python's Mersenne Twister has no JavaScript twin, so both engines carry the same xoshiro128\*\*, in 32-bit integer arithmetic that both languages do exactly.
 - **No `sum()`.** This one is easy to miss. Since Python 3.12, `sum()` over floats uses compensated summation. It's more accurate, and therefore no longer equal to a plain loop in JavaScript. The hot path uses explicit loops in both languages.
 
