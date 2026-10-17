@@ -5,14 +5,15 @@
 
 Source for my personal site, **[brettadams0.github.io](https://brettadams0.github.io/)**.
 
-A Jekyll site published by GitHub Pages: one page, one stylesheet, and no JavaScript apart from
-analytics.
+A Jekyll site published by GitHub Pages: a homepage and one case study, one stylesheet, and no
+JavaScript apart from analytics.
 
 ## Layout
 
 | Path | |
 |---|---|
 | `index.html` | The homepage |
+| `mcp/index.html` | Case study of the MCP servers and `mcp-surface`, at `/mcp/` |
 | `_layouts/default.html` | Page shell: head, header and footer |
 | `_layouts/post.html` | Post template (no posts yet) |
 | `assets/css/site.css` | All styles. Light and dark themes follow the visitor's system setting |

@@ -83,17 +83,19 @@ layout: default
   <div class="section-body">
     <article class="project" data-project="mcp-surface">
       <a class="project-shot" href="https://github.com/brettadams0/mcp-surface" tabindex="-1" aria-hidden="true">
-        <img src="{{ '/assets/img/mcp-surface.webp' | relative_url }}" alt="" width="2200" height="823" loading="lazy" />
+        <img src="{{ '/assets/img/mcp-surface.webp' | relative_url }}" alt="" width="2200" height="1376" loading="lazy" />
       </a>
       <div class="project-text">
         <h3>mcp-surface</h3>
         <p>
           A command-line tool and GitHub Action for testing Model Context Protocol servers. It connects
           the way a client does, lists the tools a server actually exposes, and runs 19 checks on their
-          schemas. It can also snapshot that tool list and fail CI when it changes.
+          schemas. It can also snapshot that tool list and fail CI when it changes, which is how it caught a
+          dependency upgrade that changed all 23 of my Google Workspace tools while every unit test passed.
         </p>
         <p class="tags">TypeScript · Node.js · Published on npm</p>
         <p class="project-links">
+          <a href="{{ '/mcp/' | relative_url }}">Case study</a>
           <a href="https://www.npmjs.com/package/mcp-surface">npm</a>
           <a href="https://github.com/brettadams0/mcp-surface">Source</a>
         </p>
@@ -101,21 +103,23 @@ layout: default
     </article>
 
     <article class="project" data-project="mcp-servers">
-      <a class="project-shot" href="https://github.com/brettadams0?tab=repositories&amp;q=mcp" tabindex="-1" aria-hidden="true">
-        <img src="{{ '/assets/img/mcp-servers.webp' | relative_url }}" alt="" width="2200" height="591" loading="lazy" />
+      <a class="project-shot" href="https://github.com/brettadams0/google-workspace-mcp" tabindex="-1" aria-hidden="true">
+        <img src="{{ '/assets/img/mcp-servers.webp' | relative_url }}" alt="" width="2200" height="1376" loading="lazy" />
       </a>
       <div class="project-text">
-        <h3>MCP servers</h3>
+        <h3>MCP servers for Google Workspace and Reddit</h3>
         <p>
-          Five servers that give AI assistants 69 tools across Google Workspace, Reddit, Yahoo Fantasy,
-          Chess.com and Supercell's game APIs. The Google Workspace server sends email and manages
-          Calendar, Drive, Sheets and YouTube with narrowly scoped OAuth. Each server has tests that
-          run offline and CI on Node 20 and 22.
+          Two servers that let an AI assistant act on real accounts: 23 tools that send email and manage
+          Calendar, Drive, Sheets and YouTube, and 12 that read, post, vote and message on Reddit. Both
+          treat every tool argument as untrusted, because a model that has just read an email can be
+          steered by it. Tests run offline on Node 20, 22 and 24, and mcp-surface checks each server's tool
+          list against a committed snapshot as the last step of CI.
         </p>
         <p class="tags">JavaScript · Node.js · OAuth 2.0</p>
         <p class="project-links">
+          <a href="{{ '/mcp/' | relative_url }}">Case study</a>
           <a href="https://github.com/brettadams0/google-workspace-mcp">Google Workspace server</a>
-          <a href="https://github.com/brettadams0?tab=repositories&amp;q=mcp">All five</a>
+          <a href="https://github.com/brettadams0/reddit-mcp">Reddit server</a>
         </p>
       </div>
     </article>

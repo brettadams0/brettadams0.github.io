@@ -557,6 +557,45 @@ span.also-name {
   font-size: inherit;
 }
 
+.post-body h3 {
+  margin: 1.75em 0 0.35em;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.post-body figure {
+  margin: 1.5em 0;
+}
+
+.post-body figure pre {
+  margin: 0;
+}
+
+.post-body figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.post-body .also {
+  margin: 1.25em 0;
+}
+
+/* Case study (/mcp/) */
+
+.case-study .eyebrow {
+  margin-bottom: 10px;
+}
+
+.case-facts {
+  margin: 12px 0 40px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
 /* Contact */
 
 .contact-lede {
