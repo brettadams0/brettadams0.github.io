@@ -5,8 +5,8 @@
 
 Source for my personal site, **[brettadams0.github.io](https://brettadams0.github.io/)**.
 
-A Jekyll site published by GitHub Pages: one page, one stylesheet, and no JavaScript apart from
-analytics.
+A Jekyll site published by GitHub Pages: a one-page portfolio plus posts, one stylesheet, and no
+JavaScript apart from analytics. The project demos listed under "Other directories" are separate.
 
 ## Layout
 
