@@ -531,6 +531,19 @@ span.also-name {
   line-height: 1.3;
 }
 
+.post-body ul,
+.post-body ol {
+  padding-left: 1.1em;
+}
+
+.post-body li {
+  margin: 6px 0;
+}
+
+.post-body li::marker {
+  color: var(--faint);
+}
+
 .post-body code {
   padding: 0.1em 0.35em;
   border-radius: 4px;
@@ -538,6 +551,9 @@ span.also-name {
   border: 1px solid var(--rule);
   font-family: var(--font-mono);
   font-size: 0.9em;
+  /* A formula that wraps keeps its box on both lines. */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .post-body pre {
