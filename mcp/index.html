@@ -2,34 +2,34 @@
 layout: default
 title: MCP servers, and the tool that checks them
 description: >-
-  Five Model Context Protocol servers with 69 tools between them, and
-  mcp-surface, the command-line tool each of them runs in CI.
+  Model Context Protocol servers for Google Workspace and Reddit, with 35 tools
+  between them, and mcp-surface, the command-line tool both run in CI.
 permalink: /mcp/
 ---
 <article class="post case-study">
   <p class="post-back"><a href="{{ '/#projects' | relative_url }}">&larr; Brett Adams</a></p>
   <p class="eyebrow">Case study · October 2026</p>
-  <h1>Five MCP servers, and the tool that checks them</h1>
-  <p class="case-facts">5 servers · 69 tools · 5 auth models · 160 offline tests</p>
+  <h1>Two MCP servers that act on real accounts, and the tool that checks them</h1>
+  <p class="case-facts">2 servers · 35 tools · 3 repositories · 109 offline tests</p>
 
   <div class="post-body">
     <p>
-      I've built five <a href="https://modelcontextprotocol.io">Model Context Protocol</a> servers. They
-      let an AI assistant work with real accounts: send email, edit a calendar, write to a spreadsheet,
-      post to Reddit, read a fantasy league. I also built
+      I've built two <a href="https://modelcontextprotocol.io">Model Context Protocol</a> servers that let
+      an AI assistant act on my behalf. One sends email, edits my calendar and writes to spreadsheets in
+      Google Workspace. The other reads, posts, votes and sends private messages on Reddit. I also built
       <a href="https://github.com/brettadams0/mcp-surface">mcp-surface</a>, a command-line tool that
       connects to an MCP server the way a client does and reports what it actually exposes.
     </p>
     <p>
-      This page covers how the two fit together, and what a security and correctness review of all five
+      This page covers how the three fit together, and what a security and correctness review of both
       servers found in October 2026.
     </p>
 
-    <h2>One check in every server's CI</h2>
+    <h2>One check at the end of CI</h2>
     <p>
       A broken MCP server usually doesn't look broken. It starts, finishes the handshake and shows as
       connected, while the model gets a worse tool or none at all. Unit tests miss this, because they test
-      the code behind each tool, not the list of tools a client is shown. So the last step in every
+      the code behind each tool, not the list of tools a client is shown. So the last step in each
       server's CI runs mcp-surface:
     </p>
     <ol>
@@ -59,37 +59,25 @@ Snapshot mcp-surface.json
     </figure>
     <p>
       It caught something on the first day. Upgrading the schema library from Zod 3 to Zod 4 looked
-      routine, and every test still passed. mcp-surface reported that all 23 Google tools had changed:
-      Zod 4 stopped marking objects as closed to extra properties, and added a 120-byte pattern to every
-      email field, which pushed the server's tool definitions past their size budget. I kept Zod 3.
+      routine, and all 30 unit tests still passed. mcp-surface reported that all 23 Google tools had
+      changed: Zod 4 stopped marking objects as closed to extra properties, and added a 120-byte pattern
+      to every email field, which pushed the server's tool definitions past their 16 KB size budget. I
+      kept Zod 3.
     </p>
 
-    <h2>The servers</h2>
-    <p>I picked these partly because each one handles authentication differently.</p>
+    <h2>The repositories</h2>
     <ul class="also">
       <li>
         <a class="also-name" href="https://github.com/brettadams0/google-workspace-mcp">google-workspace-mcp</a>
-        <span class="also-desc">23 tools for Gmail, Calendar, Drive, Sheets and YouTube. Uses my own Google OAuth client with write-only scopes, which keeps it out of Google's paid security review for restricted scopes.</span>
-      </li>
-      <li>
-        <a class="also-name" href="https://github.com/brettadams0/supercell-mcp">supercell-mcp</a>
-        <span class="also-desc">15 read-only tools for Clash of Clans, Clash Royale and Brawl Stars. Each API key only works from the IP address it was created for.</span>
+        <span class="also-desc">23 tools for Gmail, Calendar, Drive, Sheets and YouTube, through my own Google OAuth client. It asks for no restricted scopes, so it can send mail but not read the inbox, and only sees Drive files it created. That keeps it out of the paid security assessment Google requires for restricted scopes.</span>
       </li>
       <li>
         <a class="also-name" href="https://github.com/brettadams0/reddit-mcp">reddit-mcp</a>
-        <span class="also-desc">12 tools, including posting, commenting, voting and private messages. OAuth with a refresh token that never changes.</span>
-      </li>
-      <li>
-        <a class="also-name" href="https://github.com/brettadams0/yahoo-fantasy-mcp">yahoo-fantasy-mcp</a>
-        <span class="also-desc">10 read-only tools for leagues, rosters and matchups. OAuth with a refresh token that Yahoo replaces every time it's used.</span>
-      </li>
-      <li>
-        <a class="also-name" href="https://github.com/brettadams0/chesscom-mcp">chesscom-mcp</a>
-        <span class="also-desc">9 read-only tools for profiles, ratings, games and clubs. No authentication.</span>
+        <span class="also-desc">12 tools, five of which post, comment, vote, message or mark mail read under the account. OAuth with a long-lived refresh token, and access tokens renewed by a single shared request when parallel calls find one expired.</span>
       </li>
       <li>
         <a class="also-name" href="https://github.com/brettadams0/mcp-surface">mcp-surface</a>
-        <span class="also-desc">The checker. TypeScript, published on npm with build provenance, and also usable as a GitHub Action.</span>
+        <span class="also-desc">The checker. TypeScript, 19 checks, published on npm with build provenance, and also usable as a GitHub Action.</span>
       </li>
     </ul>
 
@@ -118,25 +106,19 @@ Snapshot mcp-surface.json
 
     <h3>Requests that escaped their API path</h3>
     <p>
-      Reddit subreddit names and Yahoo league keys went into request URLs unchecked. URLs resolve
+      Subreddit names, usernames and post ids went into Reddit request URLs unchecked. URLs resolve
       <code>..</code>, so a subreddit named <code>../api/v1/me</code> reached a different Reddit endpoint
-      with the account's access token attached. Each value is now validated, and Yahoo requests are
-      checked after the URL is resolved and before the token is read.
+      with the account's access token attached, and percent-encoding doesn't help because it leaves
+      <code>..</code> alone. Each value is now checked against what Reddit actually allows.
     </p>
 
     <h3>Reddit failures that looked like success</h3>
     <p>
       When Reddit rejects a post, for a misspelt subreddit or a rate limit, it still answers with HTTP 200
       and puts the reasons in the body. The tool passed that through, so the assistant could report a post
-      that was never made. Those responses are now errors that include Reddit's reasons.
-    </p>
-
-    <h3>A race on Yahoo's refresh token</h3>
-    <p>
-      Yahoo issues a new refresh token every time one is used. When several tool calls hit an expired
-      token at once, each tried to refresh with the same token: one succeeded, the others failed, and the
-      saved token could be the one already used up. Concurrent calls now share a single refresh, and a test
-      runs four of them through an expiry.
+      that was never made. Those responses are now errors that include Reddit's reasons. Ids had the same
+      problem: Reddit's write endpoints silently ignore a comment id where a post id belongs, so every id
+      is now type-checked before the request is sent.
     </p>
 
     <h3>Calendar invitations that were never sent</h3>
@@ -146,18 +128,12 @@ Snapshot mcp-surface.json
       cancellations are now emailed by default, with an option to turn that off.
     </p>
 
-    <h3>A key file the docs named wrongly</h3>
+    <h3>A consent flow anyone on the network could answer</h3>
     <p>
-      The Clash of Clans tools read their key from <code>coc.json</code>, while the README, the example
-      file and the error message all said <code>clashofclans.json</code>. Following the setup instructions
-      exactly left every Clash of Clans tool broken. A test now ties each game's key file to its example.
-    </p>
-
-    <h3>2.27 MB of chess games, cut to 238 KB</h3>
-    <p>
-      One titled player's month of games came back as 509 games and 2.27 MB of JSON, far more than an
-      assistant can read in one tool result, so it saw a fragment. Games are now summarised without their
-      move lists by default, with a filter by time control and the full record on request.
+      Both servers get their tokens through a one-time browser sign-in that redirects to a small local web
+      server. That server listened on every network interface, and the Google flow didn't check that the
+      redirect came from the sign-in it started. It now listens on localhost only, the Google flow checks
+      an OAuth <code>state</code> value and uses PKCE, and token files are created readable only by their owner.
     </p>
 
     <h3>282 MB of dependencies, cut to 45 MB</h3>
@@ -166,7 +142,14 @@ Snapshot mcp-surface.json
       the five per-API packages it actually uses shrank its installed dependencies by more than 80%.
     </p>
 
-    <h2>What every repository now has</h2>
+    <h3>The checker had a bug of its own</h3>
+    <p>
+      mcp-surface introduced itself to every server as version 0.1.0, a number written into the code at
+      the first release and never updated. It now reads its version from its own package, and an
+      end-to-end test checks what a server actually receives.
+    </p>
+
+    <h2>What both servers now have</h2>
     <ul>
       <li>Tests that run without network access or credentials, on Node 20, 22 and 24.</li>
       <li>A committed tool snapshot that CI checks the running server against.</li>
