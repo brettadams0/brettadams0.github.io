@@ -142,6 +142,26 @@ layout: default
       </div>
     </article>
 
+    <article class="project" data-project="technest">
+      <a class="project-shot" href="https://github.com/brettadams0/TechNest" tabindex="-1" aria-hidden="true">
+        <img src="{{ '/assets/img/technest.webp' | relative_url }}" alt="" width="1600" height="1000" loading="lazy" />
+      </a>
+      <div class="project-text">
+        <h3>TechNest</h3>
+        <p>
+          An electronics store in PHP with no framework: search, cart, checkout, order tracking, and an
+          admin dashboard with sales charts drawn as SVG on the server. Checkout is one database
+          transaction that takes stock with a conditional update, so the last unit can't sell twice.
+          CSRF checks and access control run before any page code, and the tests walk the route table
+          to prove it. Rebuilt from a university project; 200+ tests run against SQLite and MySQL in CI.
+        </p>
+        <p class="tags">PHP · MySQL · SQLite · Docker</p>
+        <p class="project-links">
+          <a href="https://github.com/brettadams0/TechNest">Source</a>
+        </p>
+      </div>
+    </article>
+
     <article class="project" data-project="neuronet-arena">
       <a class="project-shot" href="https://github.com/brettadams0/neuronet-arena" tabindex="-1" aria-hidden="true">
         <img src="{{ '/assets/img/neuronet-arena.webp' | relative_url }}" alt="" width="1280" height="800" loading="lazy" />
@@ -170,10 +190,6 @@ layout: default
         <a class="also-name" href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">MazeFinder</a>
         <span class="also-desc">C++ genetic algorithm that solves 20×20 mazes, with fitness evaluation on a custom thread pool.</span>
       </li>
-      <li class="project" data-project="technest">
-        <a class="also-name" href="https://github.com/brettadams0/TechNest">TechNest</a>
-        <span class="also-desc">PHP and MySQL electronics store with a catalog, accounts, an admin dashboard and switchable themes.</span>
-      </li>
     </ul>
     <p class="more"><a href="https://github.com/brettadams0?tab=repositories">More on GitHub</a></p>
   </div>
@@ -183,7 +199,7 @@ layout: default
   <h2 id="skills-title" class="section-title">Skills</h2>
   <div class="section-body">
     <dl class="skills">
-      <div><dt>Languages</dt><dd>Python, SQL, TypeScript, JavaScript, Java, C++, C</dd></div>
+      <div><dt>Languages</dt><dd>Python, SQL, TypeScript, JavaScript, PHP, Java, C++, C</dd></div>
       <div><dt>Data</dt><dd>BigQuery, Apache Airflow, Cloud Composer, Azure Databricks, Power BI, MySQL</dd></div>
       <div><dt>Tools</dt><dd>Git, GitLab CI/CD, GitHub Actions, Docker, Linux, Node.js</dd></div>
       <div><dt>Web</dt><dd>Flask, React, HTML, CSS</dd></div>
