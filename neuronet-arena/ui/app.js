@@ -248,7 +248,8 @@ function renderParity() {
     ui.parityBadge.textContent = "identical";
     ui.parityText.textContent =
       `Generation ${p.generation}, replayed here from the Python engine's snapshot, scored exactly what ` +
-      "Python recorded — every agent, every step, the same floating-point bits.";
+      "Python recorded. (That the engines match bit for bit, step by step, is checked in CI against a " +
+      "golden trace.)";
   } else {
     ui.parityBadge.className = "badge bad";
     ui.parityBadge.textContent = "mismatch";

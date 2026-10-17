@@ -25,7 +25,7 @@ for gen in range(self.generations):
 
 `evolve_agents()` did its job: rank the agents, clone the best brains, mutate them, store the new population. Then the loop came back around and `setup()` built twenty brand-new agents with twenty brand-new random brains, and the evolved ones were never seen again. When I instrumented it, the number of evolved brains that made it into the next generation was zero out of twenty, every generation.
 
-There was a second bug underneath the first. Food was never consumed. An agent scored a point for every tick it spent within 10 pixels of a food node, and the node never ran out, so the same piece of food paid out forever. Agents moved at a fixed speed and couldn't sit still on it, but one that simply circled a single food node would score about 80 points in 300 ticks without learning anything about finding food.
+There was a second bug underneath the first. Food was never consumed. An agent scored a point for every tick it spent within 10 pixels of a food node, and the node never ran out, so the same piece of food paid out forever. Agents moved at a fixed speed and couldn't sit still on it, but one that circled a single food node as tightly as it could turn would score up to about 80 points in 300 ticks without learning anything about finding food.
 
 Neither bug was visible in the window. It rendered, agents wandered around, some of them blundered into food and some into hazards, the generation counter ticked up. Random agents in a world full of targets look a lot like agents that are learning, and nothing on screen says that every generation is a fresh roll of the dice.
 
@@ -47,7 +47,7 @@ A simulator is a much better portfolio piece when you can watch it, so I wanted 
 
 That is harder than it sounds, and the reason surprised me.
 
-IEEE 754 requires addition, subtraction, multiplication, division and square root to be correctly rounded, so those give identical results on every conforming platform. It makes no such demand of `tanh`, `exp`, `sin` or `cos`. I ran 200,000 random inputs through both CPython 3.13 and Node 22, and they returned different doubles for `tanh` 62 times, for `sin` 6,690 times and for `exp` 19,930 times. For the outcome, that turns out to be harmless. I tried it: with `tanh` in both engines, three generations from the trained population end with identical scores and identical genomes. The agents themselves don't stay identical, though. By the third generation, two of them are about a ten-millionth of a pixel apart. So a test comparing the engines would need a tolerance, and a tolerance can't tell rounding noise from a small porting bug: a constant copied with a digit missing, or two loops summing in a different order. I wanted a test in which any difference at all is a bug.
+IEEE 754 requires addition, subtraction, multiplication, division and square root to be correctly rounded, so those give identical results on every conforming platform. It makes no such demand of `tanh`, `exp`, `sin` or `cos`. I ran 200,000 random inputs through both CPython 3.13 and Node 22, and they returned different doubles for `tanh` 62 times, for `sin` 6,690 times and for `exp` 19,930 times. For the outcome, that turns out to be harmless. I tried it: with `tanh` in both engines, three generations from the trained population end with identical scores and identical genomes. The agents themselves don't stay identical, though. By the third generation, two of them have drifted, one by about a ten-millionth of a pixel. So a test comparing the engines would need a tolerance, and a tolerance can't tell rounding noise from a small porting bug: a constant copied with a digit missing, or two loops summing in a different order. I wanted a test in which any difference at all is a bug.
 
 So the engine only uses the operations IEEE pins down:
 
@@ -60,7 +60,7 @@ To check it, the Python engine writes a golden trace: RNG output, a forward pass
 
 The demo also checks itself. It starts from a population I trained in Python for 200 generations, saved alongside the stats Python recorded for generation 200. When your browser finishes replaying that generation, a panel compares the two results field by field. It says *identical*. If it ever says anything else, one of the engines has a bug, and the page will tell you before I find out.
 
-The port pays for itself in speed, too. A generation takes about 0.7 seconds in CPython and under 20 milliseconds in V8, so the browser can fast-forward through dozens of generations a second while the Python package stays the reference implementation.
+The port pays for itself in speed, too. A generation takes about half a second in CPython and under 20 milliseconds in V8, so the browser can fast-forward through dozens of generations a second while the Python package stays the reference implementation.
 
 ## What I'd tell myself in April 2025
 
