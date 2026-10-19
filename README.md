@@ -70,8 +70,8 @@ after they're registered under Admin → Custom definitions.
 
 ## Other directories
 
-`bargain-hunt/` (a private PWA served at `/bargain-hunt/`, marked `noindex`) and `sift/` (an Android
-app, excluded from the build) are separate projects that live in this repository for now.
+`sift/` (an Android app, excluded from the build) is a separate project that lives in this
+repository for now.
 
 `neuronet-arena/` is the live demo of [neuronet-arena](https://github.com/brettadams0/neuronet-arena),
 served at `/neuronet-arena/`. It is a verbatim copy of the runtime files in that repository's `web/`
