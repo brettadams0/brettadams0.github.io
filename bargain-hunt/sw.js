@@ -5,7 +5,7 @@
  */
 importScripts("core.js");
 
-const CACHE = "bargain-hunt-v1";
+const CACHE = "bargain-hunt-v2";
 const SHELL = [
   "./",
   "index.html",
