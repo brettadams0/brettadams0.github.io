@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>neuronet-arena · live demo</title>
+<meta name="description" content="Forty agents, each steered by a 112-weight neural network, evolving to forage in your browser. The engine is bit-for-bit identical to the Python one it was ported from.">
+<meta name="theme-color" content="#0b0f14">
+<meta property="og:title" content="neuronet-arena · live demo">
+<meta property="og:description" content="Neural networks and a genetic algorithm written from scratch, evolving live in the browser — bit-for-bit identical to the Python engine.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://brettadams0.github.io/neuronet-arena/">
+<meta property="og:image" content="https://brettadams0.github.io/neuronet-arena/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0f14'/%3E%3Cpath d='M23 16 10 9v14z' fill='%23ffb454'/%3E%3Ccircle cx='25' cy='9' r='3' fill='%234fd6c4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all';this.onload=null"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="ui/app.js"></script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="back" href="https://brettadams0.github.io/">brettadams0.github.io</a>
+    <nav class="top-links" aria-label="Project">
+      <a href="https://github.com/brettadams0/neuronet-arena">Source on GitHub</a>
+      <a href="https://brettadams0.github.io/writing/the-simulator-that-never-evolved/">How it was built</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <h1>neuronet-arena</h1>
+    <p class="lede">Forty agents, each steered by its own 112-weight neural network, compete for food in a shared arena. The ones that eat the most pass their genes on. Nothing here is a library: the network, the genetic algorithm and the random number generator are written from scratch — first in Python, then ported to the JavaScript running on this page, which reproduces the Python engine <em>bit for bit</em>.</p>
+  </section>
+
+  <div class="layout">
+    <section class="stage" aria-label="Simulation">
+      <div class="arena-frame">
+        <canvas id="arena" width="960" height="600" aria-label="The arena: agents, food and hazards. Click an agent to inspect its network."></canvas>
+        <div class="hud" aria-live="off">
+          <span><b id="hud-gen">Generation 0</b></span>
+          <span id="hud-step">step 0 / 600</span>
+          <span id="hud-alive">40 alive</span>
+        </div>
+        <ul class="key" aria-label="Legend">
+          <li><i class="k-food"></i>food</li>
+          <li><i class="k-hazard"></i>hazard</li>
+          <li><i class="k-agent"></i>agent</li>
+          <li><i class="k-leader"></i>leader</li>
+        </ul>
+      </div>
+
+      <div class="controls">
+        <div class="group" role="group" aria-label="Playback">
+          <button id="play" class="btn btn-primary" type="button" aria-keyshortcuts="Space">Pause</button>
+          <div class="seg" role="radiogroup" aria-label="Speed">
+            <button type="button" role="radio" data-speed="1" aria-checked="true">1×</button>
+            <button type="button" role="radio" data-speed="4" aria-checked="false">4×</button>
+            <button type="button" role="radio" data-speed="16" aria-checked="false">16×</button>
+            <button type="button" role="radio" data-speed="max" aria-checked="false" title="As fast as your machine allows">Max</button>
+          </div>
+          <button id="skip" class="btn" type="button" aria-keyshortcuts="N">Next generation</button>
+        </div>
+        <div class="group" role="group" aria-label="Population">
+          <div class="seg" role="radiogroup" aria-label="Starting population">
+            <button type="button" role="radio" data-source="trained" aria-checked="true">Trained in Python</button>
+            <button type="button" role="radio" data-source="scratch" aria-checked="false">From scratch</button>
+          </div>
+          <label class="seed">seed <input id="seed" type="number" min="0" max="4294967295" value="1" inputmode="numeric"></label>
+          <button id="restart" class="btn" type="button">Restart</button>
+        </div>
+      </div>
+      <p class="hint">Click an agent to inspect it, or empty space to follow the leader. <kbd>Space</kbd> pauses, <kbd>N</kbd> finishes the generation.</p>
+    </section>
+
+    <aside class="side">
+      <section class="card" aria-labelledby="progress-title">
+        <div class="card-head">
+          <h2 id="progress-title">Food eaten per agent</h2>
+          <ul class="legend">
+            <li><i class="line s1"></i>population mean</li>
+            <li><i class="line s2"></i>best agent</li>
+          </ul>
+        </div>
+        <div id="chart" class="chart"></div>
+        <dl class="tiles">
+          <div><dt>Generations</dt><dd id="tile-gens">0</dd></div>
+          <div><dt>Mean, last gen</dt><dd id="tile-mean">–</dd></div>
+          <div><dt>Best, last gen</dt><dd id="tile-best">–</dd></div>
+        </dl>
+        <details class="table-view">
+          <summary>Data table</summary>
+          <div class="table-scroll"><table id="history-table"><thead><tr><th>Gen</th><th>Mean</th><th>Best</th><th>Survivors</th></tr></thead><tbody></tbody></table></div>
+        </details>
+      </section>
+
+      <section class="card" aria-labelledby="inspect-title">
+        <div class="card-head">
+          <h2 id="inspect-title">Leader</h2>
+          <span id="inspect-meta" class="meta"></span>
+        </div>
+        <canvas id="brain" width="360" height="260" aria-label="The selected agent's network: inputs on the left, ten hidden neurons, steer and throttle on the right. Edges glow with the signal they carry."></canvas>
+        <div class="vitals">
+          <div class="energy"><span>energy</span><div class="bar"><i id="energy-bar"></i></div><b id="energy-val">60</b></div>
+          <p id="readout" class="readout"></p>
+        </div>
+      </section>
+
+      <section class="card parity" id="parity" aria-labelledby="parity-title" aria-live="polite">
+        <div class="card-head"><h2 id="parity-title">Cross-engine check</h2><span id="parity-badge" class="badge">running</span></div>
+        <p id="parity-text">This population was trained for 200 generations by the Python engine, which also recorded what the next generation scores. Your browser is replaying that generation now.</p>
+        <table class="parity-table">
+          <thead><tr><th></th><th>Python</th><th>This browser</th></tr></thead>
+          <tbody id="parity-rows"></tbody>
+        </table>
+      </section>
+    </aside>
+
+    <section class="explain" aria-label="How it works">
+      <div>
+        <h2>Sense</h2>
+        <p>Each agent sees the nearest food and the nearest hazard within 140 px — how close, how far ahead, how far to the right — plus how near the wall in front is and how much energy it has left. Eight numbers, all relative to its own heading.</p>
+      </div>
+      <div>
+        <h2>Think</h2>
+        <p>A network of 8 inputs, 10 hidden neurons and 2 outputs turns those into a steering angle and a throttle. Moving costs energy, food restores it, hazards drain it, and an agent at zero is out for the rest of the generation.</p>
+      </div>
+      <div>
+        <h2>Evolve</h2>
+        <p>After 600 steps the two best genomes are copied unchanged; the rest are bred from tournament winners by uniform crossover and small, roughly Gaussian mutations. In the controlled experiment, the same starting populations with selection switched off stay at about one food per agent.</p>
+      </div>
+      <div>
+        <h2>Same bits</h2>
+        <p>The two engines share a hand-written PRNG, use softsign instead of <code>tanh</code> and turn by Cayley rotation instead of <code>cos</code>/<code>sin</code>, because IEEE 754 defines arithmetic exactly but not transcendental functions. CI replays a golden trace through both and compares every float.</p>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">Built by <a href="https://brettadams0.github.io/">Brett Adams</a> · <a href="https://github.com/brettadams0/neuronet-arena">MIT-licensed source</a> · No frameworks, no build step.</div>
+</footer>
+
+<noscript><p class="wrap">The simulation runs in JavaScript; with it disabled there is nothing to show here but the description above.</p></noscript>
+</body>
+</html>

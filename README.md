@@ -5,8 +5,9 @@
 
 Source for my personal site, **[brettadams0.github.io](https://brettadams0.github.io/)**.
 
-A Jekyll site published by GitHub Pages: a homepage and one case study, one stylesheet, and no
-JavaScript apart from analytics.
+A Jekyll site published by GitHub Pages: a one-page portfolio plus posts and one case study, one
+stylesheet, and no JavaScript apart from analytics. The project demos listed under "Other
+directories" are separate.
 
 ## Layout
 
@@ -15,7 +16,8 @@ JavaScript apart from analytics.
 | `index.html` | The homepage |
 | `mcp/index.html` | Case study of the MCP servers and `mcp-surface`, at `/mcp/` |
 | `_layouts/default.html` | Page shell: head, header and footer |
-| `_layouts/post.html` | Post template (no posts yet) |
+| `_layouts/post.html` | Post template |
+| `_posts/` | Posts, served at `/writing/:title/` |
 | `assets/css/site.css` | All styles. Light and dark themes follow the visitor's system setting |
 | `assets/resume/Resume_BrettAdams.pdf` | Résumé, built from `resume/resume.tex` |
 | `resume/resume.tex` | LaTeX source for the résumé (not published to the site) |
@@ -70,5 +72,17 @@ after they're registered under Admin → Custom definitions.
 
 ## Other directories
 
-`bargain-hunt/` (a private PWA served at `/bargain-hunt/`, marked `noindex`) and `sift/` (an Android
-app, excluded from the build) are separate projects that live in this repository for now.
+`sift/` (an Android app, excluded from the build) is a separate project that lives in this
+repository for now.
+
+`neuronet-arena/` is the live demo of [neuronet-arena](https://github.com/brettadams0/neuronet-arena),
+served at `/neuronet-arena/`. It is a verbatim copy of the runtime files in that repository's `web/`
+directory — plain ES modules with no build step, so Jekyll publishes them as static files. Edit it
+there, where the JavaScript engine is tested bit-for-bit against the Python one, and re-sync from a
+sibling checkout:
+
+```sh
+rsync -a --delete --exclude node_modules --exclude test \
+  --exclude package.json --exclude package-lock.json --exclude tsconfig.json \
+  ../neuronet-arena/web/ neuronet-arena/
+```

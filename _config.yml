@@ -25,14 +25,8 @@ defaults:
       path: ""
     values:
       image: /assets/img/social-card.png
-  # A private tool, not part of the public site.
-  - scope:
-      path: bargain-hunt
-    values:
-      sitemap: false
 exclude:
   - README.md
   - resume
-  - bargain-hunt/README.md
   # Android app source, not site content.
   - sift
