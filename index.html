@@ -15,59 +15,6 @@ layout: default
         <a class="btn" href="mailto:adamsbrett00@gmail.com" data-contact="email">Email</a>
       </p>
     </div>
-
-    <figure class="hero-arena" data-project="neuronet-arena">
-      <a class="arena-frame" href="{{ '/neuronet-arena/' | relative_url }}">
-        <img src="{{ '/assets/img/hero-arena.webp' | relative_url }}" width="1920" height="1200" fetchpriority="high" alt="A frame from neuronet-arena: forty agents steered by evolved neural networks forage for food and avoid hazards." />
-        <span class="hud" aria-hidden="true"><b>Generation 200</b><span>trained population</span></span>
-        <span class="arena-play"><span class="play-icon" aria-hidden="true"></span>Run it live</span>
-      </a>
-      <figcaption>
-        <span>neuronet-arena: neural networks and a genetic algorithm, no ML libraries</span>
-        <a href="{{ '/neuronet-arena/' | relative_url }}">Open the demo &rarr;</a>
-      </figcaption>
-    </figure>
-  </div>
-</section>
-
-<section id="demos" class="section" aria-labelledby="demos-title">
-  <div class="wrap">
-    <h2 id="demos-title" class="section-title">Live demos</h2>
-    <div class="demos">
-      <a class="demo" href="{{ '/neuronet-arena/' | relative_url }}" data-project="neuronet-arena">
-        <div class="demo-shot">
-          <img src="{{ '/assets/img/neuronet-arena.webp' | relative_url }}" alt="" width="1280" height="800" loading="lazy" />
-          <span class="badge-live">Live</span>
-        </div>
-        <div class="demo-body">
-          <h3>neuronet-arena</h3>
-          <p>Forty agents with their own neural networks evolve to forage. Watch any agent's network fire as it moves.</p>
-          <ul class="chips">
-            <li>13.4 food vs 1.0 for the control</li>
-            <li>Python + JavaScript</li>
-            <li>No ML libraries</li>
-          </ul>
-          <span class="demo-cta">Open demo</span>
-        </div>
-      </a>
-
-      <a class="demo" href="{{ '/mcp-surface/' | relative_url }}" data-project="mcp-surface">
-        <div class="demo-shot">
-          <img src="{{ '/assets/img/mcp-playground.webp' | relative_url }}" alt="" width="1600" height="1000" loading="lazy" />
-          <span class="badge-live">Live</span>
-        </div>
-        <div class="demo-body">
-          <h3>mcp-surface playground</h3>
-          <p>Edit an MCP server's tool list and see what mcp-surface reports. The real checks from the npm package, running in your browser.</p>
-          <ul class="chips">
-            <li>19 checks</li>
-            <li>npm + GitHub Action</li>
-            <li>TypeScript</li>
-          </ul>
-          <span class="demo-cta">Open playground</span>
-        </div>
-      </a>
-    </div>
   </div>
 </section>
 
@@ -135,6 +82,19 @@ layout: default
   <div class="wrap">
     <h2 id="projects-title" class="section-title">Projects</h2>
     <div class="projects">
+      <article class="project project-featured" data-project="neuronet-arena">
+        <a class="project-shot" href="{{ '/neuronet-arena/' | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/neuronet-arena.webp' | relative_url }}" alt="" width="1280" height="800" loading="lazy" />
+        </a>
+        <h3>neuronet-arena <span class="badge-live">Live demo</span></h3>
+        <p>Forty agents with their own neural networks evolve to forage. Watch any agent's network fire as it moves.</p>
+        <ul class="chips"><li>13.4 food vs 1.0 for the control</li><li>Python + JavaScript</li><li>No ML libraries</li></ul>
+        <p class="links">
+          <a href="{{ '/neuronet-arena/' | relative_url }}">Live demo</a>
+          <a href="https://github.com/brettadams0/neuronet-arena">Source</a>
+        </p>
+      </article>
+
       <article class="project" data-project="mcp-servers">
         <a class="project-shot" href="https://github.com/brettadams0/google-workspace-mcp" tabindex="-1" aria-hidden="true">
           <img src="{{ '/assets/img/mcp-servers.webp' | relative_url }}" alt="" width="2200" height="1376" loading="lazy" />
@@ -150,14 +110,14 @@ layout: default
       </article>
 
       <article class="project" data-project="mcp-surface">
-        <a class="project-shot" href="https://github.com/brettadams0/mcp-surface" tabindex="-1" aria-hidden="true">
+        <a class="project-shot" href="{{ '/mcp-surface/' | relative_url }}" tabindex="-1" aria-hidden="true">
           <img src="{{ '/assets/img/mcp-surface.webp' | relative_url }}" alt="" width="2200" height="1376" loading="lazy" />
         </a>
-        <h3>mcp-surface</h3>
+        <h3>mcp-surface <span class="badge-live">Live demo</span></h3>
         <p>Probes an MCP server like a client would, validates its schemas, and fails CI when its tools change.</p>
         <ul class="chips"><li>TypeScript</li><li>npm</li><li>GitHub Action</li></ul>
         <p class="links">
-          <a href="{{ '/mcp-surface/' | relative_url }}">Playground</a>
+          <a href="{{ '/mcp-surface/' | relative_url }}">Live demo</a>
           <a href="{{ '/mcp/' | relative_url }}">Case study</a>
           <a href="https://www.npmjs.com/package/mcp-surface">npm</a>
           <a href="https://github.com/brettadams0/mcp-surface">Source</a>
