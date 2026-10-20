@@ -5,14 +5,16 @@
 
 Source for my personal site, **[brettadams0.github.io](https://brettadams0.github.io/)**.
 
-A Jekyll site published by GitHub Pages: a one-page portfolio plus posts, one stylesheet, and no
-JavaScript apart from analytics. The project demos listed under "Other directories" are separate.
+A Jekyll site published by GitHub Pages: a one-page portfolio plus posts and one case study, one
+stylesheet, and no JavaScript apart from analytics. The project demos listed under "Other
+directories" are separate.
 
 ## Layout
 
 | Path | |
 |---|---|
 | `index.html` | The homepage |
+| `mcp/index.html` | Case study of the MCP servers and `mcp-surface`, at `/mcp/` |
 | `_layouts/default.html` | Page shell: head, header and footer |
 | `_layouts/post.html` | Post template |
 | `_posts/` | Posts, served at `/writing/:title/` |
