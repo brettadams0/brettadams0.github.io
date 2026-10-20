@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mcp-surface · playground</title>
+<meta name="description" content="The checks from the mcp-surface npm package, running in your browser against a tools/list response you can edit.">
+<meta name="theme-color" content="#0b0f14">
+<meta property="og:title" content="mcp-surface · playground">
+<meta property="og:description" content="Edit an MCP server's tools/list response and see what mcp-surface reports, live in the browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://brettadams0.github.io/mcp-surface/">
+<meta property="og:image" content="https://brettadams0.github.io/mcp-surface/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="back" href="/">brettadams0.github.io</a>
+    <nav class="top-links" aria-label="Project">
+      <a href="https://www.npmjs.com/package/mcp-surface">npm</a>
+      <a href="https://github.com/brettadams0/mcp-surface">Source on GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <h1>mcp-surface</h1>
+    <p class="lede">The checks from the <a href="https://www.npmjs.com/package/mcp-surface">npm package</a>, running in your browser. Edit a server's <code>tools/list</code> response and the report updates as you type.</p>
+  </section>
+
+  <div class="layout">
+    <section class="card editor-card" aria-labelledby="editor-title">
+      <div class="card-head">
+        <h2 id="editor-title">tools/list response</h2>
+        <div class="seg" role="radiogroup" aria-label="Example">
+          <button type="button" role="radio" data-example="broken" aria-checked="true">Broken</button>
+          <button type="button" role="radio" data-example="healthy" aria-checked="false">Healthy</button>
+          <button type="button" role="radio" data-example="empty" aria-checked="false">Empty</button>
+        </div>
+      </div>
+      <label class="sr-only" for="source">JSON sent back by tools/list</label>
+      <div class="editor">
+        <pre class="gutter" id="gutter" aria-hidden="true"></pre>
+        <textarea id="source" spellcheck="false" autocomplete="off" autocapitalize="off" wrap="off"></textarea>
+      </div>
+      <p id="parse" class="parse" role="status"></p>
+    </section>
+
+    <section class="card report-card" aria-labelledby="report-title">
+      <div class="card-head">
+        <h2 id="report-title">Report</h2>
+        <label class="failon">fail on
+          <select id="fail-on">
+            <option value="error" selected>error</option>
+            <option value="warn">warn</option>
+            <option value="info">info</option>
+          </select>
+        </label>
+      </div>
+      <div class="term" aria-live="polite">
+        <p class="cmd"><span class="prompt">$</span> <span id="cmd"></span></p>
+        <div id="report"></div>
+      </div>
+      <div class="verdict" id="verdict"></div>
+    </section>
+  </div>
+
+  <section class="card rules-card" aria-labelledby="rules-title">
+    <div class="card-head">
+      <h2 id="rules-title">Rules</h2>
+      <span class="meta">click a rule to skip it</span>
+    </div>
+    <ul class="rules" id="rules"></ul>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">Built by <a href="/">Brett Adams</a> · <a href="https://github.com/brettadams0/mcp-surface">MIT-licensed source</a> · <a href="THIRD_PARTY_LICENSES.txt">Third-party licenses</a></div>
+</footer>
+
+<noscript><p class="wrap">The checks run in JavaScript; with it disabled there is nothing to show here.</p></noscript>
+</body>
+</html>

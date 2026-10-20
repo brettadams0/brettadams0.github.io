@@ -5,8 +5,9 @@
 
 Source for my personal site, **[brettadams0.github.io](https://brettadams0.github.io/)**.
 
-A Jekyll site published by GitHub Pages: a one-page portfolio plus posts, one stylesheet, and no
-JavaScript apart from analytics. The project demos listed under "Other directories" are separate.
+A Jekyll site published by GitHub Pages: a one-page portfolio with live project demos. The
+homepage hero runs the neuronet-arena engine from `/neuronet-arena/`; the demos are plain ES modules
+with no build step.
 
 ## Layout
 
@@ -14,9 +15,10 @@ JavaScript apart from analytics. The project demos listed under "Other directori
 |---|---|
 | `index.html` | The homepage |
 | `_layouts/default.html` | Page shell: head, header and footer |
-| `_layouts/post.html` | Post template |
-| `_posts/` | Posts, served at `/writing/:title/` |
-| `assets/css/site.css` | All styles. Light and dark themes follow the visitor's system setting |
+| `assets/css/site.css` | All homepage styles (dark only, same tokens as the demos) |
+| `assets/js/hero-arena.js` | Runs the trained neuronet-arena population in the homepage hero |
+| `neuronet-arena/` | Live demo, synced from the neuronet-arena repo (see below) |
+| `mcp-surface/` | Live playground for the mcp-surface checks (see below) |
 | `assets/resume/Resume_BrettAdams.pdf` | Résumé, built from `resume/resume.tex` |
 | `resume/resume.tex` | LaTeX source for the résumé (not published to the site) |
 | `.github/scripts/check-links.mjs` | CI check that every internal link and asset resolves |
@@ -34,22 +36,6 @@ There is no `Gemfile` on purpose: adding one changes how GitHub Pages resolves d
 
 `resume/resume.tex` compiles with XeLaTeX. On Overleaf, set Menu → Settings → Compiler to XeLaTeX.
 Copy the output over `assets/resume/Resume_BrettAdams.pdf`.
-
-## Writing a post
-
-Add a file named `_posts/YYYY-MM-DD-some-title.md`:
-
-```markdown
----
-layout: post
-title: "Some title"
----
-
-Text goes here.
-```
-
-Once a post exists, a Writing section and nav link appear on the homepage. Posts are served at
-`/writing/some-title/`.
 
 ## CI
 
@@ -84,3 +70,22 @@ rsync -a --delete --exclude node_modules --exclude test \
   --exclude package.json --exclude package-lock.json --exclude tsconfig.json \
   ../neuronet-arena/web/ neuronet-arena/
 ```
+
+One local difference: the header's "How it was built" link is removed here, because the post it
+pointed to was taken down. Drop it again after a re-sync, or remove it upstream.
+
+`mcp-surface/` is a playground for [mcp-surface](https://github.com/brettadams0/mcp-surface): edit a
+`tools/list` response and the published checks run on it in the browser. `checks.js` is generated
+from the npm package with esbuild; `Buffer.byteLength` (the one Node API the checks call) is shimmed
+with `TextEncoder`. To rebuild after a new release, in an empty directory:
+
+```sh
+npm pack mcp-surface@latest && tar xzf mcp-surface-*.tgz
+npm install ajv@8 esbuild
+printf 'const e = new TextEncoder();\nexport const Buffer = { byteLength: (s) => e.encode(String(s)).length };\n' > shim.js
+printf "export { runChecks, allChecks } from './package/dist/checks/index.js';\n" > entry.js
+npx esbuild entry.js --bundle --format=esm --minify --target=es2020 --inject:shim.js --outfile=checks.js
+```
+
+Then copy `checks.js` over `mcp-surface/checks.js`, keeping its header comment, and update the rule
+table in `mcp-surface/app.js` if the package README's table changed.
