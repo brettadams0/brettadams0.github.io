@@ -140,27 +140,29 @@ layout: default
     <h2 id="projects-title" class="section-title">Projects</h2>
     <div class="projects">
       <article class="project" data-project="mcp-servers">
-        <a class="project-shot" href="https://github.com/brettadams0?tab=repositories&amp;q=mcp" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/mcp-servers.webp' | relative_url }}" alt="" width="2200" height="591" loading="lazy" />
+        <a class="project-shot" href="https://github.com/brettadams0/google-workspace-mcp" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/mcp-servers.webp' | relative_url }}" alt="" width="2200" height="1376" loading="lazy" />
         </a>
-        <h3>MCP servers</h3>
-        <p>Five servers, 69 tools: Google Workspace, Reddit, Yahoo Fantasy, Chess.com and Supercell.</p>
-        <ul class="chips"><li>Node.js</li><li>OAuth 2.0</li><li>Offline tests</li></ul>
+        <h3>MCP servers for Google Workspace and Reddit</h3>
+        <p>Two servers that let an AI assistant act on real accounts: 23 tools for Gmail, Calendar, Drive, Sheets and YouTube, 12 for Reddit.</p>
+        <ul class="chips"><li>Node.js</li><li>OAuth 2.0</li><li>Snapshot-checked in CI</li></ul>
         <p class="links">
+          <a href="{{ '/mcp/' | relative_url }}">Case study</a>
           <a href="https://github.com/brettadams0/google-workspace-mcp">Google Workspace server</a>
-          <a href="https://github.com/brettadams0?tab=repositories&amp;q=mcp">All five</a>
+          <a href="https://github.com/brettadams0/reddit-mcp">Reddit server</a>
         </p>
       </article>
 
       <article class="project" data-project="mcp-surface">
         <a class="project-shot" href="https://github.com/brettadams0/mcp-surface" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/mcp-surface.webp' | relative_url }}" alt="" width="2200" height="823" loading="lazy" />
+          <img src="{{ '/assets/img/mcp-surface.webp' | relative_url }}" alt="" width="2200" height="1376" loading="lazy" />
         </a>
         <h3>mcp-surface</h3>
         <p>Probes an MCP server like a client would, validates its schemas, and fails CI when its tools change.</p>
         <ul class="chips"><li>TypeScript</li><li>npm</li><li>GitHub Action</li></ul>
         <p class="links">
           <a href="{{ '/mcp-surface/' | relative_url }}">Playground</a>
+          <a href="{{ '/mcp/' | relative_url }}">Case study</a>
           <a href="https://www.npmjs.com/package/mcp-surface">npm</a>
           <a href="https://github.com/brettadams0/mcp-surface">Source</a>
         </p>

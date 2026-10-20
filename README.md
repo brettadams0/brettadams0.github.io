@@ -5,15 +5,16 @@
 
 Source for my personal site, **[brettadams0.github.io](https://brettadams0.github.io/)**.
 
-A Jekyll site published by GitHub Pages: a one-page portfolio with live project demos. The
-homepage hero runs the neuronet-arena engine from `/neuronet-arena/`; the demos are plain ES modules
-with no build step.
+A Jekyll site published by GitHub Pages: a one-page portfolio with live project demos, plus a case
+study of the MCP work at `/mcp/`. The homepage hero runs the neuronet-arena engine from
+`/neuronet-arena/`; the demos are plain ES modules with no build step.
 
 ## Layout
 
 | Path | |
 |---|---|
 | `index.html` | The homepage |
+| `mcp/index.html` | Case study of the MCP servers and `mcp-surface`, at `/mcp/` |
 | `_layouts/default.html` | Page shell: head, header and footer |
 | `assets/css/site.css` | All homepage styles (dark only, same tokens as the demos) |
 | `assets/js/hero-arena.js` | Runs the trained neuronet-arena population in the homepage hero |
@@ -56,8 +57,8 @@ after they're registered under Admin → Custom definitions.
 
 ## Other directories
 
-`bargain-hunt/` (a private PWA served at `/bargain-hunt/`, marked `noindex`) and `sift/` (an Android
-app, excluded from the build) are separate projects that live in this repository for now.
+`sift/` (an Android app, excluded from the build) is a separate project that lives in this
+repository for now.
 
 `neuronet-arena/` is the live demo of [neuronet-arena](https://github.com/brettadams0/neuronet-arena),
 served at `/neuronet-arena/`. It is a verbatim copy of the runtime files in that repository's `web/`
