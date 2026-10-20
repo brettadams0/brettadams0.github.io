@@ -6,8 +6,8 @@
 Source for my personal site, **[brettadams0.github.io](https://brettadams0.github.io/)**.
 
 A Jekyll site published by GitHub Pages: a one-page portfolio with live project demos, plus a case
-study of the MCP work at `/mcp/`. The homepage hero runs the neuronet-arena engine from
-`/neuronet-arena/`; the demos are plain ES modules with no build step.
+study of the MCP work at `/mcp/`. The demos are plain ES modules with no build step. The homepage
+only links to them: nothing runs until a visitor opens one.
 
 ## Layout
 
@@ -17,12 +17,12 @@ study of the MCP work at `/mcp/`. The homepage hero runs the neuronet-arena engi
 | `mcp/index.html` | Case study of the MCP servers and `mcp-surface`, at `/mcp/` |
 | `_layouts/default.html` | Page shell: head, header and footer |
 | `assets/css/site.css` | All homepage styles (dark only, same tokens as the demos) |
-| `assets/js/hero-arena.js` | Runs the trained neuronet-arena population in the homepage hero |
 | `neuronet-arena/` | Live demo, synced from the neuronet-arena repo (see below) |
 | `mcp-surface/` | Live playground for the mcp-surface checks (see below) |
 | `assets/resume/Resume_BrettAdams.pdf` | Résumé, built from `resume/resume.tex` |
 | `resume/resume.tex` | LaTeX source for the résumé (not published to the site) |
 | `.github/scripts/check-links.mjs` | CI check that every internal link and asset resolves |
+| `handoff/` | Briefs for work another session will pick up (not published) |
 
 ## Running locally
 
