@@ -1,258 +1,237 @@
 ---
 layout: default
 ---
-<section class="intro" aria-labelledby="intro-name">
-  <p class="status"><span class="status-dot" aria-hidden="true"></span>Graduating 2027 · Open to full-time roles</p>
-  <h1 id="intro-name">Brett Adams</h1>
-  <p class="lede">
-    Data Analyst Intern at <a href="https://www.geotab.com">Geotab</a>, working on production data
-    pipelines in BigQuery and Airflow. Computer Science student at the University of Windsor.
-  </p>
-  <p class="actions">
-    <a class="button button-primary" href="{{ '/assets/resume/Resume_BrettAdams.pdf' | relative_url }}">Résumé (PDF)</a>
-    <a class="button" href="https://github.com/brettadams0" data-contact="github">GitHub</a>
-    <a class="button" href="https://www.linkedin.com/in/bretta/" data-contact="linkedin">LinkedIn</a>
-    <a class="button" href="mailto:adamsbrett00@gmail.com" data-contact="email">Email</a>
-  </p>
+<section class="hero" aria-labelledby="hero-name">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="status"><span class="status-dot" aria-hidden="true"></span>Graduating 2027 · Open to full-time roles</p>
+      <p class="kicker">data &amp; software engineering</p>
+      <h1 id="hero-name">Brett Adams</h1>
+      <p class="lede">Data Analyst Intern at <a href="https://www.geotab.com">Geotab</a>, on production pipelines in BigQuery and Airflow. Computer Science at the University of Windsor.</p>
+      <p class="actions">
+        <a class="btn btn-primary" href="{{ '/assets/resume/Resume_BrettAdams.pdf' | relative_url }}">Résumé</a>
+        <a class="btn" href="https://github.com/brettadams0" data-contact="github">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/bretta/" data-contact="linkedin">LinkedIn</a>
+        <a class="btn" href="mailto:adamsbrett00@gmail.com" data-contact="email">Email</a>
+      </p>
+    </div>
+
+    <figure class="hero-arena" data-project="neuronet-arena">
+      <div class="arena-frame">
+        <canvas id="hero-arena" width="960" height="600" role="img" aria-label="neuronet-arena running live: forty agents steered by evolved neural networks forage for food and avoid hazards."></canvas>
+        <div class="hud" aria-hidden="true">
+          <b id="hero-gen">Generation 200</b>
+          <span id="hero-step">step 0 / 600</span>
+          <span id="hero-best"></span>
+        </div>
+        <button id="hero-toggle" class="hud-btn" type="button" aria-pressed="false" hidden>Pause</button>
+      </div>
+      <figcaption>
+        <span><span class="live-dot" aria-hidden="true"></span>neuronet-arena, running live in your browser</span>
+        <a href="{{ '/neuronet-arena/' | relative_url }}">Open the full demo &rarr;</a>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="demos" class="section" aria-labelledby="demos-title">
+  <div class="wrap">
+    <h2 id="demos-title" class="section-title">Live demos</h2>
+    <div class="demos">
+      <a class="demo" href="{{ '/neuronet-arena/' | relative_url }}" data-project="neuronet-arena">
+        <div class="demo-shot">
+          <img src="{{ '/assets/img/neuronet-arena.webp' | relative_url }}" alt="" width="1280" height="800" loading="lazy" />
+          <span class="badge-live">Live</span>
+        </div>
+        <div class="demo-body">
+          <h3>neuronet-arena</h3>
+          <p>Forty agents with their own neural networks evolve to forage. Watch any agent's network fire as it moves.</p>
+          <ul class="chips">
+            <li>13.4 food vs 1.0 for the control</li>
+            <li>Python + JavaScript</li>
+            <li>No ML libraries</li>
+          </ul>
+          <span class="demo-cta">Open demo</span>
+        </div>
+      </a>
+
+      <a class="demo" href="{{ '/mcp-surface/' | relative_url }}" data-project="mcp-surface">
+        <div class="demo-shot">
+          <img src="{{ '/assets/img/mcp-playground.webp' | relative_url }}" alt="" width="1600" height="1000" loading="lazy" />
+          <span class="badge-live">Live</span>
+        </div>
+        <div class="demo-body">
+          <h3>mcp-surface playground</h3>
+          <p>Edit an MCP server's tool list and see what mcp-surface reports. The real checks from the npm package, running in your browser.</p>
+          <ul class="chips">
+            <li>19 checks</li>
+            <li>npm + GitHub Action</li>
+            <li>TypeScript</li>
+          </ul>
+          <span class="demo-cta">Open playground</span>
+        </div>
+      </a>
+    </div>
+  </div>
 </section>
 
 <section id="experience" class="section" aria-labelledby="experience-title">
-  <h2 id="experience-title" class="section-title">Experience</h2>
-  <div class="section-body">
-    <article class="entry">
-      <header class="entry-head">
-        <h3>Data Analyst Intern <span class="entry-org">Geotab</span></h3>
-        <p class="entry-dates">May 2026 – Present</p>
-      </header>
-      <p class="entry-meta">Oakville, ON · Hybrid</p>
-      <ul>
-        <li>Maintain and debug production Apache Airflow DAGs on Google Cloud Composer that run the SalesOps data pipelines.</li>
-        <li>Write and deploy production BigQuery SQL for Revenue Operations tables, including the device status, database dimension and accounts master datasets.</li>
-        <li>Ship changes through GitLab CI/CD, from branch development through staging validation to production.</li>
-        <li>Carry out live table migrations against fixed infrastructure deadlines, coordinating with dataset owners.</li>
-      </ul>
-      <p class="tags">BigQuery · Airflow · Cloud Composer · SQL · GitLab CI/CD</p>
-    </article>
+  <div class="wrap">
+    <h2 id="experience-title" class="section-title">Experience</h2>
+    <ol class="timeline">
+      <li class="job job-current">
+        <div class="job-head">
+          <h3>Data Analyst Intern <span class="job-org">Geotab</span></h3>
+          <p class="job-when">May 2026 – Present · Oakville, ON</p>
+        </div>
+        <ul>
+          <li>Maintain and debug production Apache Airflow DAGs on Google Cloud Composer that run the SalesOps data pipelines.</li>
+          <li>Write and deploy production BigQuery SQL for Revenue Operations tables, including the device status, database dimension and accounts master datasets.</li>
+          <li>Ship changes through GitLab CI/CD, from branch development through staging validation to production.</li>
+          <li>Carry out live table migrations against fixed infrastructure deadlines, coordinating with dataset owners.</li>
+        </ul>
+        <ul class="chips"><li>BigQuery</li><li>Airflow</li><li>Cloud Composer</li><li>SQL</li><li>GitLab CI/CD</li></ul>
+      </li>
 
-    <article class="entry">
-      <header class="entry-head">
-        <h3>Data Management Associate, Co-op <span class="entry-org">Ontario Ministry of Transportation</span></h3>
-        <p class="entry-dates">Jan – Aug 2025</p>
-      </header>
-      <p class="entry-meta">St. Catharines, ON · Hybrid</p>
-      <ul>
-        <li>Built Power BI dashboards on Azure Databricks and SQL that replaced manual reporting across business units.</li>
-        <li>Automated legacy workflows with SQL queries and VBA scripts, cutting processing time from hours to minutes.</li>
-        <li>Led the rollout of the internal Data Broker Tool, onboarding teams and standardizing the data vocabulary.</li>
-      </ul>
-      <p class="tags">Power BI · Azure Databricks · SQL · VBA</p>
-    </article>
+      <li class="job">
+        <div class="job-head">
+          <h3>Data Management Associate, Co-op <span class="job-org">Ontario Ministry of Transportation</span></h3>
+          <p class="job-when">Jan – Aug 2025 · St. Catharines, ON</p>
+        </div>
+        <ul>
+          <li>Built Power BI dashboards on Azure Databricks and SQL that replaced manual reporting across business units.</li>
+          <li>Automated legacy workflows with SQL queries and VBA scripts, cutting processing time from hours to minutes.</li>
+          <li>Led the rollout of the internal Data Broker Tool, onboarding teams and standardizing the data vocabulary.</li>
+        </ul>
+        <ul class="chips"><li>Power BI</li><li>Azure Databricks</li><li>SQL</li><li>VBA</li></ul>
+      </li>
 
-    <article class="entry">
-      <header class="entry-head">
-        <h3>Digital Solutions, Co-op <span class="entry-org">CIMCO Refrigeration</span></h3>
-        <p class="entry-dates">Apr – Sep 2024</p>
-      </header>
-      <p class="entry-meta">Burlington, ON · Hybrid</p>
-      <ul>
-        <li>Built Flask web applications that deliver real-time data and alarm information to NHL arena operations teams, including a thermal imagery viewer used by arena technicians.</li>
-        <li>Wrote a Python pipeline that aggregates data from two APIs into structured JSON for the arena interface.</li>
-        <li>Automated controller data collection for CAG engineers with a Python tool, replacing manual data entry.</li>
-        <li>Designed and ran hands-on Python training sessions for over 20 employees.</li>
-      </ul>
-      <p class="tags">Python · Flask · JavaScript</p>
-    </article>
+      <li class="job">
+        <div class="job-head">
+          <h3>Digital Solutions, Co-op <span class="job-org">CIMCO Refrigeration</span></h3>
+          <p class="job-when">Apr – Sep 2024 · Burlington, ON</p>
+        </div>
+        <ul>
+          <li>Built Flask web applications that deliver real-time data and alarm information to NHL arena operations teams, including a thermal imagery viewer used by arena technicians.</li>
+          <li>Wrote a Python pipeline that aggregates data from two APIs into structured JSON for the arena interface.</li>
+          <li>Automated controller data collection for CAG engineers with a Python tool, replacing manual data entry.</li>
+          <li>Designed and ran hands-on Python training sessions for over 20 employees.</li>
+        </ul>
+        <ul class="chips"><li>Python</li><li>Flask</li><li>JavaScript</li></ul>
+      </li>
 
-    <article class="entry">
-      <header class="entry-head">
-        <h3>Digital Solutions <span class="entry-org">CIMCO Refrigeration</span></h3>
-        <p class="entry-dates">Apr – Sep 2023</p>
-      </header>
-      <p class="entry-meta">Burlington, ON · Hybrid</p>
-      <ul>
-        <li>Built Power Platform tools adopted by several departments to automate repetitive manual workflows.</li>
-        <li>Automated SharePoint document routing and approvals, cutting turnaround time between departments.</li>
-      </ul>
-      <p class="tags">Power Platform · SharePoint</p>
-    </article>
+      <li class="job">
+        <div class="job-head">
+          <h3>Digital Solutions <span class="job-org">CIMCO Refrigeration</span></h3>
+          <p class="job-when">Apr – Sep 2023 · Burlington, ON</p>
+        </div>
+        <ul>
+          <li>Built Power Platform tools adopted by several departments to automate repetitive manual workflows.</li>
+          <li>Automated SharePoint document routing and approvals, cutting turnaround time between departments.</li>
+        </ul>
+        <ul class="chips"><li>Power Platform</li><li>SharePoint</li></ul>
+      </li>
+    </ol>
   </div>
 </section>
 
 <section id="projects" class="section" aria-labelledby="projects-title">
-  <h2 id="projects-title" class="section-title">Projects</h2>
-  <div class="section-body">
-    <article class="project" data-project="mcp-surface">
-      <a class="project-shot" href="https://github.com/brettadams0/mcp-surface" tabindex="-1" aria-hidden="true">
-        <img src="{{ '/assets/img/mcp-surface.webp' | relative_url }}" alt="" width="2200" height="1376" loading="lazy" />
-      </a>
-      <div class="project-text">
-        <h3>mcp-surface</h3>
-        <p>
-          A command-line tool and GitHub Action for testing Model Context Protocol servers. It connects
-          the way a client does, lists the tools a server actually exposes, and runs 19 checks on their
-          schemas. It can also snapshot that tool list and fail CI when it changes, which is how it caught a
-          dependency upgrade that changed all 23 of my Google Workspace tools while every unit test passed.
-        </p>
-        <p class="tags">TypeScript · Node.js · Published on npm</p>
-        <p class="project-links">
-          <a href="{{ '/mcp/' | relative_url }}">Case study</a>
-          <a href="https://www.npmjs.com/package/mcp-surface">npm</a>
-          <a href="https://github.com/brettadams0/mcp-surface">Source</a>
-        </p>
-      </div>
-    </article>
-
-    <article class="project" data-project="mcp-servers">
-      <a class="project-shot" href="https://github.com/brettadams0/google-workspace-mcp" tabindex="-1" aria-hidden="true">
-        <img src="{{ '/assets/img/mcp-servers.webp' | relative_url }}" alt="" width="2200" height="1376" loading="lazy" />
-      </a>
-      <div class="project-text">
+  <div class="wrap">
+    <h2 id="projects-title" class="section-title">Projects</h2>
+    <div class="projects">
+      <article class="project" data-project="mcp-servers">
+        <a class="project-shot" href="https://github.com/brettadams0/google-workspace-mcp" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/mcp-servers.webp' | relative_url }}" alt="" width="2200" height="1376" loading="lazy" />
+        </a>
         <h3>MCP servers for Google Workspace and Reddit</h3>
-        <p>
-          Two servers that let an AI assistant act on real accounts: 23 tools that send email and manage
-          Calendar, Drive, Sheets and YouTube, and 12 that read, post, vote and message on Reddit. Both
-          treat every tool argument as untrusted, because a model that has just read an email can be
-          steered by it. Tests run offline on Node 22 and 24, and mcp-surface checks each server's tool
-          list against a committed snapshot as the last step of CI.
-        </p>
-        <p class="tags">JavaScript · Node.js · OAuth 2.0</p>
-        <p class="project-links">
+        <p>Two servers that let an AI assistant act on real accounts: 23 tools for Gmail, Calendar, Drive, Sheets and YouTube, 12 for Reddit.</p>
+        <ul class="chips"><li>Node.js</li><li>OAuth 2.0</li><li>Snapshot-checked in CI</li></ul>
+        <p class="links">
           <a href="{{ '/mcp/' | relative_url }}">Case study</a>
           <a href="https://github.com/brettadams0/google-workspace-mcp">Google Workspace server</a>
           <a href="https://github.com/brettadams0/reddit-mcp">Reddit server</a>
         </p>
-      </div>
-    </article>
+      </article>
 
-    <article class="project" data-project="promptpal">
-      <a class="project-shot" href="https://prompt-pal-gules.vercel.app" tabindex="-1" aria-hidden="true">
-        <img src="{{ '/assets/img/promptpal.webp' | relative_url }}" alt="" width="1600" height="1000" loading="lazy" />
-      </a>
-      <div class="project-text">
-        <h3>PromptPal</h3>
-        <p>
-          A browser tool for writing prompt templates. Templates have fields and optional sections in a
-          small language with its own parser, which reports errors by line and column. PromptPal fills
-          the template in, checks the result for empty required fields and leftover text like
-          &ldquo;[insert&nbsp;topic]&rdquo;, and exports it as text or a ready-to-run Claude API call. There is no
-          backend; share links carry the prompt in the URL fragment. Unit, end-to-end and accessibility
-          tests run in CI.
+      <article class="project" data-project="mcp-surface">
+        <a class="project-shot" href="https://github.com/brettadams0/mcp-surface" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/mcp-surface.webp' | relative_url }}" alt="" width="2200" height="1376" loading="lazy" />
+        </a>
+        <h3>mcp-surface</h3>
+        <p>Probes an MCP server like a client would, validates its schemas, and fails CI when its tools change.</p>
+        <ul class="chips"><li>TypeScript</li><li>npm</li><li>GitHub Action</li></ul>
+        <p class="links">
+          <a href="{{ '/mcp-surface/' | relative_url }}">Playground</a>
+          <a href="{{ '/mcp/' | relative_url }}">Case study</a>
+          <a href="https://www.npmjs.com/package/mcp-surface">npm</a>
+          <a href="https://github.com/brettadams0/mcp-surface">Source</a>
         </p>
-        <p class="tags">TypeScript · Next.js · React · Tailwind CSS</p>
-        <p class="project-links">
-          <a href="https://prompt-pal-gules.vercel.app">Live</a>
+      </article>
+
+      <article class="project" data-project="promptpal">
+        <a class="project-shot" href="https://prompt-pal-gules.vercel.app" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/promptpal.webp' | relative_url }}" alt="" width="1600" height="1000" loading="lazy" />
+        </a>
+        <h3>PromptPal</h3>
+        <p>Prompt templates in a small language with its own parser. Exports text or a ready-to-run Claude API call.</p>
+        <ul class="chips"><li>TypeScript</li><li>Next.js</li><li>E2E + a11y tests</li></ul>
+        <p class="links">
+          <a href="https://prompt-pal-gules.vercel.app">Live app</a>
           <a href="https://github.com/brettadams0/PromptPal">Source</a>
         </p>
-      </div>
-    </article>
+      </article>
 
-    <article class="project" data-project="technest">
-      <a class="project-shot" href="https://github.com/brettadams0/TechNest" tabindex="-1" aria-hidden="true">
-        <img src="{{ '/assets/img/technest.webp' | relative_url }}" alt="" width="1600" height="1000" loading="lazy" />
-      </a>
-      <div class="project-text">
+      <article class="project" data-project="technest">
+        <a class="project-shot" href="https://github.com/brettadams0/TechNest" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/technest.webp' | relative_url }}" alt="" width="1600" height="1000" loading="lazy" />
+        </a>
         <h3>TechNest</h3>
-        <p>
-          An electronics store in PHP with no framework: search, cart, checkout, order tracking, and an
-          admin dashboard with sales charts drawn as SVG on the server. Checkout is one database
-          transaction that takes stock with a conditional update, so the last unit can't sell twice.
-          CSRF checks and access control run before any page code, and the tests walk the route table
-          to prove it. Rebuilt from a university project; 200+ tests run against SQLite and MySQL in CI.
-        </p>
-        <p class="tags">PHP · MySQL · SQLite · Docker</p>
-        <p class="project-links">
+        <p>A PHP store with no framework. Checkout is one transaction, so the last unit can't sell twice.</p>
+        <ul class="chips"><li>PHP</li><li>MySQL</li><li>200+ tests</li></ul>
+        <p class="links">
           <a href="https://github.com/brettadams0/TechNest">Source</a>
         </p>
-      </div>
-    </article>
+      </article>
+    </div>
 
-    <article class="project" data-project="neuronet-arena">
-      <a class="project-shot" href="{{ '/neuronet-arena/' | relative_url }}" tabindex="-1" aria-hidden="true">
-        <img src="{{ '/assets/img/neuronet-arena.webp' | relative_url }}" alt="" width="1280" height="800" loading="lazy" />
-      </a>
-      <div class="project-text">
-        <h3>neuronet-arena</h3>
-        <p>
-          An evolution simulator. Forty agents, each steered by a small neural network, compete for
-          food, and the ones that eat the most breed the next generation. The network, the genetic
-          algorithm and the random number generator are written from scratch in Python, then ported
-          to JavaScript for a live demo that reproduces the Python engine bit for bit. Against a
-          control run with selection switched off, evolved agents eat 13.4 food each to the
-          control's 1.0.
-        </p>
-        <p class="tags">Python · JavaScript · Runs in the browser</p>
-        <p class="project-links">
-          <a href="{{ '/neuronet-arena/' | relative_url }}">Live demo</a>
-          <a href="{{ '/writing/the-simulator-that-never-evolved/' | relative_url }}">Write-up</a>
-          <a href="https://github.com/brettadams0/neuronet-arena">Source</a>
-        </p>
-      </div>
-    </article>
-
-    <h3 class="subhead">Also</h3>
     <ul class="also">
-      <li class="project" data-project="nhl-arena">
-        <span class="also-name">NHL Arena Web Interface</span>
-        <span class="also-desc">Flask app showing live refrigeration data and alarms for NHL arenas. Built at CIMCO; internal.</span>
-      </li>
-      <li class="project" data-project="mazefinder">
-        <a class="also-name" href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">MazeFinder</a>
-        <span class="also-desc">C++ genetic algorithm that solves 20×20 mazes, with fitness evaluation on a custom thread pool.</span>
-      </li>
+      <li data-project="nhl-arena"><b>NHL Arena Web Interface</b><span>Live refrigeration data and alarms for NHL arenas. Built at CIMCO; internal.</span></li>
+      <li data-project="mazefinder"><a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">MazeFinder</a><span>C++ genetic algorithm with fitness evaluation on a hand-rolled thread pool.</span></li>
+      <li><a href="https://github.com/brettadams0?tab=repositories">More on GitHub &rarr;</a></li>
     </ul>
-    <p class="more"><a href="https://github.com/brettadams0?tab=repositories">More on GitHub</a></p>
   </div>
 </section>
 
 <section id="skills" class="section" aria-labelledby="skills-title">
-  <h2 id="skills-title" class="section-title">Skills</h2>
-  <div class="section-body">
-    <dl class="skills">
-      <div><dt>Languages</dt><dd>Python, SQL, TypeScript, JavaScript, PHP, Java, C++, C</dd></div>
-      <div><dt>Data</dt><dd>BigQuery, Apache Airflow, Cloud Composer, Azure Databricks, Power BI, MySQL</dd></div>
-      <div><dt>Tools</dt><dd>Git, GitLab CI/CD, GitHub Actions, Docker, Linux, Node.js</dd></div>
-      <div><dt>Web</dt><dd>Flask, React, HTML, CSS</dd></div>
-    </dl>
-  </div>
-</section>
-
-<section id="education" class="section" aria-labelledby="education-title">
-  <h2 id="education-title" class="section-title">Education</h2>
-  <div class="section-body">
-    <article class="entry">
-      <header class="entry-head">
+  <div class="wrap two-col">
+    <div>
+      <h2 id="skills-title" class="section-title">Skills</h2>
+      <dl class="skills">
+        <div><dt>Languages</dt><dd><ul class="chips"><li>Python</li><li>SQL</li><li>TypeScript</li><li>JavaScript</li><li>PHP</li><li>Java</li><li>C++</li><li>C</li></ul></dd></div>
+        <div><dt>Data</dt><dd><ul class="chips"><li>BigQuery</li><li>Apache Airflow</li><li>Cloud Composer</li><li>Azure Databricks</li><li>Power BI</li><li>MySQL</li></ul></dd></div>
+        <div><dt>Tools</dt><dd><ul class="chips"><li>Git</li><li>GitLab CI/CD</li><li>GitHub Actions</li><li>Docker</li><li>Linux</li><li>Node.js</li></ul></dd></div>
+        <div><dt>Web</dt><dd><ul class="chips"><li>Flask</li><li>React</li><li>Next.js</li><li>HTML/CSS</li></ul></dd></div>
+      </dl>
+    </div>
+    <div id="education">
+      <h2 id="education-title" class="section-title">Education</h2>
+      <div class="edu">
         <h3>University of Windsor</h3>
-        <p class="entry-dates">2022 – 2027</p>
-      </header>
-      <p class="entry-meta">Honours Computer Science, Software Engineering Specialization (Co-op)</p>
-    </article>
+        <p>Honours Computer Science, Software Engineering Specialization (Co-op)</p>
+        <p class="job-when">2022 – 2027</p>
+      </div>
+    </div>
   </div>
 </section>
 
-{% if site.posts.size > 0 %}
-<section id="writing" class="section" aria-labelledby="writing-title">
-  <h2 id="writing-title" class="section-title">Writing</h2>
-  <div class="section-body">
-    <ul class="posts">
-      {% for post in site.posts %}
-      <li>
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %Y" }}</time>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
-{% endif %}
-
-<section id="contact" class="section" aria-labelledby="contact-title">
-  <h2 id="contact-title" class="section-title">Contact</h2>
-  <div class="section-body">
-    <p class="contact-lede">Email is the quickest way to reach me.</p>
+<section id="contact" class="section contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <h2 id="contact-title" class="section-title">Contact</h2>
     <p class="contact-email"><a href="mailto:adamsbrett00@gmail.com" data-contact="email">adamsbrett00@gmail.com</a></p>
-    <p class="contact-links">
-      <a href="https://www.linkedin.com/in/bretta/" data-contact="linkedin">LinkedIn</a>
-      <a href="https://github.com/brettadams0" data-contact="github">GitHub</a>
+    <p class="actions">
+      <a class="btn" href="https://www.linkedin.com/in/bretta/" data-contact="linkedin">LinkedIn</a>
+      <a class="btn" href="https://github.com/brettadams0" data-contact="github">GitHub</a>
+      <a class="btn" href="{{ '/assets/resume/Resume_BrettAdams.pdf' | relative_url }}">Résumé</a>
     </p>
   </div>
 </section>

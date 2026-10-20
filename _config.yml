@@ -10,8 +10,6 @@ author:
 # template until #35, belongs to someone else's property; do not restore it.
 google_analytics: G-Z3KW627PQQ
 markdown: kramdown
-# Posts are optional. The homepage shows a Writing section once _posts/ has one.
-permalink: /writing/:title/
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
@@ -27,6 +25,7 @@ defaults:
       image: /assets/img/social-card.png
 exclude:
   - README.md
+  - CLAUDE.md
   - resume
   # Android app source, not site content.
   - sift
