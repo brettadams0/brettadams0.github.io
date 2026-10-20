@@ -17,18 +17,14 @@ layout: default
     </div>
 
     <figure class="hero-arena" data-project="neuronet-arena">
-      <div class="arena-frame">
-        <canvas id="hero-arena" width="960" height="600" role="img" aria-label="neuronet-arena running live: forty agents steered by evolved neural networks forage for food and avoid hazards."></canvas>
-        <div class="hud" aria-hidden="true">
-          <b id="hero-gen">Generation 200</b>
-          <span id="hero-step">step 0 / 600</span>
-          <span id="hero-best"></span>
-        </div>
-        <button id="hero-toggle" class="hud-btn" type="button" aria-pressed="false" hidden>Pause</button>
-      </div>
+      <a class="arena-frame" href="{{ '/neuronet-arena/' | relative_url }}">
+        <img src="{{ '/assets/img/hero-arena.webp' | relative_url }}" width="1920" height="1200" fetchpriority="high" alt="A frame from neuronet-arena: forty agents steered by evolved neural networks forage for food and avoid hazards." />
+        <span class="hud" aria-hidden="true"><b>Generation 200</b><span>trained population</span></span>
+        <span class="arena-play"><span class="play-icon" aria-hidden="true"></span>Run it live</span>
+      </a>
       <figcaption>
-        <span><span class="live-dot" aria-hidden="true"></span>neuronet-arena, running live in your browser</span>
-        <a href="{{ '/neuronet-arena/' | relative_url }}">Open the full demo &rarr;</a>
+        <span>neuronet-arena: neural networks and a genetic algorithm, no ML libraries</span>
+        <a href="{{ '/neuronet-arena/' | relative_url }}">Open the demo &rarr;</a>
       </figcaption>
     </figure>
   </div>
