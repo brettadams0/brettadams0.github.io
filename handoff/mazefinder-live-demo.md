@@ -7,9 +7,10 @@ in the PR that adds the demo.
 ## Ground rules (from Brett, and in `CLAUDE.md`)
 
 - Build the demo from MazeFinder's actual code, not a JavaScript imitation of it.
-- **Nothing live on the homepage.** The visitor clicks through to a demo's own page before anything
-  runs. The homepage card is a still screenshot and a link. Once on its page, the demo may start on
-  its own, as neuronet-arena does.
+- **Nothing live on the homepage, and each project appears once.** A demo is reached from its project
+  card in `#projects`: a still screenshot, a "Live demo" badge by the title, and a "Live demo" link.
+  There is no separate demos section or hero preview; Brett removed those as duplicates. Once on its
+  page, the demo may start on its own, as neuronet-arena does.
 - Copy stays short and factual: one line per project, facts as chips. No blog-style prose. Brett has
   removed AI-sounding writing before.
 - Visual style: dark only, IBM Plex Sans/Mono, the tokens at the top of `mcp-surface/styles.css`
@@ -21,7 +22,7 @@ in the PR that adds the demo.
 | Repo | What changes |
 |---|---|
 | `brettadams0/MazeFinder-GeneticAlgorithm` | Walls, bug fixes, core/native split, the WebAssembly build, tests and CI |
-| `brettadams0/brettadams0.github.io` | The `/mazefinder/` page, a homepage card, README |
+| `brettadams0/brettadams0.github.io` | The `/mazefinder/` page, its project card, README |
 
 The session needs **push** access to both. Open one PR in each, as drafts. Do the MazeFinder PR first,
 because the site copies its build output.
@@ -141,12 +142,14 @@ Problems to fix along the way. Read the code to confirm each one before changing
   best-fitness-per-generation line chart.
 - **Mobile:** works at 390px wide with no horizontal scroll. The canvas scales to width.
 - **Homepage:**
-  - Add a third card in `#demos` in `index.html`. Use the same markup as the two existing cards, with
-    `data-project="mazefinder"`, a 1600x1000 screenshot at `assets/img/mazefinder.webp`, one factual
-    line and three chips (for example `20x20 walled mazes`, `C++ → WebAssembly`, `Seeded, reproducible`).
-  - Remove MazeFinder from the `ul.also` list.
-  - The `.demos` grid is two columns, so check that three cards still look right at 1440px and 390px,
-    and adjust the grid if not.
+  - Move MazeFinder from the `ul.also` list to a project card in `#projects`. Copy the mcp-surface
+    card's markup: `data-project="mazefinder"`, the screenshot linking to `/mazefinder/`, a
+    `badge-live` span in the `h3`, and links "Live demo" then "Source".
+  - Add a 1600x1000 screenshot at `assets/img/mazefinder.webp`, one factual line, and three chips (for
+    example `20x20 walled mazes`, `C++ → WebAssembly`, `Seeded, reproducible`).
+  - neuronet-arena is the full-width featured card and the rest sit in two columns. A fifth half-width
+    card leaves a gap, so check with Brett which project to drop to the `ul.also` list, or how else to
+    lay it out. Check at 1440px and 390px.
 - **README:** add `mazefinder/` to the layout table, and a short section on how to re-sync it from the
   MazeFinder repo's `web/` output, as done for `neuronet-arena/`.
 - **Résumé (optional):**
