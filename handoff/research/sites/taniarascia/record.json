@@ -1,0 +1,247 @@
+{
+ "slug": "taniarascia",
+ "url": "https://www.taniarascia.com/",
+ "final_url": "https://www.taniarascia.com/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:35:42.494Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://www.taniarascia.com/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "Tania Rascia's Website",
+ "meta_description": "Software engineer and open source creator. This is my digital garden.",
+ "hero_text": "tania.dev I'm Tania , software engineer and open-source creator. This is my digital garden. 🌱 Blog Shelves Projects About me Resume Topics Source Hey, I'm …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "Email signup",
+  "GitHub",
+  "Bluesky",
+  "RSS feed",
+  "New Moon",
+  "Resume",
+  "Topics",
+  "Source",
+  "Professional chef",
+  "Career change",
+  "Wrote everything down",
+  "Principal software engineer",
+  "177 posts",
+  "40+ publications",
+  "20,000+ stars on GitHub",
+  "Also",
+  "tania.dev",
+  "All Posts",
+  "All Shelves",
+  "All Projects",
+  "Buy me a coffee",
+  "Gatsby",
+  "Netlify"
+ ],
+ "sections_ordered": [
+  "h1: Hey, I'm Tania!",
+  "h2: A brief timeline",
+  "h2: Latest",
+  "h2: Shelves",
+  "h2: Series",
+  "h2: Projects"
+ ],
+ "fonts": {
+  "body": "-apple-system, BlinkMacSystemFont, \"Google Sans Flex Variable\", Helvetica, Arial, sans-serif",
+  "h1": "\"Outfit Variable\", -apple-system, BlinkMacSystemFont, \"DM Sans\", Avenir, Helvetica, Arial, sans-serif",
+  "loaded": [
+   "Outfit Variable 100 900 normal",
+   "Google Sans Code Variable 300 800 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(248, 244, 230)",
+  "text": "rgb(40, 40, 46)",
+  "link": "rgb(177, 45, 108)",
+  "h1": "rgb(29, 29, 34)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": true,
+  "css_prefers_color_scheme_mentions": 126
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 23,
+   "total_bytes": 786638,
+   "js_bytes": 119347,
+   "lcp_ms": 1664,
+   "lcp_element": "img.hero-image src=https://www.taniarascia.com/ram.png",
+   "cls": 0.0043
+  },
+  "mobile": {
+   "requests": 27,
+   "total_bytes": 786150,
+   "js_bytes": 118993,
+   "lcp_ms": 468,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 22,
+   "resource_transfer_bytes": 689335,
+   "dcl_ms": 581,
+   "load_ms": 1930
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 3457,
+   "text_chars_3000ms": 3457
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": true,
+  "resume_links": [
+   {
+    "text": "Resume",
+    "href": "/resume/",
+    "in_nav": true
+   },
+   {
+    "text": "Principal software engineer",
+    "href": "/resume/",
+    "in_nav": true
+   }
+  ],
+  "contact_path": true,
+  "contact_links": [
+   "https://bsky.app/profile/tania.dev",
+   "https://github.com/taniarascia",
+   "https://bsky.app/profile/tania.dev",
+   "https://github.com/taniarascia",
+   "https://bsky.app/profile/tania.dev",
+   "https://github.com/taniarascia"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": true,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 7
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 0,
+    "moderate": 1,
+    "minor": 1
+   },
+   "ids": [
+    "button-name (critical, 2 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 0,
+    "moderate": 1,
+    "minor": 1
+   },
+   "ids": [
+    "button-name (critical, 3 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 25,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 2,
+  "horizontal_overflow_mobile": false
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "'Principal software engineer' subtitle under the h1 and again in the 2021-now timeline row"
+   },
+   "resume": {
+    "scrolls": 0,
+    "clicks": 2,
+    "note": "Labelled Resume link is a hidden nav element (presumably in the hamburger drawer; drawer not opened in capture). The timeline's 'Principal software engineer' link also points to /resume/ at 0 scrolls but is not labelled as a résumé"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Bluesky icon in the mobile header; no email address seen on captured pages"
+   },
+   "best_project": {
+    "scrolls": 3,
+    "clicks": 0,
+    "note": "Homepage Projects section starts near y=3158 (about 3.7 viewports); /projects is one menu tap away"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Hero stat links: 177 posts, 40+ publications, 20,000+ stars on GitHub"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Subtitle under h1 and the sidebar intro"
+   },
+   "resume": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Resume link at the bottom of the sidebar, visible in the fold"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "GitHub / Bluesky icons in the sidebar; envelope icon is a newsletter signup, not an email address"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Projects in the sidebar nav; the homepage section is 2 scrolls down (y=2187)"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Hero stat links including 20,000+ stars on GitHub"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://www.taniarascia.com/projects/",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Projects | Tania Rascia's Website"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}

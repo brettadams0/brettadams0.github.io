@@ -1,0 +1,200 @@
+{
+ "slug": "ciechanow",
+ "url": "https://ciechanow.ski/",
+ "final_url": "https://ciechanow.ski/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:37:50.291Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://ciechanow.ski/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "Bartosz Ciechanowski",
+ "meta_description": "Interactive articles about science and engineering.",
+ "hero_text": "Bartosz Ciechanowski Blog Archives Patreon X / Twitter Instagram e-mail RSS December 17, 2024 Moon In the vastness of empty space surrounding Earth, the Moon …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [],
+ "sections_ordered": [
+  "h1: Moon",
+  "h1: Motion in Space",
+  "h1: Moon and Earth",
+  "h1: Eyes on the Heavens",
+  "h1: Gravity at Scale",
+  "h1: Moon, Earth, and Sun",
+  "h1: Sunlight",
+  "h1: Lunar Surface",
+  "h1: Lunar Brightness",
+  "h1: Further Reading",
+  "h1: Final Words"
+ ],
+ "fonts": {
+  "body": "\"IBM Plex Sans\", \"Helvetica Neue\", Arial, sans-serif",
+  "h1": "Inter, \"Helvetica Neue\", Arial, sans-serif",
+  "loaded": [
+   "IBM Plex Sans 400 italic",
+   "IBM Plex Sans 400 normal",
+   "IBM Plex Sans 500 normal",
+   "Inter 100 900 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(248, 248, 248)",
+  "text": "rgb(68, 68, 68)",
+  "link": "rgb(1, 129, 235)",
+  "h1": "rgb(83, 83, 83)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 0
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 23,
+   "total_bytes": 7075308,
+   "js_bytes": 379744,
+   "lcp_ms": 1420,
+   "lcp_element": "p",
+   "cls": 0.0008
+  },
+  "mobile": {
+   "requests": 23,
+   "total_bytes": 7064755,
+   "js_bytes": 379744,
+   "lcp_ms": 1328,
+   "cls": 0.0002
+  },
+  "perf_api_desktop": {
+   "resource_count": 19,
+   "resource_transfer_bytes": 6600166,
+   "dcl_ms": 1919,
+   "load_ms": 3098
+  },
+  "canvas_contexts": [
+   "experimental-webgl",
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 94717,
+   "text_chars_3000ms": 94705
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://twitter.com/bciechanowski",
+   "mailto:bartosz@ciechanow.ski"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": true,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 2,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 124 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 2,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 124 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 13,
+   "imgs_missing_alt": 10,
+   "heading_order_issues": [],
+   "h1_count": 11
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 2,
+  "horizontal_overflow_mobile": false
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": null,
+   "resume": null,
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Envelope icon (mailto) in the header; no visible label"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Latest article on the fold; no project list"
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 0,
+    "note": "First live widget (Moon) just below the mobile fold"
+   }
+  },
+  "desktop": {
+   "current_role": null,
+   "resume": null,
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Envelope icon (mailto) in the header; no visible label"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Latest article on the fold; others via Archives (1 click)"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "First live widget starts inside the desktop fold"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://ciechanow.ski/mechanical-watch/",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Mechanical Watch – Bartosz Ciechanowski"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}

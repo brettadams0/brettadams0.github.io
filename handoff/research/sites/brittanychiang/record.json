@@ -1,0 +1,227 @@
+{
+ "slug": "brittanychiang",
+ "url": "https://brittanychiang.com/",
+ "final_url": "https://brittanychiang.com/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:35:48.126Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://brittanychiang.com/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "Brittany Chiang",
+ "meta_description": "Brittany Chiang is a software engineer who builds accessible, inclusive products and digital experiences for the web.",
+ "hero_text": "Skip to Content Brittany Chiang Frontend Engineer I build accessible, pixel-perfect experiences for the web. About Experience Projects GitHub LinkedIn CodePen Instagram Goodreads About Hi …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "Brittany Chiang",
+  "ABOUT",
+  "EXPERIENCE",
+  "PROJECTS",
+  "GitHub",
+  "LinkedIn",
+  "CodePen",
+  "Instagram",
+  "Goodreads"
+ ],
+ "sections_ordered": [
+  "h1: Brittany Chiang",
+  "h2: Frontend Engineer",
+  "h2: ABOUT",
+  "h2: EXPERIENCE",
+  "h2: PROJECTS",
+  "h2: WRITING"
+ ],
+ "fonts": {
+  "body": "\"Times New Roman\"",
+  "h1": "__inter_20b187, __inter_Fallback_20b187, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto",
+  "loaded": [
+   "__inter_20b187 normal normal",
+   "__inter_20b187 400 normal",
+   "__inter_20b187 500 normal",
+   "__inter_20b187 600 normal",
+   "__inter_20b187 700 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(15, 23, 42)",
+  "text": "rgb(148, 163, 184)",
+  "link": "rgb(226, 232, 240)",
+  "h1": "rgb(226, 232, 240)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 0
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 40,
+   "total_bytes": 2994199,
+   "js_bytes": 320299,
+   "lcp_ms": 2800,
+   "lcp_element": "p.mb-4",
+   "cls": 0
+  },
+  "mobile": {
+   "requests": 30,
+   "total_bytes": 1560132,
+   "js_bytes": 320289,
+   "lcp_ms": 3336,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 39,
+   "resource_transfer_bytes": 2804145,
+   "dcl_ms": 2282,
+   "load_ms": 2720
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 4335,
+   "text_chars_3000ms": 4345
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": true,
+  "resume_links": [
+   {
+    "text": "View Full Résumé",
+    "href": "/resume.pdf",
+    "in_nav": false
+   }
+  ],
+  "contact_path": true,
+  "contact_links": [
+   "https://github.com/bchiang7",
+   "https://www.linkedin.com/in/bchiang7/"
+  ],
+  "project_cards_hint": 14,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 3,
+   "js": 1
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 1 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 9 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": "SKIP TO CONTENT",
+   "imgs": 9,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 1,
+  "horizontal_overflow_mobile": false
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "'Frontend Engineer' under the name and the Klaviyo sentence at the bottom of the fold"
+   },
+   "resume": {
+    "scrolls": 3,
+    "clicks": 1,
+    "note": "'View Full Résumé' (PDF) after the experience list, y≈2979"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "GitHub/LinkedIn icons on the fold; no email address found"
+   },
+   "best_project": {
+    "scrolls": 3,
+    "clicks": 0,
+    "note": "Projects section y≈3086; no mobile nav to jump there"
+   },
+   "shipped_work": {
+    "scrolls": 3,
+    "clicks": 0,
+    "note": "Project rows with star counts and install count; job rows (from y≈850) also link to shipped products"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Title under name, Klaviyo role in About, first dated job row all on the fold"
+   },
+   "resume": {
+    "scrolls": 2,
+    "clicks": 1,
+    "note": "'View Full Résumé' at y≈2029, below the experience list; not in nav"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Icon row bottom-left of the sticky column; no email"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'Projects' anchor in the sticky nav, or 2 scrolls (y≈2194)"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Projects anchor; first job row with outbound link is on the fold"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://brittanychiang.com/archive",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Archive | Brittany Chiang"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}

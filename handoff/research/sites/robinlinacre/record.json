@@ -1,0 +1,214 @@
+{
+ "slug": "robinlinacre",
+ "url": "https://www.robinlinacre.com/",
+ "final_url": "https://www.robinlinacre.com/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:35:42.122Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://www.robinlinacre.com/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "Robin Linacre's blog",
+ "meta_description": "Probabilistic record linkage, Data Deduplication, Data Science, Engineering and the Environment",
+ "hero_text": ">robinlinacre About Projects Record linkage Twitter GitHub LinkedIn Bluesky Filter: All Quotes/Links Data Probabilistic linkage Energy Other Latest Posts 2026-10-19 Using AI agents effectively without …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  ">robinlinacre",
+  "About",
+  "Projects",
+  "Record linkage",
+  "Twitter",
+  "GitHub",
+  "LinkedIn",
+  "Bluesky"
+ ],
+ "sections_ordered": [
+  "h2: Latest Posts",
+  "h2: Latest Projects",
+  "h2: Quotes and Links",
+  "h2: Data science and engineering",
+  "h2: Probabilistic record linkage",
+  "h2: Energy and climate change",
+  "h2: Other"
+ ],
+ "fonts": {
+  "body": "ui-sans-serif, system-ui, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-ser",
+  "h1": null,
+  "loaded": [
+   "Source Serif Pro 600 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(255, 255, 255)",
+  "text": "rgb(55, 65, 81)",
+  "link": "rgb(37, 99, 235)",
+  "h1": null
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 0
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 9,
+   "total_bytes": 237068,
+   "js_bytes": 174433,
+   "lcp_ms": 1000,
+   "lcp_element": "div",
+   "cls": 0
+  },
+  "mobile": {
+   "requests": 9,
+   "total_bytes": 237087,
+   "js_bytes": 174429,
+   "lcp_ms": 1380,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 7,
+   "resource_transfer_bytes": 28605,
+   "dcl_ms": 985,
+   "load_ms": 1149
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 5108,
+   "text_chars_3000ms": 5108
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://twitter.com/robinlinacre",
+   "https://github.com/robinl",
+   "https://www.linkedin.com/in/robinlinacre",
+   "https://bsky.app/profile/robinlinacre.bsky.social"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": true,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 2,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 1 nodes)",
+    "link-in-text-block (serious, 4 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 2,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 1 nodes)",
+    "link-in-text-block (serious, 4 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 1,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 0
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 13,
+  "horizontal_overflow_mobile": false
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Not on homepage; About is an unlabelled info icon in the header; role is the first line of About"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Twitter/GitHub/LinkedIn icons in header; email is on About (1 click)"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Splink/record linkage via the chain-link icon in header; the live Splink demo link is ~3 screens down the homepage list (y=3220)"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "'Latest Projects' dated titles in the first screen; no descriptions"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "About in nav; homepage has no bio line"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Social icons in header; email on About"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'Record linkage' nav item; live Splink demo link 2 screens down (y=1979)"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "'Latest Projects' list visible on first screen (titles only)"
+   }
+  },
+  "resume_note": "No résumé or CV link found on the homepage or About."
+ },
+ "inner_page": {
+  "url": "https://www.robinlinacre.com/live_splink/",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Live DuckDB WASM Splink model | Robin Linacre's blog"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}

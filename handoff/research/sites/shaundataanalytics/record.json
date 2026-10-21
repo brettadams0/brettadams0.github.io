@@ -1,0 +1,221 @@
+{
+ "slug": "shaundataanalytics",
+ "url": "https://shaundataanalytics.github.io/",
+ "final_url": "https://shaundataanalytics.github.io/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:37:20.731Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://shaundataanalytics.github.io/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "Shaun Lin | Data Engineer & Analytics Specialist",
+ "meta_description": "Portfolio of Shaun Lin — Data Engineering, Analytics, and Data Science projects.",
+ "hero_text": "Shaun Lin Home Timeline 🤖 AI Demos 📊 Data Projects Data Engineering & ML Analytics Portfolio Shaun Lin Building high-performance data pipelines, predictive machine learning …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "Shaun Lin",
+  "Home",
+  "Timeline",
+  "🤖 AI Demos",
+  "📊 Data Projects",
+  "GitHub Profile",
+  "Toggle theme"
+ ],
+ "sections_ordered": [
+  "h1: Shaun Lin",
+  "h2: Tech Stack",
+  "h2: Experience & Impact Timeline",
+  "h2: 🤖 AI Use Cases & Interactive Demos",
+  "h2: 📊 Data Analytics & Machine Learning Projects"
+ ],
+ "fonts": {
+  "body": "Geist, \"Geist Fallback\", system-ui, sans-serif",
+  "h1": "Geist, \"Geist Fallback\", system-ui, sans-serif",
+  "loaded": [
+   "Geist 100 900 normal",
+   "Geist Mono 100 900 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(250, 250, 250)",
+  "text": "rgb(23, 23, 23)",
+  "link": "rgb(255, 255, 255)",
+  "h1": "lab(8.30603 0.618205 -2.16572)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [
+   "button.rounded-full.p-2.5",
+   "button.rounded-full.px-4",
+   "button.rounded-full.px-4"
+  ],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 3
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 19,
+   "total_bytes": 303499,
+   "js_bytes": 191442,
+   "lcp_ms": 1688,
+   "lcp_element": "p.mb-8.max-w-2xl",
+   "cls": 0.0283
+  },
+  "mobile": {
+   "requests": 19,
+   "total_bytes": 303478,
+   "js_bytes": 191430,
+   "lcp_ms": 924,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 18,
+   "resource_transfer_bytes": 267911,
+   "dcl_ms": 715,
+   "load_ms": 1579
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 9745,
+   "text_chars_3000ms": 9745
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://github.com/ShaunDataAnalytics",
+   "https://github.com/ShaunDataAnalytics",
+   "https://www.linkedin.com/in/shaundataanalytics/",
+   "mailto:shouyuanlin@gmail.com"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": true,
+  "case_studies_hint": true,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 1
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 14 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 13 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 0,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 0,
+  "horizontal_overflow_mobile": false
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 2,
+    "clicks": 0,
+    "note": "First timeline entry 'Associate Director of Data Insights (Volunteer)', Jan 2025 - Present, at y 1857; last paid role ended Jun 2024."
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link found on the homepage or the case-study page."
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Email icon (mailto) in the hero icon row; no labels."
+   },
+   "best_project": {
+    "scrolls": 6,
+    "clicks": 0,
+    "note": "Retail & Supply Chain card at y 5374; 'Explore Projects' button on the fold also jumps down (1 click). No mobile nav."
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'Interactive 3D Demo' button on the fold opens a project page; retail hosted dashboard is ~6 scrolls down."
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 1,
+    "clicks": 0,
+    "note": "Volunteer role at y 1555; 'Timeline' nav item also 1 click."
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link found."
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Email icon in the hero icon row."
+   },
+   "best_project": {
+    "scrolls": 4,
+    "clicks": 0,
+    "note": "Retail card at y 3847, or 'AI Demos' nav (1 click)."
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'Interactive 3D Demo' on fold; hosted retail dashboard via card 'Live Demo'."
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://shaundataanalytics.github.io/projects/retail-supply-chain-pipeline",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Shaun Lin | Data Engineer & Analytics Specialist"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}

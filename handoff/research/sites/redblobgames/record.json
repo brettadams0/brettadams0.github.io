@@ -1,0 +1,208 @@
+{
+ "slug": "redblobgames",
+ "url": "https://www.redblobgames.com/",
+ "final_url": "https://www.redblobgames.com/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:35:33.324Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://www.redblobgames.com/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "Red Blob Games",
+ "meta_description": "Interactive tutorials for math and algorithms",
+ "hero_text": "Red Blob Games from Amit Patel redblobgames@gmail.com Blog RSS Bluesky Twitter/X Hi! I make interactive visual explanations of math and algorithms, using motivating examples from …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "Amit Patel",
+  "redblobgames@gmail.com",
+  "Blog",
+  "RSS",
+  "Bluesky",
+  "Twitter/X"
+ ],
+ "sections_ordered": [
+  "h1: Red Blob Games",
+  "h2: About me #"
+ ],
+ "fonts": {
+  "body": "\"Avenir Next\", Candara, Ubuntu, \"Fira Sans\", system-ui, \"Segoe UI\", sans-serif",
+  "h1": "\"Avenir Next\", Candara, Ubuntu, \"Fira Sans\", system-ui, \"Segoe UI\", sans-serif",
+  "loaded": []
+ },
+ "main_colours": {
+  "bg": "rgb(238, 238, 238)",
+  "text": "rgb(51, 51, 51)",
+  "link": "rgba(0, 0, 0, 0)",
+  "h1": "rgb(255, 255, 255)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 0
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 45,
+   "total_bytes": 453745,
+   "js_bytes": 0,
+   "lcp_ms": 612,
+   "lcp_element": "p",
+   "cls": 0.0031
+  },
+  "mobile": {
+   "requests": 45,
+   "total_bytes": 453745,
+   "js_bytes": 0,
+   "lcp_ms": 412,
+   "cls": 0.0889
+  },
+  "perf_api_desktop": {
+   "resource_count": 44,
+   "resource_transfer_bytes": 436950,
+   "dcl_ms": 584,
+   "load_ms": 1930
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 7339,
+   "text_chars_3000ms": 7339
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "mailto:redblobgames@gmail.com",
+   "https://bsky.app/profile/redblobgames.com",
+   "https://twitter.com/redblobgames",
+   "https://twitter.com/redblobgames/status/1166927135832850432",
+   "https://github.com/amitp",
+   "https://github.com/redblobgames"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": true,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 2
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "aria-hidden-focus (serious, 4 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 3,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "aria-hidden-focus (serious, 4 nodes)",
+    "color-contrast (serious, 4 nodes)",
+    "link-in-text-block (serious, 3 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 44,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [
+    "h1 → h3 at \"Learn#\""
+   ],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 21,
+  "horizontal_overflow_mobile": false
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 8,
+    "clicks": 0,
+    "note": "Only in About me prose at the bottom ('currently working with ...'); the fold says what they make, not a role"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "mailto in the header link row"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "A* tutorial is the first list item on the fold; demo is 1 tap"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Every list item opens a working interactive tutorial"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 6,
+    "clicks": 0,
+    "note": "About me section at page bottom"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "mailto in the header link row"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "A* card is the first thumbnail on the fold"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Learn grid on the fold; Play grid (standalone demos) about 2 scrolls down"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://www.redblobgames.com/pathfinding/a-star/introduction.html",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Introduction to the A* Algorithm"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}
