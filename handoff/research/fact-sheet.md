@@ -62,13 +62,13 @@ confirm or deny it. No page on the web was loaded for this sheet.
 
 | Field | Value | Line |
 |---|---|---|
-| `@type` | `ProfilePage` with `mainEntity` `Person` | 15-17 |
-| `name` | Brett Adams | 18 |
-| `jobTitle` | Data Analyst Intern | 19 |
-| `worksFor` | Organization "Geotab" | 20 |
-| `alumniOf` | CollegeOrUniversity "University of Windsor" | 21 |
-| `url` | `{{ site.url }}/` | 22 |
-| `sameAs` | GitHub, LinkedIn | 23-26 |
+| `@type` | `ProfilePage` with `mainEntity` `Person` | `_layouts/default.html:15-17` |
+| `name` | Brett Adams | `_layouts/default.html:18` |
+| `jobTitle` | Data Analyst Intern | `_layouts/default.html:19` |
+| `worksFor` | Organization "Geotab" | `_layouts/default.html:20` |
+| `alumniOf` | CollegeOrUniversity "University of Windsor" | `_layouts/default.html:21` |
+| `url` | `{{ site.url }}/` | `_layouts/default.html:22` |
+| `sameAs` | GitHub, LinkedIn | `_layouts/default.html:23-26` |
 
 ---
 
@@ -84,7 +84,7 @@ confirm or deny it. No page on the web was loaded for this sheet.
 
 - Education sits in `<div id="education">` inside `section#skills` (`index.html:172`), with its own `h2`
   (`index.html:173`). It is not in the nav (`_layouts/default.html:44-48`).
-- No GPA, awards or coursework appear in any source. Do not add them.
+- No GPA, awards or coursework appear in any source (read in full: `index.html:1-193`, `resume/resume.tex:1-167`). Do not add them.
 
 ---
 
@@ -122,7 +122,7 @@ agree. The résumé has no per-job chips; the site has chips per job.
 - Site-only summary: "Data Analyst Intern at Geotab, on production pipelines in BigQuery and Airflow."
   with a link to https://www.geotab.com (`index.html:10`).
 - Geotab is marked current with class `job-current` (`index.html:25`).
-- No numbers (DAG count, tables, rows, users, hours) in any source.
+- No numbers (DAG count, tables, rows, users, hours) in any source (`index.html:31-34`, `resume/resume.tex:106-109`).
 - Internal names used: "SalesOps", "Revenue Operations", "device status, database dimension and
   accounts master datasets" (`index.html:31-32`, `resume/resume.tex:106-107`).
 
@@ -153,7 +153,7 @@ agree. The résumé has no per-job chips; the site has chips per job.
 
 - "over 20 employees" is the only number in any experience bullet (`index.html:61`,
   `resume/resume.tex:128`). "hours to minutes" (MTO) is qualitative.
-- "CAG" is not expanded anywhere.
+- "CAG" is not expanded anywhere (`index.html:60`, `resume/resume.tex:127`).
 
 ### 5.4 Digital Solutions, CIMCO Refrigeration (2023)
 
@@ -168,11 +168,13 @@ agree. The résumé has no per-job chips; the site has chips per job.
 
 ### 5.5 Internship story raw material (for spec section 4)
 
-Only these facts exist: pipelines (Airflow DAGs on Composer, BigQuery SQL, GitLab CI/CD, live table
-migrations: Geotab), BI (Power BI dashboards on Azure Databricks and SQL: MTO), automation (SQL+VBA
-workflows: MTO; controller data collection tool: CIMCO 2024; Power Platform tools and SharePoint
-routing: CIMCO 2023), training staff (Python sessions for over 20 employees: CIMCO 2024), web apps
-(Flask apps and thermal imagery viewer for NHL arena teams: CIMCO 2024). Citations as in 5.1-5.4.
+Only these facts exist:
+
+- Pipelines: Airflow DAGs on Composer, BigQuery SQL, GitLab CI/CD, live table migrations at Geotab (`index.html:31-34`, `resume/resume.tex:106-109`).
+- BI: Power BI dashboards on Azure Databricks and SQL at MTO (`index.html:45`, `resume/resume.tex:116`).
+- Automation: SQL + VBA workflows at MTO (`index.html:46`, `resume/resume.tex:117`); controller data collection tool at CIMCO 2024 (`index.html:60`, `resume/resume.tex:127`); Power Platform tools and SharePoint routing at CIMCO 2023 (`index.html:72-73`, `resume/resume.tex:135-136`).
+- Rollout and training: Data Broker Tool rollout at MTO (`index.html:47`, `resume/resume.tex:118`); Python training for over 20 employees at CIMCO 2024 (`index.html:61`, `resume/resume.tex:128`).
+- Web apps: Flask apps and a thermal imagery viewer for NHL arena teams at CIMCO 2024 (`index.html:58-59`, `resume/resume.tex:125-126`).
 
 ---
 
@@ -194,8 +196,8 @@ routing: CIMCO 2023), training staff (Python sessions for over 20 employees: CIM
 
 - Group names differ: site Languages / Data / Tools / Web (`index.html:166-169`); résumé Programming
   Languages / Data & Cloud / Technologies (`resume/resume.tex:96-98`).
-- Language order differs (site: TypeScript, JavaScript before PHP, Java; résumé: Java, C++, C,
-  JavaScript, TypeScript).
+- Language order differs (site: TypeScript, JavaScript before PHP, Java, `index.html:166`; résumé: Java,
+  C++, C, JavaScript, TypeScript, `resume/resume.tex:96`).
 - Job chip "Airflow" (`index.html:36`) vs skill "Apache Airflow" (`index.html:167`, `resume.tex:97`).
 
 ---
@@ -228,7 +230,7 @@ routing: CIMCO 2023), training staff (Python sessions for over 20 employees: CIM
 | JS engine reproduces Python "bit for bit" | `neuronet-arena/index.html:38`; `README.md:96-125` | **Measured:** `node --test web/test/{golden,snapshot,engine}.test.js` on Node v22.22.0: 11 tests, 11 pass, 0 fail. Python half (`tests/test_golden.py`) not run: pytest not installed | **confirmed (JS half)** |
 | Trained for 200 generations in Python | `neuronet-arena/index.html:116` | `trained.json` `generation: 200`, `seed: 2026` (**measured**) | **confirmed** |
 | CI on Python 3.10-3.13 and Node 20/22 | `neuronet-arena@07bc91f:CHANGELOG.md:37-38` | `.github/workflows/ci.yml:18`, `:37` | **confirmed** |
-| Test counts (not quoted on site) | — | **Measured:** 77 `def test_` functions in `tests/*.py` (before parametrize expansion); 11 node:test tests in `web/test/` | info only |
+| Test counts (not quoted on site) | — | **Measured:** 77 `def test_` functions in `neuronet-arena@07bc91f:tests/*.py` (before parametrize expansion); 11 node:test tests in `web/test/*.test.js` | info only |
 
 ### 7.2 mcp-surface (live playground, npm package)
 
@@ -245,7 +247,7 @@ routing: CIMCO 2023), training staff (Python sessions for over 20 employees: CIM
   "mcp-surface 0.3.0" (`mcp-surface/checks.js:1`). `[Unreleased]` entries exist
   (`mcp-surface@ea93b87:CHANGELOG.md:8-22`).
 - **Tech:** TypeScript, Node ≥20.19 (`package.json:40`, `README.md:44`), Ajv, MCP SDK 1.x
-  (`package.json:47-53`).
+  (`mcp-surface@ea93b87:package.json:50-56`).
 
 | Claim | Where stated | Check | Result |
 |---|---|---|---|
@@ -317,7 +319,7 @@ Repo paths in the table are relative to each server's clone at the SHA in the he
 | 30-second timeout on every request | `mcp/index.html:157` | `REQUEST_TIMEOUT_MS = 30_000` in each `src/shared.js` (google `:14`, reddit `:15`) | **confirmed** |
 | "ESLint, Dependabot, a changelog and a security policy" | `mcp/index.html:158` | `eslint.config.js`, `.github/dependabot.yml`, `CHANGELOG.md`, `SECURITY.md` present in both (measured: `ls`) | **confirmed** |
 | "No open npm audit advisories at release" | `mcp/index.html:158` | google `CHANGELOG.md:25-26`, reddit `CHANGELOG.md:18-19` | **confirmed by CHANGELOG** |
-| Read-only/destructive/idempotent annotations on every tool | `mcp/index.html:156` | `google-workspace-mcp@1f1fc45:README.md:54`, test `:85`; `reddit-mcp@0944987:README.md:40-42` | **confirmed by README/tests** |
+| Read-only/destructive/idempotent annotations on every tool | `mcp/index.html:156` | **Measured:** 23/23 Google and 12/12 Reddit tools carry `annotations` in their committed `mcp-surface.json`; declared in code, e.g. `google-workspace-mcp@1f1fc45:src/calendar.js:87`, `:103`; `README.md:54`; `reddit-mcp@0944987:README.md:40-42`. No unit test asserts them (grep `Hint` in `test/tools.test.js`: none); the snapshot check covers them | **confirmed** |
 | Figure "google-workspace 2.0.0 (279ms)" output | `mcp/index.html:45-57` | version 2.0.0 matches; timing and diff not reproducible here | **not checkable** |
 
 - mcp-surface's own README lists only the two featured servers under "Used by"
@@ -332,11 +334,11 @@ Repo paths in the table are relative to each server's clone at the SHA in the he
   (`promptpal@82ffb5d:README.md:6-8`, `:15-35`).
 - **Links:** live app https://prompt-pal-gules.vercel.app (`index.html:128`, `:135`;
   `promptpal@82ffb5d:README.md:8`); source https://github.com/brettadams0/PromptPal (`index.html:136`).
-  No "Live demo" badge (external app). Screenshot `promptpal.webp` 1600×1000 (measured). Live app not
+  No "Live demo" badge (external app, `index.html:131`). Screenshot `promptpal.webp` 1600×1000 (measured; `index.html:129`). Live app not
   loaded this session.
-- **Dates:** none in any source; last commit 2026-10-16 (`git log -1`). Not on the résumé.
+- **Dates:** none in any source; last commit 2026-10-16 (`promptpal@82ffb5d`, `git log -1`). Not on the résumé (`resume/resume.tex:140-165`).
 - **Tech:** Next.js 16, React 19, TypeScript, Tailwind CSS 4, Radix UI, zod, Vitest, Playwright, Vercel
-  (`promptpal@82ffb5d:README.md:124-125`; `prompt-builder/package.json:27-28`).
+  (`promptpal@82ffb5d:README.md:124-125`; `promptpal@82ffb5d:prompt-builder/package.json:27-28`).
 
 | Claim | Where stated | Check | Result |
 |---|---|---|---|
@@ -354,10 +356,10 @@ Repo paths in the table are relative to each server's clone at the SHA in the he
 - **What:** electronics store in framework-free PHP with a transactional checkout, order lifecycle and
   admin dashboard; rebuilt from university coursework (`technest@c7e590a:README.md:9-15`).
 - **Links:** source https://github.com/brettadams0/TechNest (`index.html:141`, `:148`). No live demo.
-  Screenshot `technest.webp` 1600×1000 (measured).
+  Screenshot `technest.webp` 1600×1000 (measured; `index.html:142`).
 - **Dates:** 2.0.0 "2026-10" (`technest@c7e590a:CHANGELOG.md:3`). Not on the résumé.
-- **Tech:** PHP 8.2-8.5, SQLite and MySQL 8, PHPStan level max, Docker (`README.md:4-6`, `:42`; CI
-  `.github/workflows/ci.yml:43`, `:70-75`).
+- **Tech:** PHP 8.2-8.5, SQLite and MySQL 8, PHPStan level max, Docker (`technest@c7e590a:README.md:4-6`,
+  `:42`; CI `technest@c7e590a:.github/workflows/ci.yml:43`, `:70-75`).
 
 | Claim | Where stated | Check | Result |
 |---|---|---|---|
@@ -403,10 +405,10 @@ Repo paths in the table are relative to each server's clone at the SHA in the he
   `INTERNET` permission at all." (`sift@e37fa56:README.md:1-8`; mirror `sift/README.md:9-14`).
 - **Where:** source mirror `sift/` in this repo, excluded from the build (`_config.yml:31-32`; README
   `README.md:60-61`); upstream https://github.com/brettadams0/sift (`sift/README.md:3-7`).
-- **Not on the homepage or résumé** (measured: no "sift" in `index.html` or `resume/resume.tex`).
+- **Not on the homepage or résumé** (measured: `grep -ci sift` returns 0 for `index.html:1-193` and `resume/resume.tex:1-167`).
 - **Mirror is stale:** mirror says build 0.2.0, versionCode 6 (`sift/README.md:24`); upstream says
   0.2.8, versionCode 14 (`sift@e37fa56:README.md:18`). Last mirror sync "Sync the Sift mirror to 0.2.0
-  (#30)", 2026-08-16 (site `git log`). `diff -rq` shows many differing files and upstream-only
+  (#30)", 2026-08-16 (site commit `00edbca`). `diff -rq` shows many differing files and upstream-only
   `androidTest/`, `dist/`, `.github/` (**measured**).
 - Facts common to both versions: 3.0 MB signed APK, installable across API 30-35 (`sift@e37fa56:README.md:18-20`,
   `sift/README.md:24-26`); "Of 48 tests, 46 pass and 2 are skipped by design" (`sift@e37fa56:README.md:35`,
@@ -453,8 +455,8 @@ Type: **scope** = both true in their own frame; **wording** = same fact, differe
 | D17 | mcp-surface "checks" | chips only | "Runs 19 checks" (`:145`) | "19 checks" (`:80`) | 19 rules from 11 check modules (measured) | wording | "19 checks" or "19 rules"? (Both sources already agree.) |
 | D18 | NHL arena work | listed as project "NHL Arena Web Interface", "internal" (`:154`) | a CIMCO bullet, not a project (`:125-126`) | — | no repo | scope | Keep it as a project entry? Any public detail allowed? |
 | D19 | JSON-LD `alumniOf` | `alumniOf` University of Windsor (`_layouts/default.html:21`) while the page says "Graduating 2027" (`:7`) | "Sep 2022 - Present" (`:88`) | — | — | wording (semantic) | Keep `alumniOf`, or use a current-student property? |
-| D20 | Résumé PDF vs tex | — | text identical | — | **Measured** (`pdftotext`, `pypdf`): 22/22 bullets, all headings and skills match `resume.tex`; PDF CreationDate 2026-10-16 = commit `0986a13`. Differences in the PDF only: heading extracts as "NOTABLE PROȷECTS" (U+0237 dotless j in place of J); contact line extracts icon glyphs U+F08C/U+F092/U+F0C1; the email is plain text, not a link (3 link annotations: LinkedIn, GitHub, website) | format | The format is to be kept exactly. Is the "PROȷECTS" glyph (what a résumé parser reads) worth fixing in the .tex? |
-| D21 | Sift | not shown | not shown | — | mirror 0.2.0 vs upstream 0.2.8 (section 7.8) | scope | Should Sift appear? Resync or remove the mirror? |
+| D20 | Résumé PDF vs tex | — | text identical (`resume/resume.tex:77-164`) | — | **Measured** (`pdftotext`, `pypdf` on `assets/resume/Resume_BrettAdams.pdf`): 22/22 bullets, all headings and skills match `resume.tex`; PDF CreationDate 2026-10-16 = commit `0986a13`. Differences in the PDF only: heading extracts as "NOTABLE PROȷECTS" (U+0237 dotless j in place of J); contact line extracts icon glyphs U+F08C/U+F092/U+F0C1; the email is plain text, not a link (3 link annotations: LinkedIn, GitHub, website) | format | The format is to be kept exactly. Is the "PROȷECTS" glyph (what a résumé parser reads) worth fixing in the .tex? |
+| D21 | Sift | not shown | not shown | — | mirror 0.2.0 (`sift/README.md:24`) vs upstream 0.2.8 (`sift@e37fa56:README.md:18`); excluded from build (`_config.yml:31-32`) | scope | Should Sift appear? Resync or remove the mirror? |
 | D22 | Token location in handoff | — | — | — | handoff says tokens are "at the top of `mcp-surface/styles.css`" (`handoff/mazefinder-live-demo.md:16-18`); CLAUDE.md says `assets/css/site.css` (`CLAUDE.md:12`). The values listed match both files; radius differs (12px `assets/css/site.css:21` vs 10px `mcp-surface/styles.css:19`) | wording | None for Brett; builder note. |
 
 ---
@@ -489,13 +491,13 @@ Each is needed by a sourced line or a likely redesign element. Write them as vis
 | `[BRETT: the 2023 CIMCO title: "Digital Solutions" what (intern? co-op? summer student?)]` | Both sources give a team-like name with no role noun and no "Co-op" (`index.html:68`, `resume/resume.tex:132`). |
 | `[BRETT: NHL Arena Web Interface: any screenshot or detail you may show publicly?]` | Listed as "internal" (`index.html:154`); a card or image needs permission. |
 | `[BRETT: show the phone number on the site?]` | Phone is on the résumé (`resume/resume.tex:79`) and so in the public PDF, but not on the site. |
-| `[BRETT: where are you based, and open to relocation or remote?]` | No source gives a personal location (section 2); recruiters filter on it. |
-| `[BRETT: work authorization (Canada; US or elsewhere?)]` | No source; relevant if the site targets roles outside Canada. |
+| `[BRETT: where are you based, and open to relocation or remote?]` | No source gives a personal location; only job cities (`index.html:28`, `:42`, `:55`, `:69`) and the university's "Windsor, ON" (`resume/resume.tex:89`). Recruiters filter on it. |
+| `[BRETT: work authorization (Canada; US or elsewhere?)]` | Not in `index.html` or `resume/resume.tex`; all four roles are in Ontario (`resume/resume.tex:104`, `:114`, `:123`, `:133`). Relevant if the site targets roles outside Canada. |
 | `[BRETT: graduation month 2027, earliest full-time start, Geotab internship end date, any further co-op term?]` | Site says only "Graduating 2027 · Open to full-time roles" (`index.html:7`); Geotab is "Present" (`index.html:28`, `resume/resume.tex:103`). |
-| `[BRETT: target roles wording: data engineering, data analytics, software engineering?]` | Only PROMPT.md's orientation summary names them; neither fact source does (section 4). |
-| `[BRETT: headshot (yes/no; file)?]` | None in `assets/img/`. |
+| `[BRETT: target roles wording: data engineering, data analytics, software engineering?]` | Only PROMPT.md's orientation summary names them; the fact sources say only "Open to full-time roles" (`index.html:7`) and "data & software engineering" (`index.html:8`, `_config.yml:2`). |
+| `[BRETT: headshot (yes/no; file)?]` | None in `assets/img/` (measured `ls`); the hero has no image (`index.html:4-19`). |
 | `[BRETT: custom domain (yes/no; which)?]` | None (no `CNAME`). A domain change also moves https://brettadams0.github.io/google-workspace-mcp-policy/, the policy URL on the Google OAuth consent screen (`google-workspace-mcp@1f1fc45:README.md:212`), and the absolute links in the synced demo (`neuronet-arena/index.html:12-13`, `:28`, `:147`). |
-| `[BRETT: canonical degree wording and education dates]` | D3, D4. |
+| `[BRETT: canonical degree wording and education dates]` | D3, D4: `index.html:176-177` vs `resume/resume.tex:87-88`. |
 | `[BRETT: project dates for neuronet-arena, PromptPal, TechNest if the redesign shows dates]` | Only the résumé's three projects have dates (`resume/resume.tex:141`, `:150`, `:159`); others have only CHANGELOG release dates (section 7). |
 | `[BRETT: MazeFinder dates Mar-Sep 2024 confirmed?]` | `resume/resume.tex:159`; the clone has one 2026-07-31 commit, so nothing confirms 2024. |
 
@@ -507,7 +509,7 @@ Each is needed by a sourced line or a likely redesign element. Write them as vis
 |---|---|---|
 | GA4 measurement ID | `G-Z3KW627PQQ` | `_config.yml:11` |
 | Old ID, never restore | `G-EBYB5MK388` ("belongs to someone else's property") | `_config.yml:9-10` |
-| Current property since | `106860c` "Point analytics at a property we actually own (#36)", 2026-09-28 | site `git log` |
+| Current property since | `106860c` "Point analytics at a property we actually own (#36)", 2026-09-28; the ID was changed in `_config.yml:9-11` | site commit `106860c` |
 | Loader | gtag.js async + `gtag('config', ...)`, then `analytics-events.js` with `defer`; nothing emitted if `site.google_analytics` is unset | `_includes/analytics.html:1-12` |
 | Pages that load GA | every page using `_layouts/default.html`: `/`, `/mcp/`, `/404.html` | `_layouts/default.html:35` |
 | Pages with no GA | `/neuronet-arena/`, `/mcp-surface/` (standalone HTML, no front matter, no gtag) | `neuronet-arena/index.html:1-23`, `mcp-surface/index.html:1-21` |
@@ -581,4 +583,4 @@ Each is needed by a sourced line or a likely redesign element. Write them as vis
 | Third-party licences | `mcp-surface/THIRD_PARTY_LICENSES.txt`, linked from the playground footer | `mcp-surface/index.html:87` |
 | Demo shells | both demos have a `header.top` with a back link "brettadams0.github.io" (neuronet absolute URL, mcp-surface `/`) and "Source on GitHub"; footers "Built by Brett Adams" | `neuronet-arena/index.html:26-33`, `:146-148`; `mcp-surface/index.html:24-32`, `:86-88` |
 | Reserved path | `/google-workspace-mcp-policy/` is served by another repo's project site on this domain; do not create that path here | `google-workspace-mcp@1f1fc45:README.md:212` |
-| Tracked files | 141 tracked files, most under `sift/` (measured: `git ls-files \| wc -l`) | — |
+| Tracked files | 141 tracked files, 92 of them under `sift/` (measured: `git ls-files \| wc -l`, `git ls-files sift \| wc -l`; `sift/` excluded at `_config.yml:31-32`) | — |
