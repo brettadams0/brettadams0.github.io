@@ -246,7 +246,7 @@ async function axe(browser, url, source) {
 
 function perfInit() { // runs in the page before any of its scripts
   const m = (window.__measure = { lcp: [], shifts: [] });
-  const desc = (el) => !el || !el.tagName ? null : {
+  const desc = (el) => !el || !el.tagName ? { selector: '(node no longer in the DOM)', src: null, text: null } : {
     selector: el.tagName.toLowerCase() + (el.id ? '#' + el.id : '') + (el.classList.length ? '.' + [...el.classList].join('.') : ''),
     src: el.currentSrc || el.src || null,
     text: (el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80) || null };
@@ -254,7 +254,7 @@ function perfInit() { // runs in the page before any of its scripts
     new PerformanceObserver((l) => { for (const e of l.getEntries()) m.lcp.push({ ms: Math.round(e.startTime), size: e.size, url: e.url || null, element: desc(e.element) }); })
       .observe({ type: 'largest-contentful-paint', buffered: true });
     new PerformanceObserver((l) => { for (const e of l.getEntries()) m.shifts.push({ value: e.value, t: e.startTime, input: e.hadRecentInput,
-      sources: (e.sources || []).slice(0, 3).map((s) => desc(s.node)?.selector || null) }); })
+      sources: (e.sources || []).slice(0, 3).map((s) => s.node && s.node.tagName ? desc(s.node).selector : s.node ? '#text' : null) }); })
       .observe({ type: 'layout-shift', buffered: true });
   } catch (e) { /* unsupported */ }
 }
@@ -415,9 +415,9 @@ async function analytics(browser, url, pathName, dnt) {
   const measurement_ids = raw.log.filter((e) => e.args[0] === 'config').map((e) => e.args[1]);
   if (dnt) return { gtag_present: raw.gtag, custom_events: events.length, events, measurement_ids, pass: events.length === 0 };
   const expectedEvents = raw.gtag ? ['scroll_depth'] : []; // a page without gtag can't send anything
-  if (raw.dom.tracked_sections.length) expectedEvents.push('section_view', 'section_dwell');
-  for (const t of targets) for (const x of t.expect) if (!expectedEvents.includes(x) && !t.missing_data_contact) expectedEvents.push(x);
-  const expectedSections = opt.expectSections || DEFAULT_SECTIONS[pathName] || [];
+  if (raw.gtag && raw.dom.tracked_sections.length) expectedEvents.push('section_view', 'section_dwell');
+  if (raw.gtag) for (const t of targets) for (const x of t.expect) if (!expectedEvents.includes(x) && !t.missing_data_contact) expectedEvents.push(x);
+  const expectedSections = raw.gtag ? opt.expectSections || DEFAULT_SECTIONS[pathName] || [] : [];
   const missing_events = expectedEvents.filter((x) => !counts[x]);
   const missing_sections = expectedSections.filter((x) => !ids('section_view').includes(x));
   const failed_clicks = targets.filter((t) => !t.ok);
