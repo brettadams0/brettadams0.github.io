@@ -167,8 +167,11 @@
     "clicks": 0,
     "note": "'author & educator, 20+ years' on fold; title 'Data Engineer, Technical Author & Educator' about 8 scrolls (estimated from tiles/m-04.png)"
    },
-   "resume": null,
-   "resume_note": "No résumé link found on the homepage",
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link found on the homepage"
+   },
    "contact": {
     "scrolls": 8,
     "clicks": 0,
@@ -191,8 +194,11 @@
     "clicks": 0,
     "note": "Hero paragraph; job title in about card about 3 scrolls (estimated from tiles/d-01.png)"
    },
-   "resume": null,
-   "resume_note": "No résumé link found on the homepage",
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link found on the homepage"
+   },
    "contact": {
     "scrolls": 3,
     "clicks": 0,

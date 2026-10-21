@@ -1,0 +1,224 @@
+{
+ "slug": "wisl",
+ "url": "https://wisl.dev/",
+ "final_url": "https://wisl.dev/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:43:47.871Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://wisl.dev/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "Wisaroot Lertthaweedech | Senior Data Engineer",
+ "meta_description": "Portfolio and blog: scalable data platforms, ETL pipelines, and real-time systems on GCP. Python, Rust, SQL, Airflow, BigQuery, Terraform, AI/ML.",
+ "hero_text": "wisl . home blog about Wisaroot Lertthaweedech senior data engineer · data platforms, infrastructure, developer tools I build scalable data platforms, batch and streaming pipelines …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "wisl.",
+  "home",
+  "blog",
+  "about",
+  "Toggle color theme",
+  "GitHub",
+  "LinkedIn",
+  "dev.to",
+  "copied me@wisl.dev",
+  "about me →"
+ ],
+ "sections_ordered": [
+  "h1: Wisaroot Lertthaweedech",
+  "h2: Open source",
+  "h2: Blog"
+ ],
+ "fonts": {
+  "body": "\"General Sans\", system-ui, sans-serif",
+  "h1": "Fraunces, Georgia, \"Times New Roman\", serif",
+  "loaded": [
+   "General Sans 400 normal",
+   "General Sans 500 normal",
+   "Fraunces 100 900 normal",
+   "DM Mono 400 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(250, 250, 250)",
+  "text": "rgb(24, 24, 27)",
+  "link": "rgb(82, 82, 91)",
+  "h1": "rgb(24, 24, 27)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [
+   "button#theme-toggle"
+  ],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 3
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 17,
+   "total_bytes": 295604,
+   "js_bytes": 11762,
+   "lcp_ms": 2168,
+   "lcp_element": "p.pitch.reveal",
+   "cls": 0.0459
+  },
+  "mobile": {
+   "requests": 17,
+   "total_bytes": 443282,
+   "js_bytes": 11762,
+   "lcp_ms": 1240,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 16,
+   "resource_transfer_bytes": 278970,
+   "dcl_ms": 1640,
+   "load_ms": 1647
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 1851,
+   "text_chars_3000ms": 1851
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://github.com/wislertt",
+   "https://www.linkedin.com/in/wisl/",
+   "mailto:me@wisl.dev",
+   "https://github.com/wislertt",
+   "https://www.linkedin.com/in/wisl/",
+   "mailto:me@wisl.dev"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": true,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 6,
+   "js": 2
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 2,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 3 nodes)",
+    "link-in-text-block (serious, 3 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": []
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 7,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 0,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "'senior data engineer' and 'now at ABACUS digital' on fold."
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link on the homepage or in the nav; About page not loaded."
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "@ icon (mailto, copies me@wisl.dev) plus GitHub, LinkedIn, dev.to icons on fold."
+   },
+   "best_project": {
+    "scrolls": 1,
+    "clicks": 0,
+    "note": "Open source section at y 1019; bakefile card first."
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "Card docs link opens bakefile docs with tests/codecov/PyPI badges."
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Role line and employer in hero."
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link found on the homepage."
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "@ icon in hero; repeated in footer."
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Open source cards visible on the fold (y 557)."
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "GitHub / docs icons on each card."
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://bakefile.wisl.dev/",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Python task runner, Makefile alternative - bakefile"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}

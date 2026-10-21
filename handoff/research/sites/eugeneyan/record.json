@@ -159,8 +159,11 @@
     "clicks": 0,
     "note": "MTS at Anthropic in the intro paragraph on the fold"
    },
-   "resume": null,
-   "resume_note": "No résumé link found on the homepage",
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link found on the homepage"
+   },
    "contact": {
     "scrolls": 4,
     "clicks": 0,
@@ -183,8 +186,11 @@
     "clicks": 0,
     "note": "Intro paragraph on fold"
    },
-   "resume": null,
-   "resume_note": "No résumé link found on the homepage",
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link found on the homepage"
+   },
    "contact": {
     "scrolls": 3,
     "clicks": 0,

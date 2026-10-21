@@ -1,0 +1,227 @@
+{
+ "slug": "pahasara",
+ "url": "https://www.pahasara.me/",
+ "final_url": "https://www.pahasara.me/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:40:25.421Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://www.pahasara.me/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "Portfolio",
+ "meta_description": "Personal Portfolio",
+ "hero_text": "About Blog I'm Pahasara Ridmaka , Linux enthusiast and software/data engineer building full-stack apps and scalable data pipelines across open-source environments. Activity / Contributions live …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "https://github.com/pahasara-ridmaka",
+  "https://www.linkedin.com/in/pahasara-ridmaka",
+  "About",
+  "Blog"
+ ],
+ "sections_ordered": [],
+ "fonts": {
+  "body": "Inter, \"Inter Fallback\"",
+  "h1": null,
+  "loaded": [
+   "Inter 100 900 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "lab(2.75381 0 0)",
+  "text": "lab(98.26 0 0)",
+  "link": "lab(98.26 0 0)",
+  "h1": null
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [
+   "button.group/button.inline-flex"
+  ],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 1
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 49,
+   "total_bytes": 2891113,
+   "js_bytes": 282462,
+   "lcp_ms": 2952,
+   "lcp_element": "p.text-zinc-400.text-sm",
+   "cls": 0.0978
+  },
+  "mobile": {
+   "requests": 43,
+   "total_bytes": 2889702,
+   "js_bytes": 282462,
+   "lcp_ms": 1796,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 48,
+   "resource_transfer_bytes": 2877464,
+   "dcl_ms": 1335,
+   "load_ms": 2300
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 1885,
+   "text_chars_3000ms": 1886
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": true,
+  "resume_links": [
+   {
+    "text": "Download CV ↓",
+    "href": "files/resume.pdf",
+    "in_nav": false
+   },
+   {
+    "text": "HOLDMYRESUME - Job Application Tracker",
+    "href": "/projects/holdmyresume-job-application-tracker",
+    "in_nav": false
+   }
+  ],
+  "contact_path": true,
+  "contact_links": [
+   "https://github.com/pahasara-ridmaka",
+   "https://www.linkedin.com/in/pahasara-ridmaka",
+   "https://github.com/pahasara-ridmaka",
+   "https://www.linkedin.com/in/pahasara-ridmaka"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": true,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 1,
+   "js": 1
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 3,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 17 nodes)",
+    "link-name (serious, 2 nodes)",
+    "meta-viewport (critical, 1 nodes)",
+    "nested-interactive (serious, 1 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 3,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 17 nodes)",
+    "link-name (serious, 2 nodes)",
+    "meta-viewport (critical, 1 nodes)",
+    "nested-interactive (serious, 1 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 14,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 0
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   false
+  ],
+  "small_targets_mobile": 3,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Fold has only a self-description ('software/data engineer'); undergraduate status and 2023-2026 degree are on About (1 click)."
+   },
+   "resume": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'Download CV' on fold opens files/resume.pdf."
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "GitHub and LinkedIn icons in header; no email or form found."
+   },
+   "best_project": {
+    "scrolls": 1,
+    "clicks": 0,
+    "note": "Work index starts at fold bottom (y 783); dbt pipeline y 956, dengue ETL y 1129."
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "No live demo or deployed link found; project pages show dashboard screenshots and a GitHub button."
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Self-description on fold; student status on About."
+   },
+   "resume": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'Download CV' on fold."
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "GitHub/LinkedIn icons in header."
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "dbt pipeline row visible at fold bottom; dengue ETL ~1 scroll."
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Project row opens a page with screenshots; no live demos."
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://www.pahasara.me/projects/gov-dengue-etl-pipeline",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Portfolio"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}
