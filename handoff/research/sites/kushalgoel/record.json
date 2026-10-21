@@ -1,0 +1,224 @@
+{
+ "slug": "kushalgoel",
+ "url": "https://www.kushalgoel.com/",
+ "final_url": "https://www.kushalgoel.com/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T21:28:50.471Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://www.kushalgoel.com/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "Kushal Goel",
+ "meta_description": "Kushal Goel loves coding, math and finance and is currently studying computer science at the University of Waterloo.",
+ "hero_text": "Kushal Goel Software Engineer I love computer science, math and finance. About Experience Projects I'm a senior at the University of Waterloo studying Computer Science. …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "Kushal Goel",
+  "ABOUT",
+  "EXPERIENCE",
+  "PROJECTS",
+  "mailto:kushalgoel786@gmail.com",
+  "https://github.com/kushalgoel786",
+  "https://www.linkedin.com/in/kushal-goel/",
+  "/leetcode"
+ ],
+ "sections_ordered": [
+  "h1: Kushal Goel",
+  "h2: Software Engineer"
+ ],
+ "fonts": {
+  "body": "__Inter_f367f3, __Inter_Fallback_f367f3",
+  "h1": "__Inter_f367f3, __Inter_Fallback_f367f3",
+  "loaded": [
+   "__Inter_f367f3 100 900 normal",
+   "__Kalam_c3a974 400 normal",
+   "__Kalam_c3a974 400 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(240, 249, 255)",
+  "text": "rgb(2, 132, 199)",
+  "link": "rgb(7, 89, 133)",
+  "h1": "rgb(7, 89, 133)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": true,
+  "css_prefers_color_scheme_mentions": 4
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 19,
+   "total_bytes": 280128,
+   "js_bytes": 132918,
+   "lcp_ms": 612,
+   "lcp_element": "p.mb-4",
+   "cls": 0
+  },
+  "mobile": {
+   "requests": 19,
+   "total_bytes": 280128,
+   "js_bytes": 132918,
+   "lcp_ms": 572,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 18,
+   "resource_transfer_bytes": 255827,
+   "dcl_ms": 502,
+   "load_ms": 1217
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 5312,
+   "text_chars_3000ms": 5312
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": true,
+  "resume_links": [
+   {
+    "text": "View Résumé",
+    "href": "/resume.pdf",
+    "in_nav": false
+   }
+  ],
+  "contact_path": true,
+  "contact_links": [
+   "mailto:kushalgoel786@gmail.com",
+   "https://github.com/kushalgoel786",
+   "https://www.linkedin.com/in/kushal-goel/"
+  ],
+  "project_cards_hint": 2,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 2,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 9 nodes)",
+    "link-name (serious, 6 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 2,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 69 nodes)",
+    "link-name (serious, 6 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 0,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 1,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "About says 'senior' and 'recently completed' Citadel; no current role (Citadel ended Aug 2026)"
+   },
+   "resume": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'View Résumé' under the icons, y 306 (record), opens /resume.pdf"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Email icon (mailto) at y 200; address not shown as text"
+   },
+   "best_project": {
+    "scrolls": 4,
+    "clicks": 0,
+    "note": "PROJECTS at y 3479 (record); no menu on mobile, so scrolling only; none marked as best"
+   },
+   "shipped_work": {
+    "scrolls": 4,
+    "clicks": 1,
+    "note": "Investo title links to a live Vercel app at y 4105 (record)"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "About paragraph plus the Citadel May-Aug 2026 entry in the fold"
+   },
+   "resume": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'View Résumé' in the fold"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Icon row bottom-left of the sticky column"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Side-nav 'PROJECTS' jumps to y 2795 (3 scrolls by hand)"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 2,
+    "note": "Side-nav 'PROJECTS', then the Investo title (live app) at y 3226"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://www.kushalgoel.com/leetcode",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "LeetCode Bytes"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}

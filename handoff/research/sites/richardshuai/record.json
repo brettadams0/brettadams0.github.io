@@ -1,0 +1,234 @@
+{
+ "slug": "richardshuai",
+ "url": "https://www.richardshuai.app/",
+ "final_url": "https://www.richardshuai.app/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T21:24:18.544Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://www.richardshuai.app/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "Richard Shuai — Software Engineer",
+ "meta_description": "Software engineer studying CS at the University of Waterloo. Building impactful products across full-stack, cloud, infrastructure, and AI.",
+ "hero_text": "About Experience Projects Contact R i c h a r d The destination is but a final breath; the journey is the song that sings …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "About",
+  "Experience",
+  "Projects",
+  "Contact"
+ ],
+ "sections_ordered": [
+  "h1: Richard",
+  "h2: I am Richard Shuai, a builder and innovator. I craft impactful solutions across infra, cloud, and AI",
+  "h2: Where I have built",
+  "h2: Awards and Honors.",
+  "h2: Creative builds.",
+  "h2: Let's connect."
+ ],
+ "fonts": {
+  "body": "Almarai, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
+  "h1": "Almarai, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
+  "loaded": [
+   "Almarai 400 normal",
+   "Almarai 700 normal",
+   "Instrument Serif 400 italic"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(0, 0, 0)",
+  "text": "rgb(225, 224, 204)",
+  "link": "rgba(225, 224, 204, 0.8)",
+  "h1": "rgb(225, 224, 204)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 1
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 21,
+   "total_bytes": 382024,
+   "js_bytes": 168093,
+   "lcp_ms": 1752,
+   "lcp_element": "span.inline-block",
+   "cls": 0.0049
+  },
+  "mobile": {
+   "requests": 22,
+   "total_bytes": 422535,
+   "js_bytes": 168099,
+   "lcp_ms": 2948,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 17,
+   "resource_transfer_bytes": 292670,
+   "dcl_ms": 1051,
+   "load_ms": 2138
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 6816,
+   "text_chars_3000ms": 6816
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "#contact",
+   "https://www.linkedin.com/in/richardshuai/",
+   "https://www.linkedin.com/in/richardshuai/",
+   "https://github.com/ricsign/"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 1
+  },
+  "videos": [
+   {
+    "autoplay": true,
+    "playing": false,
+    "muted": true,
+    "y": 20
+   },
+   {
+    "autoplay": true,
+    "playing": false,
+    "muted": true,
+    "y": 2250
+   },
+   {
+    "autoplay": true,
+    "playing": false,
+    "muted": true,
+    "y": 9829
+   }
+  ],
+  "progress_bars": 0,
+  "logo_images": 7
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 2,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 2 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 2,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 2 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 23,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [
+    "h2 → h4 at \"Agentic AI\"",
+    "h2 → h4 at \"Vanguard Telematics\""
+   ],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 4,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "'F26 SWE @ Google' row in the hero chip card; full Google card at y 3308 (record)"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link on the site"
+   },
+   "contact": {
+    "scrolls": 19,
+    "clicks": 1,
+    "note": "Nav 'Contact' jumps to 'Let's connect.' (y 16667, record; beyond the 16000 px full-shot cap); only LinkedIn/GitHub/Devpost/Medium links, no email"
+   },
+   "best_project": {
+    "scrolls": 12,
+    "clicks": 0,
+    "note": "First 'Creative builds' card (Vanguard Telematics, hackathon winner) after y 10215 (record); nav 'Projects' lands on Awards first"
+   },
+   "shipped_work": {
+    "scrolls": 12,
+    "clicks": 1,
+    "note": "Project cards link to GitHub/Devpost; internship impact lines at ~4 scrolls are claims without links"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Hero chip card, right side"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link on the site"
+   },
+   "contact": {
+    "scrolls": 14,
+    "clicks": 1,
+    "note": "Nav 'Contact' to 'Let's connect.' at y 13211 (record); LinkedIn 'Get in touch' button, no email"
+   },
+   "best_project": {
+    "scrolls": 12,
+    "clicks": 0,
+    "note": "First project cards at y 11072 (record); not rendered in the desktop full shot (scroll reveal), seen in mobile tiles"
+   },
+   "shipped_work": {
+    "scrolls": 12,
+    "clicks": 1,
+    "note": "GitHub/Devpost links on project cards"
+   }
+  }
+ },
+ "inner_page": null,
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}

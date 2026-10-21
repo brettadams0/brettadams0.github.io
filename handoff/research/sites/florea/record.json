@@ -1,0 +1,218 @@
+{
+ "slug": "florea",
+ "url": "https://www.florea.ca/",
+ "final_url": "https://www.florea.ca/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T21:31:48.182Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://www.florea.ca/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "Laura Florea's Website",
+ "meta_description": null,
+ "hero_text": "Skip to main content Skip to navigation Laura Florea's Website Laura Florea Hi, I'm Laura! I'm a Software Engineer at Datadog who loves designing, building, …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "Laura Florea's Website"
+ ],
+ "sections_ordered": [
+  "h1: Laura Florea",
+  "h1: Hi, I'm Laura!",
+  "h2: EXPERIENCE",
+  "h2: PROJECTS",
+  "h2: MORE ABOUT ME"
+ ],
+ "fonts": {
+  "body": "sans-serif",
+  "h1": "Lato, sans-serif",
+  "loaded": [
+   "Lato 300 normal",
+   "Lato 400 normal",
+   "Google Sans 500 normal",
+   "Lato 400 normal",
+   "Roboto 400 normal",
+   "Roboto 500 normal",
+   "Roboto 700 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(255, 255, 255)",
+  "text": "rgb(0, 0, 0)",
+  "link": "rgb(33, 33, 33)",
+  "h1": "rgb(255, 255, 255)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 6
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 31,
+   "total_bytes": 2097608,
+   "js_bytes": 713628,
+   "lcp_ms": 1576,
+   "lcp_element": "div.IFuOkc",
+   "cls": 0.0019
+  },
+  "mobile": {
+   "requests": 32,
+   "total_bytes": 2072458,
+   "js_bytes": 713028,
+   "lcp_ms": 1152,
+   "cls": 0.0006
+  },
+  "perf_api_desktop": {
+   "resource_count": 23,
+   "resource_transfer_bytes": 989395,
+   "dcl_ms": 1189,
+   "load_ms": 1802
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 4030,
+   "text_chars_3000ms": 4056
+  }
+ },
+ "console_errors": {
+  "count": 2,
+  "first": [
+   "Access to fetch at 'https://play.google.com/log?format=json&hasfast=true&authuser=0' from origin 'https://www.florea.ca' has been blocked by CORS policy: Respon",
+   "Failed to load resource: net::ERR_FAILED"
+  ]
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "mailto:lflorea@uwaterloo.ca",
+   "https://www.linkedin.com/in/laura-florea/",
+   "https://github.com/lauraflorea"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 4,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 1
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 1,
+    "moderate": 5,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 7 nodes)",
+    "image-alt (critical, 2 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 1,
+    "moderate": 4,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 7 nodes)",
+    "image-alt (critical, 2 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 2,
+   "imgs_missing_alt": 2,
+   "heading_order_issues": [
+    "h1 → h3 at \"Contact Information\""
+   ],
+   "h1_count": 2
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 2,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "'Software Engineer at Datadog' sentence at y 734 (record), bottom edge of the fold"
+   },
+   "resume": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "'here' link in the intro, just above Contact Information (y ~900, estimated from tiles); opens a Google Drive file"
+   },
+   "contact": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "Email address shown as text at y 978 (record)"
+   },
+   "best_project": {
+    "scrolls": 2,
+    "clicks": 1,
+    "note": "PROJECTS at y 2441 (record); none marked as best; first entry links to GitHub"
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "Tailscale entry (y 1643) links to an engineering blog post about the webhook system; GitHub links under Projects"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Intro sentence beside the photo"
+   },
+   "resume": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'here' link in the intro, Google Drive"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Email, LinkedIn and GitHub as visible text under 'Contact Information'"
+   },
+   "best_project": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "PROJECTS at y 1459 (record)"
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "Tailscale blog-post link at about y 1150 (record headings)"
+   }
+  }
+ },
+ "inner_page": null,
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}
