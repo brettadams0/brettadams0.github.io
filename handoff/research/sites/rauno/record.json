@@ -1,0 +1,199 @@
+{
+ "slug": "rauno",
+ "url": "https://rauno.me/",
+ "final_url": "https://rauno.me/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:42:14.455Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://rauno.me/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "Rauno Freiberg",
+ "meta_description": null,
+ "hero_text": "Rauno Freiberg is an Estonian interaction designer working with Vercel and Devouring Details Devouring Details DD Craft Craft History of Software Design Projects Projects Field …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [],
+ "sections_ordered": [
+  "h1: Rauno Freiberg is an Estonian interaction designer working with Vercel and Devouring Details"
+ ],
+ "fonts": {
+  "body": "X, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Fira Sans\", \"Droid Sans\", \"Helveti",
+  "h1": "X, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Fira Sans\", \"Droid Sans\", \"Helveti",
+  "loaded": [
+   "X 400 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(237, 237, 237)",
+  "text": "rgb(0, 0, 0)",
+  "link": "rgb(0, 0, 0)",
+  "h1": "rgb(23, 23, 23)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 0
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 32,
+   "total_bytes": 660343,
+   "js_bytes": 186459,
+   "lcp_ms": 1360,
+   "lcp_element": "span",
+   "cls": 0
+  },
+  "mobile": {
+   "requests": 32,
+   "total_bytes": 660343,
+   "js_bytes": 186459,
+   "lcp_ms": 980,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 31,
+   "resource_transfer_bytes": 642351,
+   "dcl_ms": 1301,
+   "load_ms": 1302
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 339,
+   "text_chars_3000ms": 339
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://x.com/raunofreiberg",
+   "https://github.com/raunofreiberg"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 4
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 1,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 1 nodes)",
+    "meta-viewport (critical, 1 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 1,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 3 nodes)",
+    "meta-viewport (critical, 1 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 0,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [
+    "h1 → h3 at \"DD\""
+   ],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "small_targets_mobile": 0,
+  "horizontal_overflow_mobile": true,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Identity sentence on the first card"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 6,
+    "clicks": 1,
+    "note": "Estimated: seventh card of the horizontal strip (swipes, not vertical scrolls); Email is a copy-to-clipboard control, plus Twitter/GitHub"
+   },
+   "best_project": {
+    "scrolls": 2,
+    "clicks": 1,
+    "note": "Estimated: Craft card is third in the strip, opens /craft"
+   },
+   "shipped_work": {
+    "scrolls": 2,
+    "clicks": 2,
+    "note": "Estimated: /craft tiles with 'View Production' buttons"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Identity sentence fills the first card"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 6,
+    "clicks": 1,
+    "note": "Estimated: links card is seventh in the strip, beyond the captured 6,648 px width"
+   },
+   "best_project": {
+    "scrolls": 2,
+    "clicks": 1,
+    "note": "Estimated: Craft card is third (x ≈ 2,400 px)"
+   },
+   "shipped_work": {
+    "scrolls": 2,
+    "clicks": 2,
+    "note": "Estimated: /craft 'View Production' links, first one on the /craft fold"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://rauno.me/craft",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Craft"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}

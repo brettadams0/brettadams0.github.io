@@ -1,0 +1,215 @@
+{
+ "slug": "antfu",
+ "url": "https://antfu.me/",
+ "final_url": "https://antfu.me/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T16:24:45.563Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://antfu.me/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "Anthony Fu",
+ "meta_description": "Anthony Fu's Portfolio",
+ "hero_text": "Blog Projects Talks Sponsors Anthony Fu Hey! I’m Anthony Fu, a fanatical open sourceror and design engineer. Working at Vercel / Nuxt Creator of Vitest …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "/",
+  "Blog",
+  "Projects",
+  "Talks",
+  "Sponsors",
+  "Podcasts",
+  "Photos",
+  "Demos",
+  "Bluesky",
+  "GitHub",
+  "RSS"
+ ],
+ "sections_ordered": [
+  "h1: Anthony Fu"
+ ],
+ "fonts": {
+  "body": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto S",
+  "h1": "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto S",
+  "loaded": [
+   "DM Mono 400 normal",
+   "Inter 400 normal",
+   "Roboto Condensed 400 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(255, 255, 255)",
+  "text": "rgb(55, 65, 81)",
+  "link": "rgb(136, 136, 136)",
+  "h1": "rgb(0, 0, 0)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": true,
+  "css_prefers_color_scheme_mentions": 2
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 42,
+   "total_bytes": 925534,
+   "js_bytes": 277512,
+   "lcp_ms": 2300,
+   "lcp_element": "p",
+   "cls": 0.0998
+  },
+  "mobile": {
+   "requests": 33,
+   "total_bytes": 779492,
+   "js_bytes": 131746,
+   "lcp_ms": 3668,
+   "cls": 0.0015
+  },
+  "perf_api_desktop": {
+   "resource_count": 40,
+   "resource_transfer_bytes": 381122,
+   "dcl_ms": 1821,
+   "load_ms": 4834
+  },
+  "canvas_contexts": [
+   "2d",
+   "webgl",
+   "webgl2"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 1369,
+   "text_chars_3000ms": 1373
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://bsky.app/profile/antfu.me",
+   "https://github.com/antfu",
+   "https://github.com/antfu",
+   "https://bsky.app/profile/antfu.me",
+   "https://x.com/antfu7",
+   "https://x.com/antfuzh"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": true,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 3,
+   "js": 1
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 30 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 26 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 0,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "small_targets_mobile": 6,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "'design engineer' and 'Working at Vercel / Nuxt' on the fold"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 1,
+    "clicks": 0,
+    "note": "Labelled social links and the email address (as text) about 1.5 viewports down"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'Creator of' chips (Vitest first) on the fold; Projects is the lightbulb icon in the nav"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Project and core-team chips on the fold"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Second line under the name"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Email address at the bottom of the fold, social links above it"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'Creator of' chips on the fold or 'Projects' in the nav"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Chips link to the shipped tools"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://antfu.me/projects",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Projects - Anthony Fu"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}
