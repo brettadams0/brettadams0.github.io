@@ -1,0 +1,200 @@
+{
+ "slug": "bruno-simon",
+ "url": "https://bruno-simon.com/",
+ "final_url": "https://bruno-simon.com/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:39:28.748Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://bruno-simon.com/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "Bruno's",
+ "meta_description": "Bruno Simon's creative portfolio",
+ "hero_text": "",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [],
+ "sections_ordered": [],
+ "fonts": {
+  "body": "Nunito, sans-serif",
+  "h1": null,
+  "loaded": [
+   "Amatic SC 700 normal",
+   "Nunito 400 normal",
+   "Pally-Medium 500 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(255, 255, 255)",
+  "text": "rgb(0, 0, 0)",
+  "link": "rgb(255, 255, 255)",
+  "h1": null
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 0
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 97,
+   "total_bytes": 3804549,
+   "js_bytes": 1230723,
+   "lcp_ms": null,
+   "lcp_element": null,
+   "cls": 0
+  },
+  "mobile": {
+   "requests": 147,
+   "total_bytes": 7644625,
+   "js_bytes": 1230731,
+   "lcp_ms": null,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 61,
+   "resource_transfer_bytes": 3562676,
+   "dcl_ms": 2530,
+   "load_ms": 2530
+  },
+  "canvas_contexts": [
+   "webgl2",
+   "2d"
+  ],
+  "scroll_libs": [
+   "ScrollTrigger"
+  ],
+  "webgl_libs": [
+   "three.js"
+  ],
+  "splash_check": {
+   "text_chars_500ms": 0,
+   "text_chars_3000ms": 0
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://x.com/mrdoob",
+   "http://github.com/mrdoob",
+   "https://x.com/sea3dformat",
+   "https://github.com/sunag"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": true,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 2,
+    "serious": 0,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "button-name (critical, 2 nodes)",
+    "image-alt (critical, 1 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 2,
+    "serious": 0,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "button-name (critical, 2 nodes)",
+    "image-alt (critical, 1 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 44,
+   "imgs_missing_alt": 41,
+   "heading_order_issues": [],
+   "h1_count": 0
+  },
+  "focus_visible_first_5_tabs": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "small_targets_mobile": 0,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "Not reached: page never showed text within the ~12 s settle; one role sentence exists in a hidden welcome panel"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "Not reached: Discord / private-message links sit in a hidden menu behind an unlabelled button"
+   },
+   "best_project": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "Not reached: projects exist only inside the 3D world (drive to them)"
+   },
+   "shipped_work": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "The site itself; source link is in a hidden behind-the-scenes panel. Not reached in capture"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "Not reached within ~35 s (loader ring only, 0 visible characters)"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "Not reached; hidden menu"
+   },
+   "best_project": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "Not reached; inside the 3D world"
+   },
+   "shipped_work": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "The world itself; never rendered past the loader in capture"
+   }
+  },
+  "resume_note": "No résumé exists in the HTML. Page height equals the viewport (no scrolling, body overflow hidden), so scrolls are meaningless here."
+ },
+ "inner_page": null,
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}

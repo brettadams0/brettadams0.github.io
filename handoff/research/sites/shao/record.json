@@ -1,0 +1,213 @@
+{
+ "slug": "shao",
+ "url": "https://shao.zip/",
+ "final_url": "https://shao.zip/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T16:23:30.481Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://shao.zip/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "George Shao",
+ "meta_description": "Software engineer at Tesla. Previously xAI / X, ETHGlobal. University of Waterloo CS alum.",
+ "hero_text": "George Shao Hi, I’m George. Graduated from University of Waterloo Computer Science in 2026. GeorgeShao123@gmail.com @george_ Work Currently at Tesla Previously xAI / X High-performance …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "GeorgeShao123@gmail.com",
+  "@george_",
+  "←",
+  "UW CS webring",
+  "→"
+ ],
+ "sections_ordered": [
+  "h1: George Shao",
+  "h2: Work",
+  "h2: Open-source",
+  "h2: Outside of work"
+ ],
+ "fonts": {
+  "body": "\"Times New Roman\"",
+  "h1": "lora, \"lora Fallback\", Georgia, serif, Georgia, serif",
+  "loaded": [
+   "lora 400 normal",
+   "dmSans 400 700 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(246, 243, 235)",
+  "text": "rgb(0, 0, 0)",
+  "link": "rgb(58, 92, 68)",
+  "h1": "rgb(58, 92, 68)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 2
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 22,
+   "total_bytes": 451137,
+   "js_bytes": 365714,
+   "lcp_ms": 2228,
+   "lcp_element": "img.portrait src=https://shao.zip/portrait.avif",
+   "cls": 0.0001
+  },
+  "mobile": {
+   "requests": 22,
+   "total_bytes": 451111,
+   "js_bytes": 365688,
+   "lcp_ms": 1732,
+   "cls": 0.0001
+  },
+  "perf_api_desktop": {
+   "resource_count": 21,
+   "resource_transfer_bytes": 316530,
+   "dcl_ms": 1361,
+   "load_ms": 3895
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 908,
+   "text_chars_3000ms": 908
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "mailto:GeorgeShao123@gmail.com",
+   "https://x.com/george_"
+  ],
+  "project_cards_hint": 1,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 2
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 18 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 18 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": "Skip to content",
+   "imgs": 2,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 11,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "'Currently at Tesla' under Work, in the fold; no job title"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé on the site"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "mailto email shown in full under the intro, plus X handle"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'Drop' employer link in the fold opens the internship write-up; it is not labelled as a write-up"
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "Open-source section (TorchSnapshot GitHub link) about 1 viewport down (estimated from tiles/m-00.png); xAI/Tesla claims at 0 scrolls"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "'Currently at Tesla' in the fold"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé on the site"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "mailto email under the intro"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'Drop' link at the bottom of the Work list opens the write-up"
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "Open-source heading at y 840 (record), TorchSnapshot link just below the fold"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://shao.zip/drop",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Scaling Payment Syncing on the Production Engineering team at Drop"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+}
