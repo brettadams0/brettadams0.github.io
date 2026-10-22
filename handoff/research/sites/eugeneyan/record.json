@@ -150,7 +150,8 @@
    true
   ],
   "small_targets_mobile": 0,
-  "horizontal_overflow_mobile": false
+  "horizontal_overflow_mobile": true,
+  "mobile_layout_width": 453
  },
  "time_to_key_info": {
   "mobile": {

@@ -13,31 +13,39 @@ Independent verification of every claim the capture agents made about another si
 - **Tie-breaks:** where any criterion differed by 2 or more points, a third agent that had scored
   neither version looked at both sets of evidence and the screenshots, and set the final score.
 
-**Totals:** 802 confirmed, 74 corrected, 1 removed, 0 unverifiable, across 19 sites.
-
-**Not yet verified:** beingbrute, damian, darshshah, florea, henryheffernan, kushalgoel, mujtabasaqib, richardshuai, shao, ssp
+**Totals:** 1212 confirmed, 121 corrected, 1 removed, 0 unverifiable, across 29 sites.
 
 ## Per site
 
 | Site | Verifier | Reloaded (UTC) | Confirmed | Corrected | Removed | Unverifiable |
 |---|---|---|---|---|---|---|
 | antfu | V3.3 | 2026-10-21T16:29:49.154Z | 49 | 2 | 0 | 0 |
+| beingbrute | V5.1 | 2026-10-21T16:29:38.724Z | 41 | 3 | 0 | 0 |
 | brittanychiang | V3.1 | 2026-10-21T16:25:47.965Z | 47 | 4 | 0 | 0 |
 | bruno-simon | V3.3 | 2026-10-21T21:33:55.978Z | 34 | 5 | 0 | 0 |
 | ciechanow | V3.2 | 2026-10-21T16:25:57.760Z | 43 | 3 | 0 | 0 |
+| damian | V5.1 | 2026-10-22T07:48:54.881Z | 45 | 3 | 0 | 0 |
 | danluu | V3.1 | 2026-10-21T16:26:56.289Z | 39 | 3 | 0 | 0 |
+| darshshah | V5.2 | 2026-10-22T07:48:11.928Z | 44 | 3 | 0 | 0 |
 | deshraj-jogiya | V3.4 | 2026-10-21T21:34:50.556Z | 43 | 5 | 0 | 0 |
 | emilkowal | V3.1 | 2026-10-21T16:26:54.158Z | 43 | 4 | 0 | 0 |
 | eugeneyan | V3.4 | 2026-10-21T21:37:03.576Z | 40 | 6 | 0 | 0 |
+| florea | V5.2 | 2026-10-21T21:35:32.666Z | 41 | 7 | 0 | 0 |
+| henryheffernan | V5.2 | 2026-10-21T21:35:32.763Z | 29 | 11 | 0 | 0 |
+| kushalgoel | V5.2 | 2026-10-21T21:35:32.631Z | 39 | 7 | 0 | 0 |
 | madebyevan | V3.2 | 2026-10-21T16:25:57.899Z | 44 | 1 | 0 | 0 |
 | mehdio | V3.3 | 2026-10-21T16:29:38.486Z | 31 | 10 | 0 | 0 |
+| mujtabasaqib | V5.1 | 2026-10-21T16:29:38.391Z | 39 | 2 | 0 | 0 |
 | pahasara | V3.4 | 2026-10-21T16:29:38.559Z | 41 | 4 | 0 | 0 |
 | rauno | V3.3 | 2026-10-21T16:29:48.411Z | 40 | 7 | 0 | 0 |
 | redblobgames | V3.2 | 2026-10-21T16:25:58.024Z | 47 | 0 | 0 | 0 |
+| richardshuai | V5.2 | 2026-10-21T21:35:32.666Z | 47 | 3 | 0 | 0 |
 | robinlinacre | V3.2 | 2026-10-21T16:25:57.907Z | 41 | 3 | 0 | 0 |
 | samwho | V3.2 | 2026-10-21T16:29:49.110Z | 46 | 4 | 0 | 0 |
+| shao | V5.1 | 2026-10-22T07:48:11.931Z | 44 | 4 | 0 | 0 |
 | shaundataanalytics | V3.4 | 2026-10-21T21:36:13.279Z | 45 | 3 | 0 | 0 |
 | shud | V3.1 | 2026-10-21T16:26:56.573Z | 40 | 3 | 1 | 0 |
+| ssp | V5.1 | 2026-10-21T21:37:42.715Z | 41 | 4 | 0 | 0 |
 | taniarascia | V3.1 | 2026-10-21T16:26:55.409Z | 44 | 4 | 0 | 0 |
 | wisl | V3.3 | 2026-10-21T16:29:49.265Z | 45 | 3 | 0 | 0 |
 
@@ -47,6 +55,12 @@ Independent verification of every claim the capture agents made about another si
 
 - **P1** (pattern) corrected: “role-and-level-in-hero” → “role-in-hero: 'design engineer' is stated; level is not stated in words, only implied by creator and core-team chips.” — Hero: 'a fanatical open sourceror and design engineer. Working at Vercel / Nuxt'. No seniority word. [antfu:verify/desktop-fold.png]
 - **N1** (measured_number) corrected: “js_bytes_desktop = 277512” → “js_bytes_desktop varies between loads: 131,667 B (9 scripts) in the verifier reload vs 277,512 B (18 scripts) originally; report as about 130–280 KB.” — Reload 131,667 is -53%, outside ±30%. Script count halved, so lazily loaded chunks differ between loads. [antfu:verify.record.summary.js_bytes_desktop]
+
+### beingbrute
+
+- **W3** (what_works) corrected: “Repeatable case-study order: question, public dataset and size, what was built, stat tiles, captioned dashboards, findings with caveats, a recommendation, chips, then repo/dashboard/docs links.” → “Repeatable order: question with public dataset and size, stat tiles, captioned dashboards, 'What this shows' (build steps, caveated findings), recommendation, chips, repo/docs links; Tableau on two of four.” — Customer section opens with the UCI dataset and 1,033,036 rows, then stat tiles and dashboards; the fraud 'What this shows' list follows its dashboards. Loan and Inventory link repo and docs only. [beingbrute:verify/tiles/d-02.png]
+- **D3** (what_doesnt) corrected: “Layout shift of 0.114 (measured, both sizes) on an otherwise very light, script-free page.” → “Layout shift 0.115 measured on mobile; desktop CLS was 0.010 on reload (0.114 at capture), on an otherwise very light, script-free page.” — Reload summary.cls_mobile 0.1146, cls_desktop 0.0098; js_bytes 0 at both sizes. [beingbrute:verify.record.summary.cls_mobile]
+- **N5** (measured_number) corrected: “cls_desktop = 0.1138” → “cls_desktop = 0.0098 on reload (0.1138 at capture); the 0.11 shift reproduces on mobile (0.1146).” — Reload desktop CLS 0.0098 is 91% below the claim, outside a 50% band; mobile 0.1146 matches the original 0.114. [beingbrute:verify.record.summary.cls_desktop]
 
 ### brittanychiang
 
@@ -69,11 +83,23 @@ Independent verification of every claim the capture agents made about another si
 - **P2** (pattern) corrected: “demo-autostarts” → “Widgets initialise and render WebGL on page load (Moon visible at the fold), but animated simulations wait for a play button.” — canvas_contexts experimental-webgl at load and the Moon is drawn without input, yet d-03 shows a ▶ button gating the simulation, so 'autostarts' is only half true. [ciechanow:verify.record.home.desktop.perf_api_initial]
 - **R1** (role_confirmed) corrected: “Interactive articles about science and engineering.” → “'Interactive articles about science and engineering.' is the meta description only; no visible text on the page states a role.” — Phrase found only in meta_description fields; hero_text and fold shots show name, nav and article. [ciechanow:verify.record.summary.meta_description]
 
+### damian
+
+- **W3** (what_works) corrected: “Internship count is stated, then one bullet per notable internship pairing the work with its outcome.” → “States '8 internships', then five bullets of internship work (two at Shopify); only two pair the work with an outcome: millions of queries daily, >99% reduced fees.” — Snowflake 'impacting millions of queries daily' and BitGo '>99% reduced fees' carry outcomes; the Splunk risk-scoring and both Shopify bullets describe work only. [damian:verify/desktop-fold.png]
+- **P6** (pattern) corrected: “experience-bullets-with-outcomes” → “internship-bullets-partial-outcomes: two of five bullets carry an outcome (millions of queries daily; >99% reduced fees).” — Three of the five bullets (Splunk risk scoring, Shopify data analysis, Shopify Vault) describe work without a result. [damian:verify/desktop-fold.png]
+- **P9** (pattern) corrected: “monospace-accents” → “monospace-throughout: all body text is Space Mono, not just accents.” — fonts.p is Space Mono and loaded_faces is only 'Space Mono 400'; every visible paragraph is monospace. [damian:verify.record.summary.fonts]
+
 ### danluu
 
 - **W1** (what_works) corrected: “Weight floor for comparison: about 20 KB and 5 requests per page, LCP under 0.8 s, zero layout shift (measured).” → “Weight floor for comparison: about 20 KB and 5 requests per page, LCP about 0.9 s on the homepage (1.4 s on an essay), zero layout shift (measured).” — Bytes and requests hold (19,697 B, 5 req; essay 19,602 B). LCP not under 0.8 s in my reload: 861 ms desktop, 963 ms mobile, 1,363 ms essay. [danluu:verify.record.summary.lcp_ms_desktop]
 - **W3** (what_works) corrected: “Essays open with concrete facts (company size, team size, exact stack) before any argument.” → “The captured essay opens with concrete facts ($1.7B company, 70 engineers, a Python monolith on Postgres) before its argument; only one essay was checked.” — Holds for 'In defense of simple architectures', but the claim generalises to all essays from one page. [danluu:verify/inner-desktop-fold.png]
 - **W4** (what_works) corrected: “Titles are plain and specific, so the list works as its own table of contents.” → “Most titles are plain and specific, so the list largely works as its own table of contents; a few are coined or vague ('The benchmarkpocalypse', 'Attrition').” — Many titles are specific, but some are not ('Bug blindness', 'Cocktail party ideas', 'Attrition', 'Relative vs. absolute'). [danluu:verify/tiles/d-03.png]
+
+### darshshah
+
+- **W4** (what_works) corrected: “Lean build: one script, six requests, sub-1.1 s LCP (measured).” → “Lean build: one 63 KB script, six requests, 232 KB total (measured); LCP 1.6 s desktop, 0.5 s mobile on reload, not sub-1.1 s.” — by_type script count 1 / 63328 B; requests 6; total 231811; lcp_ms_desktop 1628 on my reload (claim 1072), lcp_ms_mobile 548. [darshshah:verify.record.home.desktop.network_initial.by_type]
+- **P2** (pattern) corrected: “current-employer-in-hero” → “Current employer (Wealthsimple, "Present") is on both first screens in the first Experience card, below the intro, not in the intro line; the "Present" looks stale.” — Intro block has only school and city; Wealthsimple appears in the first card at about y 440 desktop / y 435 mobile, inside the fold. [darshshah:verify/desktop-fold.png]
+- **N4** (measured_number) corrected: “lcp_ms_desktop = 1072” → “lcp_ms_desktop = 1628 on reload (mobile 548); outside the ±50% / ±500 ms tolerance of 1072, still under 2.5 s.” — My reload LCP element p at 1628 ms desktop; 1072 + 500 = 1572 and 1072 × 1.5 = 1608 are both exceeded. [darshshah:verify.record.summary.lcp_ms_desktop]
 
 ### deshraj-jogiya
 
@@ -99,6 +125,40 @@ Independent verification of every claim the capture agents made about another si
 - **N5** (measured_number) corrected: “cls_desktop = 0.0275” → “cls_desktop about 0.01-0.03 (0.0119 on reload, 0.0275 at capture); both well under 0.05.” — Reload CLS 0.0119 is 57% below the claimed 0.0275, outside a 50% band; the rubric bucket (<0.05) is unchanged. [eugeneyan:verify.record.summary.cls_desktop]
 - **N8** (measured_number) corrected: “horizontal_overflow_mobile = false” → “horizontal_overflow_mobile = true under the current rule: no scrollbar overflow, but the mobile layout viewport is 453 px, wider than the 390 px screen (see D2).” — Reload: summary.horizontal_overflow_mobile true, mobile_layout_width 453, dom.horizontal_overflow false. The original record used an older rule that ignored layout width; booleans must match exactly. [eugeneyan:verify.record.summary.horizontal_overflow_mobile]
 
+### florea
+
+- **W2** (what_works) corrected: “Each role paragraph ends in a concrete, often money- or time-based outcome.” → “Four of five role paragraphs state a concrete outcome (95%, 100x, $165000, days to 5 minutes); the current Datadog role gives scope (100+ PB) but no outcome.” — Datadog SWE paragraph only describes the team; Tailscale ends with "Read about it here." after its numbers; others end on numbers. [florea:verify/v-probe.json]
+- **W5** (what_works) corrected: “Short page: everything is within 2 screens on desktop and under 5 on mobile.” → “Short page: about 2.6 screens on desktop (2382 px) and 4.6 on mobile (3918 px).” — scroll_height 2382 at 900 px viewport, 3918 at 844 px; "within 2 screens" understates desktop. [florea:verify.record.home.mobile.dom.scroll_height]
+- **D2** (what_doesnt) corrected: “Mobile first screen is a banner and a large photo; the role line sits at the bottom edge under a floating button.” → “Mobile first screen is a banner and a large photo; the role sentence starts at the bottom edge, with a floating info button over the lines just below it.” — "Hi, I'm Laura!" at y 666, role line at y 734 of 844; the round (i) button overlaps "learning... hopes", not the role words. [florea:verify/mobile-fold.png]
+- **D4** (what_doesnt) corrected: “Images lack alt text (axe critical) and every link is labelled 'here'.” → “Two images lack alt text (axe image-alt critical); the résumé, write-up and project links are labelled "here", though employer and contact links have real text.” — 6 links read "here"; Tailscale, Capital One, Tucows, email, LinkedIn, GitHub links have descriptive text. [florea:verify.record.home.desktop.axe.violations]
+- **K5** (time_to_key_info) corrected: “mobile shipped_work: {"scrolls": 1, "clicks": 1, "note": "Tailscale entry (y 1643) links to an engineering blog post about the webhook system; GitHub links under Projects"}” → “mobile shipped_work: {"scrolls": 2, "clicks": 1, "note": "Tailscale heading at y 1643, its 'here' blog link about y 1825 (estimated from tile), past the 1688 px two-screen mark"}” — Mobile tile m-01 (1 px = 1.25 CSS px from y 1500) puts "Read about it here." near y 1825; one scroll shows only to 1688. [florea:verify/tiles/m-01.png]
+- **N4** (measured_number) corrected: “lcp_ms_desktop = 1576” → “lcp_ms_desktop = 4636 on reload (mobile 1996); outside the band around 1576.” — LCP element div.IFuOkc (banner) at 4636 ms; 1576 + 500 = 2076 and 1576 × 1.5 = 2364 are exceeded. [florea:verify.record.summary.lcp_ms_desktop]
+- **N7** (measured_number) corrected: “has_resume_link = false” → “has_resume_link = false in the record is a detector miss: the intro's "here" link opens a résumé on Google Drive.” — Record field reproduces false, but the page text says "check out my resume here!" linking drive.google.com; résumé exists. [florea:verify/v-probe.json]
+
+### henryheffernan
+
+- **D1** (what_doesnt) corrected: “Two click gates and a camera move before the role is readable (~28 s desktop, ~42 s phone in this harness).” → “Two click gates (START, then "Click anywhere") and a camera move before the role is readable: ~32 s desktop in the verifier harness; phone not re-measured.” — START visible 1.8 s, clicked 12.6 s, second click 24.5 s, role legible on the monitor in the shot 8 s later. No mobile click-through was run. [henryheffernan:verify/v-click-through.json]
+- **D2** (what_doesnt) corrected: “Role, degree and job-seeking status live only in the meta description; nothing on the first screen says what they do.” → “Nothing on the first screen says what they do. Role, RPI degree and Vercel job appear only inside the OS; the meta job-seeking line is stale.” — Landing text is boot log and START only. OS About: "software engineer currently working at Vercel! In May of 2022 I graduated from Rensselaer..." Meta still says job-seeking. [henryheffernan:verify/v52-probe-about.json]
+- **D3** (what_doesnt) corrected: “Heavy: 7.7 MB desktop transfer, mostly video, image and model assets (measured).” → “Heavy: 4.8 MB initial, 5.3 MB after scroll on desktop (measured), mostly images (3.1 MB) and fetched 3D assets (1.3 MB); video bytes 0 at capture.” — Reload total_bytes 4800056 (claim 7660986, -37%); by_type image 3051980, fetch 1300449, media 2 requests 0 bytes, script 428 KB. [henryheffernan:verify.record.home.desktop.network_initial.by_type]
+- **D5** (what_doesnt) corrected: “START is not a button, no focus is visible, and the landing has zero links, so keyboard and screen-reader users are stuck.” → “START is a plain <p> (no role or tabindex), focus never visibly changes (Tab lands only on the OS iframe), and the landing has zero links.” — start_tag "P role=null tabindex=null"; focus_check: five iframe stops, visible_change false; interactive_first_2_viewports 0; contact_links []. Tab reaches the iframe, so "stuck" is unproven. [henryheffernan:verify/v-click-through.json]
+- **K1** (time_to_key_info) corrected: “mobile current_role: {"scrolls": 0, "clicks": 2, "note": "'Software Engineer' legible on the 3D monitor after START and a second tap (~42 s in this harness, includes 12 s fixed waits); full role sentence only in meta"}” → “mobile current_role: {"scrolls": 0, "clicks": 2, "note": "START gate confirmed on phone; second tap and ~42 s timing not re-measured; role sentence in meta, Vercel role in OS About"}” — Phone fold shows the START gate; desktop click-through needed START plus a second click. No mobile click-through in my evidence. [henryheffernan:verify/mobile-fold.png]
+- **K2** (time_to_key_info) corrected: “mobile resume: {"scrolls": null, "clicks": null, "note": "No r\u00e9sum\u00e9 link on any captured screen; About/Experience views not loaded, so unverified"}” → “mobile resume: {"scrolls": 0, "clicks": 4, "note": "START, tap, ABOUT, then 'Click here to download it!' (2022 PDF) on the OS About page; estimated"}” — OS About text: "Looking for my resume? Click here to download it!" linking to Henry_Heffernan_S22_Resume...pdf. The null claim is wrong. [henryheffernan:verify/v52-probe-about.json]
+- **K7** (time_to_key_info) corrected: “desktop resume: {"scrolls": null, "clicks": null, "note": "Not seen on captured screens; unverified"}” → “desktop resume: {"scrolls": 0, "clicks": 4, "note": "START, click, ABOUT, then 'Click here to download it!' (2022 PDF) on the OS About page"}” — OS About page links "Click here to download it!" to a résumé PDF; the claim that none was seen is out of date. [henryheffernan:verify/v52-probe-about.json]
+- **R1** (role_confirmed) corrected: “I'm Henry, a Software Engineer based in NY. Rensselaer Polytechnic Institute Graduate with my B.S. in Computer Science, currently looking for a full time role.” → “Quote is only in the meta description. Visible OS About: "I'm a software engineer currently working at Vercel! In May of 2022 I graduated from Rensselaer Polytechnic Institute".” — meta_description matches the claimed quote exactly, but it is not shown on any page, and About contradicts its "currently looking for a full time role". [henryheffernan:verify/v52-probe-about.json]
+- **N2** (measured_number) corrected: “total_bytes_desktop = 7660986” → “total_bytes_desktop = 4800056 initial (5298850 after scroll) on reload; -37% vs 7660986, outside ±30%.” — network_initial.total_bytes 4800056; network_after_scroll 5298850. [henryheffernan:verify.record.summary.total_bytes_desktop]
+- **N4** (measured_number) corrected: “lcp_ms_desktop = 2996” → “lcp_ms_desktop = 7948 on reload (LCP is the boot-log text); mobile 1656. Far outside the band around 2996.” — Reload LCP element p at 7948 ms desktop. [henryheffernan:verify.record.summary.lcp_ms_desktop]
+- **N5** (measured_number) corrected: “cls_desktop = 0.0164” → “cls_desktop = 0.0062 on reload (0.0164 at capture); both far below 0.05.” — 0.0062 is 62% below the claim, outside a 50% band; rubric bucket unchanged. [henryheffernan:verify.record.summary.cls_desktop]
+
+### kushalgoel
+
+- **W1** (what_works) corrected: “Every internship bullet carries a number and a real tool name, and ends in a row of keyword chips a recruiter can match.” → “Most internship bullets carry a number (2M+, ~90%, 95%, 6-7x) and a named tool; each role ends in a row of keyword chips.” — Not every bullet: PayNearby "Ensured data security by implementing AES encryption..." has no number; Huawei "Optimized disk write... boosting throughput by 20%" names no tool. [kushalgoel:verify/tiles/d-01-02.png]
+- **W3** (what_works) corrected: “Short About paragraph names school, year and each employer with a one-clause summary of the work.” → “About paragraph names school, level ("senior") and three of four employers (Citadel, Google, Huawei), each with a one-clause summary of the work.” — PayNearby is listed under Experience but not named in About; no year of study beyond "senior". [kushalgoel:verify/desktop-fold.png]
+- **D2** (what_doesnt) corrected: “No graduation date, availability or target role anywhere on the first screen.” → “No graduation date or availability on either first screen; "Software Engineer" under the name and "senior" in About are the only role and level signals.” — First screen: name, "Software Engineer", "I love computer science, math and finance.", About starting "I'm a senior". No year or availability text. [kushalgoel:verify/mobile-fold.png]
+- **D4** (what_doesnt) corrected: “Layout is a credited copy of another well-known portfolio, recoloured; nothing visually its own.” → “Layout is a near-exact copy of Brittany Chiang's portfolio, credited "Inspired by" in the footer; dark mode reuses its navy look, light mode is recoloured blue.” — Side-by-side with the brittanychiang verifier fold: same left column, line-indicator nav, icon row, right-column About and dated roles; footer credit links brittanychiang.com. [kushalgoel:verify/desktop-fold-dark.png]
+- **K5** (time_to_key_info) corrected: “mobile shipped_work: {"scrolls": 4, "clicks": 1, "note": "Investo title links to a live Vercel app at y 4105 (record)"}” → “mobile shipped_work: {"scrolls": 4, "clicks": 1, "note": "Investo title links to investo-app.vercel.app at y 4105 (not loaded, so liveness unverified); first project links to code on gitfront.io"}” — Link targets from verifier probe; neither target page was loaded, so "live app" rests on the URL alone. [kushalgoel:verify/v-probe.json]
+- **K10** (time_to_key_info) corrected: “desktop shipped_work: {"scrolls": 0, "clicks": 2, "note": "Side-nav 'PROJECTS', then the Investo title (live app) at y 3226"}” → “desktop shipped_work: {"scrolls": 0, "clicks": 2, "note": "Side-nav PROJECTS, then Investo title (investo-app.vercel.app, not loaded) at y 3226"}” — Click path holds; the Vercel target was not loaded by any verifier, so "live app" is unverified. [kushalgoel:verify/v-probe.json]
+- **N4** (measured_number) corrected: “lcp_ms_desktop = 612” → “lcp_ms_desktop = 1528 on reload (mobile 944); outside the band around 612.” — LCP element p.mb-4 at 1528 ms; 612 + 500 = 1112 is exceeded. [kushalgoel:verify.record.summary.lcp_ms_desktop]
+
 ### madebyevan
 
 - **P3** (pattern) corrected: “project-one-liners” → “project-short-descriptions: each entry has a 1–3 sentence description under its title and year, not a single line.” — Figma entry is two sentences; WebGL Water three; Skew two. Short, but not one-liners. [madebyevan:verify/tiles/d-00.png]
@@ -115,6 +175,11 @@ Independent verification of every claim the capture agents made about another si
 - **P10** (pattern) corrected: “vague-tagline” → “tagline-fragment: the visible descriptor is a typewriter fragment ('Te', 'Build'); 'Build AI workflows for…' is specific but rarely readable whole.” — Folds show 'Te|' and 'Build'; DOM caught 'Bui' / 'Build AI workflows for'. Not vague in wording, only in delivery. [mehdio:verify.record.summary.hero_text_mobile]
 - **M1** (memorable_thing) corrected: “Cartoon cut-out face in an orange blob next to hand-lettered 'MEHDIO', above a row of brand-coloured audience counters” → “A photo cut-out face in an orange sticker blob next to hand-lettered 'MEHDIO', above a row of brand-coloured audience counters.” — The face is a photograph cut out sticker-style, not a cartoon; rest matches the desktop fold. [mehdio:verify/desktop-fold.png]
 - **N4** (measured_number) corrected: “lcp_ms_desktop = 1068” → “lcp_ms_desktop = 2140 in the verifier reload (1068 originally); report as about 1–2 s.” — +1,072 ms, +100%: outside ±50% and ±500 ms. [mehdio:verify.record.summary.lcp_ms_desktop]
+
+### mujtabasaqib
+
+- **D5** (what_doesnt) corrected: “4.2 MB first load, mostly images (a 686 KB SVG portrait is the LCP element).” → “4.2 MB first load, 3.8 MB of it images (7 files); the LCP element is the SVG portrait (per-file size not re-measured).” — network_initial total 4172678 B, images 3773046 B in 7 requests; LCP element img.hero-photo-img src=mujidon.svg. The 686 KB file size is not in my record. [mujtabasaqib:verify.record.home.desktop.network_initial.by_type]
+- **N8** (measured_number) corrected: “horizontal_overflow_mobile = false” → “horizontal_overflow_mobile = true under the current rule: no scrollbar overflow, but the mobile layout viewport is 417 px on a 390 px phone.” — Reload summary.horizontal_overflow_mobile true, mobile_layout_width 417; dom.horizontal_overflow false because scroll_width equals the 417 px viewport. The original false used the older scroll-width-only check. [mujtabasaqib:verify.record.summary.horizontal_overflow_mobile]
 
 ### pahasara
 
@@ -137,6 +202,12 @@ Independent verification of every claim the capture agents made about another si
 
 All claims held.
 
+### richardshuai
+
+- **W3** (what_works) corrected: “Project cards pair a screenshot, a one-liner, a stack line and a hackathon-winner badge; the card links to the code.” → “Project cards pair a screenshot, a one-liner, a stack line and a hackathon-winner badge; each card links out, mostly to GitHub (Vanguard to Devpost).” — Vanguard Telematics card links to devpost.com; OPTimism, Harbor.ed and others to github.com; Site II to github.io. [richardshuai:verify/v-probe.json]
+- **W4** (what_works) corrected: “Awards collapsed into a three-number 'by the numbers' panel instead of a long list.” → “Awards end in a three-number "By the numbers" panel ($200K+, 15+, 30+), shown after two full award lists, not instead of them.” — Mobile tile shows National Distinctions (6 items) and Competitions (7 items) lists, then BY THE NUMBERS $200K+ / 15+ / 30+. Blank in the desktop full shot (scroll reveal). [richardshuai:verify/tiles/m-06.png]
+- **N4** (measured_number) corrected: “lcp_ms_desktop = 1752” → “lcp_ms_desktop = 4920 on reload (mobile 3736); outside the band around 1752.” — Reload LCP element span.inline-block at 4920 ms; 1752 + 500 = 2252 and 1752 × 1.5 = 2628 are both exceeded. [richardshuai:verify.record.summary.lcp_ms_desktop]
+
 ### robinlinacre
 
 - **W4** (what_works) corrected: “Very light homepage: no first-party JS, 237 KB total, LCP about 1 s (measured, unthrottled).” → “Light homepage: no first-party JS (174 KB third-party analytics), 237 KB total; LCP measured 1.0 s in the first capture but 1.8 s desktop / 1.5 s mobile on reload.” — Reload: js_first_party_bytes 0, js_bytes 174406 (googletagmanager 164 KB), total 237067, LCP 1824 ms desktop, 1488 ms mobile. [robinlinacre:verify.record.home.desktop.network_initial]
@@ -150,6 +221,13 @@ All claims held.
 - **P13** (pattern) corrected: “fast-static” → “Static and tiny (56 KB, 4.4 KB JS), but reload LCP was 3.5 s desktop / 2.9 s mobile (TTFB 1.0 s), so 'fast' did not reproduce.” — lcp_ms_desktop 3516, lcp_ms_mobile 2944; DCL 3609 ms; weight unchanged. [samwho:verify.record.summary.lcp_ms_desktop]
 - **N4** (measured_number) corrected: “lcp_ms_desktop = 1160” → “lcp_ms_desktop = 3516 on reload (claimed 1160; +2356 ms, outside tolerance). Slow network on reload: TTFB 1020 ms, DCL 3609 ms.” — Same LCP element (p); bytes identical, so the gap is network timing, but it does not reproduce. [samwho:verify.record.summary.lcp_ms_desktop]
 
+### shao
+
+- **W4** (what_works) corrected: “Open-source entries carry a small-caps category label plus one measured-impact line each.” → “Open-source entries carry a small-caps category label and one impact line each; only Arcade's has a number (1500% FPS); Immich says 'Minor contributions.'” — TorchSnapshot: 'Improved performance by reducing client authentication overhead…' has no figure; Immich: 'Minor contributions.' [shao:verify/tiles/d-00.png]
+- **D4** (what_doesnt) corrected: “366 KB of JavaScript (measured) for a static one-screen page; LCP 2.2 s desktop on the portrait image.” → “366 KB of JavaScript in 15 scripts (measured) for a short static page (about 1.6 desktop screens); LCP is the portrait, 1.3 s on reload (2.2 s at capture).” — Reload js_bytes 365652 in 15 scripts; scroll_height 1482 at a 900 px viewport; LCP img.portrait at 1268 ms desktop. [shao:verify.record.home.desktop.network_initial]
+- **P8** (pattern) corrected: “writeups-with-diagrams” → “writeup-with-screenshots-and-chart: three images (task-arguments panel, dashboard screenshot, DataDog bar chart); no architecture diagram.” — The write-up has 3 images: a task-arguments panel, a Maintenance Tasks dashboard screenshot and a DataDog bar chart; no system diagram. [shao:verify/tiles/id-02.png]
+- **P10** (pattern) corrected: “metrics-on-cards” → “impact-line-per-entry: only one of three open-source entries carries a metric (Arcade, 1500% FPS); entries are rows, not cards.” — TorchSnapshot and Immich lines have no number; the entries are plain rows (card_like_elements 1). [shao:verify/tiles/d-00.png]
+
 ### shaundataanalytics
 
 - **D1** (what_doesnt) corrected: “'Live Demo' buttons on 3 of 7 cards open GitHub repositories, not running demos, so the label overpromises.” → “3 of the 7 'Live Demo' buttons (across 8 project cards) open GitHub repositories, not running demos, so the label overpromises.” — demo_links: 7 'Live Demo' anchors; three go to github.com/ShaunDataAnalytics/... repos (data-science-portfolio-labs, collaborative-book-recommender, real-estate-valuation-ml). There are 8 project h3 cards, not 7. [shaundataanalytics:verify.record.home.desktop.dom.features.demo_links]
@@ -162,6 +240,13 @@ All claims held.
 - **D5** (what_doesnt) removed: “1.16 MB of web fonts (measured, 3 files) for a page that is a few paragraphs of text.” — Not reproduced: my reload loads 3 font files totalling 65,194 B (not 1.16 MB); whole homepage 305,456 B. The site appears to have changed its font delivery. [shud:verify.record.home.desktop.network_initial.by_type]
 - **M1** (memorable_thing) corrected: “Each project on /projects is a product wordmark followed by one first-person paragraph saying exactly what the owner personally led or built.” → “Each main /projects entry is a product wordmark plus a short paragraph, mostly first-person on what the owner led or built (a few are plain descriptions).” — Not every entry is first-person: 'GPU Lexer is a neural network-powered syntax highlighter...' is a plain description. [shud:verify/tiles/id-01.png]
 - **N2** (measured_number) corrected: “total_bytes_desktop = 1391873” → “total_bytes_desktop = 305456 (verifier reload; fonts 65 KB)” — Reload 305,456 B vs claim 1,391,873 B: −78%, outside ±30%. Font bytes fell from 1.16 MB to 65 KB. [shud:verify.record.summary.total_bytes_desktop]
+
+### ssp
+
+- **W1** (what_works) corrected: “First-party-only, light page (150 KB JS, LCP under 1 s measured) even with an interactive graph on the landing.” → “First-party only, 150 KB JS, LCP 0.84 s measured, initial load 353 KB; a 1.9 MB fetch after scrolling takes it to 2.6 MB.” — network_initial 352700 B, JS 150367 B all first-party (ssp.sh, goatcounter.ssp.sh); network_after_scroll 2556562 B including one 1932476 B fetch. [ssp:verify.record.home.desktop.network_after_scroll]
+- **W5** (what_works) corrected: “Dark palette with one warm accent and a monospace face for dates and labels; distinctive without imagery.” → “Dark palette with coral-red and gold accents and Iosevka monospace for eyebrow, dates and hints; distinctive through type, colour and the node graph, not photos.” — Eyebrow is gold rgb(230,195,132), buttons a coral gradient; dates and hints in Iosevka; a book cover and portrait photo appear further down. [ssp:verify/tiles/d-00.png]
+- **D2** (what_doesnt) corrected: “On mobile the graph takes a full screen between the CTAs and the content.” → “On mobile the graph and its hint fill about 680 px (0.8 of a screen) between the CTAs and the first content card.” — m-00: CTAs end near y 585 CSS, graph nodes run to about y 1100, hint to about 1165, first content card at about 1262. [ssp:verify/tiles/m-00.png]
+- **D3** (what_doesnt) corrected: “Graph wrapper is role=img but contains focusable links (axe serious).” → “Graph wrapper #entry-graph has focusable nodes nested inside it (axe nested-interactive, serious); the exact role (img) is not confirmed by the record.” — axe nested-interactive serious on #entry-graph at both sizes; focus_check lists focusable graph nodes. No record field shows the wrapper's role value. [ssp:verify.record.home.desktop.axe.violations]
 
 ### taniarascia
 
@@ -178,9 +263,22 @@ All claims held.
 
 ## Blind re-score
 
-Not run yet.
+Scores as original / blind. **Bold** marks a difference of 2 or more.
+
+| Site | fsc | proof | proj | exp | craft | motion | nav | mobile | perf | a11y | copy | rec | eng | bus | memo |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| antfu | 4/4 | 5/5 | 4/3 | 2/3 | 4/4 | 3/3 | 3/3 | 4/4 | 4/3 | 3/3 | 4/4 | 3/3 | 5/5 | 3/3 | 4/5 |
+| eugeneyan | 4/4 | 4/5 | 4/3 | 3/3 | 3/3 | 3/3 | 4/4 | 3/4 | 3/3 | 4/4 | 4/4 | 3/3 | 4/4 | 4/4 | 4/4 |
+| henryheffernan | 2/2 | 3/4 | 2/3 | 2/3 | 5/5 | 1/2 | 2/2 | 1/1 | 2/2 | 2/1 | 3/4 | 1/1 | 3/4 | 1/2 | 3/4 |
+| pahasara | 3/4 | 4/4 | 4/4 | 3/3 | 4/3 | 3/3 | 4/4 | 3/3 | 3/3 | 2/2 | 3/3 | 3/4 | 3/3 | 3/3 | 3/3 |
+| rauno | 3/4 | 3/4 | 3/3 | 2/2 | 5/5 | 3/4 | 2/2 | 2/3 | 4/4 | 2/2 | 3/4 | 2/2 | 3/4 | 2/2 | 4/4 |
+| richardshuai | 4/5 | 3/4 | 4/4 | 4/5 | 4/4 | 2/3 | 4/4 | 4/4 | 3/3 | 4/4 | 3/3 | 4/4 | 3/3 | 4/4 | 5/4 |
+| shaundataanalytics | 3/3 | 4/5 | 3/4 | 4/5 | 3/3 | 3/2 | 3/3 | 4/3 | 4/4 | 4/4 | 2/2 | 2/3 | 3/4 | 3/3 | 3/3 |
+| taniarascia | 4/5 | 4/5 | 4/4 | 4/5 | 4/5 | 4/4 | 4/4 | 4/4 | 4/4 | 3/2 | 5/5 | 4/4 | 5/5 | 3/4 | 5/5 |
+
+Agreement across 120 criterion pairs: 77 identical, 43 within 1 point, 0 differing by 2 or more (measured).
 
 ## Tie-break resolutions
 
-None needed so far.
+The tie-break step ran after every blind batch and had nothing to settle: no criterion differed by 2 or more points.
 
