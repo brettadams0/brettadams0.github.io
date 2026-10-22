@@ -8,6 +8,7 @@
   - Magenta circles (.mk) and magenta dashed boxes (.ph) are mock overlays, not design.
     Circles are aria-hidden. Dashed boxes mark [BRETT: ...] placeholders that never ship.
   - Copy is the sourced copy from section 6. Links point where the real ones will.
+  - Markup and class names follow section 8 (8.0-8.4); values come from section 7.
 -->
 <html lang="en">
 <head>
@@ -144,6 +145,7 @@
 /* ---- Base ---- */
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--header-h) + var(--space-4)); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body {
   margin: 0;
   background: var(--bg);
@@ -151,10 +153,15 @@ body {
   font: 400 var(--fs-base) / var(--lh-base) var(--sans);
   -webkit-font-smoothing: antialiased;
 }
-a { color: var(--amber); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a { color: var(--amber); text-decoration-thickness: 1px; text-underline-offset: 3px; transition: color var(--dur-fast) var(--ease-out); }
 a:hover { color: var(--amber-hi); }
-:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: var(--radius-sm); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+main:focus { outline: none; }
 .wrap { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+.prefix { color: var(--amber); white-space: pre; }   /* keeps the trailing space inside inline-flex parents */
+.nowrap { white-space: nowrap; }
+.kicker .prefix { color: var(--dim); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
 .skip-link {
   position: absolute; left: var(--space-4); top: -48px; z-index: var(--z-skip);
@@ -163,47 +170,39 @@ a:hover { color: var(--amber-hi); }
 }
 .skip-link:focus { top: var(--space-3); }
 
-/* ---- Header ---- */
+/* ---- 8.1 Header ---- */
 .site-header {
   position: sticky; top: 0; z-index: var(--z-header);
-  background: rgba(11, 15, 20, 0.82);
+  background: rgba(11, 15, 20, 0.92);
   -webkit-backdrop-filter: saturate(1.4) blur(12px);
   backdrop-filter: saturate(1.4) blur(12px);
   border-bottom: 1px solid var(--border);
 }
 .site-header-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); height: var(--header-h); }
+.site-name, .site-nav a { display: inline-flex; align-items: center; min-height: 44px; }
 .site-name { color: var(--text); font: 600 var(--fs-base) var(--mono); text-decoration: none; }
-.site-name::before { content: "> "; content: "> " / ""; color: var(--amber); }
 .site-name:hover { color: var(--text); }
 .site-nav { display: flex; align-items: center; gap: var(--space-6); font-size: var(--fs-sm); }
 .site-nav a { color: var(--muted); text-decoration: none; }
-.site-nav .nav-section { padding: 10px 0; }
 .site-nav a:hover { color: var(--text); }
 .site-nav .nav-resume {
-  padding: 7px 14px; border: 1px solid var(--amber-line); border-radius: var(--radius);
+  min-height: 36px; padding: 0 14px; border: 1px solid var(--amber-line); border-radius: var(--radius);
   color: var(--amber); font-weight: 500;
 }
 .site-nav .nav-resume:hover { background: var(--amber-wash); color: var(--amber-hi); }
+.nav-sections { display: none; border-bottom: 1px solid var(--border); background: var(--bg); }
 
-/* Phone section row: a sibling of the sticky header, so it scrolls away. */
-.nav-sections { display: none; }
-
-/* ---- Hero ---- */
+/* ---- 8.2 Hero ---- */
 .hero {
   position: relative;
-  padding: var(--space-8) 0 var(--space-7);
+  padding: var(--space-9) 0;
   overflow: hidden;
   border-bottom: 1px solid var(--border);
   background:
     radial-gradient(900px 420px at 85% 20%, rgba(79, 214, 196, 0.07), transparent 70%),
     radial-gradient(700px 380px at 10% 90%, rgba(255, 180, 84, 0.06), transparent 70%);
 }
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: var(--space-8);
-  align-items: start;
-}
+.hero-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-8); align-items: start; }
 .status {
   display: inline-flex; align-items: center; gap: var(--space-2);
   margin: 0; padding: 5px 12px;
@@ -213,7 +212,6 @@ a:hover { color: var(--amber-hi); }
 }
 .status-dot { width: 8px; height: 8px; flex: none; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 3px rgba(60, 207, 110, 0.2); }
 .kicker { margin: var(--space-6) 0 var(--space-1); color: var(--teal); font: 500 var(--fs-sm) / 1.4 var(--mono); }
-.kicker::before { content: "// "; content: "// " / ""; color: var(--dim); }
 .hero h1 {
   margin: 0 0 var(--space-4);
   font-size: var(--fs-display); font-weight: 700;
@@ -222,24 +220,27 @@ a:hover { color: var(--amber-hi); }
 .lede { max-width: 34em; margin: 0 0 var(--space-6); color: var(--soft); font-size: var(--fs-lg); line-height: 1.55; }
 .lede a { color: var(--text); text-decoration-color: var(--border-strong); }
 .lede a:hover { text-decoration-color: var(--amber); }
-.actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
-  min-height: 44px; padding: 0 var(--space-5);
+  min-height: 44px; padding: 0 18px;
   border: 1px solid var(--border-strong); border-radius: var(--radius);
   background: var(--surface); color: var(--text);
   font: 500 var(--fs-base) var(--sans); text-decoration: none;
   transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
 }
 .btn:hover { border-color: var(--muted); background: var(--surface-2); color: var(--text); }
+.btn:active { background: var(--bg-2); }
 .btn-primary { background: var(--amber); border-color: var(--amber); color: var(--on-amber); font-weight: 600; }
 .btn-primary:hover { background: var(--amber-hi); border-color: var(--amber-hi); color: var(--on-amber); }
-.hero-jump { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; margin-top: var(--space-4); font-weight: 500; text-decoration: none; }
-.hero-jump:hover { text-decoration: underline; }
+.btn-primary:active { background: var(--amber); }
+.hero-jump { margin: 20px 0 0; font: 500 var(--fs-sm) var(--mono); }
+.hero-jump a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.hero-jump a:hover { text-decoration: underline; }
 
-/* At a glance */
-.glance-card {
-  padding: var(--space-5) var(--space-6) var(--space-3);
+/* ---- 8.3 At a glance ---- */
+.glance {
+  padding: 20px;
   border: 1px solid var(--border); border-radius: var(--radius);
   background: var(--surface);
 }
@@ -248,83 +249,67 @@ a:hover { color: var(--amber-hi); }
   color: var(--muted); font: 600 var(--fs-xs) / 1.4 var(--mono);
   letter-spacing: var(--tracking-caps); text-transform: uppercase;
 }
-.glance { margin: 0; }
-.glance > div {
-  display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: var(--space-3);
-  padding: 10px 0; border-top: 1px solid var(--border);
-}
-.glance dt {
-  padding-top: 3px; color: var(--muted);
-  font: 500 var(--fs-xs) / 1.5 var(--mono); letter-spacing: var(--tracking-caps); text-transform: uppercase;
-}
-.glance dd { margin: 0; color: var(--text); font-size: var(--fs-base); line-height: 1.5; }
-.glance-line { display: block; }
-.glance-line + .glance-line { margin-top: var(--space-2); }
-.glance-when { display: block; color: var(--muted); font: var(--fs-sm) / 1.5 var(--mono); }
+.glance-list { margin: 0; }
+.glance-list > div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
+.glance-list dt { padding-top: 2px; color: var(--muted); font: var(--fs-xs) / 1.6 var(--mono); }
+.glance-list dd { margin: 0; color: var(--soft); font-size: var(--fs-sm); line-height: 1.5; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
 .chips li {
   padding: 2px 9px; border: 1px solid var(--border); border-radius: var(--radius-pill);
   background: var(--bg-2); color: var(--soft); font: var(--fs-xs) / 1.6 var(--mono);
 }
-.glance .chips { padding-top: 2px; }
 
-/* ---- Sections (only the start of Experience is in the fold) ---- */
+/* ---- 8.4 Start of Experience ---- */
 .section { padding: var(--space-9) 0; border-bottom: 1px solid var(--border); }
 .section-title {
   margin: 0 0 var(--space-7);
   color: var(--muted); font: 600 var(--fs-sm) / 1.4 var(--mono);
   letter-spacing: var(--tracking-caps); text-transform: uppercase;
 }
-.section-title::before { content: "## "; content: "## " / ""; color: var(--amber); }
 .timeline { position: relative; margin: 0; padding: 0 0 0 32px; list-style: none; }
 .timeline::before {
   content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px;
   background: linear-gradient(var(--amber), var(--border-strong) 25%, var(--border));
 }
-.job { position: relative; padding: 0 0 44px; }
+.job { position: relative; padding: 0 0 var(--space-7); }
 .job::before {
   content: ""; position: absolute; left: -32px; top: 7px; width: 13px; height: 13px;
   border: 2px solid var(--border-strong); border-radius: 50%; background: var(--bg);
 }
 .job-current::before { border-color: var(--amber); background: var(--amber); box-shadow: 0 0 0 4px rgba(255, 180, 84, 0.15); }
 .job-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 20px; }
-.job h3 { margin: 0; font-size: var(--fs-lg); font-weight: 600; line-height: var(--lh-snug); }
+.job-title { margin: 0; font-size: var(--fs-lg); font-weight: 600; line-height: var(--lh-snug); }
 .job-org { color: var(--muted); font-weight: 400; }
-.job-org::before { content: "@ "; content: "@ " / ""; color: var(--amber); }
-.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .job-when { margin: 0; color: var(--muted); font: var(--fs-sm) var(--mono); }
-.job > ul:not(.chips) { max-width: 54em; margin: var(--space-3) 0 var(--space-4); padding-left: 1.1em; color: var(--soft); }
-.job > ul:not(.chips) li { margin: 5px 0; }
-.job > ul:not(.chips) li::marker { color: var(--faint); }
+.job-points { max-width: 54em; margin: var(--space-3) 0 var(--space-4); padding-left: 1.1em; color: var(--soft); }
+.job-points li { margin: 5px 0; }
+.job-points li::marker { color: var(--faint); }
 
-/* ---- Breakpoints: 980 / 860 / 640 ---- */
-@media (max-width: 980px) {
-  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-7); }
-}
+/* ---- Breakpoints (section 7.6): 980 / 860 / 640 ---- */
+@media (max-width: 1000px) { .site-nav { gap: var(--space-4); } }
+@media (max-width: 980px) { .hero { padding: 40px 0 var(--space-8); } }
 @media (max-width: 860px) {
   .site-nav .nav-section { display: none; }
-  .nav-sections {
-    display: flex; justify-content: space-between;
-    border-bottom: 1px solid var(--border); background: var(--bg);
-  }
+  .nav-sections { display: block; }
+  .nav-sections-inner { display: flex; justify-content: space-between; }
   .nav-sections a {
-    display: flex; align-items: center; min-height: 44px;
-    color: var(--muted); font-size: var(--fs-base); text-decoration: none;
+    flex: 1 1 0; min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+    color: var(--soft); text-decoration: none; font: 500 var(--fs-sm) var(--sans);
   }
   .nav-sections a:hover { color: var(--text); }
-  .hero-jump { display: none; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
+  .glance { max-width: 560px; }
 }
 @media (max-width: 640px) {
-  .hero { padding: var(--space-6) 0 var(--space-8); }
+  .hero { padding: var(--space-7) 0 40px; }
   .status { font-size: var(--fs-xs); }
-  .kicker { margin-top: var(--space-5); }
-  .hero h1 { margin-bottom: var(--space-3); }
-  .lede { margin-bottom: var(--space-5); font-size: var(--fs-md); }
+  .lede { font-size: var(--fs-md); }
   .actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); }
-  .actions .btn { padding: 0 var(--space-2); }
-  .actions .btn-primary { grid-column: 1 / -1; min-height: 48px; }
-  .glance-card { padding: var(--space-4) var(--space-4) var(--space-2); }
-  .glance > div { grid-template-columns: minmax(0, 1fr); gap: 2px; padding: 10px 0; }
+  .actions .btn { justify-content: center; padding: 0 var(--space-2); }
+  .actions .btn-resume { grid-column: 1 / -1; }
+  .glance { max-width: none; padding: 16px; }
+  .glance-list > div { grid-template-columns: 88px minmax(0, 1fr); }
+  .glance-list > .glance-now { display: none; }   /* needs the child selector to beat .glance-list > div */
   .section { padding: var(--space-8) 0; }
 }
 
@@ -344,9 +329,8 @@ a:hover { color: var(--amber-hi); }
 .ph {
   display: inline; padding: 1px 4px;
   border: 1px dashed #ff3df2; border-radius: 4px;
-  color: #ffb3f8; font: 500 var(--fs-sm) / 1.5 var(--mono);
+  color: #ffb3f8; font: 500 var(--fs-xs) / 1.6 var(--mono);
 }
-/* Desktop: markers sit in the left gutter. Phone: on the element's right edge. */
 .m1 { left: auto; right: -32px; top: 2px; }
 .m2 { top: 6px; }
 .m4 { left: auto; right: -12px; top: -12px; }
@@ -359,11 +343,12 @@ a:hover { color: var(--amber-hi); }
 @media (max-width: 860px) {
   .mk { left: auto; right: 0; top: -4px; }
   .m1 { right: -30px; top: 1px; }
+  .m3 { top: -22px; }
   .m4, .m5 { right: -2px; top: -12px; }
   .m6 { right: 8px; top: 8px; }
   .m7 { display: none; }
   .m7m { display: grid; left: calc(50% - 12px); right: auto; top: -12px; }
-  .m3 { top: -22px; }
+  .m8 { left: auto; right: auto; left: 236px; top: 10px; }
 }
 </style>
 </head>
@@ -372,7 +357,7 @@ a:hover { color: var(--amber-hi); }
 
 <header class="site-header">
   <div class="wrap site-header-inner">
-    <a class="site-name" href="/">brett adams</a>
+    <a class="site-name" href="/"><span class="prefix" aria-hidden="true">&gt; </span>brett adams</a>
     <nav class="site-nav mk-host" aria-label="Main">
       <a class="nav-section" href="/#experience">Experience</a>
       <a class="nav-section" href="/#projects">Projects</a>
@@ -383,63 +368,63 @@ a:hover { color: var(--amber-hi); }
     </nav>
   </div>
 </header>
-<nav class="nav-sections wrap mk-host" aria-label="Sections">
-  <a href="/#experience">Experience</a>
-  <a href="/#projects">Projects</a>
-  <a href="/#skills">Skills</a>
-  <a href="/#contact">Contact</a>
-  <span class="mk m7m" aria-hidden="true">7</span>
+<nav class="nav-sections" aria-label="Sections">
+  <div class="wrap nav-sections-inner mk-host">
+    <a href="/#experience">Experience</a>
+    <a href="/#projects">Projects</a>
+    <a href="/#skills">Skills</a>
+    <a href="/#contact">Contact</a>
+    <span class="mk m7m" aria-hidden="true">7</span>
+  </div>
 </nav>
 
-<main id="main">
+<main id="main" tabindex="-1">
   <section class="hero" aria-labelledby="hero-name">
     <div class="wrap hero-grid">
       <div class="hero-text">
         <p class="status mk-host"><span class="status-dot" aria-hidden="true"></span>Graduating 2027 · Open to full-time roles<span class="mk m1" aria-hidden="true">1</span></p>
         <div class="mk-host">
-          <p class="kicker">data &amp; software engineering</p>
+          <p class="kicker"><span class="prefix" aria-hidden="true">// </span>data &amp; software engineering</p>
           <h1 id="hero-name">Brett Adams</h1>
           <span class="mk m2" aria-hidden="true">2</span>
         </div>
         <p class="lede mk-host">Data Analyst Intern at <a href="https://www.geotab.com">Geotab</a>, on production pipelines in BigQuery and Airflow. Computer Science at the University of Windsor.<span class="mk m3" aria-hidden="true">3</span></p>
-        <p class="actions mk-host">
-          <a class="btn btn-primary mk-host" href="/assets/resume/Resume_BrettAdams.pdf">Résumé (PDF)<span class="mk m4" aria-hidden="true">4</span></a>
+        <p class="actions">
+          <a class="btn btn-primary btn-resume mk-host" href="/assets/resume/Resume_BrettAdams.pdf">Résumé (PDF)<span class="mk m4" aria-hidden="true">4</span></a>
           <a class="btn" href="mailto:adamsbrett00@gmail.com" data-contact="email">Email</a>
           <a class="btn" href="https://www.linkedin.com/in/bretta/" data-contact="linkedin">LinkedIn</a>
           <a class="btn mk-host" href="https://github.com/brettadams0" data-contact="github">GitHub<span class="mk m5" aria-hidden="true">5</span></a>
         </p>
-        <a class="hero-jump mk-host" href="#projects">Projects and live demos <span aria-hidden="true">↓</span><span class="mk m8" aria-hidden="true">8</span></a>
+        <p class="hero-jump mk-host"><a href="#projects">Projects and live demos<span class="nowrap" aria-hidden="true">&nbsp;↓</span></a><span class="mk m8" aria-hidden="true">8</span></p>
       </div>
 
-      <section class="glance-card mk-host" aria-labelledby="glance-title">
+      <div class="glance mk-host">
         <h2 class="glance-title" id="glance-title">At a glance</h2>
-        <dl class="glance">
-          <div><dt>Now</dt><dd><span class="glance-line"><span>Data Analyst Intern, Geotab</span> <span class="glance-when">May 2026 – Present</span></span></dd></div>
-          <div><dt>Before</dt><dd><span class="glance-line"><span>Ontario Ministry of Transportation</span> <span class="glance-when">co-op, 2025</span></span><span class="glance-line"><span>CIMCO Refrigeration</span> <span class="glance-when">2023, 2024</span></span></dd></div>
-          <div><dt>Studying</dt><dd><span class="glance-line"><span>Honours Computer Science, University of Windsor</span> <span class="glance-when">2022 – 2027</span></span></dd></div>
-          <div><dt>Works with</dt><dd><ul class="chips"><li>Airflow</li><li>BigQuery</li><li>SQL</li><li>Python</li><li>Power BI</li><li>GitLab CI/CD</li></ul></dd></div>
+        <dl class="glance-list">
+          <div class="glance-now"><dt>Now</dt><dd>Data Analyst Intern, Geotab · <span class="nowrap">May 2026 – Present</span></dd></div>
+          <div><dt>Before</dt><dd>Ontario Ministry of Transportation <span class="nowrap">(co-op, 2025)</span> · CIMCO Refrigeration <span class="nowrap">(2023, 2024)</span></dd></div>
+          <div><dt>Studying</dt><dd>Honours Computer Science, University of Windsor · <span class="nowrap">2022 – 2027</span></dd></div>
+          <div><dt>Works with</dt><dd><ul class="chips" role="list"><li>Airflow</li><li>BigQuery</li><li>SQL</li><li>Python</li><li>Power BI</li><li>GitLab CI/CD</li></ul></dd></div>
           <div><dt>Looking for</dt><dd><span class="ph">[BRETT: target roles, e.g. data engineering, analytics or software roles]</span></dd></div>
           <div><dt>Based in</dt><dd><span class="ph">[BRETT: city / open to relocation?]</span></dd></div>
         </dl>
         <span class="mk m6" aria-hidden="true">6</span>
-      </section>
+      </div>
     </div>
   </section>
 
   <section id="experience" class="section" aria-labelledby="experience-title">
     <div class="wrap">
-      <h2 id="experience-title" class="section-title mk-host">Experience<span class="mk mk-ghost m8b" aria-hidden="true">8</span></h2>
+      <h2 id="experience-title" class="section-title mk-host"><span class="prefix" aria-hidden="true">## </span>Experience<span class="mk mk-ghost m8b" aria-hidden="true">8</span></h2>
       <ol class="timeline">
         <li class="job job-current">
           <div class="job-head">
-            <h3>Data Analyst Intern <span class="job-org"><span class="sr-only">at </span>Geotab</span></h3>
+            <h3 class="job-title">Data Analyst Intern <span class="job-org"><span class="prefix" aria-hidden="true">@ </span><span class="sr-only">at </span>Geotab</span></h3>
             <p class="job-when">May 2026 – Present · Oakville, ON</p>
           </div>
-          <ul>
+          <ul class="job-points">
             <li>Maintain and debug production Apache Airflow DAGs on Google Cloud Composer that run the SalesOps data pipelines.</li>
             <li>Write and deploy production BigQuery SQL for Revenue Operations tables, including the device status, database dimension and accounts master datasets.</li>
-            <li>Ship changes through GitLab CI/CD, from branch development through staging validation to production.</li>
-            <li>Carry out live table migrations against fixed infrastructure deadlines, coordinating with dataset owners.</li>
           </ul>
         </li>
       </ol>
@@ -448,7 +433,7 @@ a:hover { color: var(--amber-hi); }
 
   <section id="projects" class="section" aria-labelledby="projects-title">
     <div class="wrap">
-      <h2 id="projects-title" class="section-title">Projects</h2>
+      <h2 id="projects-title" class="section-title"><span class="prefix" aria-hidden="true">## </span>Projects</h2>
       <p style="color: var(--muted)">Not mocked. Section 8 specifies the cards.</p>
     </div>
   </section>
