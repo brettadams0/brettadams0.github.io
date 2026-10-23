@@ -232,5 +232,149 @@
   }
  },
  "inner_page": null,
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "probe-home-links.json": {
+   "url": "https://beingbrute.github.io/",
+   "loaded_utc": "2026-10-21T16:24:18.274Z",
+   "status": 200,
+   "final_url": "https://beingbrute.github.io/",
+   "title": "Aditya Ranjan — Data Analyst | SQL, Excel, Power BI, Python, Databricks",
+   "description": "Data analyst portfolio by Aditya Ranjan — SQL, Excel, Python, Databricks, Alteryx, Power BI, Tableau and Snowflake. Case studies in payment fraud controls, retail revenue & retention, loan default ris…",
+   "nav": [
+    [
+     "About",
+     "#about"
+    ],
+    [
+     "Fraud controls",
+     "#fraud"
+    ],
+    [
+     "Retail revenue",
+     "#customer"
+    ],
+    [
+     "Loan risk",
+     "#loan"
+    ],
+    [
+     "Inventory",
+     "#inventory"
+    ],
+    [
+     "Compare",
+     "#compare"
+    ],
+    [
+     "Contact",
+     "#contact"
+    ]
+   ],
+   "text": "Aditya Ranjan\nAbout\nFraud controls\nRetail revenue\nLoan risk\nInventory\nCompare\nContact\n\nData analyst portfolio\n\nFour data problems,\nworked end to end.\n\nI'm a data analyst who works across the full pipe…",
+   "links": [
+    [
+     "About",
+     "https://beingbrute.github.io/#about"
+    ],
+    [
+     "Fraud controls",
+     "https://beingbrute.github.io/#fraud"
+    ],
+    [
+     "Retail revenue",
+     "https://beingbrute.github.io/#customer"
+    ],
+    [
+     "Loan risk",
+     "https://beingbrute.github.io/#loan"
+    ],
+    [
+     "Inventory",
+     "https://beingbrute.github.io/#inventory"
+    ],
+    [
+     "Compare",
+     "https://beingbrute.github.io/#compare"
+    ],
+    [
+     "Contact",
+     "https://beingbrute.github.io/#contact"
+    ],
+    [
+     "View the projects",
+     "https://beingbrute.github.io/#fraud"
+    ],
+    [
+     "Download resume",
+     "https://beingbrute.github.io/Aditya_Ranjan_Data_Analyst.pdf?v=2026-10-16"
+    ],
+    [
+     "GitHub profile",
+     "https://github.com/beingbrute"
+    ],
+    [
+     "70.46% precision from the best fraud control, against a 0.13% baseline fraud rat",
+     "https://beingbrute.github.io/#fraud"
+    ],
+    [
+     "72.35% of known customers are repeat buyers — and they account for 96.74% of ide",
+     "https://beingbrute.github.io/#customer"
+    ],
+    {
+     "_trimmed": true,
+     "_total_items": 36
+    }
+   ]
+  },
+  "record.home.desktop.focus_check": [
+   {
+    "el": "a",
+    "label": "About",
+    "visible_change": true,
+    "outline": "solid 2px"
+   },
+   {
+    "el": "a",
+    "label": "Fraud controls",
+    "visible_change": true,
+    "outline": "solid 2px"
+   },
+   {
+    "el": "a",
+    "label": "Retail revenue",
+    "visible_change": true,
+    "outline": "solid 2px"
+   },
+   {
+    "el": "a",
+    "label": "Loan risk",
+    "visible_change": true,
+    "outline": "solid 2px"
+   },
+   {
+    "el": "a",
+    "label": "Inventory",
+    "visible_change": true,
+    "outline": "solid 2px"
+   }
+  ],
+  "record.home.mobile.dom.menu_button": null,
+  "record.summary.cls_mobile": 0.1146,
+  "record.summary.fonts": {
+   "body": "\"Source Serif 4\", Georgia, serif",
+   "h1": "\"Space Grotesk\", system-ui, sans-serif",
+   "loaded": [
+    "IBM Plex Mono 400 normal",
+    "IBM Plex Mono 600 normal",
+    "Source Serif 4 400 normal",
+    "Source Serif 4 600 normal",
+    "Space Grotesk 400 normal",
+    "Space Grotesk 500 normal",
+    "Space Grotesk 600 normal"
+   ]
+  },
+  "verify.record.summary.cls_desktop": 0.0098,
+  "verify.record.summary.cls_mobile": 0.1146
+ }
 }

@@ -223,5 +223,106 @@
   "mobile_status": 200,
   "title": "Mujtaba Saqib — Data Engineer & AI Specialist"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.dom.features.project_links": [],
+  "record.home.desktop.focus_check": [
+   {
+    "el": "a",
+    "label": "© Mujtaba Saqib",
+    "visible_change": true,
+    "outline": "auto 1px"
+   },
+   {
+    "el": "a",
+    "label": "About",
+    "visible_change": true,
+    "outline": "auto 1px"
+   },
+   {
+    "el": "a",
+    "label": "Experience",
+    "visible_change": true,
+    "outline": "auto 1px"
+   },
+   {
+    "el": "a",
+    "label": "Projects",
+    "visible_change": true,
+    "outline": "auto 1px"
+   },
+   {
+    "el": "a",
+    "label": "Contact",
+    "visible_change": true,
+    "outline": "auto 1px"
+   }
+  ],
+  "record.home.desktop.network_initial.by_type": {
+   "document": {
+    "count": 1,
+    "bytes": 3718
+   },
+   "font": {
+    "count": 2,
+    "bytes": 60250
+   },
+   "stylesheet": {
+    "count": 1,
+    "bytes": 10381
+   },
+   "script": {
+    "count": 15,
+    "bytes": 309611
+   },
+   "xhr": {
+    "count": 1,
+    "bytes": 753
+   },
+   "image": {
+    "count": 7,
+    "bytes": 3771618
+   },
+   "fetch": {
+    "count": 13,
+    "bytes": 15045
+   }
+  },
+  "record.home.desktop.splash_check": {
+   "text_chars_500ms": 6,
+   "text_chars_3000ms": 6
+  },
+  "record.home.mobile.dom.vw": 417,
+  "verify.record.home.desktop.network_initial.by_type": {
+   "document": {
+    "count": 1,
+    "bytes": 3712
+   },
+   "font": {
+    "count": 2,
+    "bytes": 60268
+   },
+   "stylesheet": {
+    "count": 1,
+    "bytes": 10372
+   },
+   "script": {
+    "count": 15,
+    "bytes": 309486
+   },
+   "xhr": {
+    "count": 1,
+    "bytes": 755
+   },
+   "image": {
+    "count": 7,
+    "bytes": 3773046
+   },
+   "fetch": {
+    "count": 13,
+    "bytes": 15039
+   }
+  },
+  "verify.record.summary.horizontal_overflow_mobile": true
+ }
 }

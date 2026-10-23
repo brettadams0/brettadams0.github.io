@@ -205,5 +205,128 @@
   "mobile_status": 200,
   "title": "Introduction to the A* Algorithm"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.dom.nav": [
+   {
+    "text": "Amit Patel",
+    "href": "http://www-cs-students.stanford.edu/~amitp/",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "redblobgames@gmail.com",
+    "href": "mailto:redblobgames@gmail.com",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "Blog",
+    "href": "https://www.redblobgames.com/blog/",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "RSS",
+    "href": "https://simblob.blogspot.com/feeds/posts/default",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "Bluesky",
+    "href": "https://bsky.app/profile/redblobgames.com",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "Twitter/X",
+    "href": "https://twitter.com/redblobgames",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   }
+  ],
+  "record.home.mobile.axe.violations": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "nodes": 4,
+    "targets": [
+     "a[href$=\"#learn\"]",
+     "a[href$=\"#play\"]",
+     "a[href$=\"#ponder\"]"
+    ]
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 4,
+    "targets": [
+     "#learn > span",
+     "#play > span",
+     "#ponder > span"
+    ]
+   },
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "help": "Heading levels should only increase by one",
+    "nodes": 1,
+    "targets": [
+     "#learn"
+    ]
+   },
+   {
+    "id": "link-in-text-block",
+    "impact": "serious",
+    "help": "Links must be distinguishable without relying on color",
+    "nodes": 3,
+    "targets": [
+     "a[href$=\"#learn\"]",
+     "a[href$=\"#play\"]",
+     "a[href$=\"#meta\"]"
+    ]
+   }
+  ],
+  "record.home.mobile.dom.a11y_manual.small_targets_under_24px": 21,
+  "record.inner.desktop.network_initial": {
+   "requests": 5,
+   "failed": 0,
+   "total_bytes": 72825,
+   "js_bytes": 14890,
+   "js_first_party_bytes": 13986,
+   "by_type": {
+    "document": {
+     "count": 1,
+     "bytes": 15157
+    },
+    "image": {
+     "count": 2,
+     "bytes": 42778
+    },
+    "script": {
+     "count": 2,
+     "bytes": 14890
+    }
+   },
+   "top_hosts": [
+    {
+     "host": "redblobgames.com",
+     "bytes": 71921
+    },
+    {
+     "host": "redblobgames.disqus.com",
+     "bytes": 904
+    }
+   ]
+  },
+  "record.summary.has_resume_link": false
+ }
 }

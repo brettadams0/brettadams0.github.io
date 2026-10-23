@@ -244,5 +244,146 @@
   "mobile_status": 200,
   "title": "Projects | Tania Rascia's Website"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "button-name",
+    "impact": "critical",
+    "help": "Buttons must have discernible text",
+    "nodes": 2,
+    "targets": [
+     ".flex-align-center:nth-child(2) > .dropdown.tooltip-container > button",
+     ".flex-align-center:nth-child(2) > .tooltip-container:nth-child(2) > button"
+    ]
+   },
+   {
+    "id": "image-redundant-alt",
+    "impact": "minor",
+    "help": "Alternative text of images should not be repeated as text",
+    "nodes": 1,
+    "targets": [
+     ".gap[aria-current=\"page\"][href=\"/\"] > span:nth-child(1) > .navbar-logo[alt=\"tania.dev\"][title=\"💾\"]"
+    ]
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "help": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+    "nodes": 2,
+    "targets": [
+     ".sidebar",
+     ".sidebar-nav-links"
+    ]
+   }
+  ],
+  "record.home.desktop.dom.nav": [
+   {
+    "text": "tania.dev",
+    "href": "/",
+    "tag": "a",
+    "visible": false,
+    "expanded": null
+   },
+   {
+    "text": "Blog",
+    "href": "/blog/",
+    "tag": "a",
+    "visible": false,
+    "expanded": null
+   },
+   {
+    "text": "Shelves",
+    "href": "/shelves/",
+    "tag": "a",
+    "visible": false,
+    "expanded": null
+   },
+   {
+    "text": "Projects",
+    "href": "/projects/",
+    "tag": "a",
+    "visible": false,
+    "expanded": null
+   },
+   {
+    "text": "About me",
+    "href": "/me/",
+    "tag": "a",
+    "visible": false,
+    "expanded": null
+   },
+   {
+    "text": "bsky.app",
+    "href": "https://bsky.app/profile/tania.dev",
+    "tag": "a",
+    "visible": false,
+    "expanded": null
+   },
+   {
+    "text": "Email signup",
+    "href": "https://taniarascia.substack.com",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "GitHub",
+    "href": "https://github.com/taniarascia",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "Bluesky",
+    "href": "https://bsky.app/profile/tania.dev",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "RSS feed",
+    "href": "/rss.xml",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "New Moon",
+    "href": "https://taniarascia.github.io/new-moon/",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "Resume",
+    "href": "/resume/",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "_trimmed": true,
+    "_total_items": 29
+   }
+  ],
+  "record.home.mobile.dom.features.resume_links": [
+   {
+    "text": "Resume",
+    "href": "/resume/",
+    "y": 0,
+    "visible": false,
+    "in_nav": true
+   },
+   {
+    "text": "Principal software engineer",
+    "href": "/resume/",
+    "y": 578,
+    "visible": true,
+    "in_nav": true
+   }
+  ],
+  "record.summary.hero_text": "tania.dev I'm Tania , software engineer and open-source creator. This is my digital garden. 🌱 Blog Shelves Projects About me Resume Topics Source Hey, I'm Tania! Principal software engineer, writer, a…",
+  "record.summary.js_bytes_desktop": 119347
+ }
 }

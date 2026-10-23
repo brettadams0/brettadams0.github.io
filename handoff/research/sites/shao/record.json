@@ -209,5 +209,77 @@
   "mobile_status": 200,
   "title": "Scaling Payment Syncing on the Production Engineering team at Drop"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 18,
+    "targets": [
+     ".education",
+     ".previous",
+     ".work-row:nth-child(1) > p"
+    ]
+   }
+  ],
+  "record.home.mobile.dom.features.contact_links": [
+   {
+    "text": "GeorgeShao123@gmail.com",
+    "href": "mailto:GeorgeShao123@gmail.com",
+    "y": 395,
+    "visible": true,
+    "in_nav": true
+   },
+   {
+    "text": "@george_",
+    "href": "https://x.com/george_",
+    "y": 395,
+    "visible": true,
+    "in_nav": true
+   }
+  ],
+  "record.summary.has_resume_link": false,
+  "record.summary.js_bytes_desktop": 365714,
+  "verify.record.home.desktop.network_initial": {
+   "requests": 22,
+   "failed": 0,
+   "total_bytes": 451076,
+   "js_bytes": 365652,
+   "js_first_party_bytes": 240936,
+   "by_type": {
+    "document": {
+     "count": 1,
+     "bytes": 4702
+    },
+    "font": {
+     "count": 2,
+     "bytes": 59483
+    },
+    "image": {
+     "count": 2,
+     "bytes": 18016
+    },
+    "stylesheet": {
+     "count": 2,
+     "bytes": 3223
+    },
+    "script": {
+     "count": 15,
+     "bytes": 365652
+    }
+   },
+   "top_hosts": [
+    {
+     "host": "shao.zip",
+     "bytes": 326360
+    },
+    {
+     "host": "zero.georgeshao.com",
+     "bytes": 124716
+    }
+   ]
+  }
+ }
 }

@@ -226,5 +226,71 @@
   "mobile_status": 200,
   "title": "Projects • Mehdio's tech corner"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.mobile.axe.violations": [
+   {
+    "id": "button-name",
+    "impact": "critical",
+    "help": "Buttons must have discernible text",
+    "nodes": 1,
+    "targets": [
+     ".md\\:hidden.items-center.flex > .relative > .bg-neutral-900\\/50.px-3.py-1\\.5"
+    ]
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 6,
+    "targets": [
+     ".h-\\[56px\\].hover\\:scale-\\[0\\.98\\][href$=\"blog\"] > .h-full.px-4.gap-3 > .min-w-0.gap-4.flex-1 > .leading-tight.flex-col.flex:nth-child(1) > .text-\\[15px\\].font-bold",
+     ".h-\\[56px\\].hover\\:scale-\\[0\\.98\\][href$=\"blog\"] > .h-full.px-4.gap-3 > .min-w-0.gap-4.flex-1 > .leading-tight.flex-col.flex:nth-child(1) > .text-\\[11px\\].opacity-70",
+     ".h-\\[56px\\].hover\\:scale-\\[0\\.98\\][href$=\"blog\"] > .h-full.px-4.gap-3 > .min-w-0.gap-4.flex-1 > .leading-tight.flex-col.flex:nth-child(2) > .text-\\[15px\\].font-bold"
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "help": "Document should have one main landmark",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 20,
+    "targets": [
+     ".w-max",
+     "h1 > .sr-only",
+     ".text-cap-accent"
+    ]
+   }
+  ],
+  "record.summary.hero_text": "Mehdi Ouazza Home Blog Videos Projects About Search ⌘K MEHDIO Mehdio — practical data and AI education by Mehdi Ouazza Teach data + AI to e | About Mehdi Ouazza and this personal website Mehdio is the…",
+  "record.summary.nav_items": [
+   "Mehdi Ouazza",
+   "Home",
+   "Blog",
+   "Videos",
+   "Projects",
+   "About",
+   "YouTube",
+   "GitHub",
+   "LinkedIn",
+   "X",
+   "Search ⌘K",
+   "Contact",
+   {
+    "_trimmed": true,
+    "_total_items": 13
+   }
+  ],
+  "record.summary.total_bytes_desktop": 445710,
+  "verify.record.summary.hero_text_mobile": "Mehdi Ouazza MEHDIO Mehdio — practical data and AI education by Mehdi Ouazza Build AI workflows for | About Mehdi Ouazza and this personal website Mehdio is the personal website of Mehdi Ouazza, a dat…",
+  "verify.record.summary.lcp_ms_desktop": 2140
+ }
 }

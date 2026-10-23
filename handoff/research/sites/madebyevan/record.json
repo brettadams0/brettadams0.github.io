@@ -197,5 +197,97 @@
   "mobile_status": 200,
   "title": "WebGL Water"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "html-has-lang",
+    "impact": "serious",
+    "help": "<html> element must have a lang attribute",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   }
+  ],
+  "record.home.desktop.dom.headings": [
+   {
+    "level": 1,
+    "text": "Evan Wallace",
+    "y": 172
+   },
+   {
+    "level": 2,
+    "text": "Professional Work",
+    "y": 353
+   },
+   {
+    "level": 3,
+    "text": "Figma (2012-2021)",
+    "y": 439
+   },
+   {
+    "level": 2,
+    "text": "Compilers",
+    "y": 630
+   },
+   {
+    "level": 3,
+    "text": "esbuild (2020-present)",
+    "y": 766
+   },
+   {
+    "level": 3,
+    "text": "Skew (2015-2019)",
+    "y": 980
+   },
+   {
+    "level": 2,
+    "text": "Graphics",
+    "y": 1171
+   },
+   {
+    "level": 3,
+    "text": "WebGL Water (2010)",
+    "y": 1307
+   },
+   {
+    "level": 3,
+    "text": "WebGL Path Tracing (2010)",
+    "y": 1521
+   },
+   {
+    "level": 3,
+    "text": "WebGL Image Filters (2011)",
+    "y": 1712
+   },
+   {
+    "level": 3,
+    "text": "Shader Articles (2015)",
+    "y": 1926
+   },
+   {
+    "level": 2,
+    "text": "Games",
+    "y": 2095
+   },
+   {
+    "_trimmed": true,
+    "_total_items": 22
+   }
+  ],
+  "record.inner.desktop.code_scan": {
+   "reducedMotionCss": 0,
+   "reducedMotionJs": 0,
+   "colorSchemeCss": 0,
+   "colorSchemeJs": 0,
+   "scrollLibs": [],
+   "webglLibs": []
+  },
+  "record.summary.js_bytes_desktop": 0,
+  "record.summary.nav_items": [
+   "Mastodon",
+   "GitHub"
+  ]
+ }
 }

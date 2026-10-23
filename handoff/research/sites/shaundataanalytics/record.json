@@ -218,5 +218,242 @@
   "mobile_status": 200,
   "title": "Shaun Lin | Data Engineer & Analytics Specialist"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.dom.features.demo_links": [
+   {
+    "text": "Interactive 3D Demo",
+    "href": "/projects/clustering-analytics",
+    "y": 447,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "/retail-supply-chain-pipeline/",
+    "y": 4445,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "/demos/powerbi-studio/",
+    "y": 4445,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "https://shaundataanalytics.netlify.app/demos/speechify-socratic/",
+    "y": 5175,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "https://shaundataanalytics.github.io/career-pulse-quiz/",
+    "y": 5175,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "https://github.com/ShaunDataAnalytics/data-science-portfolio-labs",
+    "y": 6119,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "https://github.com/ShaunDataAnalytics/collaborative-book-recommender-engine",
+    "y": 6119,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "https://github.com/ShaunDataAnalytics/real-estate-valuation-ml",
+    "y": 6770,
+    "visible": true,
+    "in_nav": false
+   }
+  ],
+  "record.home.mobile.dom.nav": [
+   {
+    "text": "Shaun Lin",
+    "href": "/",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "Home",
+    "href": "/",
+    "tag": "a",
+    "visible": false,
+    "expanded": null
+   },
+   {
+    "text": "Timeline",
+    "href": "/#timeline",
+    "tag": "a",
+    "visible": false,
+    "expanded": null
+   },
+   {
+    "text": "🤖AI Demos",
+    "href": "/#ai-projects",
+    "tag": "a",
+    "visible": false,
+    "expanded": null
+   },
+   {
+    "text": "📊Data Projects",
+    "href": "/#data-projects",
+    "tag": "a",
+    "visible": false,
+    "expanded": null
+   },
+   {
+    "text": "GitHub Profile",
+    "href": "https://github.com/ShaunDataAnalytics",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "Toggle theme",
+    "href": null,
+    "tag": "button",
+    "visible": true,
+    "expanded": null
+   }
+  ],
+  "record.inner.desktop.dom.headings": [
+   {
+    "level": 1,
+    "text": "Retail & Supply Chain Intelligence Pipeline",
+    "y": 204
+   },
+   {
+    "level": 2,
+    "text": "1. Problem Statement & Business Objective",
+    "y": 676
+   },
+   {
+    "level": 2,
+    "text": "End-to-End Pipeline & System Architecture",
+    "y": 931
+   },
+   {
+    "level": 3,
+    "text": "Automated Data Surgery",
+    "y": 1035
+   },
+   {
+    "level": 3,
+    "text": "Star Schema Modeling",
+    "y": 1035
+   },
+   {
+    "level": 3,
+    "text": "Multi-Engine Loading",
+    "y": 1035
+   },
+   {
+    "level": 3,
+    "text": "Automated Integrity Audit",
+    "y": 1035
+   },
+   {
+    "level": 3,
+    "text": "Strategic SQL Intelligence",
+    "y": 1035
+   },
+   {
+    "level": 2,
+    "text": "Phase-by-Phase Engineering Lifecycle",
+    "y": 1297
+   },
+   {
+    "level": 3,
+    "text": "Phase 1: Automated Data Surgery & Cleansing",
+    "y": 1382
+   },
+   {
+    "level": 3,
+    "text": "Phase 2: Relational Star Schema ETL & Two-Way Integrity Verification",
+    "y": 1656
+   },
+   {
+    "level": 3,
+    "text": "Phase 3: Advanced SQL Business Audit Findings",
+    "y": 1959
+   },
+   {
+    "_trimmed": true,
+    "_total_items": 15
+   }
+  ],
+  "record.summary.total_bytes_desktop": 303499,
+  "verify.record.home.desktop.dom.features.demo_links": [
+   {
+    "text": "Interactive 3D Demo",
+    "href": "/projects/clustering-analytics",
+    "y": 447,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "/retail-supply-chain-pipeline/",
+    "y": 4445,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "/demos/powerbi-studio/",
+    "y": 4445,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "https://shaundataanalytics.netlify.app/demos/speechify-socratic/",
+    "y": 5175,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "https://shaundataanalytics.github.io/career-pulse-quiz/",
+    "y": 5175,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "https://github.com/ShaunDataAnalytics/data-science-portfolio-labs",
+    "y": 6119,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "https://github.com/ShaunDataAnalytics/collaborative-book-recommender-engine",
+    "y": 6119,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live Demo",
+    "href": "https://github.com/ShaunDataAnalytics/real-estate-valuation-ml",
+    "y": 6770,
+    "visible": true,
+    "in_nav": false
+   }
+  ],
+  "verify.record.inner.mobile.dom.vw": 496
+ }
 }

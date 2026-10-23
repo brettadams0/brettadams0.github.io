@@ -230,5 +230,84 @@
   }
  },
  "inner_page": null,
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.dom.features.contact_links": [
+   {
+    "text": "Contact",
+    "href": "#contact",
+    "y": 32,
+    "visible": true,
+    "in_nav": true
+   },
+   {
+    "text": "Get in touch",
+    "href": "https://www.linkedin.com/in/richardshuai/",
+    "y": 13452,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "",
+    "href": "https://www.linkedin.com/in/richardshuai/",
+    "y": 13460,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "",
+    "href": "https://github.com/ricsign/",
+    "y": 13460,
+    "visible": true,
+    "in_nav": false
+   }
+  ],
+  "record.home.desktop.dom.features.videos": [
+   {
+    "autoplay": true,
+    "playing": false,
+    "muted": true,
+    "y": 20
+   },
+   {
+    "autoplay": true,
+    "playing": false,
+    "muted": true,
+    "y": 2250
+   },
+   {
+    "autoplay": true,
+    "playing": false,
+    "muted": true,
+    "y": 9829
+   }
+  ],
+  "record.home.mobile.dom.a11y_manual.small_target_examples": [
+   {
+    "el": "a.text-xs.sm:text-sm",
+    "text": "About",
+    "w": 39,
+    "h": 16
+   },
+   {
+    "el": "a.text-xs.sm:text-sm",
+    "text": "Experience",
+    "w": 67,
+    "h": 16
+   },
+   {
+    "el": "a.text-xs.sm:text-sm",
+    "text": "Projects",
+    "w": 51,
+    "h": 16
+   },
+   {
+    "el": "a.text-xs.sm:text-sm",
+    "text": "Contact",
+    "w": 49,
+    "h": 16
+   }
+  ],
+  "verify.record.summary.lcp_ms_desktop": 4920
+ }
 }

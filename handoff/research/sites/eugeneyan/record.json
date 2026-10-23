@@ -215,5 +215,93 @@
   "mobile_status": 200,
   "title": "Prototyping • Eugene Yan"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 28,
+    "targets": [
+     "a[href$=\"start-here/\"]",
+     "a[title=\"Writing\"]",
+     "a[title=\"Speaking\"]"
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "help": "Document should have one main landmark",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "meta-viewport-large",
+    "impact": "minor",
+    "help": "Users should be able to zoom and scale the text up to 500%",
+    "nodes": 1,
+    "targets": [
+     "meta[name=\"viewport\"]"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 19,
+    "targets": [
+     ".header",
+     "#hi",
+     ".container > p"
+    ]
+   }
+  ],
+  "record.home.desktop.network_initial.top_hosts": [
+   {
+    "host": "googletagmanager.com",
+    "bytes": 176147
+   },
+   {
+    "host": "cdn.jsdelivr.net",
+    "bytes": 131673
+   },
+   {
+    "host": "fonts.gstatic.com",
+    "bytes": 121498
+   },
+   {
+    "host": "eugeneyan.com",
+    "bytes": 93764
+   },
+   {
+    "host": "f.convertkit.com",
+    "bytes": 14328
+   },
+   {
+    "host": "static.cloudflareinsights.com",
+    "bytes": 10704
+   },
+   {
+    "host": "fonts.googleapis.com",
+    "bytes": 1489
+   },
+   {
+    "host": "app.convertkit.com",
+    "bytes": 1439
+   }
+  ],
+  "record.home.mobile.dom.vw": 453,
+  "record.summary.hero_text_mobile": "eugeneyan Start Here Writing Speaking Prototyping About Hi, I'm Eugene Yan, an operator-angel. I work to bridge the field and the frontier, and help build safe, reliable AI systems that scale. Current…",
+  "record.summary.key_info_positions_mobile.contact": {
+   "y": 4375,
+   "scrolls": 4,
+   "text": "Twitter",
+   "href": "https://twitter.com/eugeneyan"
+  },
+  "verify.record.summary.cls_desktop": 0.0119,
+  "verify.record.summary.horizontal_overflow_mobile": true
+ }
 }

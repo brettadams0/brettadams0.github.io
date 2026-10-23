@@ -208,5 +208,75 @@
   "mobile_status": 200,
   "title": "Projects - Shu Ding"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 3,
+    "targets": [
+     ".inline-block.px-2[href$=\"thoughts\"]",
+     ".inline-block.px-2[href$=\"projects\"]",
+     "a[href$=\"guestbook\"]"
+    ]
+   },
+   {
+    "id": "meta-viewport",
+    "impact": "critical",
+    "help": "Zooming and scaling must not be disabled",
+    "nodes": 1,
+    "targets": [
+     "meta[name=\"viewport\"]"
+    ]
+   }
+  ],
+  "record.home.desktop.dom.features.contact_links": [
+   {
+    "text": "GitHub",
+    "href": "https://github.com/shuding",
+    "y": 368,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "X (Twitter)",
+    "href": "https://x.com/shuding",
+    "y": 368,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "LinkedIn",
+    "href": "https://www.linkedin.com/in/shuding",
+    "y": 368,
+    "visible": true,
+    "in_nav": false
+   }
+  ],
+  "verify.record.home.desktop.network_initial.by_type": {
+   "document": {
+    "count": 1,
+    "bytes": 4696
+   },
+   "font": {
+    "count": 3,
+    "bytes": 65194
+   },
+   "stylesheet": {
+    "count": 1,
+    "bytes": 12869
+   },
+   "script": {
+    "count": 11,
+    "bytes": 196413
+   },
+   "fetch": {
+    "count": 8,
+    "bytes": 26284
+   }
+  },
+  "verify.record.summary.total_bytes_desktop": 305456
+ }
 }

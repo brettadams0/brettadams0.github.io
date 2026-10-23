@@ -199,5 +199,50 @@
   }
  },
  "inner_page": null,
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "button-name",
+    "impact": "critical",
+    "help": "Buttons must have discernible text",
+    "nodes": 1,
+    "targets": [
+     "button"
+    ]
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 6,
+    "targets": [
+     "#work > h2",
+     "#projects > h2",
+     ".project-link[data-cap-focus=\"1\"][target=\"_blank\"]"
+    ]
+   }
+  ],
+  "record.summary.has_resume_link": false,
+  "record.summary.requests_desktop": 6,
+  "verify.record.home.desktop.network_initial.by_type": {
+   "document": {
+    "count": 1,
+    "bytes": 1153
+   },
+   "stylesheet": {
+    "count": 2,
+    "bytes": 4172
+   },
+   "script": {
+    "count": 1,
+    "bytes": 63328
+   },
+   "image": {
+    "count": 2,
+    "bytes": 163158
+   }
+  },
+  "verify.record.summary.lcp_ms_desktop": 1628
+ }
 }

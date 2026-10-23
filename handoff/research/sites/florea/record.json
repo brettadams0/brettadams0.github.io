@@ -214,5 +214,153 @@
   }
  },
  "inner_page": null,
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 7,
+    "targets": [
+     "#h\\.djw8wzqae341_l > .CjVfdc[jscontroller=\"Ae65rd\"] > .C9DxTc:nth-child(4)",
+     "#h\\.ckblyftqt3ey_l > .CjVfdc[jscontroller=\"Ae65rd\"] > .C9DxTc:nth-child(4)",
+     "#h\\.s0qegshp8zr_l > .CjVfdc[jscontroller=\"Ae65rd\"] > .C9DxTc:nth-child(4)"
+    ]
+   },
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "help": "Heading levels should only increase by one",
+    "nodes": 1,
+    "targets": [
+     "#h\\.iu372ibx2xas_l"
+    ]
+   },
+   {
+    "id": "image-alt",
+    "impact": "critical",
+    "help": "Images must have alternative text",
+    "nodes": 2,
+    "targets": [
+     "#h\\.442c16e5a624dcbb_0 > .jXK9ad-SmKAyb > .tyJCtd.baZpAe > .t3iYD > img",
+     "#h\\.42c4c76c39a25941_34 > .jXK9ad-SmKAyb > .tyJCtd.baZpAe > .t3iYD > img"
+    ]
+   },
+   {
+    "id": "landmark-no-duplicate-banner",
+    "impact": "moderate",
+    "help": "Document should not have more than one banner landmark",
+    "nodes": 1,
+    "targets": [
+     "div[jscontroller=\"RrXLpc\"]"
+    ]
+   },
+   {
+    "id": "landmark-no-duplicate-contentinfo",
+    "impact": "moderate",
+    "help": "Document should not have more than one contentinfo landmark",
+    "nodes": 1,
+    "targets": [
+     "footer"
+    ]
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "help": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+    "nodes": 2,
+    "targets": [
+     "div[jscontroller=\"RrXLpc\"]",
+     "footer"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 47,
+    "targets": [
+     "#h\\.42c4c76c39a25941_0 > .mYVXT > .LS81yb.VICjCf.j5pSsc > .hJDwNd-AhqUyc-wNfPc.Ft7HRd-AhqUyc-wNfPc.pSzOP-AhqUyc-wNfPc",
+     "#h\\.lh6lhrsv2yih_l",
+     ".yYI8W.HQwdzb.hJDwNd-AhqUyc-OwsYgb > .JNdkSc-SmKAyb.LkDMRd > div[jscontroller=\"sGwD4d\"][jsaction=\"zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;\"][jsname=\"F57UId\"] > .oKdM2c.ZZyype:nth-child(2)"
+    ]
+   }
+  ],
+  "record.home.mobile.dom.scroll_height": 3918,
+  "record.summary.total_bytes_desktop": 2097608,
+  "verify.record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 8,
+    "targets": [
+     "#h\\.djw8wzqae341_l > .CjVfdc[jscontroller=\"Ae65rd\"] > .C9DxTc:nth-child(4)",
+     "#h\\.ckblyftqt3ey_l > .CjVfdc[jscontroller=\"Ae65rd\"] > .C9DxTc:nth-child(4)",
+     "#h\\.s0qegshp8zr_l > .CjVfdc[jscontroller=\"Ae65rd\"] > .C9DxTc:nth-child(4)"
+    ]
+   },
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "help": "Heading levels should only increase by one",
+    "nodes": 1,
+    "targets": [
+     "#h\\.iu372ibx2xas_l"
+    ]
+   },
+   {
+    "id": "image-alt",
+    "impact": "critical",
+    "help": "Images must have alternative text",
+    "nodes": 2,
+    "targets": [
+     "#h\\.442c16e5a624dcbb_0 > .jXK9ad-SmKAyb > .tyJCtd.baZpAe > .t3iYD > img",
+     "#h\\.42c4c76c39a25941_34 > .jXK9ad-SmKAyb > .tyJCtd.baZpAe > .t3iYD > img"
+    ]
+   },
+   {
+    "id": "landmark-no-duplicate-banner",
+    "impact": "moderate",
+    "help": "Document should not have more than one banner landmark",
+    "nodes": 1,
+    "targets": [
+     "div[jscontroller=\"RrXLpc\"]"
+    ]
+   },
+   {
+    "id": "landmark-no-duplicate-contentinfo",
+    "impact": "moderate",
+    "help": "Document should not have more than one contentinfo landmark",
+    "nodes": 1,
+    "targets": [
+     "footer"
+    ]
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "help": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+    "nodes": 2,
+    "targets": [
+     "div[jscontroller=\"RrXLpc\"]",
+     "footer"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 48,
+    "targets": [
+     "#h\\.42c4c76c39a25941_0 > .mYVXT > .LS81yb.VICjCf.j5pSsc > .hJDwNd-AhqUyc-wNfPc.Ft7HRd-AhqUyc-wNfPc.pSzOP-AhqUyc-wNfPc",
+     "#h\\.lh6lhrsv2yih_l",
+     ".yYI8W.HQwdzb.hJDwNd-AhqUyc-OwsYgb > .JNdkSc-SmKAyb.LkDMRd > div[jscontroller=\"sGwD4d\"][jsaction=\"zXBUYb:zTPCnb;zQF9Uc:Qxe3nd;\"][jsname=\"F57UId\"] > .oKdM2c.ZZyype:nth-child(2)"
+    ]
+   }
+  ],
+  "verify.record.home.mobile.dom.scroll_height": 3918,
+  "verify.record.summary.lcp_ms_desktop": 4636
+ }
 }

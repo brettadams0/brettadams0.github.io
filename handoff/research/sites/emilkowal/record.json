@@ -189,5 +189,65 @@
   "mobile_status": 200,
   "title": "Sonner"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.dom.features": {
+   "resume_links": [],
+   "contact_links": [
+    {
+     "text": "Twitter",
+     "href": "https://twitter.com/emilkowalski",
+     "y": 2394,
+     "visible": true,
+     "in_nav": false
+    },
+    {
+     "text": "GitHub",
+     "href": "https://github.com/emilkowalski",
+     "y": 2394,
+     "visible": true,
+     "in_nav": false
+    }
+   ],
+   "contact_forms": 0,
+   "demo_links": [],
+   "case_study_text": false,
+   "project_section_heading": null,
+   "project_links": [],
+   "card_like_elements": 0,
+   "videos": [],
+   "progress_bars": 0,
+   "percent_labels": 0,
+   "logo_images": 0,
+   "canvases": [],
+   "iframes": [],
+   "html_body_overflow": "visible/hidden auto"
+  },
+  "record.home.desktop.dom.headings": [],
+  "record.home.desktop.network_initial.by_type": {
+   "document": {
+    "count": 1,
+    "bytes": 6731
+   },
+   "font": {
+    "count": 9,
+    "bytes": 1087435
+   },
+   "stylesheet": {
+    "count": 9,
+    "bytes": 37540
+   },
+   "script": {
+    "count": 24,
+    "bytes": 886564
+   },
+   "fetch": {
+    "count": 1,
+    "bytes": 4547
+   }
+  },
+  "record.summary.small_targets_mobile": 0,
+  "verify.record.summary.lcp_ms_desktop": 2492,
+  "verify.record.summary.small_targets_mobile": 0
+ }
 }

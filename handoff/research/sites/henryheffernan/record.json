@@ -205,5 +205,78 @@
   "mobile_status": 200,
   "title": "Henry Heffernan - OS"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "click-through-probe.json": {
+   "url": "https://henryheffernan.com/",
+   "method": "one extra load per viewport by capture agent C4 (headless Chromium, unthrottled, via proxy): wait for START, click it, wait 6 s, screenshot, click page centre, wait 6 s, screenshot",
+   "runs": [
+    {
+     "viewport": "desktop",
+     "start_visible_ms": 11846,
+     "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('START', { exact: true }).first()\u001b[22m\n\u001b[2m    - locator resolved to <p>START</p>\u001b[22m\n\u001b[2m  - attempting…"
+    },
+    {
+     "viewport": "mobile",
+     "start_visible_ms": 2844,
+     "start_clicked_ms": 18328,
+     "after_start_text": "Click anywhe Heffernan, Henry Inc. Released: 01/13/2000 HHBIOS (C)2000 Heffernan Henry Inc., HSP S13 2000-2022 Special UC131S HSP Showcase(tm) XX 113 Checking RAM : 14000 OK FINISHED LOADING RESOURCES",
+     "second_click_ms": 30990,
+     "after_2nd_text": "Henry Hefferna Click anywhere Heffernan, Henry Inc. Released: 01/13/2000 HHBIOS (C)2000 Heffernan Henry Inc., HSP S13 2000-2022 Special UC131S HSP Showcase(tm) XX 113 Checking RAM : 14000 OK FINISHED ",
+     "frames": [
+      "https://henryheffernan.com/",
+      "https://os.henryheffernan.com/"
+     ],
+     "total_ms": 41848
+    },
+    {
+     "viewport": "desktop",
+     "retry": "mouse click at START bounding-box centre (element never reported stable)",
+     "start_visible_ms": 2071,
+     "start_clicked_ms": 11237,
+     "second_click_ms": 19790,
+     "total_ms": 28226,
+     "loaded_utc": "2026-10-21T16:32:33.215Z"
+    }
+   ],
+   "loaded_utc": "2026-10-21T16:31:32.963Z"
+  },
+  "record.home.desktop.network_initial.total_bytes": 7660986,
+  "record.home.mobile.dom.a11y_manual.interactive_first_2_viewports": 0,
+  "record.inner.desktop.lcp": {
+   "t": 2088,
+   "size": 44960,
+   "el": "h1"
+  },
+  "record.summary.meta_description": "I'm Henry, a Software Engineer based in NY. Rensselaer Polytechnic Institute Graduate with my B.S. in Computer Science, currently looking for a full time role.",
+  "verify.record.home.desktop.network_initial.by_type": {
+   "document": {
+    "count": 2,
+    "bytes": 2861
+   },
+   "script": {
+    "count": 4,
+    "bytes": 428083
+   },
+   "stylesheet": {
+    "count": 5,
+    "bytes": 16683
+   },
+   "media": {
+    "count": 2,
+    "bytes": 0
+   },
+   "fetch": {
+    "count": 16,
+    "bytes": 1300449
+   },
+   "image": {
+    "count": 5,
+    "bytes": 3051980
+   }
+  },
+  "verify.record.summary.cls_desktop": 0.0062,
+  "verify.record.summary.lcp_ms_desktop": 7948,
+  "verify.record.summary.total_bytes_desktop": 4800056
+ }
 }

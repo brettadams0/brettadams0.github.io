@@ -197,5 +197,147 @@
   "mobile_status": 200,
   "title": "Mechanical Watch – Bartosz Ciechanowski"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.network_initial": {
+   "requests": 23,
+   "failed": 1,
+   "total_bytes": 7075308,
+   "js_bytes": 379744,
+   "js_first_party_bytes": 93273,
+   "by_type": {
+    "document": {
+     "count": 1,
+     "bytes": 41382
+    },
+    "script": {
+     "count": 4,
+     "bytes": 379744
+    },
+    "stylesheet": {
+     "count": 3,
+     "bytes": 9402
+    },
+    "image": {
+     "count": 10,
+     "bytes": 5515611
+    },
+    "fetch": {
+     "count": 1,
+     "bytes": 0
+    },
+    "font": {
+     "count": 3,
+     "bytes": 145307
+    },
+    "xhr": {
+     "count": 1,
+     "bytes": 983862
+    }
+   },
+   "top_hosts": [
+    {
+     "host": "ciechanow.ski",
+     "bytes": 6641886
+    },
+    {
+     "host": "googletagmanager.com",
+     "bytes": 286471
+    },
+    {
+     "host": "fonts.gstatic.com",
+     "bytes": 145307
+    },
+    {
+     "host": "fonts.googleapis.com",
+     "bytes": 1644
+    },
+    {
+     "host": "google-analytics.com",
+     "bytes": 0
+    }
+   ]
+  },
+  "record.home.desktop.network_initial.top_hosts": [
+   {
+    "host": "ciechanow.ski",
+    "bytes": 6641886
+   },
+   {
+    "host": "googletagmanager.com",
+    "bytes": 286471
+   },
+   {
+    "host": "fonts.gstatic.com",
+    "bytes": 145307
+   },
+   {
+    "host": "fonts.googleapis.com",
+    "bytes": 1644
+   },
+   {
+    "host": "google-analytics.com",
+    "bytes": 0
+   }
+  ],
+  "record.home.desktop.splash_check": {
+   "text_chars_500ms": 94717,
+   "text_chars_3000ms": 94705
+  },
+  "record.home.mobile.dom.a11y_manual": {
+   "skip_link": null,
+   "imgs": 13,
+   "imgs_missing_alt": 10,
+   "interactive_first_2_viewports": 9,
+   "small_targets_under_24px": 2,
+   "small_target_examples": [
+    {
+     "el": "a",
+     "text": "Blog",
+     "w": 56,
+     "h": 20
+    },
+    {
+     "el": "a",
+     "text": "Archives",
+     "w": 86,
+     "h": 20
+    }
+   ]
+  },
+  "record.summary.meta_description": "Interactive articles about science and engineering.",
+  "verify.record.home.desktop.perf_api_initial": {
+   "resource_count": 19,
+   "resource_transfer_bytes": 6600166,
+   "resource_by_initiator": {
+    "script": 4,
+    "link": 3,
+    "img": 7,
+    "css": 3,
+    "xmlhttprequest": 1,
+    "fetch": 1
+   },
+   "dcl_ms": 2927,
+   "load_ms": 4108,
+   "ttfb_ms": 694,
+   "lcp": {
+    "t": 1836,
+    "size": 57375,
+    "el": "p"
+   },
+   "shifts": [
+    [
+     3058,
+     0.0008440972222222223
+    ]
+   ],
+   "canvas_contexts": [
+    "experimental-webgl",
+    "2d"
+   ],
+   "text_chars_500ms": 94717,
+   "text_chars_3000ms": 94705
+  },
+  "verify.record.summary.meta_description": "Interactive articles about science and engineering."
+ }
 }

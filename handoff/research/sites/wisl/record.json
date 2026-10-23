@@ -220,5 +220,74 @@
   "mobile_status": 200,
   "title": "Python task runner, Makefile alternative - bakefile"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 3,
+    "targets": [
+     ".card:nth-child(1) > p > a:nth-child(1)",
+     "a[href$=\"makefile-alternative/\"]",
+     "a[href$=\"semantic-release-zerv/\"]"
+    ]
+   },
+   {
+    "id": "link-in-text-block",
+    "impact": "serious",
+    "help": "Links must be distinguishable without relying on color",
+    "nodes": 3,
+    "targets": [
+     ".card:nth-child(1) > p > a:nth-child(1)",
+     "a[href$=\"makefile-alternative/\"]",
+     "a[href$=\"semantic-release-zerv/\"]"
+    ]
+   }
+  ],
+  "record.home.desktop.network_initial": {
+   "requests": 17,
+   "failed": 0,
+   "total_bytes": 295604,
+   "js_bytes": 11762,
+   "js_first_party_bytes": 11762,
+   "by_type": {
+    "document": {
+     "count": 1,
+     "bytes": 12983
+    },
+    "font": {
+     "count": 4,
+     "bytes": 179327
+    },
+    "script": {
+     "count": 3,
+     "bytes": 11762
+    },
+    "stylesheet": {
+     "count": 1,
+     "bytes": 6938
+    },
+    "image": {
+     "count": 8,
+     "bytes": 84594
+    }
+   },
+   "top_hosts": [
+    {
+     "host": "wisl.dev",
+     "bytes": 295604
+    }
+   ]
+  },
+  "record.summary.has_resume_link": false,
+  "record.summary.lcp_ms_desktop": 2168,
+  "verify.record.home.desktop.lcp": {
+   "t": 5020,
+   "size": 53350,
+   "el": "p.pitch.reveal"
+  },
+  "verify.record.summary.lcp_ms_desktop": 5020
+ }
 }

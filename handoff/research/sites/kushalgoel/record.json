@@ -220,5 +220,32 @@
   "mobile_status": 200,
   "title": "LeetCode Bytes"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 9,
+    "targets": [
+     ".mt-4",
+     "a[href$=\"#experience\"] > .group-hover\\:text-sky-800.dark\\:group-hover\\:text-slate-200.text-sky-500",
+     "a[href$=\"#projects\"] > .group-hover\\:text-sky-800.dark\\:group-hover\\:text-slate-200.text-sky-500"
+    ]
+   },
+   {
+    "id": "link-name",
+    "impact": "serious",
+    "help": "Links must have discernible text",
+    "nodes": 6,
+    "targets": [
+     "a[href=\"mailto:kushalgoel786@gmail.com\"]",
+     ".mr-5:nth-child(2) > .dark\\:hover\\:text-slate-200.hover\\:text-sky-800[target=\"_blank\"]",
+     ".mr-5:nth-child(3) > .dark\\:hover\\:text-slate-200.hover\\:text-sky-800[target=\"_blank\"]"
+    ]
+   }
+  ],
+  "verify.record.summary.lcp_ms_desktop": 1528
+ }
 }

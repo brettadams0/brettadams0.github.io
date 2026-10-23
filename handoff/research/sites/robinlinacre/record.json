@@ -211,5 +211,140 @@
   "mobile_status": 200,
   "title": "Live DuckDB WASM Splink model | Robin Linacre's blog"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.mobile.dom.a11y_manual.small_target_examples": [
+   {
+    "el": "a.responsive-nav-link",
+    "text": "About",
+    "w": 18,
+    "h": 18
+   },
+   {
+    "el": "a.responsive-nav-link.nav-projects",
+    "text": "Projects",
+    "w": 18,
+    "h": 18
+   },
+   {
+    "el": "a.responsive-nav-link",
+    "text": "Probabilistic record linkage",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "el": "a.icon-link",
+    "text": "Twitter",
+    "w": 18,
+    "h": 18
+   },
+   {
+    "el": "a.icon-link.nav-github",
+    "text": "GitHub",
+    "w": 18,
+    "h": 18
+   },
+   {
+    "el": "a.icon-link",
+    "text": "LinkedIn",
+    "w": 18,
+    "h": 18
+   }
+  ],
+  "record.home.mobile.dom.features.demo_links": [
+   {
+    "text": "Interactive blogging with Observable Notebooks and gatsby.js",
+    "href": "/interactive_blogging/",
+    "y": 2417,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live DuckDB WASM Splink model",
+    "href": "/live_splink/",
+    "y": 3220,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Graph editor for illustrating clustering concepts (graph pla",
+    "href": "/graph_playground_iframe/",
+    "y": 3279,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "An Interactive Introduction to Record Linkage (Data Deduplic",
+    "href": "/intro_to_probabilistic_linkage/",
+    "y": 4523,
+    "visible": true,
+    "in_nav": false
+   }
+  ],
+  "record.summary.total_bytes_desktop": 237068,
+  "verify.record.home.desktop.network_initial": {
+   "requests": 9,
+   "failed": 1,
+   "total_bytes": 237067,
+   "js_bytes": 174406,
+   "js_first_party_bytes": 0,
+   "by_type": {
+    "document": {
+     "count": 1,
+     "bytes": 9282
+    },
+    "stylesheet": {
+     "count": 2,
+     "bytes": 15129
+    },
+    "image": {
+     "count": 1,
+     "bytes": 15311
+    },
+    "script": {
+     "count": 2,
+     "bytes": 174406
+    },
+    "fetch": {
+     "count": 1,
+     "bytes": 0
+    },
+    "font": {
+     "count": 1,
+     "bytes": 22182
+    },
+    "xhr": {
+     "count": 1,
+     "bytes": 757
+    }
+   },
+   "top_hosts": [
+    {
+     "host": "googletagmanager.com",
+     "bytes": 163702
+    },
+    {
+     "host": "robinlinacre.com",
+     "bytes": 39112
+    },
+    {
+     "host": "fonts.gstatic.com",
+     "bytes": 22182
+    },
+    {
+     "host": "static.cloudflareinsights.com",
+     "bytes": 10704
+    },
+    {
+     "host": "fonts.googleapis.com",
+     "bytes": 1367
+    },
+    {
+     "host": "google-analytics.com",
+     "bytes": 0
+    }
+   ]
+  },
+  "verify.record.summary.lcp_ms_desktop": 1824
+ }
 }

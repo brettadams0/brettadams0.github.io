@@ -196,5 +196,98 @@
   "resume_note": "No résumé exists in the HTML. Page height equals the viewport (no scrolling, body overflow hidden), so scrolls are meaningless here."
  },
  "inner_page": null,
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "fold-30s-probe.json": {
+   "url": "https://bruno-simon.com/",
+   "loaded_utc": "2026-10-21T16:23:25.919Z",
+   "method": "one extra desktop load (1440x900 DPR1, headless Chromium, unthrottled, via proxy) by capture agent C4; visible text sampled at 3/6/12/20/30 s; screenshot at 30 s; no clicks or key presses",
+   "samples": [
+    {
+     "t_ms": 3746,
+     "label": "t3000",
+     "visible_text": [],
+     "visible_text_chars": 0,
+     "visible_buttons_links": [
+      "",
+      ""
+     ]
+    },
+    {
+     "t_ms": 11527,
+     "label": "t6000",
+     "visible_text": [],
+     "visible_text_chars": 0,
+     "visible_buttons_links": [
+      "",
+      ""
+     ]
+    },
+    {
+     "t_ms": 18882,
+     "label": "t12000",
+     "visible_text": [],
+     "visible_text_chars": 0,
+     "visible_buttons_links": [
+      "",
+      ""
+     ]
+    },
+    {
+     "t_ms": 27057,
+     "label": "t20000",
+     "visible_text": [],
+     "visible_text_chars": 0,
+     "visible_buttons_links": [
+      "",
+      ""
+     ]
+    },
+    {
+     "t_ms": 34801,
+     "label": "t30000",
+     "visible_text": [],
+     "visible_text_chars": 0,
+     "visible_buttons_links": [
+      "",
+      ""
+     ]
+    }
+   ]
+  },
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "button-name",
+    "impact": "critical",
+    "help": "Buttons must have discernible text",
+    "nodes": 2,
+    "targets": [
+     ".js-menu-trigger",
+     ".js-map-trigger"
+    ]
+   },
+   {
+    "id": "image-alt",
+    "impact": "critical",
+    "help": "Images must have alternative text",
+    "nodes": 1,
+    "targets": [
+     ".map-icon"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 1,
+    "targets": [
+     "canvas"
+    ]
+   }
+  ],
+  "record.home.desktop.dom.headings": [],
+  "record.summary.hero_text": "",
+  "record.summary.js_bytes_desktop": 1230723,
+  "verify.record.summary.total_bytes_desktop": 5503256
+ }
 }

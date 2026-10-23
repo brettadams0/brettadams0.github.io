@@ -224,5 +224,160 @@
   "mobile_status": 200,
   "title": "Archive | Brittany Chiang"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.dom.features.contact_links": [
+   {
+    "text": "GitHub",
+    "href": "https://github.com/bchiang7",
+    "y": 780,
+    "visible": true,
+    "in_nav": true
+   },
+   {
+    "text": "LinkedIn",
+    "href": "https://www.linkedin.com/in/bchiang7/",
+    "y": 780,
+    "visible": true,
+    "in_nav": true
+   }
+  ],
+  "record.home.desktop.dom.features.resume_links": [
+   {
+    "text": "View Full Résumé",
+    "href": "/resume.pdf",
+    "y": 2029,
+    "visible": true,
+    "in_nav": false
+   }
+  ],
+  "record.home.desktop.network_initial.by_type": {
+   "document": {
+    "count": 1,
+    "bytes": 11256
+   },
+   "font": {
+    "count": 9,
+    "bytes": 1189888
+   },
+   "stylesheet": {
+    "count": 1,
+    "bytes": 7017
+   },
+   "script": {
+    "count": 10,
+    "bytes": 320299
+   },
+   "image": {
+    "count": 10,
+    "bytes": 1459567
+   },
+   "fetch": {
+    "count": 7,
+    "bytes": 5610
+   },
+   "ping": {
+    "count": 2,
+    "bytes": 562
+   }
+  },
+  "record.home.mobile.dom.a11y_manual": {
+   "skip_link": "SKIP TO CONTENT",
+   "imgs": 9,
+   "imgs_missing_alt": 0,
+   "interactive_first_2_viewports": 11,
+   "small_targets_under_24px": 1,
+   "small_target_examples": [
+    {
+     "el": "a.inline-flex.items-baseline",
+     "text": "Lead Engineer · Upstatement",
+     "w": 244,
+     "h": 20
+    }
+   ]
+  },
+  "record.home.mobile.dom.nav": [
+   {
+    "text": "Brittany Chiang",
+    "href": "/",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "About",
+    "href": "#about",
+    "tag": "a",
+    "visible": false,
+    "expanded": null
+   },
+   {
+    "text": "Experience",
+    "href": "#experience",
+    "tag": "a",
+    "visible": false,
+    "expanded": null
+   },
+   {
+    "text": "Projects",
+    "href": "#projects",
+    "tag": "a",
+    "visible": false,
+    "expanded": null
+   },
+   {
+    "text": "GitHub",
+    "href": "https://github.com/bchiang7",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "LinkedIn",
+    "href": "https://www.linkedin.com/in/bchiang7/",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "CodePen",
+    "href": "https://codepen.io/bchiang7",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "Instagram",
+    "href": "https://instagram.com/bchiang7",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   },
+   {
+    "text": "Goodreads",
+    "href": "https://www.goodreads.com/user/show/143480747-brittany-chiang",
+    "tag": "a",
+    "visible": true,
+    "expanded": null
+   }
+  ],
+  "verify.record.home.mobile.dom.role_candidates": [
+   {
+    "text": "Frontend Engineer",
+    "y": 100
+   },
+   {
+    "text": "Senior Frontend Engineer, Accessibility · Klaviyo",
+    "y": 1218
+   },
+   {
+    "text": "Senior Frontend Engineer, Accessibility · Klaviyo",
+    "y": 1219
+   },
+   {
+    "text": "Lead Engineer · Upstatement",
+    "y": 1517
+   }
+  ]
+ }
 }

@@ -211,5 +211,30 @@
   "mobile_status": 200,
   "title": "Projects - Anthony Fu"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 30,
+    "targets": [
+     "a[title=\"Blog\"] > .lt-md\\:hidden[data-v-f7964d7e=\"\"]",
+     "a[title=\"Projects\"] > .lt-md\\:hidden[data-v-f7964d7e=\"\"]",
+     "a[title=\"Talks\"]"
+    ]
+   }
+  ],
+  "record.home.desktop.dom.scroll_height": 1259,
+  "record.inner.desktop.dom.headings": [
+   {
+    "level": 1,
+    "text": "Projects",
+    "y": 130
+   }
+  ],
+  "record.summary.has_resume_link": false,
+  "verify.record.summary.js_bytes_desktop": 131667
+ }
 }

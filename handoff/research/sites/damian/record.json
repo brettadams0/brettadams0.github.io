@@ -203,5 +203,90 @@
   }
  },
  "inner_page": null,
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "image-alt",
+    "impact": "critical",
+    "help": "Images must have alternative text",
+    "nodes": 1,
+    "targets": [
+     "img"
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "help": "Document should have one main landmark",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "link-in-text-block",
+    "impact": "serious",
+    "help": "Links must be distinguishable without relying on color",
+    "nodes": 8,
+    "targets": [
+     "a[href$=\"citadel.com/\"]",
+     "p:nth-child(3) > .glow-green > a[href$=\"shopify.com/\"]",
+     "p:nth-child(3) > .glow-yellow > a[href$=\"splunk.com/\"]"
+    ]
+   },
+   {
+    "id": "link-name",
+    "impact": "serious",
+    "help": "Links must have discernible text",
+    "nodes": 1,
+    "targets": [
+     "a[href$=\"se-webring.xyz/\"]"
+    ]
+   },
+   {
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "help": "Page should contain a level-one heading",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 1,
+    "targets": [
+     "#root"
+    ]
+   }
+  ],
+  "record.home.desktop.dom.features.contact_links": [
+   {
+    "text": "[github]",
+    "href": "https://github.com/dmreiter",
+    "y": 96,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "[linkedin]",
+    "href": "https://www.linkedin.com/in/damianreiter/",
+    "y": 96,
+    "visible": true,
+    "in_nav": false
+   }
+  ],
+  "record.home.desktop.dom.features.project_section_heading": null,
+  "record.home.desktop.dom.scroll_height": 962,
+  "verify.record.summary.fonts": {
+   "body": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Fira Sans\", \"Droid Sans\", \"Helvetica ",
+   "h1": null,
+   "loaded": [
+    "Space Mono 400 normal"
+   ]
+  }
+ }
 }

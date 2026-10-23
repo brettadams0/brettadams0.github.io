@@ -253,5 +253,219 @@
   "mobile_status": 200,
   "title": "Job Market Lakehouse: PySpark, Great Expectations and Airflow | Deshraj Jogiya"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 50,
+    "targets": [
+     ".hero-proof > a[href$=\"career-pilot/\"]",
+     "#typing-text",
+     "article:nth-child(1) > .card-content > .card-badge"
+    ]
+   },
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "help": "Heading levels should only increase by one",
+    "nodes": 7,
+    "targets": [
+     "h3[data-target=\"11\"]",
+     "#modal-dashboard-title",
+     ".resume-section:nth-child(2) > .resume-edu-item:nth-child(2) > h4"
+    ]
+   },
+   {
+    "id": "link-in-text-block",
+    "impact": "serious",
+    "help": "Links must be distinguishable without relying on color",
+    "nodes": 1,
+    "targets": [
+     ".testimonial-verify"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 13,
+    "targets": [
+     ".modal-image-container",
+     ".modal-caption",
+     ".resume-modal-header-top > h2"
+    ]
+   }
+  ],
+  "record.home.desktop.dom.features.demo_links": [
+   {
+    "text": "Career Pilot live demo ↗",
+    "href": "https://demo.129-146-36-193.sslip.io",
+    "y": 460,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "Live demo ↗",
+    "href": "https://demo.129-146-36-193.sslip.io",
+    "y": 1793,
+    "visible": true,
+    "in_nav": false
+   }
+  ],
+  "record.home.desktop.dom.scroll_height": 19762,
+  "record.inner.desktop.dom.headings": [
+   {
+    "level": 1,
+    "text": "Job Market Lakehouse: PySpark, Great Expectations and Airflow",
+    "y": 206
+   },
+   {
+    "level": 2,
+    "text": "How it works",
+    "y": 559
+   },
+   {
+    "level": 2,
+    "text": "Data",
+    "y": 928
+   },
+   {
+    "level": 2,
+    "text": "Problems found and decisions made",
+    "y": 1072
+   },
+   {
+    "level": 2,
+    "text": "Testing and reliability",
+    "y": 1463
+   },
+   {
+    "level": 2,
+    "text": "Results",
+    "y": 1463
+   },
+   {
+    "level": 2,
+    "text": "Limits and next steps",
+    "y": 1694
+   },
+   {
+    "level": 2,
+    "text": "Stack",
+    "y": 1873
+   }
+  ],
+  "verify.record.home.desktop.dom.headings": [
+   {
+    "level": 1,
+    "text": "Deshraj Jogiya",
+    "y": 208
+   },
+   {
+    "level": 3,
+    "text": "11+",
+    "y": 416
+   },
+   {
+    "level": 3,
+    "text": "2300+",
+    "y": 416
+   },
+   {
+    "level": 3,
+    "text": "98%+",
+    "y": 613
+   },
+   {
+    "level": 3,
+    "text": "4.0/4.0",
+    "y": 613
+   },
+   {
+    "level": 2,
+    "text": "Featured case studies",
+    "y": 960
+   },
+   {
+    "level": 3,
+    "text": "Career Pilot: a job-search assistant in production",
+    "y": 1530
+   },
+   {
+    "level": 3,
+    "text": "Job Market Lakehouse: PySpark, Great Expectations and Airflow",
+    "y": 1219
+   },
+   {
+    "level": 3,
+    "text": "Job Search dbt Warehouse: a dimensional model on Databricks",
+    "y": 1958
+   },
+   {
+    "level": 3,
+    "text": "FinRisk: predicting loan default and serving it in under 100 ms",
+    "y": 2269
+   },
+   {
+    "level": 2,
+    "text": "More projects",
+    "y": 2653
+   },
+   {
+    "level": 3,
+    "text": "Reactive Job Ingest Gateway",
+    "y": 2967
+   },
+   {
+    "_trimmed": true,
+    "_total_items": 80
+   }
+  ],
+  "verify.record.inner.desktop.dom.headings": [
+   {
+    "level": 1,
+    "text": "Job Market Lakehouse: PySpark, Great Expectations and Airflow",
+    "y": 206
+   },
+   {
+    "level": 2,
+    "text": "How it works",
+    "y": 559
+   },
+   {
+    "level": 2,
+    "text": "Data",
+    "y": 928
+   },
+   {
+    "level": 2,
+    "text": "Problems found and decisions made",
+    "y": 1072
+   },
+   {
+    "level": 2,
+    "text": "Testing and reliability",
+    "y": 1463
+   },
+   {
+    "level": 2,
+    "text": "Results",
+    "y": 1463
+   },
+   {
+    "level": 2,
+    "text": "Limits and next steps",
+    "y": 1694
+   },
+   {
+    "level": 2,
+    "text": "Stack",
+    "y": 1873
+   }
+  ],
+  "verify.record.summary.has_resume_link": false
+ }
 }

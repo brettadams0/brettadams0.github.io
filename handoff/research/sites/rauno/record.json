@@ -195,5 +195,51 @@
   "mobile_status": 200,
   "title": "Craft"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 1,
+    "targets": [
+     "a[aria-label=\"Field Notes\"] > .index_label__cgZWW"
+    ]
+   },
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "help": "Heading levels should only increase by one",
+    "nodes": 1,
+    "targets": [
+     ".index_contents__YVkKY > .index_contents__YVkKY > h3"
+    ]
+   },
+   {
+    "id": "meta-viewport",
+    "impact": "critical",
+    "help": "Zooming and scaling must not be disabled",
+    "nodes": 1,
+    "targets": [
+     "meta[name=\"viewport\"]"
+    ]
+   }
+  ],
+  "record.inner.desktop.network_initial.by_type.media": {
+   "count": 79,
+   "bytes": 46837891
+  },
+  "record.summary.has_resume_link": false,
+  "record.summary.total_bytes_desktop": 660343,
+  "verify.record.home.desktop.network_initial.by_type.script": {
+   "count": 16,
+   "bytes": 186457
+  },
+  "verify.record.inner.desktop.network_initial.by_type.media": {
+   "count": 81,
+   "bytes": 23703626
+  },
+  "verify.record.summary.lcp_ms_desktop": 1988
+ }
 }

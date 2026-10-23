@@ -223,5 +223,171 @@
   "mobile_status": 200,
   "title": "Portfolio"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 17,
+    "targets": [
+     ".space-y-2 > .justify-between.items-center.flex > .uppercase.tracking-wider.text-xs",
+     ".space-y-2 > .justify-between.items-center.flex > .text-zinc-600.text-\\[11px\\].font-mono",
+     ".mt-3 > span:nth-child(1)"
+    ]
+   },
+   {
+    "id": "link-name",
+    "impact": "serious",
+    "help": "Links must have discernible text",
+    "nodes": 2,
+    "targets": [
+     ".transition-transform.gap-2.p-2:nth-child(1)",
+     ".transition-transform.gap-2.p-2:nth-child(2)"
+    ]
+   },
+   {
+    "id": "meta-viewport",
+    "impact": "critical",
+    "help": "Zooming and scaling must not be disabled",
+    "nodes": 1,
+    "targets": [
+     "meta[name=\"viewport\"]"
+    ]
+   },
+   {
+    "id": "nested-interactive",
+    "impact": "serious",
+    "help": "Interactive controls must not be nested",
+    "nodes": 1,
+    "targets": [
+     "button"
+    ]
+   },
+   {
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "help": "Page should contain a level-one heading",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   }
+  ],
+  "record.home.desktop.network_initial": {
+   "requests": 49,
+   "failed": 8,
+   "total_bytes": 2891113,
+   "js_bytes": 282462,
+   "js_first_party_bytes": 282462,
+   "by_type": {
+    "document": {
+     "count": 1,
+     "bytes": 8003
+    },
+    "font": {
+     "count": 1,
+     "bytes": 49056
+    },
+    "image": {
+     "count": 14,
+     "bytes": 2520281
+    },
+    "stylesheet": {
+     "count": 2,
+     "bytes": 15955
+    },
+    "script": {
+     "count": 11,
+     "bytes": 282462
+    },
+    "fetch": {
+     "count": 20,
+     "bytes": 15356
+    }
+   },
+   "top_hosts": [
+    {
+     "host": "pahasara.me",
+     "bytes": 2891113
+    }
+   ]
+  },
+  "record.inner.desktop.dom.hero_text": "Back to home June - July 2026 DATA G O V - D E N G U E - E T L : A U T O M A T E D D E N G U E D A T A P I P E L I N E GOV-DENGUE-ETL is a production-grade data engineering solution designed to automa…",
+  "record.summary.meta_description": "Personal Portfolio",
+  "verify.record.home.desktop.dom.scroll_height": 1791,
+  "verify.record.home.desktop.focus_check": [
+   {
+    "el": "a",
+    "label": "A",
+    "visible_change": true,
+    "outline": "none 0px"
+   },
+   {
+    "el": "a",
+    "label": "A",
+    "visible_change": true,
+    "outline": "none 0px"
+   },
+   {
+    "el": "a",
+    "label": "About",
+    "visible_change": true,
+    "outline": "none 0px"
+   },
+   {
+    "el": "a",
+    "label": "Blog",
+    "visible_change": true,
+    "outline": "none 0px"
+   },
+   {
+    "el": "button",
+    "label": "Download CV ↓",
+    "visible_change": false,
+    "outline": "none 0px"
+   }
+  ],
+  "verify.record.home.desktop.network_initial": {
+   "requests": 48,
+   "failed": 4,
+   "total_bytes": 2895009,
+   "js_bytes": 282462,
+   "js_first_party_bytes": 282462,
+   "by_type": {
+    "document": {
+     "count": 1,
+     "bytes": 8003
+    },
+    "font": {
+     "count": 1,
+     "bytes": 49056
+    },
+    "image": {
+     "count": 14,
+     "bytes": 2520284
+    },
+    "stylesheet": {
+     "count": 2,
+     "bytes": 15955
+    },
+    "script": {
+     "count": 11,
+     "bytes": 282462
+    },
+    "fetch": {
+     "count": 19,
+     "bytes": 19249
+    }
+   },
+   "top_hosts": [
+    {
+     "host": "pahasara.me",
+     "bytes": 2895009
+    }
+   ]
+  },
+  "verify.record.summary.hero_text": "About Blog I'm Pahasara Ridmaka , Linux enthusiast and software/data engineer building full-stack apps and scalable data pipelines across open-source environments. Activity / Contributions live github…"
+ }
 }

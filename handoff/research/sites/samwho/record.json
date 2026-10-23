@@ -212,5 +212,144 @@
   "mobile_status": 200,
   "title": "Bloom Filters"
  },
- "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed."
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "help": "Document should have one main landmark",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "link-in-text-block",
+    "impact": "serious",
+    "help": "Links must be distinguishable without relying on color",
+    "nodes": 17,
+    "targets": [
+     "a[href$=\"ngrok.com\"]",
+     "a[href$=\"newsletter.samwho.dev/\"]",
+     "section:nth-child(6) > ul:nth-child(3) > li:nth-child(2) > a"
+    ]
+   },
+   {
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "help": "Page should contain a level-one heading",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 9,
+    "targets": [
+     "section:nth-child(3)",
+     "section:nth-child(4)",
+     "section:nth-child(5)"
+    ]
+   }
+  ],
+  "record.home.desktop.focus_check": [
+   {
+    "el": "g",
+    "label": "S key",
+    "visible_change": false,
+    "outline": "none 0px"
+   },
+   {
+    "el": "g",
+    "label": "A key",
+    "visible_change": false,
+    "outline": "none 0px"
+   },
+   {
+    "el": "g",
+    "label": "M key",
+    "visible_change": false,
+    "outline": "none 0px"
+   },
+   {
+    "el": "g",
+    "label": "W key",
+    "visible_change": false,
+    "outline": "none 0px"
+   },
+   {
+    "el": "g",
+    "label": "H key",
+    "visible_change": false,
+    "outline": "none 0px"
+   }
+  ],
+  "record.home.desktop.network_initial": {
+   "requests": 20,
+   "failed": 0,
+   "total_bytes": 55956,
+   "js_bytes": 4383,
+   "js_first_party_bytes": 4383,
+   "by_type": {
+    "document": {
+     "count": 1,
+     "bytes": 6553
+    },
+    "stylesheet": {
+     "count": 3,
+     "bytes": 9262
+    },
+    "script": {
+     "count": 1,
+     "bytes": 4383
+    },
+    "image": {
+     "count": 13,
+     "bytes": 26307
+    },
+    "fetch": {
+     "count": 2,
+     "bytes": 9451
+    }
+   },
+   "top_hosts": [
+    {
+     "host": "samwho.dev",
+     "bytes": 55956
+    }
+   ]
+  },
+  "record.inner.desktop.dom.a11y_manual.skip_link": "Skip to main content",
+  "record.summary.key_info_positions_mobile.current_role": {
+   "y": 3527,
+   "scrolls": 4,
+   "text": "I also now write posts like this in my full-time job as a developer educator at ngrok:",
+   "href": null
+  },
+  "verify.record.inner.desktop.code_scan": {
+   "reducedMotionCss": 2,
+   "reducedMotionJs": 1,
+   "colorSchemeCss": 0,
+   "colorSchemeJs": 0,
+   "scrollLibs": [
+    "ScrollTrigger"
+   ],
+   "webglLibs": [
+    "pixi"
+   ]
+  },
+  "verify.record.inner.desktop.dom.a11y_manual": {
+   "skip_link": "Skip to main content",
+   "imgs": 3,
+   "imgs_missing_alt": 0,
+   "interactive_first_2_viewports": 3,
+   "small_targets_under_24px": 0,
+   "small_target_examples": []
+  },
+  "verify.record.summary.lcp_ms_desktop": 3516
+ }
 }
