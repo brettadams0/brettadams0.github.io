@@ -5,9 +5,11 @@
 
   - Tokens are the proposed :root block from section 7, pasted unchanged.
   - Fonts load from Google Fonts for this mock only. The site self-hosts them (section 7).
-  - Magenta circles (.mk) and magenta dashed boxes (.ph) are mock overlays, not design.
-    Circles are aria-hidden. Dashed boxes mark [BRETT: ...] placeholders that never ship.
-  - Copy is the sourced copy from section 6. Links point where the real ones will.
+  - Magenta circles (.mk) are mock overlays, not design. They are aria-hidden.
+  - Copy is what ships by default (section 6.3): every line sourced, no [BRETT: ...] placeholder.
+    The two glance rows that wait on Brett are kept below as an HTML comment, with their
+    placeholder text, and section 6.2 gives their measured position.
+  - Links point where the real ones will.
   - Markup and class names follow section 8 (8.0-8.4); values come from section 7.
 -->
 <html lang="en">
@@ -266,6 +268,7 @@ main:focus { outline: none; }
   color: var(--muted); font: 600 var(--fs-sm) / 1.4 var(--mono);
   letter-spacing: var(--tracking-caps); text-transform: uppercase;
 }
+.section-lede { max-width: 54em; margin: calc(-1 * var(--space-4)) 0 var(--space-7); color: var(--soft); }
 .timeline { position: relative; margin: 0; padding: 0 0 0 32px; list-style: none; }
 .timeline::before {
   content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1px;
@@ -298,6 +301,7 @@ main:focus { outline: none; }
   }
   .nav-sections a:hover { color: var(--text); }
   .hero-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-6); }
+  .hero-jump { display: none; }   /* row 2's "Projects" does the same job */
   .glance { max-width: 560px; }
 }
 @media (max-width: 640px) {
@@ -309,8 +313,10 @@ main:focus { outline: none; }
   .actions .btn-resume { grid-column: 1 / -1; }
   .glance { max-width: none; padding: 16px; }
   .glance-list > div { grid-template-columns: 88px minmax(0, 1fr); }
-  .glance-list > .glance-now { display: none; }   /* needs the child selector to beat .glance-list > div */
+  .glance-list > .glance-now,
+  .glance-list > .glance-tools { display: none; }   /* needs the child selector to beat .glance-list > div */
   .section { padding: var(--space-8) 0; }
+  .section-lede { display: none; }
 }
 
 /* ---- Mock overlay only: not part of the design ---- */
@@ -339,7 +345,7 @@ main:focus { outline: none; }
 .m7 { left: auto; right: -36px; top: 16px; }
 .m8 { top: 10px; }
 .m8b { top: -4px; }
-.m7m { display: none; }
+.m7m, .m8m { display: none; }
 @media (max-width: 860px) {
   .mk { left: auto; right: 0; top: -4px; }
   .m1 { right: -30px; top: 1px; }
@@ -347,8 +353,8 @@ main:focus { outline: none; }
   .m4, .m5 { right: -2px; top: -12px; }
   .m6 { right: 8px; top: 8px; }
   .m7 { display: none; }
-  .m7m { display: grid; left: calc(50% - 12px); right: auto; top: -12px; }
-  .m8 { left: auto; right: auto; left: 236px; top: 10px; }
+  .m7m { display: grid; left: 4px; right: auto; top: -14px; }
+  .m8m { display: grid; left: 172px; right: auto; top: -14px; }   /* on row 2's "Projects": the jump link is hidden here */
 }
 </style>
 </head>
@@ -375,6 +381,7 @@ main:focus { outline: none; }
     <a href="/#skills">Skills</a>
     <a href="/#contact">Contact</a>
     <span class="mk m7m" aria-hidden="true">7</span>
+    <span class="mk m8m" aria-hidden="true">8</span>
   </div>
 </nav>
 
@@ -402,11 +409,14 @@ main:focus { outline: none; }
         <h2 class="glance-title" id="glance-title">At a glance</h2>
         <dl class="glance-list">
           <div class="glance-now"><dt>Now</dt><dd>Data Analyst Intern, Geotab · <span class="nowrap">May 2026 – Present</span></dd></div>
-          <div><dt>Before</dt><dd>Ontario Ministry of Transportation <span class="nowrap">(co-op, 2025)</span> · CIMCO Refrigeration <span class="nowrap">(2023, 2024)</span></dd></div>
+          <div><dt>Before</dt><dd>Ontario Ministry of Transportation <span class="nowrap">(co-op, 2025)</span> · CIMCO Refrigeration <span class="nowrap">(2023; co-op, 2024)</span></dd></div>
           <div><dt>Studying</dt><dd>Honours Computer Science, University of Windsor · <span class="nowrap">2022 – 2027</span></dd></div>
-          <div><dt>Works with</dt><dd><ul class="chips" role="list"><li>Airflow</li><li>BigQuery</li><li>SQL</li><li>Python</li><li>Power BI</li><li>GitLab CI/CD</li></ul></dd></div>
+          <!-- Once Brett answers (section 18), these rows go here, in this order. They do not ship before.
           <div><dt>Looking for</dt><dd><span class="ph">[BRETT: target roles, e.g. data engineering, analytics or software roles]</span></dd></div>
           <div><dt>Based in</dt><dd><span class="ph">[BRETT: city / open to relocation?]</span></dd></div>
+          -->
+          <div class="glance-results"><dt>Results</dt><dd>Power BI dashboards that replaced manual reporting (MTO) · Processing time cut from hours to minutes (MTO) · Python training for over 20 employees (CIMCO)</dd></div>
+          <div class="glance-tools"><dt>Works with</dt><dd><ul class="chips" role="list"><li>Apache Airflow</li><li>BigQuery</li><li>SQL</li><li>Python</li><li>Power BI</li><li>GitLab CI/CD</li></ul></dd></div>
         </dl>
         <span class="mk m6" aria-hidden="true">6</span>
       </div>
@@ -416,6 +426,7 @@ main:focus { outline: none; }
   <section id="experience" class="section" aria-labelledby="experience-title">
     <div class="wrap">
       <h2 id="experience-title" class="section-title mk-host"><span class="prefix" aria-hidden="true">## </span>Experience<span class="mk mk-ghost m8b" aria-hidden="true">8</span></h2>
+      <p class="section-lede">Four roles since 2023: automation and Python training at CIMCO Refrigeration, Power BI reporting at the Ontario Ministry of Transportation, and production data pipelines at Geotab.</p>
       <ol class="timeline">
         <li class="job job-current">
           <div class="job-head">
@@ -423,8 +434,8 @@ main:focus { outline: none; }
             <p class="job-when">May 2026 – Present · Oakville, ON</p>
           </div>
           <ul class="job-points">
-            <li>Maintain and debug production Apache Airflow DAGs on Google Cloud Composer that run the SalesOps data pipelines.</li>
-            <li>Write and deploy production BigQuery SQL for Revenue Operations tables, including the device status, database dimension and accounts master datasets.</li>
+            <li>Maintain and debug production Apache Airflow DAGs on Cloud Composer that run the SalesOps data pipelines.</li>
+            <li>Write and deploy production BigQuery SQL for Revenue Operations tables.</li>
           </ul>
         </li>
       </ol>
