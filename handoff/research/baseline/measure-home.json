@@ -1,0 +1,1656 @@
+{
+ "measured": {
+  "date_utc": "2026-10-21T04:00:05.720Z",
+  "method": "handoff/tools/measure.mjs (Playwright Chromium 141.0.7390.37, axe-core 4.10.2), GA requests blocked; perf = median-LCP run of 3; mobile throttled 390x844 DPR2, latency 150 ms, 1.6 Mbps down, 750 kbps up, CPU 4x; desktop 1440x900, unthrottled. Live site loaded through the session HTTPS proxy, so absolute timings include proxy latency.",
+  "command": "node handoff/tools/measure.mjs https://brettadams0.github.io/ --path / --path /mcp/ --path /neuronet-arena/ --path /mcp-surface/ --path /404.html --shots --axe --perf --runs 3 --budget --analytics --dnt"
+ },
+ "path": "/",
+ "url": "https://brettadams0.github.io/",
+ "status": 200,
+ "title": "Brett Adams | Data & Software Engineering",
+ "description": "Data Analyst Intern at Geotab and Computer Science student at the University of Windsor. Experience, projects and résumé.",
+ "console_errors": [
+  "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+ ],
+ "screenshots": [
+  "home-1440-fold.webp",
+  "home-1440-full.webp",
+  "home-390-fold.webp",
+  "home-390-full.webp"
+ ],
+ "perf": {
+  "mobile": {
+   "transfer_bytes": 398940,
+   "requests": 13,
+   "js_bytes_excl_ga": 2590,
+   "by_type": {
+    "document": {
+     "bytes": 5191,
+     "count": 1
+    },
+    "script": {
+     "bytes": 2590,
+     "count": 1
+    },
+    "stylesheet": {
+     "bytes": 6247,
+     "count": 2
+    },
+    "font": {
+     "bytes": 73571,
+     "count": 4
+    },
+    "image": {
+     "bytes": 311341,
+     "count": 5
+    },
+    "other": {
+     "bytes": 0,
+     "count": 0
+    }
+   },
+   "initial_transfer_bytes": 87599,
+   "initial_requests": 8,
+   "ga_requests_blocked": 1,
+   "lcp": {
+    "ms": 744,
+    "size": 26134,
+    "url": null,
+    "element": {
+     "selector": "p.lede",
+     "src": null,
+     "text": "Data Analyst Intern at Geotab, on production pipelines in BigQuery and Airflow. "
+    }
+   },
+   "lcp_runs_ms": [
+    696,
+    756,
+    744
+   ],
+   "cls": 0.0011,
+   "cls_total": 0.0011,
+   "shifts": [
+    {
+     "value": 0.001097925792473906,
+     "t": 1368,
+     "input": false,
+     "sources": [
+      null,
+      "a.btn"
+     ]
+    }
+   ],
+   "fcp_ms": 744,
+   "dcl_ms": 753,
+   "load_ms": 1335,
+   "framework": null,
+   "render_blocking": [
+    "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+    "/assets/css/site.css"
+   ],
+   "largest": [
+    {
+     "url": "/assets/img/mcp-surface.webp",
+     "type": "image",
+     "bytes": 85747
+    },
+    {
+     "url": "/assets/img/promptpal.webp",
+     "type": "image",
+     "bytes": 75949
+    },
+    {
+     "url": "/assets/img/technest.webp",
+     "type": "image",
+     "bytes": 69758
+    },
+    {
+     "url": "/assets/img/mcp-servers.webp",
+     "type": "image",
+     "bytes": 48188
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2",
+     "type": "font",
+     "bytes": 41006
+    },
+    {
+     "url": "/assets/img/neuronet-arena.webp",
+     "type": "image",
+     "bytes": 31699
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgsAXHNk.woff2",
+     "type": "font",
+     "bytes": 10897
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2",
+     "type": "font",
+     "bytes": 10838
+    }
+   ],
+   "page_errors": [],
+   "runs": 3
+  },
+  "desktop": {
+   "transfer_bytes": 419380,
+   "requests": 13,
+   "js_bytes_excl_ga": 2589,
+   "by_type": {
+    "document": {
+     "bytes": 5191,
+     "count": 1
+    },
+    "script": {
+     "bytes": 2589,
+     "count": 1
+    },
+    "stylesheet": {
+     "bytes": 6220,
+     "count": 2
+    },
+    "font": {
+     "bytes": 94039,
+     "count": 4
+    },
+    "image": {
+     "bytes": 311341,
+     "count": 5
+    },
+    "other": {
+     "bytes": 0,
+     "count": 0
+    }
+   },
+   "initial_transfer_bytes": 419380,
+   "initial_requests": 13,
+   "ga_requests_blocked": 1,
+   "lcp": {
+    "ms": 408,
+    "size": 37035,
+    "url": null,
+    "element": {
+     "selector": "li",
+     "src": null,
+     "text": "Maintain and debug production Apache Airflow DAGs on Google Cloud Composer that "
+    }
+   },
+   "lcp_runs_ms": [
+    296,
+    408,
+    476
+   ],
+   "cls": 0.004,
+   "cls_total": 0.004,
+   "shifts": [
+    {
+     "value": 0.004006942100158607,
+     "t": 501.5999999998603,
+     "input": false,
+     "sources": [
+      "nav.site-nav",
+      null,
+      "a.btn"
+     ]
+    }
+   ],
+   "fcp_ms": 408,
+   "dcl_ms": 351,
+   "load_ms": 483,
+   "framework": null,
+   "render_blocking": [
+    "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+    "/assets/css/site.css"
+   ],
+   "largest": [
+    {
+     "url": "/assets/img/mcp-surface.webp",
+     "type": "image",
+     "bytes": 85747
+    },
+    {
+     "url": "/assets/img/promptpal.webp",
+     "type": "image",
+     "bytes": 75949
+    },
+    {
+     "url": "/assets/img/technest.webp",
+     "type": "image",
+     "bytes": 69757
+    },
+    {
+     "url": "/assets/img/mcp-servers.webp",
+     "type": "image",
+     "bytes": 48188
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+     "type": "font",
+     "bytes": 46490
+    },
+    {
+     "url": "/assets/img/neuronet-arena.webp",
+     "type": "image",
+     "bytes": 31700
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgg.woff2",
+     "type": "font",
+     "bytes": 16397
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgg.woff2",
+     "type": "font",
+     "bytes": 15666
+    }
+   ],
+   "page_errors": [],
+   "runs": 3
+  }
+ },
+ "perf_local_build": {
+  "mobile": {
+   "transfer_bytes": 394464,
+   "requests": 13,
+   "js_bytes_excl_ga": 2036,
+   "lcp": {
+    "ms": 604,
+    "size": 26134,
+    "url": null,
+    "element": {
+     "selector": "p.lede",
+     "src": null,
+     "text": "Data Analyst Intern at Geotab, on production pipelines in BigQuery and Airflow. "
+    }
+   },
+   "lcp_runs_ms": [
+    644,
+    604,
+    588
+   ],
+   "cls": 0.0011
+  },
+  "desktop": {
+   "transfer_bytes": 414905,
+   "requests": 13,
+   "js_bytes_excl_ga": 2036,
+   "lcp": {
+    "ms": 192,
+    "size": 37035,
+    "url": null,
+    "element": {
+     "selector": "li",
+     "src": null,
+     "text": "Maintain and debug production Apache Airflow DAGs on Google Cloud Composer that "
+    }
+   },
+   "lcp_runs_ms": [
+    184,
+    192,
+    296
+   ],
+   "cls": 0.0034
+  }
+ },
+ "axe": {
+  "390": {
+   "counts": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 0
+   },
+   "by_impact": {
+    "critical": [],
+    "serious": [],
+    "moderate": [],
+    "minor": []
+   },
+   "incomplete": [
+    {
+     "id": "color-contrast",
+     "nodes": 32,
+     "targets": [
+      ".status",
+      ".kicker",
+      "#hero-name"
+     ]
+    }
+   ]
+  },
+  "1440": {
+   "counts": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 0
+   },
+   "by_impact": {
+    "critical": [],
+    "serious": [],
+    "moderate": [],
+    "minor": []
+   },
+   "incomplete": [
+    {
+     "id": "color-contrast",
+     "nodes": 25,
+     "targets": [
+      ".status",
+      ".kicker",
+      "#hero-name"
+     ]
+    }
+   ]
+  }
+ },
+ "analytics": {
+  "gtag_present": true,
+  "measurement_ids": [
+   "G-Z3KW627PQQ"
+  ],
+  "counts": {
+   "scroll_depth": 4,
+   "section_view": 4,
+   "resume_download": 3,
+   "contact_click": 6,
+   "project_click": 18,
+   "section_dwell": 4
+  },
+  "section_view_ids": [
+   "experience",
+   "projects",
+   "skills",
+   "contact"
+  ],
+  "section_dwell_ids": [
+   "experience",
+   "projects",
+   "skills",
+   "contact"
+  ],
+  "scroll_depth": [
+   25,
+   50,
+   75,
+   100
+  ],
+  "dom": {
+   "tracked_sections": [
+    "experience",
+    "projects",
+    "skills",
+    "contact"
+   ],
+   "untracked_sections": [
+    "hero"
+   ],
+   "ids_not_on_section": [
+    {
+     "id": "hero",
+     "tag": null
+    },
+    {
+     "id": "education",
+     "tag": "div"
+    }
+   ]
+  },
+  "missing_events": [],
+  "missing_sections": [],
+  "failed_clicks": [
+   "missing data-contact: GitHub (https://github.com/brettadams0, in footer.site-footer) expected contact_click, fired nothing",
+   "missing data-contact: LinkedIn (https://www.linkedin.com/in/bretta/, in footer.site-footer) expected contact_click, fired nothing",
+   "missing data-contact: Email (mailto:adamsbrett00@gmail.com, in footer.site-footer) expected contact_click, fired nothing"
+  ],
+  "clicks": [
+   {
+    "where": "header.site-header",
+    "text": "Résumé",
+    "href": "/assets/resume/Resume_BrettAdams.pdf",
+    "project": null,
+    "contact": null,
+    "expect": [
+     "resume_download"
+    ],
+    "fired": [
+     "resume_download"
+    ]
+   },
+   {
+    "where": "section.hero",
+    "text": "Résumé",
+    "href": "/assets/resume/Resume_BrettAdams.pdf",
+    "project": null,
+    "contact": null,
+    "expect": [
+     "resume_download"
+    ],
+    "fired": [
+     "resume_download"
+    ]
+   },
+   {
+    "where": "section.hero",
+    "text": "GitHub",
+    "href": "https://github.com/brettadams0",
+    "project": null,
+    "contact": "github",
+    "expect": [
+     "contact_click"
+    ],
+    "fired": [
+     "contact_click"
+    ]
+   },
+   {
+    "where": "section.hero",
+    "text": "LinkedIn",
+    "href": "https://www.linkedin.com/in/bretta/",
+    "project": null,
+    "contact": "linkedin",
+    "expect": [
+     "contact_click"
+    ],
+    "fired": [
+     "contact_click"
+    ]
+   },
+   {
+    "where": "section.hero",
+    "text": "Email",
+    "href": "mailto:adamsbrett00@gmail.com",
+    "project": null,
+    "contact": "email",
+    "expect": [
+     "contact_click"
+    ],
+    "fired": [
+     "contact_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "(no text)",
+    "href": "/neuronet-arena/",
+    "project": "neuronet-arena",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "Live demo",
+    "href": "/neuronet-arena/",
+    "project": "neuronet-arena",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "Source",
+    "href": "https://github.com/brettadams0/neuronet-arena",
+    "project": "neuronet-arena",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "(no text)",
+    "href": "https://github.com/brettadams0/google-workspace-mcp",
+    "project": "mcp-servers",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "Case study",
+    "href": "/mcp/",
+    "project": "mcp-servers",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "Google Workspace server",
+    "href": "https://github.com/brettadams0/google-workspace-mcp",
+    "project": "mcp-servers",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "Reddit server",
+    "href": "https://github.com/brettadams0/reddit-mcp",
+    "project": "mcp-servers",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "(no text)",
+    "href": "/mcp-surface/",
+    "project": "mcp-surface",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "Live demo",
+    "href": "/mcp-surface/",
+    "project": "mcp-surface",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "Case study",
+    "href": "/mcp/",
+    "project": "mcp-surface",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "npm",
+    "href": "https://www.npmjs.com/package/mcp-surface",
+    "project": "mcp-surface",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "Source",
+    "href": "https://github.com/brettadams0/mcp-surface",
+    "project": "mcp-surface",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "(no text)",
+    "href": "https://prompt-pal-gules.vercel.app",
+    "project": "promptpal",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "Live app",
+    "href": "https://prompt-pal-gules.vercel.app",
+    "project": "promptpal",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "Source",
+    "href": "https://github.com/brettadams0/PromptPal",
+    "project": "promptpal",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "(no text)",
+    "href": "https://github.com/brettadams0/TechNest",
+    "project": "technest",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "article.project",
+    "text": "Source",
+    "href": "https://github.com/brettadams0/TechNest",
+    "project": "technest",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "section#projects",
+    "text": "MazeFinder",
+    "href": "https://github.com/brettadams0/MazeFinder-GeneticAlgorithm",
+    "project": "mazefinder",
+    "contact": null,
+    "expect": [
+     "project_click"
+    ],
+    "fired": [
+     "project_click"
+    ]
+   },
+   {
+    "where": "section#contact",
+    "text": "adamsbrett00@gmail.com",
+    "href": "mailto:adamsbrett00@gmail.com",
+    "project": null,
+    "contact": "email",
+    "expect": [
+     "contact_click"
+    ],
+    "fired": [
+     "contact_click"
+    ]
+   },
+   {
+    "where": "section#contact",
+    "text": "LinkedIn",
+    "href": "https://www.linkedin.com/in/bretta/",
+    "project": null,
+    "contact": "linkedin",
+    "expect": [
+     "contact_click"
+    ],
+    "fired": [
+     "contact_click"
+    ]
+   },
+   {
+    "where": "section#contact",
+    "text": "GitHub",
+    "href": "https://github.com/brettadams0",
+    "project": null,
+    "contact": "github",
+    "expect": [
+     "contact_click"
+    ],
+    "fired": [
+     "contact_click"
+    ]
+   },
+   {
+    "where": "section#contact",
+    "text": "Résumé",
+    "href": "/assets/resume/Resume_BrettAdams.pdf",
+    "project": null,
+    "contact": null,
+    "expect": [
+     "resume_download"
+    ],
+    "fired": [
+     "resume_download"
+    ]
+   },
+   {
+    "where": "footer.site-footer",
+    "text": "GitHub",
+    "href": "https://github.com/brettadams0",
+    "project": null,
+    "contact": null,
+    "expect": [
+     "contact_click"
+    ],
+    "fired": []
+   },
+   {
+    "where": "footer.site-footer",
+    "text": "LinkedIn",
+    "href": "https://www.linkedin.com/in/bretta/",
+    "project": null,
+    "contact": null,
+    "expect": [
+     "contact_click"
+    ],
+    "fired": []
+   },
+   {
+    "where": "footer.site-footer",
+    "text": "Email",
+    "href": "mailto:adamsbrett00@gmail.com",
+    "project": null,
+    "contact": null,
+    "expect": [
+     "contact_click"
+    ],
+    "fired": []
+   }
+  ],
+  "events": [
+   {
+    "t": 2944,
+    "name": "scroll_depth",
+    "params": {
+     "percent": 25
+    }
+   },
+   {
+    "t": 3944,
+    "name": "section_view",
+    "params": {
+     "section_id": "experience"
+    }
+   },
+   {
+    "t": 6545,
+    "name": "scroll_depth",
+    "params": {
+     "percent": 50
+    }
+   },
+   {
+    "t": 7545,
+    "name": "section_view",
+    "params": {
+     "section_id": "projects"
+    }
+   },
+   {
+    "t": 10146,
+    "name": "scroll_depth",
+    "params": {
+     "percent": 75
+    }
+   },
+   {
+    "t": 12347,
+    "name": "section_view",
+    "params": {
+     "section_id": "skills"
+    }
+   },
+   {
+    "t": 13747,
+    "name": "scroll_depth",
+    "params": {
+     "percent": 100
+    }
+   },
+   {
+    "t": 14747,
+    "name": "section_view",
+    "params": {
+     "section_id": "contact"
+    }
+   },
+   {
+    "t": 15321,
+    "name": "resume_download",
+    "params": {}
+   },
+   {
+    "t": 15467,
+    "name": "resume_download",
+    "params": {}
+   },
+   {
+    "t": 15632,
+    "name": "contact_click",
+    "params": {
+     "method": "github"
+    }
+   },
+   {
+    "t": 15799,
+    "name": "contact_click",
+    "params": {
+     "method": "linkedin"
+    }
+   },
+   {
+    "t": 15966,
+    "name": "contact_click",
+    "params": {
+     "method": "email"
+    }
+   },
+   {
+    "t": 16132,
+    "name": "project_click",
+    "params": {
+     "project_name": "neuronet-arena",
+     "link_url": "https://brettadams0.github.io/neuronet-arena/"
+    }
+   },
+   {
+    "t": 16303,
+    "name": "project_click",
+    "params": {
+     "project_name": "neuronet-arena",
+     "link_url": "https://brettadams0.github.io/neuronet-arena/"
+    }
+   },
+   {
+    "t": 16448,
+    "name": "project_click",
+    "params": {
+     "project_name": "neuronet-arena",
+     "link_url": "https://github.com/brettadams0/neuronet-arena"
+    }
+   },
+   {
+    "t": 16599,
+    "name": "project_click",
+    "params": {
+     "project_name": "mcp-servers",
+     "link_url": "https://github.com/brettadams0/google-workspace-mcp"
+    }
+   },
+   {
+    "t": 16768,
+    "name": "project_click",
+    "params": {
+     "project_name": "mcp-servers",
+     "link_url": "https://brettadams0.github.io/mcp/"
+    }
+   },
+   {
+    "t": 16916,
+    "name": "project_click",
+    "params": {
+     "project_name": "mcp-servers",
+     "link_url": "https://github.com/brettadams0/google-workspace-mcp"
+    }
+   },
+   {
+    "t": 17065,
+    "name": "project_click",
+    "params": {
+     "project_name": "mcp-servers",
+     "link_url": "https://github.com/brettadams0/reddit-mcp"
+    }
+   },
+   {
+    "t": 17216,
+    "name": "project_click",
+    "params": {
+     "project_name": "mcp-surface",
+     "link_url": "https://brettadams0.github.io/mcp-surface/"
+    }
+   },
+   {
+    "t": 17382,
+    "name": "project_click",
+    "params": {
+     "project_name": "mcp-surface",
+     "link_url": "https://brettadams0.github.io/mcp-surface/"
+    }
+   },
+   {
+    "t": 17531,
+    "name": "project_click",
+    "params": {
+     "project_name": "mcp-surface",
+     "link_url": "https://brettadams0.github.io/mcp/"
+    }
+   },
+   {
+    "t": 17682,
+    "name": "project_click",
+    "params": {
+     "project_name": "mcp-surface",
+     "link_url": "https://www.npmjs.com/package/mcp-surface"
+    }
+   },
+   {
+    "t": 17831,
+    "name": "project_click",
+    "params": {
+     "project_name": "mcp-surface",
+     "link_url": "https://github.com/brettadams0/mcp-surface"
+    }
+   },
+   {
+    "t": 17982,
+    "name": "project_click",
+    "params": {
+     "project_name": "promptpal",
+     "link_url": "https://prompt-pal-gules.vercel.app/"
+    }
+   },
+   {
+    "t": 18150,
+    "name": "project_click",
+    "params": {
+     "project_name": "promptpal",
+     "link_url": "https://prompt-pal-gules.vercel.app/"
+    }
+   },
+   {
+    "t": 18298,
+    "name": "project_click",
+    "params": {
+     "project_name": "promptpal",
+     "link_url": "https://github.com/brettadams0/PromptPal"
+    }
+   },
+   {
+    "t": 18451,
+    "name": "project_click",
+    "params": {
+     "project_name": "technest",
+     "link_url": "https://github.com/brettadams0/TechNest"
+    }
+   },
+   {
+    "t": 18615,
+    "name": "project_click",
+    "params": {
+     "project_name": "technest",
+     "link_url": "https://github.com/brettadams0/TechNest"
+    }
+   },
+   {
+    "t": 18766,
+    "name": "project_click",
+    "params": {
+     "project_name": "mazefinder",
+     "link_url": "https://github.com/brettadams0/MazeFinder-GeneticAlgorithm"
+    }
+   },
+   {
+    "t": 18935,
+    "name": "contact_click",
+    "params": {
+     "method": "email"
+    }
+   },
+   {
+    "t": 19081,
+    "name": "contact_click",
+    "params": {
+     "method": "linkedin"
+    }
+   },
+   {
+    "t": 19250,
+    "name": "contact_click",
+    "params": {
+     "method": "github"
+    }
+   },
+   {
+    "t": 19415,
+    "name": "resume_download",
+    "params": {}
+   },
+   {
+    "t": 20025,
+    "name": "section_dwell",
+    "params": {
+     "section_id": "experience",
+     "seconds": 4
+    }
+   },
+   {
+    "t": 20025,
+    "name": "section_dwell",
+    "params": {
+     "section_id": "projects",
+     "seconds": 9
+    }
+   },
+   {
+    "t": 20025,
+    "name": "section_dwell",
+    "params": {
+     "section_id": "skills",
+     "seconds": 5
+    }
+   },
+   {
+    "t": 20025,
+    "name": "section_dwell",
+    "params": {
+     "section_id": "contact",
+     "seconds": 3
+    }
+   }
+  ],
+  "pass": true
+ },
+ "dnt": {
+  "gtag_present": true,
+  "custom_events": 0,
+  "measurement_ids": [
+   "G-Z3KW627PQQ"
+  ],
+  "pass": true
+ },
+ "budget": [
+  {
+   "metric": "js_kb",
+   "limit": 15,
+   "actual": 2.529,
+   "pass": true
+  },
+  {
+   "metric": "lcp_ms",
+   "limit": 2000,
+   "actual": 744,
+   "pass": true
+  },
+  {
+   "metric": "cls",
+   "limit": 0.05,
+   "actual": 0.001,
+   "pass": true
+  },
+  {
+   "metric": "no_framework",
+   "limit": true,
+   "actual": null,
+   "pass": true
+  }
+ ],
+ "page": {
+  "lang": "en",
+  "canonical": "https://brettadams0.github.io/",
+  "og_image": "https://brettadams0.github.io/assets/img/social-card.png",
+  "twitter_card": "summary_large_image",
+  "robots": null,
+  "jsonld": [
+   "WebSite",
+   "ProfilePage>Person"
+  ],
+  "favicon": "/assets/img/favicon.svg",
+  "skip_link": true,
+  "landmarks": [
+   "header.site-header",
+   "nav.site-nav",
+   "main#main",
+   "footer.site-footer"
+  ],
+  "headings": [
+   "H1 Brett Adams",
+   "H2 EXPERIENCE",
+   "H3 Data Analyst Intern Geotab",
+   "H3 Data Management Associate, Co-op Ontario Ministry of Transpo",
+   "H3 Digital Solutions, Co-op CIMCO Refrigeration",
+   "H3 Digital Solutions CIMCO Refrigeration",
+   "H2 PROJECTS",
+   "H3 neuronet-arena LIVE DEMO",
+   "H3 MCP servers for Google Workspace and Reddit",
+   "H3 mcp-surface LIVE DEMO",
+   "H3 PromptPal",
+   "H3 TechNest",
+   "H2 SKILLS",
+   "H2 EDUCATION",
+   "H3 University of Windsor",
+   "H2 CONTACT"
+  ],
+  "stylesheets": [
+   {
+    "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+    "media": null
+   },
+   {
+    "href": "/assets/css/site.css",
+    "media": null
+   }
+  ],
+  "fonts_loaded": [
+   "IBM Plex Mono 400 normal",
+   "IBM Plex Mono 500 normal",
+   "IBM Plex Mono 600 normal",
+   "IBM Plex Sans 400 normal",
+   "IBM Plex Sans 500 normal",
+   "IBM Plex Sans 600 normal",
+   "IBM Plex Sans 700 normal"
+  ],
+  "images": [
+   {
+    "src": "/assets/img/neuronet-arena.webp",
+    "alt": "",
+    "loading": "lazy",
+    "natural": [
+     1280,
+     800
+    ],
+    "rendered": [
+     650,
+     365
+    ],
+    "top": 1772,
+    "in_first_screen": false,
+    "has_srcset": false,
+    "width_attr": "1280",
+    "height_attr": "800"
+   },
+   {
+    "src": "/assets/img/mcp-servers.webp",
+    "alt": "",
+    "loading": "lazy",
+    "natural": [
+     2200,
+     1376
+    ],
+    "rendered": [
+     524,
+     294
+    ],
+    "top": 2200,
+    "in_first_screen": false,
+    "has_srcset": false,
+    "width_attr": "2200",
+    "height_attr": "1376"
+   },
+   {
+    "src": "/assets/img/mcp-surface.webp",
+    "alt": "",
+    "loading": "lazy",
+    "natural": [
+     2200,
+     1376
+    ],
+    "rendered": [
+     524,
+     294
+    ],
+    "top": 2200,
+    "in_first_screen": false,
+    "has_srcset": false,
+    "width_attr": "2200",
+    "height_attr": "1376"
+   },
+   {
+    "src": "/assets/img/promptpal.webp",
+    "alt": "",
+    "loading": "lazy",
+    "natural": [
+     1600,
+     1000
+    ],
+    "rendered": [
+     524,
+     294
+    ],
+    "top": 2732,
+    "in_first_screen": false,
+    "has_srcset": false,
+    "width_attr": "1600",
+    "height_attr": "1000"
+   },
+   {
+    "src": "/assets/img/technest.webp",
+    "alt": "",
+    "loading": "lazy",
+    "natural": [
+     1600,
+     1000
+    ],
+    "rendered": [
+     524,
+     294
+    ],
+    "top": 2732,
+    "in_first_screen": false,
+    "has_srcset": false,
+    "width_attr": "1600",
+    "height_attr": "1000"
+   }
+  ]
+ },
+ "viewport": {
+  "390": {
+   "page_height": 6346,
+   "header_links": [
+    {
+     "text": "brett adams",
+     "href": "/",
+     "visible": true
+    },
+    {
+     "text": "Experience",
+     "href": "/#experience",
+     "visible": false
+    },
+    {
+     "text": "Projects",
+     "href": "/#projects",
+     "visible": false
+    },
+    {
+     "text": "Skills",
+     "href": "/#skills",
+     "visible": false
+    },
+    {
+     "text": "Contact",
+     "href": "/#contact",
+     "visible": false
+    },
+    {
+     "text": "Résumé",
+     "href": "/assets/resume/Resume_BrettAdams.pdf",
+     "visible": true
+    }
+   ],
+   "key_info": {
+    "current_role": {
+     "el": "p.lede",
+     "text": "Data Analyst Intern at Geotab, on production pipelines in Bi",
+     "top": 249,
+     "bottom": 328,
+     "height": 79,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "resume": {
+     "el": "a.nav-resume",
+     "text": "Résumé",
+     "top": 11,
+     "bottom": 47,
+     "height": 36,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "contact": {
+     "el": "a.btn",
+     "text": "GitHub",
+     "top": 360,
+     "bottom": 402,
+     "height": 42,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "best_project": {
+     "el": "a.project-shot",
+     "text": "",
+     "top": 2564,
+     "bottom": 2744,
+     "height": 180,
+     "screens_to_reach": 3,
+     "in_first_screen": false
+    },
+    "shipped_work": {
+     "el": "span.badge-live",
+     "text": "LIVE DEMO",
+     "top": 2761,
+     "bottom": 2783,
+     "height": 22,
+     "screens_to_reach": 3,
+     "in_first_screen": false
+    },
+    "projects_heading": {
+     "el": "h2#projects-title.section-title",
+     "text": "PROJECTS",
+     "top": 2496,
+     "bottom": 2513,
+     "height": 17,
+     "screens_to_reach": 2,
+     "in_first_screen": false
+    }
+   },
+   "small_targets_24": [
+    {
+     "el": "a.site-name",
+     "text": "brett adams",
+     "w": 117,
+     "h": 19,
+     "inline": false,
+     "top": 20,
+     "bottom": 39,
+     "height": 19
+    },
+    {
+     "el": "a",
+     "text": "MazeFinder",
+     "w": 358,
+     "h": 19,
+     "inline": false,
+     "top": 4997,
+     "bottom": 5016,
+     "height": 19
+    },
+    {
+     "el": "a",
+     "text": "More on GitHub →",
+     "w": 358,
+     "h": 19,
+     "inline": false,
+     "top": 5103,
+     "bottom": 5122,
+     "height": 19
+    },
+    {
+     "el": "a",
+     "text": "GitHub",
+     "w": 44,
+     "h": 18,
+     "inline": false,
+     "top": 6326,
+     "bottom": 6344,
+     "height": 18
+    },
+    {
+     "el": "a",
+     "text": "LinkedIn",
+     "w": 55,
+     "h": 18,
+     "inline": false,
+     "top": 6326,
+     "bottom": 6344,
+     "height": 18
+    }
+   ],
+   "targets_under_44": 27,
+   "targets_total": 34,
+   "focus_walk": [
+    "Skip to content [solid 2px rgb(255, 180, 84)]",
+    "brett adams [solid 2px rgb(255, 180, 84)]",
+    "Résumé [solid 2px rgb(255, 180, 84)]",
+    "Geotab [solid 2px rgb(255, 180, 84)]",
+    "Résumé [solid 2px rgb(255, 180, 84)]",
+    "GitHub [solid 2px rgb(255, 180, 84)]",
+    "LinkedIn [solid 2px rgb(255, 180, 84)]",
+    "Email [solid 2px rgb(255, 180, 84)]",
+    "Live demo [solid 2px rgb(255, 180, 84)]",
+    "Source [solid 2px rgb(255, 180, 84)]",
+    "Case study [solid 2px rgb(255, 180, 84)]",
+    "Google Workspace server [solid 2px rgb(255, 180, 84)]",
+    "Reddit server [solid 2px rgb(255, 180, 84)]",
+    "Live demo [solid 2px rgb(255, 180, 84)]",
+    "Case study [solid 2px rgb(255, 180, 84)]",
+    "npm [solid 2px rgb(255, 180, 84)]",
+    "Source [solid 2px rgb(255, 180, 84)]",
+    "Live app [solid 2px rgb(255, 180, 84)]",
+    "Source [solid 2px rgb(255, 180, 84)]",
+    "Source [solid 2px rgb(255, 180, 84)]",
+    "MazeFinder [solid 2px rgb(255, 180, 84)]",
+    "More on GitHub → [solid 2px rgb(255, 180, 84)]",
+    "adamsbrett00@gmail.com [solid 2px rgb(255, 180, 84)]",
+    "LinkedIn [solid 2px rgb(255, 180, 84)]",
+    "GitHub [solid 2px rgb(255, 180, 84)]",
+    "Résumé [solid 2px rgb(255, 180, 84)]",
+    "GitHub [solid 2px rgb(255, 180, 84)]",
+    "LinkedIn [solid 2px rgb(255, 180, 84)]",
+    "Email [solid 2px rgb(255, 180, 84)]"
+   ]
+  },
+  "1440": {
+   "page_height": 4445,
+   "header_links": [
+    {
+     "text": "brett adams",
+     "href": "/",
+     "visible": true
+    },
+    {
+     "text": "Experience",
+     "href": "/#experience",
+     "visible": true
+    },
+    {
+     "text": "Projects",
+     "href": "/#projects",
+     "visible": true
+    },
+    {
+     "text": "Skills",
+     "href": "/#skills",
+     "visible": true
+    },
+    {
+     "text": "Contact",
+     "href": "/#contact",
+     "visible": true
+    },
+    {
+     "text": "Résumé",
+     "href": "/assets/resume/Resume_BrettAdams.pdf",
+     "visible": true
+    }
+   ],
+   "key_info": {
+    "current_role": {
+     "el": "p.lede",
+     "text": "Data Analyst Intern at Geotab, on production pipelines in Bi",
+     "top": 302,
+     "bottom": 361,
+     "height": 59,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "resume": {
+     "el": "a.nav-resume",
+     "text": "Résumé",
+     "top": 11,
+     "bottom": 47,
+     "height": 36,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "contact": {
+     "el": "a.btn",
+     "text": "GitHub",
+     "top": 393,
+     "bottom": 435,
+     "height": 42,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "best_project": {
+     "el": "a.project-shot",
+     "text": "",
+     "top": 1771,
+     "bottom": 2137,
+     "height": 367,
+     "screens_to_reach": 2,
+     "in_first_screen": false
+    },
+    "shipped_work": {
+     "el": "span.badge-live",
+     "text": "LIVE DEMO",
+     "top": 1771,
+     "bottom": 1793,
+     "height": 22,
+     "screens_to_reach": 1,
+     "in_first_screen": false
+    },
+    "projects_heading": {
+     "el": "h2#projects-title.section-title",
+     "text": "PROJECTS",
+     "top": 1703,
+     "bottom": 1720,
+     "height": 17,
+     "screens_to_reach": 1,
+     "in_first_screen": false
+    }
+   },
+   "small_targets_24": [
+    {
+     "el": "a.site-name",
+     "text": "brett adams",
+     "w": 117,
+     "h": 19,
+     "inline": false,
+     "top": 20,
+     "bottom": 39,
+     "height": 19
+    },
+    {
+     "el": "a.nav-section",
+     "text": "Experience",
+     "w": 70,
+     "h": 22,
+     "inline": false,
+     "top": 18,
+     "bottom": 40,
+     "height": 22
+    },
+    {
+     "el": "a.nav-section",
+     "text": "Projects",
+     "w": 51,
+     "h": 22,
+     "inline": false,
+     "top": 18,
+     "bottom": 40,
+     "height": 22
+    },
+    {
+     "el": "a.nav-section",
+     "text": "Skills",
+     "w": 33,
+     "h": 22,
+     "inline": false,
+     "top": 18,
+     "bottom": 40,
+     "height": 22
+    },
+    {
+     "el": "a.nav-section",
+     "text": "Contact",
+     "w": 49,
+     "h": 22,
+     "inline": false,
+     "top": 18,
+     "bottom": 40,
+     "height": 22
+    },
+    {
+     "el": "a",
+     "text": "More on GitHub →",
+     "w": 240,
+     "h": 19,
+     "inline": false,
+     "top": 3376,
+     "bottom": 3395,
+     "height": 19
+    },
+    {
+     "el": "a",
+     "text": "GitHub",
+     "w": 44,
+     "h": 18,
+     "inline": false,
+     "top": 4385,
+     "bottom": 4403,
+     "height": 18
+    },
+    {
+     "el": "a",
+     "text": "LinkedIn",
+     "w": 55,
+     "h": 18,
+     "inline": false,
+     "top": 4385,
+     "bottom": 4403,
+     "height": 18
+    }
+   ],
+   "targets_under_44": 30,
+   "targets_total": 38,
+   "focus_walk": [
+    "Skip to content [solid 2px rgb(255, 180, 84)]",
+    "brett adams [solid 2px rgb(255, 180, 84)]",
+    "Experience [solid 2px rgb(255, 180, 84)]",
+    "Projects [solid 2px rgb(255, 180, 84)]",
+    "Skills [solid 2px rgb(255, 180, 84)]",
+    "Contact [solid 2px rgb(255, 180, 84)]",
+    "Résumé [solid 2px rgb(255, 180, 84)]",
+    "Geotab [solid 2px rgb(255, 180, 84)]",
+    "Résumé [solid 2px rgb(255, 180, 84)]",
+    "GitHub [solid 2px rgb(255, 180, 84)]",
+    "LinkedIn [solid 2px rgb(255, 180, 84)]",
+    "Email [solid 2px rgb(255, 180, 84)]",
+    "Live demo [solid 2px rgb(255, 180, 84)]",
+    "Source [solid 2px rgb(255, 180, 84)]",
+    "Case study [solid 2px rgb(255, 180, 84)]",
+    "Google Workspace server [solid 2px rgb(255, 180, 84)]",
+    "Reddit server [solid 2px rgb(255, 180, 84)]",
+    "Live demo [solid 2px rgb(255, 180, 84)]",
+    "Case study [solid 2px rgb(255, 180, 84)]",
+    "npm [solid 2px rgb(255, 180, 84)]",
+    "Source [solid 2px rgb(255, 180, 84)]",
+    "Live app [solid 2px rgb(255, 180, 84)]",
+    "Source [solid 2px rgb(255, 180, 84)]",
+    "Source [solid 2px rgb(255, 180, 84)]",
+    "MazeFinder [solid 2px rgb(255, 180, 84)]",
+    "More on GitHub → [solid 2px rgb(255, 180, 84)]",
+    "adamsbrett00@gmail.com [solid 2px rgb(255, 180, 84)]",
+    "LinkedIn [solid 2px rgb(255, 180, 84)]",
+    "GitHub [solid 2px rgb(255, 180, 84)]",
+    "Résumé [solid 2px rgb(255, 180, 84)]",
+    "GitHub [solid 2px rgb(255, 180, 84)]",
+    "LinkedIn [solid 2px rgb(255, 180, 84)]",
+    "Email [solid 2px rgb(255, 180, 84)]"
+   ]
+  }
+ }
+}

@@ -1,0 +1,640 @@
+{
+ "measured": {
+  "date_utc": "2026-10-21T04:00:05.720Z",
+  "method": "handoff/tools/measure.mjs (Playwright Chromium 141.0.7390.37, axe-core 4.10.2), GA requests blocked; perf = median-LCP run of 3; mobile throttled 390x844 DPR2, latency 150 ms, 1.6 Mbps down, 750 kbps up, CPU 4x; desktop 1440x900, unthrottled. Live site loaded through the session HTTPS proxy, so absolute timings include proxy latency.",
+  "command": "node handoff/tools/measure.mjs https://brettadams0.github.io/ --path / --path /mcp/ --path /neuronet-arena/ --path /mcp-surface/ --path /404.html --shots --axe --perf --runs 3 --budget --analytics --dnt"
+ },
+ "path": "/neuronet-arena/",
+ "url": "https://brettadams0.github.io/neuronet-arena/",
+ "status": 200,
+ "title": "neuronet-arena · live demo",
+ "description": "Forty agents, each steered by a 112-weight neural network, evolving to forage in your browser. The engine is bit-for-bit identical to the Python one it was ported from.",
+ "console_errors": [],
+ "screenshots": [
+  "neuronet-arena-1440-fold.webp",
+  "neuronet-arena-1440-full.webp",
+  "neuronet-arena-390-fold.webp",
+  "neuronet-arena-390-full.webp"
+ ],
+ "perf": {
+  "mobile": {
+   "transfer_bytes": 122625,
+   "requests": 19,
+   "js_bytes_excl_ga": 28821,
+   "by_type": {
+    "document": {
+     "bytes": 4021,
+     "count": 1
+    },
+    "script": {
+     "bytes": 28821,
+     "count": 12
+    },
+    "stylesheet": {
+     "bytes": 5600,
+     "count": 2
+    },
+    "font": {
+     "bytes": 62686,
+     "count": 3
+    },
+    "image": {
+     "bytes": 0,
+     "count": 0
+    },
+    "other": {
+     "bytes": 21497,
+     "count": 1
+    }
+   },
+   "initial_transfer_bytes": 122625,
+   "initial_requests": 19,
+   "ga_requests_blocked": 0,
+   "lcp": {
+    "ms": 692,
+    "size": 73595,
+    "url": null,
+    "element": {
+     "selector": "p.lede",
+     "src": null,
+     "text": "Forty agents, each steered by its own 112-weight neural network, compete for foo"
+    }
+   },
+   "lcp_runs_ms": [
+    632,
+    692,
+    936
+   ],
+   "cls": 0.1643,
+   "cls_total": 0.1643,
+   "shifts": [
+    {
+     "value": 0.16419174567360606,
+     "t": 1686,
+     "input": false,
+     "sources": [
+      "nav.top-links",
+      null,
+      null
+     ]
+    }
+   ],
+   "fcp_ms": 692,
+   "dcl_ms": 1554,
+   "load_ms": 1626,
+   "framework": null,
+   "render_blocking": [
+    "/neuronet-arena/styles.css"
+   ],
+   "largest": [
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2",
+     "type": "font",
+     "bytes": 41019
+    },
+    {
+     "url": "/neuronet-arena/data/trained.json",
+     "type": "other",
+     "bytes": 21497
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2",
+     "type": "font",
+     "bytes": 10837
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2",
+     "type": "font",
+     "bytes": 10830
+    },
+    {
+     "url": "/neuronet-arena/ui/app.js",
+     "type": "script",
+     "bytes": 4675
+    },
+    {
+     "url": "/neuronet-arena/",
+     "type": "document",
+     "bytes": 4021
+    },
+    {
+     "url": "/neuronet-arena/styles.css",
+     "type": "stylesheet",
+     "bytes": 3928
+    },
+    {
+     "url": "/neuronet-arena/ui/chart.js",
+     "type": "script",
+     "bytes": 3159
+    }
+   ],
+   "page_errors": [],
+   "runs": 3
+  },
+  "desktop": {
+   "transfer_bytes": 137560,
+   "requests": 19,
+   "js_bytes_excl_ga": 28822,
+   "by_type": {
+    "document": {
+     "bytes": 4022,
+     "count": 1
+    },
+    "script": {
+     "bytes": 28822,
+     "count": 12
+    },
+    "stylesheet": {
+     "bytes": 5577,
+     "count": 2
+    },
+    "font": {
+     "bytes": 77642,
+     "count": 3
+    },
+    "image": {
+     "bytes": 0,
+     "count": 0
+    },
+    "other": {
+     "bytes": 21497,
+     "count": 1
+    }
+   },
+   "initial_transfer_bytes": 137560,
+   "initial_requests": 19,
+   "ga_requests_blocked": 0,
+   "lcp": {
+    "ms": 440,
+    "size": 79054,
+    "url": null,
+    "element": {
+     "selector": "p.lede",
+     "src": null,
+     "text": "Forty agents, each steered by its own 112-weight neural network, compete for foo"
+    }
+   },
+   "lcp_runs_ms": [
+    384,
+    484,
+    440
+   ],
+   "cls": 0.0152,
+   "cls_total": 0.0152,
+   "shifts": [
+    {
+     "value": 0.015156364032761062,
+     "t": 701.3000000000466,
+     "input": false,
+     "sources": [
+      "ul.legend",
+      null,
+      "details.table-view"
+     ]
+    }
+   ],
+   "fcp_ms": 440,
+   "dcl_ms": 736,
+   "load_ms": 736,
+   "framework": null,
+   "render_blocking": [
+    "/neuronet-arena/styles.css"
+   ],
+   "largest": [
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+     "type": "font",
+     "bytes": 46490
+    },
+    {
+     "url": "/neuronet-arena/data/trained.json",
+     "type": "other",
+     "bytes": 21497
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgg.woff2",
+     "type": "font",
+     "bytes": 15666
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
+     "type": "font",
+     "bytes": 15486
+    },
+    {
+     "url": "/neuronet-arena/ui/app.js",
+     "type": "script",
+     "bytes": 4675
+    },
+    {
+     "url": "/neuronet-arena/",
+     "type": "document",
+     "bytes": 4022
+    },
+    {
+     "url": "/neuronet-arena/styles.css",
+     "type": "stylesheet",
+     "bytes": 3928
+    },
+    {
+     "url": "/neuronet-arena/ui/chart.js",
+     "type": "script",
+     "bytes": 3159
+    }
+   ],
+   "page_errors": [],
+   "runs": 3
+  }
+ },
+ "perf_local_build": {
+  "mobile": {
+   "transfer_bytes": 106698,
+   "requests": 19,
+   "js_bytes_excl_ga": 22158,
+   "lcp": {
+    "ms": 508,
+    "size": 73595,
+    "url": null,
+    "element": {
+     "selector": "p.lede",
+     "src": null,
+     "text": "Forty agents, each steered by its own 112-weight neural network, compete for foo"
+    }
+   },
+   "lcp_runs_ms": [
+    552,
+    500,
+    508
+   ],
+   "cls": 0.1643
+  },
+  "desktop": {
+   "transfer_bytes": 127793,
+   "requests": 19,
+   "js_bytes_excl_ga": 22158,
+   "lcp": {
+    "ms": 104,
+    "size": 79054,
+    "url": null,
+    "element": {
+     "selector": "p.lede",
+     "src": null,
+     "text": "Forty agents, each steered by its own 112-weight neural network, compete for foo"
+    }
+   },
+   "lcp_runs_ms": [
+    196,
+    92,
+    104
+   ],
+   "cls": 0.0198
+  }
+ },
+ "axe": {
+  "390": {
+   "counts": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 1
+   },
+   "by_impact": {
+    "critical": [],
+    "serious": [],
+    "moderate": [],
+    "minor": [
+     {
+      "id": "empty-table-header",
+      "impact": "minor",
+      "help": "Table header text should not be empty",
+      "nodes": 1,
+      "targets": [
+       ".parity-table > thead > tr > th:nth-child(1)"
+      ]
+     }
+    ]
+   },
+   "incomplete": [
+    {
+     "id": "color-contrast",
+     "nodes": 10,
+     "targets": [
+      "#hud-gen",
+      "#hud-step",
+      "#hud-alive"
+     ]
+    }
+   ]
+  },
+  "1440": {
+   "counts": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 1
+   },
+   "by_impact": {
+    "critical": [],
+    "serious": [],
+    "moderate": [],
+    "minor": [
+     {
+      "id": "empty-table-header",
+      "impact": "minor",
+      "help": "Table header text should not be empty",
+      "nodes": 1,
+      "targets": [
+       ".parity-table > thead > tr > th:nth-child(1)"
+      ]
+     }
+    ]
+   },
+   "incomplete": [
+    {
+     "id": "color-contrast",
+     "nodes": 14,
+     "targets": [
+      "#hud-gen",
+      "#hud-step",
+      "#hud-alive"
+     ]
+    }
+   ]
+  }
+ },
+ "analytics": {
+  "gtag_present": false,
+  "measurement_ids": [],
+  "counts": {},
+  "section_view_ids": [],
+  "section_dwell_ids": [],
+  "scroll_depth": [],
+  "dom": {
+   "tracked_sections": [
+    "parity"
+   ],
+   "untracked_sections": [
+    "intro",
+    "stage",
+    "card",
+    "card",
+    "explain"
+   ],
+   "ids_not_on_section": [
+    {
+     "id": "hero",
+     "tag": null
+    },
+    {
+     "id": "education",
+     "tag": null
+    }
+   ]
+  },
+  "missing_events": [
+   "section_view",
+   "section_dwell"
+  ],
+  "missing_sections": [],
+  "failed_clicks": [],
+  "clicks": [],
+  "events": [],
+  "pass": true
+ },
+ "dnt": {
+  "gtag_present": false,
+  "custom_events": 0,
+  "measurement_ids": [],
+  "pass": true
+ },
+ "budget": null,
+ "page": {
+  "lang": "en",
+  "canonical": null,
+  "og_image": "https://brettadams0.github.io/neuronet-arena/og.png",
+  "twitter_card": "summary_large_image",
+  "robots": null,
+  "jsonld": [],
+  "favicon": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'",
+  "skip_link": false,
+  "landmarks": [
+   "header.top",
+   "nav.top-links",
+   "main.wrap",
+   "aside.side",
+   "footer.foot"
+  ],
+  "headings": [
+   "H1 neuronet-arena",
+   "H2 Food eaten per agent",
+   "H2 Leader",
+   "H2 Cross-engine check",
+   "H2 Sense",
+   "H2 Think",
+   "H2 Evolve",
+   "H2 Same bits"
+  ],
+  "stylesheets": [
+   {
+    "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap",
+    "media": "all"
+   },
+   {
+    "href": "styles.css",
+    "media": null
+   }
+  ],
+  "fonts_loaded": [
+   "IBM Plex Mono 400 normal",
+   "IBM Plex Mono 500 normal",
+   "IBM Plex Sans 400 normal",
+   "IBM Plex Sans 500 normal",
+   "IBM Plex Sans 600 normal"
+  ],
+  "images": []
+ },
+ "viewport": {
+  "390": {
+   "page_height": 2619,
+   "header_links": [
+    {
+     "text": "brettadams0.github.io",
+     "href": "https://brettadams0.github.io/",
+     "visible": true
+    },
+    {
+     "text": "Source on GitHub",
+     "href": "https://github.com/brettadams0/neuronet-arena",
+     "visible": true
+    }
+   ],
+   "key_info": {
+    "current_role": {
+     "el": "p.lede",
+     "text": "Forty agents, each steered by its own 112-weight neural netw",
+     "top": 118,
+     "bottom": 304,
+     "height": 186,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "resume": null,
+    "contact": null,
+    "best_project": {
+     "el": "a",
+     "text": "Source on GitHub",
+     "top": 16,
+     "bottom": 36,
+     "height": 20,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "shipped_work": null,
+    "projects_heading": null
+   },
+   "small_targets_24": [
+    {
+     "el": "a.back",
+     "text": "brettadams0.github.io",
+     "w": 179,
+     "h": 17,
+     "inline": false,
+     "top": 18,
+     "bottom": 35,
+     "height": 17
+    },
+    {
+     "el": "a",
+     "text": "Source on GitHub",
+     "w": 102,
+     "h": 20,
+     "inline": false,
+     "top": 16,
+     "bottom": 36,
+     "height": 20
+    },
+    {
+     "el": "summary",
+     "text": "Data table",
+     "w": 324,
+     "h": 19,
+     "inline": false,
+     "top": 1131,
+     "bottom": 1150,
+     "height": 19
+    }
+   ],
+   "targets_under_44": 13,
+   "targets_total": 16,
+   "focus_walk": [
+    "brettadams0.github.io [auto 1px rgb(229, 151, 0)]",
+    "Source on GitHub [auto 1px rgb(229, 151, 0)]",
+    "Pause [solid 2px rgb(255, 180, 84)]",
+    "1× [solid 2px rgb(255, 180, 84)]",
+    "4× [solid 2px rgb(255, 180, 84)]",
+    "16× [solid 2px rgb(255, 180, 84)]",
+    "Max [solid 2px rgb(255, 180, 84)]",
+    "Next generation [solid 2px rgb(255, 180, 84)]",
+    "Trained in Python [solid 2px rgb(255, 180, 84)]",
+    "From scratch [solid 2px rgb(255, 180, 84)]",
+    "input [solid 2px rgb(255, 180, 84)]",
+    "Restart [solid 2px rgb(255, 180, 84)]",
+    "Food eaten per agent by generation. Use  [auto 5px rgb(229, 151, 0)]",
+    "Data table [auto 1px rgb(229, 151, 0)]",
+    "Brett Adams [auto 1px rgb(229, 151, 0)]",
+    "MIT-licensed source [auto 1px rgb(229, 151, 0)]"
+   ]
+  },
+  "1440": {
+   "page_height": 1390,
+   "header_links": [
+    {
+     "text": "brettadams0.github.io",
+     "href": "https://brettadams0.github.io/",
+     "visible": true
+    },
+    {
+     "text": "Source on GitHub",
+     "href": "https://github.com/brettadams0/neuronet-arena",
+     "visible": true
+    }
+   ],
+   "key_info": {
+    "current_role": {
+     "el": "p.lede",
+     "text": "Forty agents, each steered by its own 112-weight neural netw",
+     "top": 125,
+     "bottom": 224,
+     "height": 99,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "resume": null,
+    "contact": null,
+    "best_project": {
+     "el": "a",
+     "text": "Source on GitHub",
+     "top": 15,
+     "bottom": 37,
+     "height": 22,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "shipped_work": null,
+    "projects_heading": null
+   },
+   "small_targets_24": [
+    {
+     "el": "a.back",
+     "text": "brettadams0.github.io",
+     "w": 179,
+     "h": 17,
+     "inline": false,
+     "top": 18,
+     "bottom": 35,
+     "height": 17
+    },
+    {
+     "el": "a",
+     "text": "Source on GitHub",
+     "w": 110,
+     "h": 22,
+     "inline": false,
+     "top": 15,
+     "bottom": 37,
+     "height": 22
+    },
+    {
+     "el": "summary",
+     "text": "Data table",
+     "w": 346,
+     "h": 19,
+     "inline": false,
+     "top": 549,
+     "bottom": 569,
+     "height": 19
+    }
+   ],
+   "targets_under_44": 13,
+   "targets_total": 16,
+   "focus_walk": [
+    "brettadams0.github.io [auto 1px rgb(16, 16, 16)]",
+    "Source on GitHub [auto 1px rgb(16, 16, 16)]",
+    "Pause [solid 2px rgb(255, 180, 84)]",
+    "1× [solid 2px rgb(255, 180, 84)]",
+    "4× [solid 2px rgb(255, 180, 84)]",
+    "16× [solid 2px rgb(255, 180, 84)]",
+    "Max [solid 2px rgb(255, 180, 84)]",
+    "Next generation [solid 2px rgb(255, 180, 84)]",
+    "Trained in Python [solid 2px rgb(255, 180, 84)]",
+    "From scratch [solid 2px rgb(255, 180, 84)]",
+    "input [solid 2px rgb(255, 180, 84)]",
+    "Restart [solid 2px rgb(255, 180, 84)]",
+    "Food eaten per agent by generation. Use  [auto 5px rgb(16, 16, 16)]",
+    "Data table [auto 1px rgb(16, 16, 16)]",
+    "Brett Adams [auto 1px rgb(16, 16, 16)]",
+    "MIT-licensed source [auto 1px rgb(16, 16, 16)]"
+   ]
+  }
+ }
+}

@@ -1,0 +1,380 @@
+{
+ "slug": "beingbrute",
+ "url": "https://beingbrute.github.io/",
+ "final_url": "https://beingbrute.github.io/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T16:24:29.230Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://beingbrute.github.io/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "Aditya Ranjan — Data Analyst | SQL, Excel, Power BI, Python, Databricks",
+ "meta_description": "Data analyst portfolio by Aditya Ranjan — SQL, Excel, Python, Databricks, Alteryx, Power BI, Tableau and Snowflake. Case studies in payment fraud controls, retail revenue & retention, loan default risk, and inventory demand & supply. Based in Noida, open to relocation, available immediately.",
+ "hero_text": "Aditya Ranjan About Fraud controls Retail revenue Loan risk Inventory Compare Contact Data analyst portfolio Four data problems, worked end to end. I'm a data …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "About",
+  "Fraud controls",
+  "Retail revenue",
+  "Loan risk",
+  "Inventory",
+  "Compare",
+  "Contact"
+ ],
+ "sections_ordered": [
+  "h1: Four data problems, worked end to end.",
+  "h2: Curious by nature. Analytical by training.",
+  "h2: What I work with",
+  "h2: Payment Transaction Controls & Fraud Risk Analytics",
+  "h2: Customer Revenue & Retention Analytics",
+  "h2: Loan Default Risk Analysis",
+  "h2: Inventory Demand & Supply Analysis",
+  "h2: Compare the work",
+  "h2: Get in touch"
+ ],
+ "fonts": {
+  "body": "\"Source Serif 4\", Georgia, serif",
+  "h1": "\"Space Grotesk\", system-ui, sans-serif",
+  "loaded": [
+   "IBM Plex Mono 400 normal",
+   "IBM Plex Mono 600 normal",
+   "Source Serif 4 400 normal",
+   "Source Serif 4 600 normal",
+   "Space Grotesk 400 normal",
+   "Space Grotesk 500 normal",
+   "Space Grotesk 600 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(17, 21, 27)",
+  "text": "rgb(233, 231, 224)",
+  "link": "rgb(17, 21, 27)",
+  "h1": "rgb(233, 231, 224)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 0
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 10,
+   "total_bytes": 706141,
+   "js_bytes": 0,
+   "lcp_ms": 652,
+   "lcp_element": "h1",
+   "cls": 0.1138
+  },
+  "mobile": {
+   "requests": 6,
+   "total_bytes": 183786,
+   "js_bytes": 0,
+   "lcp_ms": 1976,
+   "cls": 0.1146
+  },
+  "perf_api_desktop": {
+   "resource_count": 5,
+   "resource_transfer_bytes": 1274,
+   "dcl_ms": 536,
+   "load_ms": 1033
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 13853,
+   "text_chars_3000ms": 13853
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": true,
+  "resume_links": [
+   {
+    "text": "Download resume",
+    "href": "Aditya_Ranjan_Data_Analyst.pdf?v=2026-10-16",
+    "in_nav": false
+   },
+   {
+    "text": "Resume (PDF)",
+    "href": "Aditya_Ranjan_Data_Analyst.pdf?v=2026-10-16",
+    "in_nav": false
+   }
+  ],
+  "contact_path": true,
+  "contact_links": [
+   "#contact",
+   "https://github.com/beingbrute",
+   "https://github.com/beingbrute",
+   "mailto:adityaranjan17302215@gmail.com",
+   "https://www.linkedin.com/in/aditya-ranjan-data",
+   "https://github.com/beingbrute"
+  ],
+  "project_cards_hint": 8,
+  "live_demos_hint": true,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 3,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "link-in-text-block (serious, 1 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 2,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "link-in-text-block (serious, 1 nodes)",
+    "scrollable-region-focusable (serious, 2 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 13,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 0,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 2,
+    "clicks": 0,
+    "note": "'Data analyst portfolio' at 0 scrolls. The current job (contract role at Innodata) is in About at ~2.4 viewports (estimated from tile m-01). It has no dates."
+   },
+   "resume": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'Download resume' button in hero (y 730)"
+   },
+   "contact": {
+    "scrolls": 21,
+    "clicks": 0,
+    "note": "No mobile nav. Email/phone/LinkedIn are in 'Get in touch' at y 18104 (~21.4 viewports). The GitHub profile button is on the first screen."
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'View the projects' button jumps to #fraud. By scrolling it is at y 4578 (~5.4 viewports)."
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "GitHub profile button in hero. The first per-project Tableau and repo links are at y 7540 (~8.9 viewports)."
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 1,
+    "clicks": 0,
+    "note": "'Data analyst portfolio' at 0 scrolls. The Innodata contract sentence is in About (section at y 907, ~1.2 viewports)."
+   },
+   "resume": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'Download resume' in hero (y 527)"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Nav 'Contact' anchor. Email at y 10656 (~11.8 viewports) by scrolling."
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Nav 'Fraud controls', 'View the projects', or the first result tile. Section at y 2424 (~2.7 viewports)."
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "GitHub profile in hero. The first case study's Tableau and repo links are at y 4472 (~5 viewports)."
+   }
+  }
+ },
+ "inner_page": null,
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "probe-home-links.json": {
+   "url": "https://beingbrute.github.io/",
+   "loaded_utc": "2026-10-21T16:24:18.274Z",
+   "status": 200,
+   "final_url": "https://beingbrute.github.io/",
+   "title": "Aditya Ranjan — Data Analyst | SQL, Excel, Power BI, Python, Databricks",
+   "description": "Data analyst portfolio by Aditya Ranjan — SQL, Excel, Python, Databricks, Alteryx, Power BI, Tableau and Snowflake. Case studies in payment fraud controls, retail revenue & retention, loan default ris…",
+   "nav": [
+    [
+     "About",
+     "#about"
+    ],
+    [
+     "Fraud controls",
+     "#fraud"
+    ],
+    [
+     "Retail revenue",
+     "#customer"
+    ],
+    [
+     "Loan risk",
+     "#loan"
+    ],
+    [
+     "Inventory",
+     "#inventory"
+    ],
+    [
+     "Compare",
+     "#compare"
+    ],
+    [
+     "Contact",
+     "#contact"
+    ]
+   ],
+   "text": "Aditya Ranjan\nAbout\nFraud controls\nRetail revenue\nLoan risk\nInventory\nCompare\nContact\n\nData analyst portfolio\n\nFour data problems,\nworked end to end.\n\nI'm a data analyst who works across the full pipe…",
+   "links": [
+    [
+     "About",
+     "https://beingbrute.github.io/#about"
+    ],
+    [
+     "Fraud controls",
+     "https://beingbrute.github.io/#fraud"
+    ],
+    [
+     "Retail revenue",
+     "https://beingbrute.github.io/#customer"
+    ],
+    [
+     "Loan risk",
+     "https://beingbrute.github.io/#loan"
+    ],
+    [
+     "Inventory",
+     "https://beingbrute.github.io/#inventory"
+    ],
+    [
+     "Compare",
+     "https://beingbrute.github.io/#compare"
+    ],
+    [
+     "Contact",
+     "https://beingbrute.github.io/#contact"
+    ],
+    [
+     "View the projects",
+     "https://beingbrute.github.io/#fraud"
+    ],
+    [
+     "Download resume",
+     "https://beingbrute.github.io/Aditya_Ranjan_Data_Analyst.pdf?v=2026-10-16"
+    ],
+    [
+     "GitHub profile",
+     "https://github.com/beingbrute"
+    ],
+    [
+     "70.46% precision from the best fraud control, against a 0.13% baseline fraud rat",
+     "https://beingbrute.github.io/#fraud"
+    ],
+    [
+     "72.35% of known customers are repeat buyers — and they account for 96.74% of ide",
+     "https://beingbrute.github.io/#customer"
+    ],
+    {
+     "_trimmed": true,
+     "_total_items": 36
+    }
+   ]
+  },
+  "record.home.desktop.focus_check": [
+   {
+    "el": "a",
+    "label": "About",
+    "visible_change": true,
+    "outline": "solid 2px"
+   },
+   {
+    "el": "a",
+    "label": "Fraud controls",
+    "visible_change": true,
+    "outline": "solid 2px"
+   },
+   {
+    "el": "a",
+    "label": "Retail revenue",
+    "visible_change": true,
+    "outline": "solid 2px"
+   },
+   {
+    "el": "a",
+    "label": "Loan risk",
+    "visible_change": true,
+    "outline": "solid 2px"
+   },
+   {
+    "el": "a",
+    "label": "Inventory",
+    "visible_change": true,
+    "outline": "solid 2px"
+   }
+  ],
+  "record.home.mobile.dom.menu_button": null,
+  "record.summary.cls_mobile": 0.1146,
+  "record.summary.fonts": {
+   "body": "\"Source Serif 4\", Georgia, serif",
+   "h1": "\"Space Grotesk\", system-ui, sans-serif",
+   "loaded": [
+    "IBM Plex Mono 400 normal",
+    "IBM Plex Mono 600 normal",
+    "Source Serif 4 400 normal",
+    "Source Serif 4 600 normal",
+    "Space Grotesk 400 normal",
+    "Space Grotesk 500 normal",
+    "Space Grotesk 600 normal"
+   ]
+  },
+  "verify.record.summary.cls_desktop": 0.0098,
+  "verify.record.summary.cls_mobile": 0.1146
+ }
+}

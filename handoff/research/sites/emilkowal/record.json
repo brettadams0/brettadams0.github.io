@@ -1,0 +1,253 @@
+{
+ "slug": "emilkowal",
+ "url": "https://emilkowal.ski/",
+ "final_url": "https://emilkowal.ski/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:39:17.626Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://emilkowal.ski/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "Emil Kowalski",
+ "meta_description": "Design engineer working at Linear.",
+ "hero_text": "Enrollment for my new course aiforui.dev is open! 9 days left to join. Emil Kowalski Design Engineer Today I work on the Web team at …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "Emil Kowalski"
+ ],
+ "sections_ordered": [],
+ "fonts": {
+  "body": "Sans, \"Sans Fallback\"",
+  "h1": null,
+  "loaded": [
+   "Sans 100 900 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(253, 253, 252)",
+  "text": "rgb(0, 0, 0)",
+  "link": "rgb(33, 32, 28)",
+  "h1": null
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 6
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 44,
+   "total_bytes": 2022817,
+   "js_bytes": 886564,
+   "lcp_ms": 1544,
+   "lcp_element": "p.text-gray-1100",
+   "cls": 0
+  },
+  "mobile": {
+   "requests": 49,
+   "total_bytes": 2081638,
+   "js_bytes": 937179,
+   "lcp_ms": 956,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 43,
+   "resource_transfer_bytes": 2001767,
+   "dcl_ms": 729,
+   "load_ms": 1507
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 1358,
+   "text_chars_3000ms": 1357
+  }
+ },
+ "console_errors": {
+  "count": 1,
+  "first": [
+   "pageerror: Minified React error #418; visit https://react.dev/errors/418?args[]= for the full message or use the non-minified dev environment for full errors an"
+  ]
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://twitter.com/emilkowalski",
+   "https://github.com/emilkowalski"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 3,
+   "js": 3
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 2,
+    "minor": 0
+   },
+   "ids": []
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 2,
+    "minor": 0
+   },
+   "ids": []
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 0,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 0
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 0,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "'Design Engineer' + Linear sentence on the fold"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 2,
+    "clicks": 1,
+    "note": "Twitter/GitHub links in the closing 'More' line, y≈2124; no email (newsletter form only)"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Sonner row on the fold links to the live component page"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Sonner page: working demo, GitHub, npm install"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Name, 'Design Engineer', Linear and Vercel on the fold"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 2,
+    "clicks": 1,
+    "note": "'More' line at y≈2394 with Twitter and GitHub; no email"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Sonner is the second project row on the fold"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Sonner page hero button renders a real toast"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://sonner.emilkowal.ski/",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Sonner"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.dom.features": {
+   "resume_links": [],
+   "contact_links": [
+    {
+     "text": "Twitter",
+     "href": "https://twitter.com/emilkowalski",
+     "y": 2394,
+     "visible": true,
+     "in_nav": false
+    },
+    {
+     "text": "GitHub",
+     "href": "https://github.com/emilkowalski",
+     "y": 2394,
+     "visible": true,
+     "in_nav": false
+    }
+   ],
+   "contact_forms": 0,
+   "demo_links": [],
+   "case_study_text": false,
+   "project_section_heading": null,
+   "project_links": [],
+   "card_like_elements": 0,
+   "videos": [],
+   "progress_bars": 0,
+   "percent_labels": 0,
+   "logo_images": 0,
+   "canvases": [],
+   "iframes": [],
+   "html_body_overflow": "visible/hidden auto"
+  },
+  "record.home.desktop.dom.headings": [],
+  "record.home.desktop.network_initial.by_type": {
+   "document": {
+    "count": 1,
+    "bytes": 6731
+   },
+   "font": {
+    "count": 9,
+    "bytes": 1087435
+   },
+   "stylesheet": {
+    "count": 9,
+    "bytes": 37540
+   },
+   "script": {
+    "count": 24,
+    "bytes": 886564
+   },
+   "fetch": {
+    "count": 1,
+    "bytes": 4547
+   }
+  },
+  "record.summary.small_targets_mobile": 0,
+  "verify.record.summary.lcp_ms_desktop": 2492,
+  "verify.record.summary.small_targets_mobile": 0
+ }
+}
