@@ -102,6 +102,10 @@ const DEFAULT_BUDGET = { '/': { js_kb: 15, lcp_ms: 2000, cls: 0.05, no_framework
 // The exact section[id] list per page (spec section 13.3). --analytics fails on a missing or an extra id.
 const EXACT_SECTIONS = { '/': ['experience', 'projects', 'skills', 'contact'], '/mcp/': [], '/404.html': [] };
 const A11Y_SIZES = [[390, 844], [1440, 900]];
+// --a11y and --motion send the mobile UA at every size. Google Fonts serves hinted Plex files to desktop
+// Linux UAs, and their taller line boxes (15 px Plex Mono: 25 px, not 19) move every position; the
+// unhinted files the mobile UA gets are the ones the baseline measured and PR 2 self-hosts (section 7.5).
+const a11yCtx = (width, height, extra = {}) => ({ viewport: { width, height }, isMobile: width < 1024, hasTouch: width < 1024, userAgent: MOBILE_UA, ...extra });
 // key_info items (spec section 4.3): null when the selector matches nothing, as on the demo pages.
 const KEY_INFO = { current_role: '.hero .lede', resume: '.site-header .nav-resume', contact: '[data-contact]',
   best_project: '[data-project="neuronet-arena"] .project-shot', shipped_work: '.badge-live', projects_heading: '#projects-title' };
@@ -524,7 +528,7 @@ function a11yRead(keyInfo) { // runs in the page at load, before any scroll or f
 }
 
 async function a11yViewport(browser, url, width, height) {
-  const ctx = await newContext(browser, { viewport: { width, height }, isMobile: width < 1024, hasTouch: width < 1024 });
+  const ctx = await newContext(browser, a11yCtx(width, height));
   const page = await open(ctx, url);
   const cdp = await ctx.newCDPSession(page);
   await cdp.send('DOM.enable'); await cdp.send('Accessibility.enable');
@@ -554,7 +558,7 @@ async function a11yViewport(browser, url, width, height) {
   await ctx.close();
 
   // Skip link (spec section 10.2): first Tab lands on it inside the viewport; Enter moves focus to main#main.
-  const sctx = await newContext(browser, { viewport: { width, height }, isMobile: width < 1024, hasTouch: width < 1024 });
+  const sctx = await newContext(browser, a11yCtx(width, height));
   const spage = await open(sctx, url);
   await spage.keyboard.press('Tab');
   const first = await spage.evaluate(() => { const el = document.activeElement, r = el.getBoundingClientRect();
@@ -581,7 +585,7 @@ async function a11y(browser, url, pathName) {
   const result = { page: { headings: [] }, viewport: {}, failures: [] };
   const fail = (width, check, detail) => result.failures.push(`a11y FAIL ${pathName} ${width} ${check}: ${detail}`);
   // Reflow (SC 1.4.10) at 320x640, without mobile emulation, so an overflow can't be hidden by zooming out.
-  const rctx = await newContext(browser, { viewport: { width: 320, height: 640 } });
+  const rctx = await newContext(browser, { viewport: { width: 320, height: 640 }, userAgent: MOBILE_UA });
   const rpage = await open(rctx, url);
   const rw = await rpage.evaluate(() => ({ scrollWidth: document.documentElement.scrollWidth, innerWidth }));
   await rctx.close();
@@ -613,11 +617,11 @@ async function a11y(browser, url, pathName) {
 async function motion(browser, url, pathName) {
   const out = { failures: [] };
   for (const [width, height] of A11Y_SIZES) {
-    const ctx = await newContext(browser, { viewport: { width, height }, isMobile: width < 1024, hasTouch: width < 1024 });
+    const ctx = await newContext(browser, a11yCtx(width, height));
     const page = await open(ctx, url); // load, networkidle, document.fonts.ready
     const animations = await page.evaluate(() => document.getAnimations().length);
     await ctx.close();
-    const rctx = await newContext(browser, { viewport: { width, height }, isMobile: width < 1024, hasTouch: width < 1024, reducedMotion: 'reduce' });
+    const rctx = await newContext(browser, a11yCtx(width, height, { reducedMotion: 'reduce' }));
     const rpage = await rctx.newPage();
     await rpage.emulateMedia({ reducedMotion: 'reduce' });
     await rpage.goto(url, { waitUntil: 'networkidle' });
