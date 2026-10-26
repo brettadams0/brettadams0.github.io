@@ -1,0 +1,355 @@
+{
+ "slug": "samwho",
+ "url": "https://samwho.dev/",
+ "final_url": "https://samwho.dev/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:39:50.366Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://samwho.dev/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "samwho",
+ "meta_description": "Personal website of Sam Rose.",
+ "hero_text": "🔎 Archive RSS Twitter GitHub Bluesky 👋 Hi. I'm Sam. Husband, dad, programmer, whisky-drinker, writer. I love video games, lie-ins, cold weather, and being indoors. …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "🔎 Archive",
+  "RSS",
+  "https://twitter.com/samwhoo",
+  "Twitter",
+  "https://github.com/samwho",
+  "GitHub",
+  "https://bsky.app/profile/samwho.dev",
+  "Bluesky"
+ ],
+ "sections_ordered": [
+  "h2: 👋 Hi.",
+  "h2: 🎨 I write.",
+  "h2: 💌 I newsletter.",
+  "h2: 🎙️ I talk.",
+  "h2: 📰 I play the NYT games.",
+  "h2: 😈 I tinker.",
+  "h2: ⌨️ I write",
+  "h2: 👨🏻‍💻 I code.",
+  "h2: 📖 I read."
+ ],
+ "fonts": {
+  "body": "Seravek, \"Gill Sans Nova\", Ubuntu, Calibri, \"DejaVu Sans\", source-sans-pro, sans-serif",
+  "h1": null,
+  "loaded": []
+ },
+ "main_colours": {
+  "bg": "rgb(255, 255, 255)",
+  "text": "oklch(0.216 0.006 56.043)",
+  "link": "oklch(0.488 0.243 264.376)",
+  "h1": null
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 0
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 20,
+   "total_bytes": 55956,
+   "js_bytes": 4383,
+   "lcp_ms": 1160,
+   "lcp_element": "p",
+   "cls": 0.0006
+  },
+  "mobile": {
+   "requests": 20,
+   "total_bytes": 55956,
+   "js_bytes": 4383,
+   "lcp_ms": 616,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 19,
+   "resource_transfer_bytes": 47796,
+   "dcl_ms": 1214,
+   "load_ms": 2602
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 3025,
+   "text_chars_3000ms": 3025
+  }
+ },
+ "console_errors": {
+  "count": 1,
+  "first": [
+   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ]
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://twitter.com/samwhoo",
+   "https://twitter.com/samwhoo",
+   "https://github.com/samwho",
+   "https://github.com/samwho",
+   "https://bsky.app/profile/samwho.dev",
+   "https://bsky.app/profile/samwho.dev"
+  ],
+  "project_cards_hint": 1,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 3,
+   "js": 1
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 4
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 3,
+    "minor": 0
+   },
+   "ids": [
+    "link-in-text-block (serious, 17 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 3,
+    "minor": 0
+   },
+   "ids": [
+    "link-in-text-block (serious, 17 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 13,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 0
+  },
+  "focus_visible_first_5_tabs": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "small_targets_mobile": 8,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 4,
+    "clicks": 0,
+    "note": "ngrok sentence under the stacked essay cards"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Twitter, GitHub, Bluesky in the link row; no email"
+   },
+   "best_project": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "First essay card (Big O) starts about 1.5 viewports down"
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "Essay cards open interactive essays; GitHub list about 7 scrolls down"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 1,
+    "clicks": 0,
+    "note": "ngrok sentence directly under the essay grid"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Twitter, GitHub, Bluesky in the link row; no email"
+   },
+   "best_project": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "Essay grid begins at the bottom edge of the fold"
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "Essay cards; 'I code' GitHub list about 3-4 scrolls down"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://samwho.dev/bloom-filters",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Bloom Filters"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "help": "Document should have one main landmark",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "link-in-text-block",
+    "impact": "serious",
+    "help": "Links must be distinguishable without relying on color",
+    "nodes": 17,
+    "targets": [
+     "a[href$=\"ngrok.com\"]",
+     "a[href$=\"newsletter.samwho.dev/\"]",
+     "section:nth-child(6) > ul:nth-child(3) > li:nth-child(2) > a"
+    ]
+   },
+   {
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "help": "Page should contain a level-one heading",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 9,
+    "targets": [
+     "section:nth-child(3)",
+     "section:nth-child(4)",
+     "section:nth-child(5)"
+    ]
+   }
+  ],
+  "record.home.desktop.focus_check": [
+   {
+    "el": "g",
+    "label": "S key",
+    "visible_change": false,
+    "outline": "none 0px"
+   },
+   {
+    "el": "g",
+    "label": "A key",
+    "visible_change": false,
+    "outline": "none 0px"
+   },
+   {
+    "el": "g",
+    "label": "M key",
+    "visible_change": false,
+    "outline": "none 0px"
+   },
+   {
+    "el": "g",
+    "label": "W key",
+    "visible_change": false,
+    "outline": "none 0px"
+   },
+   {
+    "el": "g",
+    "label": "H key",
+    "visible_change": false,
+    "outline": "none 0px"
+   }
+  ],
+  "record.home.desktop.network_initial": {
+   "requests": 20,
+   "failed": 0,
+   "total_bytes": 55956,
+   "js_bytes": 4383,
+   "js_first_party_bytes": 4383,
+   "by_type": {
+    "document": {
+     "count": 1,
+     "bytes": 6553
+    },
+    "stylesheet": {
+     "count": 3,
+     "bytes": 9262
+    },
+    "script": {
+     "count": 1,
+     "bytes": 4383
+    },
+    "image": {
+     "count": 13,
+     "bytes": 26307
+    },
+    "fetch": {
+     "count": 2,
+     "bytes": 9451
+    }
+   },
+   "top_hosts": [
+    {
+     "host": "samwho.dev",
+     "bytes": 55956
+    }
+   ]
+  },
+  "record.inner.desktop.dom.a11y_manual.skip_link": "Skip to main content",
+  "record.summary.key_info_positions_mobile.current_role": {
+   "y": 3527,
+   "scrolls": 4,
+   "text": "I also now write posts like this in my full-time job as a developer educator at ngrok:",
+   "href": null
+  },
+  "verify.record.inner.desktop.code_scan": {
+   "reducedMotionCss": 2,
+   "reducedMotionJs": 1,
+   "colorSchemeCss": 0,
+   "colorSchemeJs": 0,
+   "scrollLibs": [
+    "ScrollTrigger"
+   ],
+   "webglLibs": [
+    "pixi"
+   ]
+  },
+  "verify.record.inner.desktop.dom.a11y_manual": {
+   "skip_link": "Skip to main content",
+   "imgs": 3,
+   "imgs_missing_alt": 0,
+   "interactive_first_2_viewports": 3,
+   "small_targets_under_24px": 0,
+   "small_target_examples": []
+  },
+  "verify.record.summary.lcp_ms_desktop": 3516
+ }
+}

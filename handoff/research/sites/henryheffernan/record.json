@@ -1,0 +1,282 @@
+{
+ "slug": "henryheffernan",
+ "url": "https://henryheffernan.com/",
+ "final_url": "https://henryheffernan.com/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T16:26:46.716Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://henryheffernan.com/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "Henry Heffernan - Portfolio 2022",
+ "meta_description": "I'm Henry, a Software Engineer based in NY. Rensselaer Polytechnic Institute Graduate with my B.S. in Computer Science, currently looking for a full time role.",
+ "hero_text": "Heffernan, Henry Inc. Released: 01/13/2000 HHBIOS (C)2000 Heffernan Henry Inc., HSP S13 2000-2022 Special UC131S HSP Showcase(tm) XX 113 Checking RAM : 14000 OK FINISHED …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [],
+ "sections_ordered": [],
+ "fonts": {
+  "body": "\"Times New Roman\"",
+  "h1": null,
+  "loaded": []
+ },
+ "main_colours": {
+  "bg": "rgb(0, 0, 0)",
+  "text": "rgb(0, 0, 0)",
+  "link": null,
+  "h1": null
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 0
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 33,
+   "total_bytes": 7660986,
+   "js_bytes": 428013,
+   "lcp_ms": 2996,
+   "lcp_element": "p",
+   "cls": 0.0164
+  },
+  "mobile": {
+   "requests": 40,
+   "total_bytes": 5298781,
+   "js_bytes": 743696,
+   "lcp_ms": 2344,
+   "cls": 0.0109
+  },
+  "perf_api_desktop": {
+   "resource_count": 25,
+   "resource_transfer_bytes": 7482769,
+   "dcl_ms": 1197,
+   "load_ms": 3395
+  },
+  "canvas_contexts": [
+   "webgl2",
+   "webgl"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [
+   "three.js"
+  ],
+  "splash_check": {
+   "text_chars_500ms": 326,
+   "text_chars_3000ms": 731
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": false,
+  "contact_links": [],
+  "project_cards_hint": 0,
+  "live_demos_hint": true,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 2
+  },
+  "videos": [
+   {
+    "autoplay": true,
+    "playing": false,
+    "muted": true,
+    "y": 0
+   },
+   {
+    "autoplay": true,
+    "playing": false,
+    "muted": true,
+    "y": 0
+   }
+  ],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": []
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": []
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 0,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 0
+  },
+  "focus_visible_first_5_tabs": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "small_targets_mobile": 0,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 2,
+    "note": "'Software Engineer' legible on the 3D monitor after START and a second tap (~42 s in this harness, includes 12 s fixed waits); full role sentence only in meta"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link on any captured screen; About/Experience views not loaded, so unverified"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 3,
+    "note": "CONTACT link in the OS nav, rendered tiny on the 3D monitor"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 3,
+    "note": "PROJECTS link in the OS nav (not loaded)"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "The 3D desk scene itself, after START"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 2,
+    "note": "'Software Engineer' on the monitor after two clicks (~28 s in this harness, includes 12 s fixed waits)"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "Not seen on captured screens; unverified"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 3,
+    "note": "CONTACT in OS nav"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 3,
+    "note": "PROJECTS in OS nav (not loaded)"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "3D scene after START"
+   }
+  },
+  "resume_note": "Landing pages are one viewport tall (no scrolling). Going straight to os.henryheffernan.com shows name, role and the four nav links at first paint (LCP 2.1 s desktop), but the landing never links to it."
+ },
+ "inner_page": {
+  "url": "https://os.henryheffernan.com/",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Henry Heffernan - OS"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "click-through-probe.json": {
+   "url": "https://henryheffernan.com/",
+   "method": "one extra load per viewport by capture agent C4 (headless Chromium, unthrottled, via proxy): wait for START, click it, wait 6 s, screenshot, click page centre, wait 6 s, screenshot",
+   "runs": [
+    {
+     "viewport": "desktop",
+     "start_visible_ms": 11846,
+     "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('START', { exact: true }).first()\u001b[22m\n\u001b[2m    - locator resolved to <p>START</p>\u001b[22m\n\u001b[2m  - attempting…"
+    },
+    {
+     "viewport": "mobile",
+     "start_visible_ms": 2844,
+     "start_clicked_ms": 18328,
+     "after_start_text": "Click anywhe Heffernan, Henry Inc. Released: 01/13/2000 HHBIOS (C)2000 Heffernan Henry Inc., HSP S13 2000-2022 Special UC131S HSP Showcase(tm) XX 113 Checking RAM : 14000 OK FINISHED LOADING RESOURCES",
+     "second_click_ms": 30990,
+     "after_2nd_text": "Henry Hefferna Click anywhere Heffernan, Henry Inc. Released: 01/13/2000 HHBIOS (C)2000 Heffernan Henry Inc., HSP S13 2000-2022 Special UC131S HSP Showcase(tm) XX 113 Checking RAM : 14000 OK FINISHED ",
+     "frames": [
+      "https://henryheffernan.com/",
+      "https://os.henryheffernan.com/"
+     ],
+     "total_ms": 41848
+    },
+    {
+     "viewport": "desktop",
+     "retry": "mouse click at START bounding-box centre (element never reported stable)",
+     "start_visible_ms": 2071,
+     "start_clicked_ms": 11237,
+     "second_click_ms": 19790,
+     "total_ms": 28226,
+     "loaded_utc": "2026-10-21T16:32:33.215Z"
+    }
+   ],
+   "loaded_utc": "2026-10-21T16:31:32.963Z"
+  },
+  "record.home.desktop.network_initial.total_bytes": 7660986,
+  "record.home.mobile.dom.a11y_manual.interactive_first_2_viewports": 0,
+  "record.inner.desktop.lcp": {
+   "t": 2088,
+   "size": 44960,
+   "el": "h1"
+  },
+  "record.summary.meta_description": "I'm Henry, a Software Engineer based in NY. Rensselaer Polytechnic Institute Graduate with my B.S. in Computer Science, currently looking for a full time role.",
+  "verify.record.home.desktop.network_initial.by_type": {
+   "document": {
+    "count": 2,
+    "bytes": 2861
+   },
+   "script": {
+    "count": 4,
+    "bytes": 428083
+   },
+   "stylesheet": {
+    "count": 5,
+    "bytes": 16683
+   },
+   "media": {
+    "count": 2,
+    "bytes": 0
+   },
+   "fetch": {
+    "count": 16,
+    "bytes": 1300449
+   },
+   "image": {
+    "count": 5,
+    "bytes": 3051980
+   }
+  },
+  "verify.record.summary.cls_desktop": 0.0062,
+  "verify.record.summary.lcp_ms_desktop": 7948,
+  "verify.record.summary.total_bytes_desktop": 4800056
+ }
+}

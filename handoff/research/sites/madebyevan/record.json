@@ -1,0 +1,293 @@
+{
+ "slug": "madebyevan",
+ "url": "https://madebyevan.com/",
+ "final_url": "https://madebyevan.com/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:36:39.153Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://madebyevan.com/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "Made by Evan",
+ "meta_description": null,
+ "hero_text": "Mastodon GitHub Evan Wallace Professional Work Figma (2012-2021) I'm one of the cofounders of Figma , a collaborative browser-based interface design tool. My main contributions …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "Mastodon",
+  "GitHub"
+ ],
+ "sections_ordered": [
+  "h1: Evan Wallace",
+  "h2: Professional Work",
+  "h2: Compilers",
+  "h2: Graphics",
+  "h2: Games",
+  "h2: Apps",
+  "h2: Miscellaneous"
+ ],
+ "fonts": {
+  "body": "Arial, sans-serif",
+  "h1": "Georgia, serif",
+  "loaded": []
+ },
+ "main_colours": {
+  "bg": "rgb(255, 255, 255)",
+  "text": "rgb(68, 68, 68)",
+  "link": "rgb(68, 68, 68)",
+  "h1": "rgb(255, 255, 255)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": true,
+  "css_prefers_color_scheme_mentions": 1
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 18,
+   "total_bytes": 285886,
+   "js_bytes": 0,
+   "lcp_ms": 1500,
+   "lcp_element": "header",
+   "cls": 0
+  },
+  "mobile": {
+   "requests": 18,
+   "total_bytes": 286026,
+   "js_bytes": 0,
+   "lcp_ms": 3416,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 17,
+   "resource_transfer_bytes": 283048,
+   "dcl_ms": 697,
+   "load_ms": 3619
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 3960,
+   "text_chars_3000ms": 3960
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://github.com/evanw"
+  ],
+  "project_cards_hint": 15,
+  "live_demos_hint": true,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "html-has-lang (serious, 1 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "html-has-lang (serious, 1 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 0,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 0,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "No job title; Figma (2012-2021) and esbuild (2020-present) are on the fold"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Mastodon and GitHub links only; no email"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Figma and esbuild entries on the fold"
+   },
+   "shipped_work": {
+    "scrolls": 2,
+    "clicks": 1,
+    "note": "WebGL Water 'View demo...' link about 2 scrolls down; esbuild link on the fold"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "No job title; Figma (2012-2021) and esbuild (2020-present) on the fold"
+   },
+   "resume": null,
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Mastodon and GitHub links top right; no email"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Figma and esbuild entries on the fold"
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "WebGL Water 'View demo...' link one scroll down"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://madebyevan.com/webgl-water/",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "WebGL Water"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "html-has-lang",
+    "impact": "serious",
+    "help": "<html> element must have a lang attribute",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   }
+  ],
+  "record.home.desktop.dom.headings": [
+   {
+    "level": 1,
+    "text": "Evan Wallace",
+    "y": 172
+   },
+   {
+    "level": 2,
+    "text": "Professional Work",
+    "y": 353
+   },
+   {
+    "level": 3,
+    "text": "Figma (2012-2021)",
+    "y": 439
+   },
+   {
+    "level": 2,
+    "text": "Compilers",
+    "y": 630
+   },
+   {
+    "level": 3,
+    "text": "esbuild (2020-present)",
+    "y": 766
+   },
+   {
+    "level": 3,
+    "text": "Skew (2015-2019)",
+    "y": 980
+   },
+   {
+    "level": 2,
+    "text": "Graphics",
+    "y": 1171
+   },
+   {
+    "level": 3,
+    "text": "WebGL Water (2010)",
+    "y": 1307
+   },
+   {
+    "level": 3,
+    "text": "WebGL Path Tracing (2010)",
+    "y": 1521
+   },
+   {
+    "level": 3,
+    "text": "WebGL Image Filters (2011)",
+    "y": 1712
+   },
+   {
+    "level": 3,
+    "text": "Shader Articles (2015)",
+    "y": 1926
+   },
+   {
+    "level": 2,
+    "text": "Games",
+    "y": 2095
+   },
+   {
+    "_trimmed": true,
+    "_total_items": 22
+   }
+  ],
+  "record.inner.desktop.code_scan": {
+   "reducedMotionCss": 0,
+   "reducedMotionJs": 0,
+   "colorSchemeCss": 0,
+   "colorSchemeJs": 0,
+   "scrollLibs": [],
+   "webglLibs": []
+  },
+  "record.summary.js_bytes_desktop": 0,
+  "record.summary.nav_items": [
+   "Mastodon",
+   "GitHub"
+  ]
+ }
+}

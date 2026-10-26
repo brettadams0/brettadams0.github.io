@@ -1,0 +1,377 @@
+{
+ "slug": "ssp",
+ "url": "https://www.ssp.sh/",
+ "final_url": "https://www.ssp.sh/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:39:42.282Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://www.ssp.sh/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "Data Engineering Blog & Second Brain",
+ "meta_description": "Data Engineering Blog with genuine insights by Simon Späti: 100+ open-source data essays, a 1,000+ note Second Brain, and the book Patterns of Data Engineering.",
+ "hero_text": "Blogs Brain DE Vault Book About About Blog Brain DE Vault Book Data Engineering Blog · Second Brain Genuine insights, interlinked value. The top-ranked Data …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "Data Engineering Blog & Second Brain",
+  "Blogs",
+  "Brain",
+  "DE Vault",
+  "Book",
+  "About",
+  "Search",
+  "/brain/newsletter/",
+  "Switch Theme"
+ ],
+ "sections_ordered": [
+  "h1: DATA ENGINEERING BLOG · SECOND BRAIN"
+ ],
+ "fonts": {
+  "body": "\"atkinson hyperlegible\", \"atkinson fallback\", \"piazzolla, serif;\", \"open sans\", sans-serif, system-ui, -apple-system, Bl",
+  "h1": "\"iosevka web\", \"iosevka fallback\", monospace, monospace",
+  "loaded": [
+   "Atkinson Hyperlegible 400 normal",
+   "Atkinson Hyperlegible 400 italic",
+   "Atkinson Hyperlegible 700 normal",
+   "Atkinson Fallback 700 normal",
+   "Atkinson Fallback 400 italic",
+   "Iosevka Web 400 normal",
+   "Iosevka Web 700 normal",
+   "Iosevka Fallback 700 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(24, 24, 32)",
+  "text": "rgb(220, 215, 186)",
+  "link": "rgb(169, 169, 179)",
+  "h1": "rgb(230, 195, 132)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [
+   "a.menu-item.theme-switch",
+   "a.menu-item.theme-switch"
+  ],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 1
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 17,
+   "total_bytes": 352706,
+   "js_bytes": 150373,
+   "lcp_ms": 964,
+   "lcp_element": "p.entry-graph__lead",
+   "cls": 0.0013
+  },
+  "mobile": {
+   "requests": 17,
+   "total_bytes": 352700,
+   "js_bytes": 150367,
+   "lcp_ms": 536,
+   "cls": 0.0474
+  },
+  "perf_api_desktop": {
+   "resource_count": 16,
+   "resource_transfer_bytes": 325151,
+   "dcl_ms": 1091,
+   "load_ms": 1483
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 756,
+   "text_chars_3000ms": 756
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://github.com/sspaeti?ref=ssp.sh",
+   "https://linkedin.com/in/sspaeti?ref=ssp.sh",
+   "https://bsky.app/profile/ssp.sh?ref=ssp.sh",
+   "mailto:hello@sspaeti.com",
+   "https://twitter.com/sspaeti?ref=ssp.sh"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 1,
+   "js": 4
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 2
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 2,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 1 nodes)",
+    "nested-interactive (serious, 1 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "nested-interactive (serious, 1 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 4,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 6,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "'author & educator, 20+ years' on fold; title 'Data Engineer, Technical Author & Educator' about 8 scrolls (estimated from tiles/m-04.png)"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link found on the homepage"
+   },
+   "contact": {
+    "scrolls": 8,
+    "clicks": 0,
+    "note": "Email icon in about-card social row, about css y 7300 (estimated from tiles/m-04.png); About page via hamburger not checked"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "No projects; flagship book linked in hero paragraph"
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 0,
+    "note": "Content cards start below the 506 px graph; dated post list about 2-3 scrolls (estimated)"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Hero paragraph; job title in about card about 3 scrolls (estimated from tiles/d-01.png)"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link found on the homepage"
+   },
+   "contact": {
+    "scrolls": 3,
+    "clicks": 0,
+    "note": "Email icon in about-card social row (estimated from tiles/d-01.png); header envelope is the newsletter"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "No projects; book linked in hero and graph node"
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 0,
+    "note": "Four content cards and dated Latest list"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://www.ssp.sh/brain/data-engineering/",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Data Engineering Vault"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 1,
+    "targets": [
+     "small"
+    ]
+   },
+   {
+    "id": "nested-interactive",
+    "impact": "serious",
+    "help": "Interactive controls must not be nested",
+    "nodes": 1,
+    "targets": [
+     "#entry-graph"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 1,
+    "targets": [
+     ".entry-graph-tip"
+    ]
+   }
+  ],
+  "record.home.desktop.network_initial": {
+   "requests": 17,
+   "failed": 0,
+   "total_bytes": 352706,
+   "js_bytes": 150373,
+   "js_first_party_bytes": 150373,
+   "by_type": {
+    "document": {
+     "count": 1,
+     "bytes": 13157
+    },
+    "font": {
+     "count": 5,
+     "bytes": 146430
+    },
+    "stylesheet": {
+     "count": 1,
+     "bytes": 33279
+    },
+    "image": {
+     "count": 2,
+     "bytes": 8543
+    },
+    "script": {
+     "count": 7,
+     "bytes": 150373
+    },
+    "ping": {
+     "count": 1,
+     "bytes": 924
+    }
+   },
+   "top_hosts": [
+    {
+     "host": "ssp.sh",
+     "bytes": 347664
+    },
+    {
+     "host": "goatcounter.ssp.sh",
+     "bytes": 5042
+    }
+   ]
+  },
+  "verify.record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 1,
+    "targets": [
+     "small"
+    ]
+   },
+   {
+    "id": "nested-interactive",
+    "impact": "serious",
+    "help": "Interactive controls must not be nested",
+    "nodes": 1,
+    "targets": [
+     "#entry-graph"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 1,
+    "targets": [
+     ".entry-graph-tip"
+    ]
+   }
+  ],
+  "verify.record.home.desktop.network_after_scroll": {
+   "requests": 22,
+   "failed": 0,
+   "total_bytes": 2556562,
+   "js_bytes": 150367,
+   "js_first_party_bytes": 150367,
+   "by_type": {
+    "document": {
+     "count": 1,
+     "bytes": 13157
+    },
+    "font": {
+     "count": 5,
+     "bytes": 146430
+    },
+    "stylesheet": {
+     "count": 1,
+     "bytes": 33279
+    },
+    "image": {
+     "count": 6,
+     "bytes": 279929
+    },
+    "script": {
+     "count": 7,
+     "bytes": 150367
+    },
+    "ping": {
+     "count": 1,
+     "bytes": 924
+    },
+    "fetch": {
+     "count": 1,
+     "bytes": 1932476
+    }
+   },
+   "top_hosts": [
+    {
+     "host": "ssp.sh",
+     "bytes": 2551520
+    },
+    {
+     "host": "goatcounter.ssp.sh",
+     "bytes": 5042
+    }
+   ]
+  }
+ }
+}

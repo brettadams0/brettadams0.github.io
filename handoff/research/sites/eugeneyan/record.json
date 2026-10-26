@@ -1,0 +1,307 @@
+{
+ "slug": "eugeneyan",
+ "url": "https://eugeneyan.com/",
+ "final_url": "https://eugeneyan.com/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:35:51.873Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://eugeneyan.com/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "Eugene Yan",
+ "meta_description": "I work to bridge the field and the frontier, and help build safe, reliable AI systems that scale. I also write and speak about AI-powered systems and products, and prototype for fun.",
+ "hero_text": "eugeneyan Start Here Writing Speaking Prototyping About Hi, I'm Eugene Yan, a writer & speaker. I work to bridge the field and the frontier, and …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [],
+ "sections_ordered": [
+  "h1: eugeneyan",
+  "h1: Hi, I'm Eugene Yan, a writer & speaker.",
+  "h1: Latest",
+  "h1: Trending This Week",
+  "h1: More than 50k Reads",
+  "h1: Featured Talks",
+  "h1: My Favourites",
+  "h1: Selected Prototypes",
+  "h1: Resources"
+ ],
+ "fonts": {
+  "body": "Merriweather, Georgia, Times, serif",
+  "h1": "Raleway, Helvetica, sans-serif",
+  "loaded": [
+   "Merriweather 400 normal",
+   "Merriweather 700 normal",
+   "Raleway 400 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(255, 255, 255)",
+  "text": "rgb(33, 37, 41)",
+  "link": "rgb(51, 51, 51)",
+  "h1": "rgb(108, 117, 125)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [
+   "input#dark-mode.dark-mode-checkbox"
+  ],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 0
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 32,
+   "total_bytes": 552440,
+   "js_bytes": 382989,
+   "lcp_ms": 1532,
+   "lcp_element": "p",
+   "cls": 0.0275
+  },
+  "mobile": {
+   "requests": 30,
+   "total_bytes": 542066,
+   "js_bytes": 383001,
+   "lcp_ms": 2460,
+   "cls": 0.006
+  },
+  "perf_api_desktop": {
+   "resource_count": 28,
+   "resource_transfer_bytes": 193572,
+   "dcl_ms": 1563,
+   "load_ms": 2024
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 4923,
+   "text_chars_3000ms": 4917
+  }
+ },
+ "console_errors": {
+  "count": 2,
+  "first": [
+   "Failed to load resource: the server responded with a status of 404 (Not Found)",
+   "pageerror: Path not supported by Algolia REST API. Please have a look at https://www.algolia.com/doc/rest-api/search/ for the list of valid commands"
+  ]
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://twitter.com/eugeneyan",
+   "https://www.linkedin.com/in/eugeneyan/",
+   "https://github.com/eugeneyan/"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 6,
+   "js": 1
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 2,
+    "minor": 1
+   },
+   "ids": [
+    "color-contrast (serious, 28 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 2,
+    "minor": 1
+   },
+   "ids": [
+    "color-contrast (serious, 28 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 4,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 9
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 0,
+  "horizontal_overflow_mobile": true,
+  "mobile_layout_width": 453
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "MTS at Anthropic in the intro paragraph on the fold"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link found on the homepage"
+   },
+   "contact": {
+    "scrolls": 4,
+    "clicks": 0,
+    "note": "Twitter/LinkedIn/GitHub icons in footer only; newsletter form on fold is not contact"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Prototype names linked in hero bullet; Prototyping in nav"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Prototyping page: GitHub and recorded-demo links per entry"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Intro paragraph on fold"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link found on the homepage"
+   },
+   "contact": {
+    "scrolls": 3,
+    "clicks": 0,
+    "note": "Footer social icons (y about 2813)"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Hero bullet links; Selected Prototypes list at 2 scrolls"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Prototyping nav item; GitHub links visible on its fold"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://eugeneyan.com/prototyping/",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Prototyping • Eugene Yan"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 28,
+    "targets": [
+     "a[href$=\"start-here/\"]",
+     "a[title=\"Writing\"]",
+     "a[title=\"Speaking\"]"
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "help": "Document should have one main landmark",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "meta-viewport-large",
+    "impact": "minor",
+    "help": "Users should be able to zoom and scale the text up to 500%",
+    "nodes": 1,
+    "targets": [
+     "meta[name=\"viewport\"]"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 19,
+    "targets": [
+     ".header",
+     "#hi",
+     ".container > p"
+    ]
+   }
+  ],
+  "record.home.desktop.network_initial.top_hosts": [
+   {
+    "host": "googletagmanager.com",
+    "bytes": 176147
+   },
+   {
+    "host": "cdn.jsdelivr.net",
+    "bytes": 131673
+   },
+   {
+    "host": "fonts.gstatic.com",
+    "bytes": 121498
+   },
+   {
+    "host": "eugeneyan.com",
+    "bytes": 93764
+   },
+   {
+    "host": "f.convertkit.com",
+    "bytes": 14328
+   },
+   {
+    "host": "static.cloudflareinsights.com",
+    "bytes": 10704
+   },
+   {
+    "host": "fonts.googleapis.com",
+    "bytes": 1489
+   },
+   {
+    "host": "app.convertkit.com",
+    "bytes": 1439
+   }
+  ],
+  "record.home.mobile.dom.vw": 453,
+  "record.summary.hero_text_mobile": "eugeneyan Start Here Writing Speaking Prototyping About Hi, I'm Eugene Yan, an operator-angel. I work to bridge the field and the frontier, and help build safe, reliable AI systems that scale. Current…",
+  "record.summary.key_info_positions_mobile.contact": {
+   "y": 4375,
+   "scrolls": 4,
+   "text": "Twitter",
+   "href": "https://twitter.com/eugeneyan"
+  },
+  "verify.record.summary.cls_desktop": 0.0119,
+  "verify.record.summary.horizontal_overflow_mobile": true
+ }
+}

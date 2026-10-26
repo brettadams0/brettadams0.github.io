@@ -1,0 +1,328 @@
+{
+ "slug": "mujtabasaqib",
+ "url": "https://www.mujtabasaqib.com/",
+ "final_url": "https://www.mujtabasaqib.com/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:35:53.579Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://www.mujtabasaqib.com/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "Mujtaba Saqib — Data Engineer & AI Specialist",
+ "meta_description": "Portfolio of Mujtaba Saqib — Data Engineer & AI Specialist building scalable ETL pipelines, data warehouses, and AI-powered analytics systems.",
+ "hero_text": "© Mujtaba Saqib About Experience Projects Contact Menu Located in Pakistan Available for opportunities Data Engineer Data Scientist Mujtaba Saqib — Mujtaba Saqib — Mujtaba …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "© Mujtaba Saqib",
+  "About",
+  "Experience",
+  "Projects",
+  "Contact",
+  "Menu"
+ ],
+ "sections_ordered": [
+  "h1: Mujtaba Saqib—",
+  "h1: Mujtaba Saqib—",
+  "h1: Mujtaba Saqib—",
+  "h1: Mujtaba Saqib—",
+  "h2: Let's work together"
+ ],
+ "fonts": {
+  "body": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\"",
+  "h1": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\"",
+  "loaded": [
+   "Plus Jakarta Sans 400 normal",
+   "Plus Jakarta Sans 500 normal",
+   "Plus Jakarta Sans 600 normal",
+   "Plus Jakarta Sans 700 normal",
+   "JetBrains Mono 400 normal",
+   "JetBrains Mono 500 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(1, 16, 19)",
+  "text": "rgb(250, 249, 246)",
+  "link": "rgb(1, 16, 19)",
+  "h1": "rgb(250, 249, 246)"
+ },
+ "dark_light": {
+  "meta_color_scheme": "dark",
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 1
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 40,
+   "total_bytes": 4171376,
+   "js_bytes": 309611,
+   "lcp_ms": 8716,
+   "lcp_element": "img.hero-photo-img src=https://www.mujtabasaqib.com/mujidon.svg",
+   "cls": 0
+  },
+  "mobile": {
+   "requests": 39,
+   "total_bytes": 4163410,
+   "js_bytes": 309734,
+   "lcp_ms": 6828,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 39,
+   "resource_transfer_bytes": 4136558,
+   "dcl_ms": 832,
+   "load_ms": 2235
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 6,
+   "text_chars_3000ms": 6
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "/contact",
+   "/contact",
+   "https://www.linkedin.com/in/mujtaba-saqib",
+   "https://github.com/mujtabasaqib19",
+   "mailto:mujtabasaqib654@gmail.com",
+   "https://github.com/mujtabasaqib19"
+  ],
+  "project_cards_hint": 5,
+  "live_demos_hint": true,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 1,
+   "js": 2
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 3
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 2,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 3 nodes)",
+    "list (serious, 1 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 2,
+    "moderate": 1,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 3 nodes)",
+    "list (serious, 1 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 10,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [
+    "h1 → h4 at \"Helping data teams to build reliable inf\""
+   ],
+   "h1_count": 4
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 1,
+  "horizontal_overflow_mobile": true,
+  "mobile_layout_width": 417
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 5,
+    "clicks": 0,
+    "note": "Hero shows only generic titles 'Data Engineer / Data Scientist' (0 scrolls). The current job (Data Scientist, Genix Pharma, May 2026–Present) is in Experience at ~4.8 viewports (estimated from tile), or 2 taps via Menu > Experience. All of this comes after the splash."
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link found (record.summary.has_resume_link false)"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 2,
+    "note": "Menu > Contact page. Email is visible only in the footer at ~7.7 viewports (y 6495)."
+   },
+   "best_project": {
+    "scrolls": 2,
+    "clicks": 0,
+    "note": "Recent work list ~2.3 viewports down; first dashboard image ~3.1. No project page or link."
+   },
+   "shipped_work": {
+    "scrolls": 3,
+    "clicks": 0,
+    "note": "Only dashboard screenshots (~3 viewports). 'More projects 11' (y 3872, ~4.6 viewports) links to the GitHub profile, not to specific repos."
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 4,
+    "clicks": 0,
+    "note": "Hero titles at 0 scrolls. The current job card is in the Experience section at y 3498 (~3.9 viewports), or 1 click via nav 'Experience'."
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé link found"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'Contact' in the nav goes to /contact. The email is in the footer."
+   },
+   "best_project": {
+    "scrolls": 2,
+    "clicks": 0,
+    "note": "Recent work at y 1778 (~2 viewports)"
+   },
+   "shipped_work": {
+    "scrolls": 4,
+    "clicks": 1,
+    "note": "'More projects 11' to the GitHub profile at y 3371 (~3.7 viewports). No per-project links."
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://www.mujtabasaqib.com/about",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Mujtaba Saqib — Data Engineer & AI Specialist"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.dom.features.project_links": [],
+  "record.home.desktop.focus_check": [
+   {
+    "el": "a",
+    "label": "© Mujtaba Saqib",
+    "visible_change": true,
+    "outline": "auto 1px"
+   },
+   {
+    "el": "a",
+    "label": "About",
+    "visible_change": true,
+    "outline": "auto 1px"
+   },
+   {
+    "el": "a",
+    "label": "Experience",
+    "visible_change": true,
+    "outline": "auto 1px"
+   },
+   {
+    "el": "a",
+    "label": "Projects",
+    "visible_change": true,
+    "outline": "auto 1px"
+   },
+   {
+    "el": "a",
+    "label": "Contact",
+    "visible_change": true,
+    "outline": "auto 1px"
+   }
+  ],
+  "record.home.desktop.network_initial.by_type": {
+   "document": {
+    "count": 1,
+    "bytes": 3718
+   },
+   "font": {
+    "count": 2,
+    "bytes": 60250
+   },
+   "stylesheet": {
+    "count": 1,
+    "bytes": 10381
+   },
+   "script": {
+    "count": 15,
+    "bytes": 309611
+   },
+   "xhr": {
+    "count": 1,
+    "bytes": 753
+   },
+   "image": {
+    "count": 7,
+    "bytes": 3771618
+   },
+   "fetch": {
+    "count": 13,
+    "bytes": 15045
+   }
+  },
+  "record.home.desktop.splash_check": {
+   "text_chars_500ms": 6,
+   "text_chars_3000ms": 6
+  },
+  "record.home.mobile.dom.vw": 417,
+  "verify.record.home.desktop.network_initial.by_type": {
+   "document": {
+    "count": 1,
+    "bytes": 3712
+   },
+   "font": {
+    "count": 2,
+    "bytes": 60268
+   },
+   "stylesheet": {
+    "count": 1,
+    "bytes": 10372
+   },
+   "script": {
+    "count": 15,
+    "bytes": 309486
+   },
+   "xhr": {
+    "count": 1,
+    "bytes": 755
+   },
+   "image": {
+    "count": 7,
+    "bytes": 3773046
+   },
+   "fetch": {
+    "count": 13,
+    "bytes": 15039
+   }
+  },
+  "verify.record.summary.horizontal_overflow_mobile": true
+ }
+}

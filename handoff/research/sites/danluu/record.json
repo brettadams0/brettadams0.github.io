@@ -1,0 +1,266 @@
+{
+ "slug": "danluu",
+ "url": "https://danluu.com/",
+ "final_url": "https://danluu.com/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:41:37.831Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://danluu.com/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "",
+ "meta_description": null,
+ "hero_text": "xx/xx Patreon posts 09/26 There's no point at which turning your brain off will work 09/26 How well do agents use test and verification techniques? …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [],
+ "sections_ordered": [],
+ "fonts": {
+  "body": "\"Times New Roman\"",
+  "h1": null,
+  "loaded": []
+ },
+ "main_colours": {
+  "bg": "rgb(255, 255, 255)",
+  "text": "rgb(0, 0, 0)",
+  "link": "rgb(0, 0, 238)",
+  "h1": null
+ },
+ "dark_light": {
+  "meta_color_scheme": "light dark",
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 0
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 5,
+   "total_bytes": 19683,
+   "js_bytes": 10704,
+   "lcp_ms": 564,
+   "lcp_element": "a",
+   "cls": 0
+  },
+  "mobile": {
+   "requests": 5,
+   "total_bytes": 19683,
+   "js_bytes": 10704,
+   "lcp_ms": 752,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 3,
+   "resource_transfer_bytes": 451,
+   "dcl_ms": 701,
+   "load_ms": 702
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 9152,
+   "text_chars_3000ms": 9152
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://mastodon.social/@danluu",
+   "https://bsky.app/profile/danluu.com",
+   "https://twitter.com/danluu/"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 3,
+    "moderate": 3,
+    "minor": 0
+   },
+   "ids": [
+    "document-title (serious, 1 nodes)",
+    "html-has-lang (serious, 1 nodes)",
+    "list (serious, 1 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 3,
+    "moderate": 3,
+    "minor": 0
+   },
+   "ids": [
+    "document-title (serious, 1 nodes)",
+    "html-has-lang (serious, 1 nodes)",
+    "list (serious, 1 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 0,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 0
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 29,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "Not stated on any captured page; the 04/22 essay implies work at Wave ('our architecture'). The record's heuristic match on a 03/25 post title is a false positive"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé linked"
+   },
+   "contact": {
+    "scrolls": 9,
+    "clicks": 1,
+    "note": "Mastodon / Bluesky / Twitter links in the footer (y=7642 of 7702); no email"
+   },
+   "best_project": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No projects; essays only"
+   },
+   "shipped_work": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No shipped software shown; the published essays (0 scrolls) are the only work"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "Not stated; implied inside an essay only"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé linked"
+   },
+   "contact": {
+    "scrolls": 7,
+    "clicks": 1,
+    "note": "Footer social links at y=6688 of 6748; no email"
+   },
+   "best_project": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No projects"
+   },
+   "shipped_work": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "Essays only"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://danluu.com/simple-architectures/",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "In defense of simple architectures"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "document-title",
+    "impact": "serious",
+    "help": "Documents must have <title> element to aid in navigation",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "html-has-lang",
+    "impact": "serious",
+    "help": "<html> element must have a lang attribute",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "help": "Document should have one main landmark",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "list",
+    "impact": "serious",
+    "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+    "nodes": 1,
+    "targets": [
+     "ul"
+    ]
+   },
+   {
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "help": "Page should contain a level-one heading",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 1,
+    "targets": [
+     "ul"
+    ]
+   }
+  ],
+  "record.home.mobile.dom.a11y_manual.small_targets_under_24px": 29,
+  "record.summary.title": "",
+  "record.summary.total_bytes_desktop": 19683,
+  "verify.record.summary.lcp_ms_desktop": 861
+ }
+}
