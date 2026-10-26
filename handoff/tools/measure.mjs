@@ -26,7 +26,7 @@
  *   node handoff/tools/measure.mjs <url> | --site <dir>  [--path /p/]...  <modes>  [options]
  *
  *   Modes (combine freely; at least one):
- *     --shots              PNG screenshots at 390x844, 768x1024, 1440x900: fold + full page
+ *     --shots              PNG screenshots at 320x640, 390x844, 768x1024, 1440x900: fold + full page
  *     --axe [file.js]      axe-core at 390 and 1440; violations grouped by impact
  *     --perf               throttled mobile (390x844, DPR 2, 150 ms RTT, 1.6 Mbps down,
  *                          750 kbps up, 4x CPU) and unthrottled desktop (1440x900)
@@ -34,17 +34,30 @@
  *     --analytics          slow scroll, click every [data-project] a, [data-contact] link and
  *                          résumé link (navigation prevented), print every GA event queued
  *     --dnt                navigator.doNotTrack = '1'; asserts no custom events fire (exit 1 if any)
+ *     --a11y               spec section 10.15 at 390x844 and 1440x900: page.headings (CDP AX names),
+ *                          viewport.<w>.focus_walk (Tab up to 120 times), small_targets_24,
+ *                          targets_under_44/targets_total, page_height, key_info, and
+ *                          checks.reflow_320 (at 320x640), checks.skip_link, checks.obscured.
+ *                          Prints one "a11y FAIL <path> <width> <check>: <detail>" line per failure;
+ *                          exit 1 on any
+ *     --motion             spec section 9.5 checks 1-2 at 390x844 and 1440x900: getAnimations() after
+ *                          load is 0; under reducedMotion 'reduce' nothing transitions or animates and
+ *                          scroll-behavior is auto. Prints "motion PASS" or "motion FAIL <path> <width>: …"
  *   Options:
  *     --out <dir>          screenshot folder (default: <os.tmpdir()>/measure-shots)
  *     --json <file>        write the full JSON report
  *     --runs <n>           perf runs per profile; the run with the median LCP is reported (default 1)
- *     --expect-sections a,b   section_id values that must fire (default for "/": experience,
- *                          projects, skills, contact)
+ *     --expect-sections a,b   the exact section[id] list for every path in this run, overriding
+ *                          EXACT_SECTIONS: "/" experience, projects, skills, contact; "/mcp/" and
+ *                          "/404.html" none. A missing id, or an extra one in the DOM or in a
+ *                          section_view, fails --analytics ("unexpected section_id: <id>"). Paths not
+ *                          in EXACT_SECTIONS (the demos) are not checked
  *     --allow-ga           do not block Google Analytics requests
  *
  *   Budget file: { "<path>" | "*": { "total_kb", "js_kb", "css_kb", "font_kb", "image_kb",
- *   "requests", "lcp_ms", "cls", "no_framework" } }, compared with the throttled mobile run
- *   (kb = 1024 bytes, JS excludes GA hosts). Built-in default:
+ *   "requests", "lcp_ms", "cls", "desktop_cls", "no_framework" } }, compared with the throttled
+ *   mobile run, except desktop_cls, which reads the desktop run (kb = 1024 bytes, JS excludes GA
+ *   hosts). perf results also list the origins every successful request went to. Built-in default:
  *     { "/": { "js_kb": 15, "lcp_ms": 2000, "cls": 0.05, "no_framework": true } }
  *
  * Examples
@@ -57,6 +70,11 @@
  *   node handoff/tools/measure.mjs --site _site --path / --path /mcp/ --budget --runs 3
  *   # Analytics and Do Not Track check
  *   node handoff/tools/measure.mjs --site _site --path / --analytics --dnt --json /tmp/ga.json
+ *   # Accessibility and motion checks
+ *   node handoff/tools/measure.mjs --site _site --path / --a11y
+ *   node handoff/tools/measure.mjs --site _site --path / --path /mcp/ --path /404.html --motion
+ *
+ *   With --site, a path that doesn't exist (--path /no/such/page/) is served 404.html with status 404.
  */
 import { createRequire } from 'node:module';
 import { execSync, execFileSync } from 'node:child_process';
@@ -78,10 +96,15 @@ const AXE_URL = `https://cdnjs.cloudflare.com/ajax/libs/axe-core/${AXE_VERSION}/
 const AXE_SHA256 = 'b511cd9dec01c76f4b2ad1723b66b6db37d4c2eb4ed199076e1829d9ee7b75e3';
 const GA_HOSTS = /^https?:\/\/([a-z0-9-]+\.)*(googletagmanager\.com|google-analytics\.com|analytics\.google\.com)(\/|:|$)/i;
 const RESUME_RE = /Resume_BrettAdams\.pdf$/;
-const SHOT_SIZES = [[390, 844], [768, 1024], [1440, 900]];
+const SHOT_SIZES = [[320, 640], [390, 844], [768, 1024], [1440, 900]];
 const MOBILE_UA = 'Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36';
 const DEFAULT_BUDGET = { '/': { js_kb: 15, lcp_ms: 2000, cls: 0.05, no_framework: true } };
-const DEFAULT_SECTIONS = { '/': ['experience', 'projects', 'skills', 'contact'] };
+// The exact section[id] list per page (spec section 13.3). --analytics fails on a missing or an extra id.
+const EXACT_SECTIONS = { '/': ['experience', 'projects', 'skills', 'contact'], '/mcp/': [], '/404.html': [] };
+const A11Y_SIZES = [[390, 844], [1440, 900]];
+// key_info items (spec section 4.3): null when the selector matches nothing, as on the demo pages.
+const KEY_INFO = { current_role: '.hero .lede', resume: '.site-header .nav-resume', contact: '[data-contact]',
+  best_project: '[data-project="neuronet-arena"] .project-shot', shipped_work: '.badge-live', projects_heading: '#projects-title' };
 const KB = 1024;
 
 // ---------- arguments ----------
@@ -100,6 +123,8 @@ for (let i = 0; i < argv.length; i++) {
   else if (a === '--budget') { opt.budget = true; opt.perf = true; opt.budgetFile = takes(/\.json$/); }
   else if (a === '--analytics') opt.analytics = true;
   else if (a === '--dnt') opt.dnt = true;
+  else if (a === '--a11y') opt.a11y = true;
+  else if (a === '--motion') opt.motion = true;
   else if (a === '--allow-ga') opt.allowGa = true;
   else if (a === '--out') opt.out = argv[++i];
   else if (a === '--json') opt.json = argv[++i];
@@ -108,7 +133,7 @@ for (let i = 0; i < argv.length; i++) {
   else if (a === '-h' || a === '--help') usage(0);
   else { console.error(`Unknown argument: ${a}`); usage(2); }
 }
-if ((!opt.url && !opt.site) || !(opt.shots || opt.axe || opt.perf || opt.analytics || opt.dnt)) usage(2);
+if ((!opt.url && !opt.site) || !(opt.shots || opt.axe || opt.perf || opt.analytics || opt.dnt || opt.a11y || opt.motion)) usage(2);
 
 function usage(code) {
   const src = fs.readFileSync(new URL(import.meta.url), 'utf8');
@@ -298,6 +323,7 @@ function tally(reqs) {
     list.push({ url: r.url, type: cat, bytes: r.bytes });
   }
   return { transfer_bytes: bytes, requests: count, failed_requests: failed, js_bytes_excl_ga: jsExGa, by_type,
+    origins: [...new Set(list.map((r) => new URL(r.url).origin))],
     largest: list.sort((a, b) => b.bytes - a.bytes).slice(0, 8) };
 }
 
@@ -417,16 +443,197 @@ async function analytics(browser, url, pathName, dnt) {
   const expectedEvents = raw.gtag ? ['scroll_depth'] : []; // a page without gtag can't send anything
   if (raw.gtag && raw.dom.tracked_sections.length) expectedEvents.push('section_view', 'section_dwell');
   if (raw.gtag) for (const t of targets) for (const x of t.expect) if (!expectedEvents.includes(x) && !t.missing_data_contact) expectedEvents.push(x);
-  const expectedSections = raw.gtag ? opt.expectSections || DEFAULT_SECTIONS[pathName] || [] : [];
+  const exact = opt.expectSections || EXACT_SECTIONS[pathName] || null; // null: a page not in the map is not checked
+  const expectedSections = raw.gtag && exact ? exact : [];
   const missing_events = expectedEvents.filter((x) => !counts[x]);
-  const missing_sections = expectedSections.filter((x) => !ids('section_view').includes(x));
+  const missing_in_dom = (exact || []).filter((x) => !raw.dom.tracked_sections.includes(x));
+  const missing_sections = [...new Set([...expectedSections.filter((x) => !ids('section_view').includes(x)), ...missing_in_dom])];
+  const unexpected_sections = exact ? [...new Set([...raw.dom.tracked_sections, ...ids('section_view')])].filter((x) => !exact.includes(x)) : [];
   const failed_clicks = targets.filter((t) => !t.ok);
   return { gtag_present: raw.gtag, measurement_ids, ga_requests_blocked: ctx.gaBlocked, counts, events, section_view_ids: ids('section_view'),
     section_dwell_ids: ids('section_dwell'), scroll_depth: events.filter((e) => e.name === 'scroll_depth').map((e) => e.params.percent),
-    dom: raw.dom, expected_events: expectedEvents, missing_events, expected_sections: expectedSections, missing_sections,
+    dom: raw.dom, expected_events: expectedEvents, missing_events, expected_sections: expectedSections, missing_sections, unexpected_sections,
     clicks: targets, failed_clicks: failed_clicks.map((t) => `${t.missing_data_contact ? 'missing data-contact' : 'no event'}: ${t.text} ` +
       `(${t.href}, in ${t.where}) expected ${t.expect.join('+')}, fired ${t.fired.join('+') || 'nothing'}`),
-    pass: !raw.gtag || (!missing_events.length && !missing_sections.length && !failed_clicks.some((t) => !t.missing_data_contact)) };
+    pass: !unexpected_sections.length && !missing_in_dom.length && (!raw.gtag || (!missing_events.length && !missing_sections.length && !failed_clicks.some((t) => !t.missing_data_contact))) };
+}
+
+// ---------- accessibility (spec sections 10.2, 10.15) ----------
+
+// Accessible names and heading levels from CDP's full AX tree, the source of truth (not ariaSnapshot()).
+async function axTree(cdp) {
+  const { nodes } = await cdp.send('Accessibility.getFullAXTree');
+  const byId = new Map(nodes.map((n) => [n.nodeId, n]));
+  const names = new Map(), headings = [];
+  const visit = (n) => {
+    if (!n) return;
+    if (n.backendDOMNodeId != null) names.set(n.backendDOMNodeId, n.name?.value ?? '');
+    if (!n.ignored && n.role?.value === 'heading') {
+      const level = n.properties?.find((p) => p.name === 'level')?.value?.value;
+      headings.push(`H${level ?? '?'} ${(n.name?.value ?? '').trim()}`);
+    }
+    for (const c of n.childIds || []) visit(byId.get(c));
+  };
+  visit(nodes.find((n) => !n.parentId) || nodes[0]); // tree order, so headings come out in document order
+  return { names, headings };
+}
+
+async function activeName(cdp, names) {
+  const { result } = await cdp.send('Runtime.evaluate', { expression: 'document.activeElement', objectGroup: 'measure' });
+  if (!result.objectId) return '';
+  const { node } = await cdp.send('DOM.describeNode', { objectId: result.objectId });
+  if (names.has(node.backendNodeId)) return names.get(node.backendNodeId).trim();
+  const { nodes } = await cdp.send('Accessibility.getPartialAXTree', { objectId: result.objectId, fetchRelatives: false });
+  return (nodes[0]?.name?.value ?? '').trim();
+}
+
+function a11yRead(keyInfo) { // runs in the page at load, before any scroll or focus
+  const desc = (el) => el.tagName.toLowerCase() + (el.id ? '#' + el.id : '') + [...el.classList].map((c) => '.' + c).join('');
+  const text = (el) => (el.innerText || el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 60);
+  const box = (el) => {
+    const r = el.getBoundingClientRect();
+    return { r, top: Math.round(r.top + scrollY), bottom: Math.round(r.bottom + scrollY), height: Math.round(r.height) };
+  };
+  const key_info = {};
+  for (const [k, sel] of Object.entries(keyInfo)) {
+    const el = document.querySelector(sel);
+    if (!el) { key_info[k] = null; continue; }
+    const { top, bottom, height } = box(el);
+    const screens = Math.max(0, Math.ceil((bottom - innerHeight) / innerHeight));
+    key_info[k] = { el: desc(el), text: text(el), top, bottom, height, screens_to_reach: screens, in_first_screen: screens === 0 };
+  }
+  const targets = [...new Set(document.querySelectorAll('a[href], button, summary, select, textarea, [tabindex="0"]'))].filter((el) => {
+    const { r, bottom } = box(el);
+    return r.width > 0 && r.height > 0 && bottom > 0 && getComputedStyle(el).visibility !== 'hidden';
+  });
+  const small = [];
+  let under44 = 0;
+  for (const el of targets) {
+    const { r, top, bottom, height } = box(el);
+    const w = Math.round(r.width), h = Math.round(r.height);
+    if (w < 44 || h < 44) under44++;
+    if (w >= 24 && h >= 24) continue;
+    const parent = el.parentElement;
+    // SC 2.5.8's inline exception: a link sitting in a sentence (its p or li parent has other text of its own)
+    const inline = el.tagName === 'A' && !!parent && /^(P|LI)$/.test(parent.tagName)
+      && [...parent.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
+    small.push({ el: desc(el), text: text(el), w, h, inline, top, bottom, height });
+  }
+  return { page_height: document.documentElement.scrollHeight, key_info, small_targets_24: small,
+    targets_under_44: under44, targets_total: targets.length };
+}
+
+async function a11yViewport(browser, url, width, height) {
+  const ctx = await newContext(browser, { viewport: { width, height }, isMobile: width < 1024, hasTouch: width < 1024 });
+  const page = await open(ctx, url);
+  const cdp = await ctx.newCDPSession(page);
+  await cdp.send('DOM.enable'); await cdp.send('Accessibility.enable');
+  const read = await page.evaluate(a11yRead, KEY_INFO);
+  const { names, headings } = await axTree(cdp);
+  const focus_walk = [], stops = [], obscured = [];
+  const headerSticky = await page.evaluate(() => { const h = document.querySelector('.site-header');
+    return !!h && /^(sticky|fixed)$/.test(getComputedStyle(h).position); });
+  for (let i = 0; i < 120; i++) {
+    await page.keyboard.press('Tab');
+    const s = await page.evaluate(() => {
+      const el = document.activeElement;
+      if (!el || el === document.body || el === document.documentElement) return null;
+      if (!el.dataset.measureStop) el.dataset.measureStop = String(document.querySelectorAll('[data-measure-stop]').length);
+      const cs = getComputedStyle(el), r = el.getBoundingClientRect(), h = document.querySelector('.site-header');
+      return { id: el.dataset.measureStop, tag: el.tagName.toLowerCase(), elId: el.id, skip: el.matches('.skip-link'),
+        textarea: el.tagName === 'TEXTAREA', outline: [cs.outlineStyle, cs.outlineWidth, cs.outlineColor],
+        top: Math.round(r.top), inHeader: !!h && h.contains(el), headerBottom: h ? Math.round(h.getBoundingClientRect().bottom) : null };
+    });
+    if (!s || stops.some((x) => x.id === s.id)) break; // back to the document, or round to the first stop again
+    s.name = await activeName(cdp, names);
+    stops.push(s);
+    focus_walk.push(`${s.name} [${s.outline.join(' ')}]`);
+    if (headerSticky && !s.skip && !s.inHeader && s.top < s.headerBottom) obscured.push(`${s.name} (top ${s.top} < header bottom ${s.headerBottom})`);
+  }
+  await cdp.send('Runtime.releaseObjectGroup', { objectGroup: 'measure' }).catch(() => {});
+  await ctx.close();
+
+  // Skip link (spec section 10.2): first Tab lands on it inside the viewport; Enter moves focus to main#main.
+  const sctx = await newContext(browser, { viewport: { width, height }, isMobile: width < 1024, hasTouch: width < 1024 });
+  const spage = await open(sctx, url);
+  await spage.keyboard.press('Tab');
+  const first = await spage.evaluate(() => { const el = document.activeElement, r = el.getBoundingClientRect();
+    return { skip: el.matches('.skip-link'), text: (el.innerText || el.textContent || '').trim().slice(0, 40) || el.tagName,
+      inViewport: r.top >= 0 && r.left >= 0 && r.bottom <= innerHeight && r.right <= innerWidth }; });
+  let skip_link;
+  if (!first.skip) skip_link = { pass: false, detail: `first Tab lands on "${first.text}", not a.skip-link` };
+  else if (!first.inViewport) skip_link = { pass: false, detail: 'skip link outside the viewport when focused' };
+  else {
+    await spage.keyboard.press('Enter');
+    await spage.waitForTimeout(300);
+    const after = await spage.evaluate(() => ({ tag: document.activeElement?.tagName, id: document.activeElement?.id }));
+    skip_link = after.id === 'main' ? { pass: true } : { pass: false, detail: `activeElement ${after.tag}${after.id ? '#' + after.id : ''} after Enter` };
+  }
+  await sctx.close();
+
+  const out = { page_height: read.page_height, focus_walk, small_targets_24: read.small_targets_24,
+    targets_under_44: read.targets_under_44, targets_total: read.targets_total, key_info: read.key_info,
+    checks: { skip_link, obscured: { pass: !obscured.length, detail: obscured } } };
+  return { out, headings, stops };
+}
+
+async function a11y(browser, url, pathName) {
+  const result = { page: { headings: [] }, viewport: {}, failures: [] };
+  const fail = (width, check, detail) => result.failures.push(`a11y FAIL ${pathName} ${width} ${check}: ${detail}`);
+  // Reflow (SC 1.4.10) at 320x640, without mobile emulation, so an overflow can't be hidden by zooming out.
+  const rctx = await newContext(browser, { viewport: { width: 320, height: 640 } });
+  const rpage = await open(rctx, url);
+  const rw = await rpage.evaluate(() => ({ scrollWidth: document.documentElement.scrollWidth, innerWidth }));
+  await rctx.close();
+  const reflow_320 = rw.scrollWidth <= rw.innerWidth ? { pass: true, ...rw } : { pass: false, detail: `scrollWidth ${rw.scrollWidth} > innerWidth ${rw.innerWidth}`, ...rw };
+  for (const [width, height] of A11Y_SIZES) {
+    const { out, headings, stops } = await a11yViewport(browser, url, width, height);
+    out.checks = { reflow_320, ...out.checks };
+    result.viewport[width] = out;
+    if (width === 1440 || !result.page.headings.length) result.page.headings = headings;
+    for (const s of stops) {
+      const ok = s.outline[0] !== 'none' && s.outline[1] === '2px';
+      if (!ok && s.tag !== 'main' && !(s.textarea && pathName.startsWith('/mcp-surface'))) fail(width, 'focus_ring', `"${s.name}" [${s.outline.join(' ')}]`);
+    }
+    for (const t of out.small_targets_24) if (!t.inline) fail(width, 'small_target', `${t.el} "${t.text}" ${t.w}x${t.h}`);
+    for (const h of headings) {
+      const name = h.replace(/^H\S* /, '');
+      if (/^(##|>|\/\/)/.test(name) || name.includes(' @ ')) fail(width, 'heading', `"${h}"`);
+    }
+    if (!reflow_320.pass) fail(width, 'reflow_320', reflow_320.detail);
+    if (!out.checks.skip_link.pass) fail(width, 'skip_link', out.checks.skip_link.detail);
+    for (const o of out.checks.obscured.detail) fail(width, 'obscured', o);
+  }
+  result.pass = !result.failures.length;
+  return result;
+}
+
+// ---------- motion (spec section 9.5, checks 1 and 2) ----------
+
+async function motion(browser, url, pathName) {
+  const out = { failures: [] };
+  for (const [width, height] of A11Y_SIZES) {
+    const ctx = await newContext(browser, { viewport: { width, height }, isMobile: width < 1024, hasTouch: width < 1024 });
+    const page = await open(ctx, url); // load, networkidle, document.fonts.ready
+    const animations = await page.evaluate(() => document.getAnimations().length);
+    await ctx.close();
+    const rctx = await newContext(browser, { viewport: { width, height }, isMobile: width < 1024, hasTouch: width < 1024, reducedMotion: 'reduce' });
+    const rpage = await rctx.newPage();
+    await rpage.emulateMedia({ reducedMotion: 'reduce' });
+    await rpage.goto(url, { waitUntil: 'networkidle' });
+    const reduced_moving = await rpage.evaluate(() => [...document.querySelectorAll('*')]
+      .filter((el) => getComputedStyle(el).transitionDuration.split(',').some((d) => parseFloat(d) > 0)
+                 || getComputedStyle(el).animationName !== 'none')
+      .map((el) => el.tagName.toLowerCase() + '.' + String(el.className).trim().replace(/\s+/g, '.')));
+    const reduced_scroll_behavior = await rpage.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior);
+    await rctx.close();
+    out[width] = { animations, reduced_moving, reduced_scroll_behavior };
+    const bad = [animations ? `${animations} animations after load` : '', reduced_moving.length ? `reduced motion still moves ${reduced_moving.join(', ')}` : '',
+      reduced_scroll_behavior !== 'auto' ? `reduced motion scroll-behavior ${reduced_scroll_behavior}` : ''].filter(Boolean);
+    if (bad.length) out.failures.push(`motion FAIL ${pathName} ${width}: ${bad.join('; ')}`);
+  }
+  out.pass = !out.failures.length;
+  return out;
 }
 
 // ---------- budget ----------
@@ -435,15 +642,15 @@ function checkBudget(pages, budget) {
   const failures = [];
   const metric = { total_kb: (m) => m.transfer_bytes / KB, js_kb: (m) => m.js_bytes_excl_ga / KB, css_kb: (m) => m.by_type.stylesheet.bytes / KB,
     font_kb: (m) => m.by_type.font.bytes / KB, image_kb: (m) => m.by_type.image.bytes / KB, requests: (m) => m.requests,
-    lcp_ms: (m) => m.lcp?.ms ?? Infinity, cls: (m) => m.cls };
+    lcp_ms: (m) => m.lcp?.ms ?? Infinity, cls: (m) => m.cls, desktop_cls: (m, d) => d?.cls ?? Infinity };
   for (const p of pages) {
     const rules = budget[p.path] || budget['*'];
     if (!rules) continue;
-    const m = p.perf?.mobile;
+    const m = p.perf?.mobile, d = p.perf?.desktop;
     if (!m) { failures.push(`${p.path}: no performance result`); continue; }
     p.budget = [];
     for (const [k, limit] of Object.entries(rules)) {
-      const actual = k === 'no_framework' ? m.framework : metric[k] ? +metric[k](m).toFixed(3) : undefined;
+      const actual = k === 'no_framework' ? m.framework : metric[k] ? +metric[k](m, d).toFixed(3) : undefined;
       if (actual === undefined) { failures.push(`${p.path}: unknown budget key ${k}`); continue; }
       const pass = k === 'no_framework' ? !limit || !actual : actual < limit;
       p.budget.push({ metric: k, limit, actual, pass });
@@ -456,7 +663,7 @@ function checkBudget(pages, budget) {
 // ---------- main ----------
 
 const report = { tool: 'handoff/tools/measure.mjs', generated_utc: new Date().toISOString(), target: opt.url || null, site_dir: opt.site || null,
-  modes: ['shots', 'axe', 'perf', 'budget', 'analytics', 'dnt'].filter((m) => opt[m]), ga_blocked: !opt.allowGa,
+  modes: ['shots', 'axe', 'perf', 'budget', 'analytics', 'dnt', 'a11y', 'motion'].filter((m) => opt[m]), ga_blocked: !opt.allowGa,
   throttling: { mobile: '390x844 DPR2, latency 150 ms, 1.6 Mbps down, 750 kbps up, CPU 4x', desktop: '1440x900, unthrottled' }, pages: [] };
 let server = null, browser = null, exitCode = 0;
 try {
@@ -486,6 +693,11 @@ try {
     if (opt.perf) await step('perf', () => perf(browser, url));
     if (opt.analytics) await step('analytics', () => analytics(browser, url, p, false));
     if (opt.dnt) await step('dnt', () => analytics(browser, url, p, true));
+    if (opt.a11y) { // page and viewport sit at the top of the entry, as in handoff/research/baseline/measure-*.json
+      await step('a11y', () => a11y(browser, url, p));
+      if (entry.a11y?.viewport) { const { page, viewport, ...rest } = entry.a11y; delete entry.a11y; Object.assign(entry, { page, viewport, a11y: rest }); }
+    }
+    if (opt.motion) await step('motion', () => motion(browser, url, p));
   }
   if (opt.budget) {
     const budget = opt.budgetFile ? JSON.parse(fs.readFileSync(opt.budgetFile, 'utf8')) : DEFAULT_BUDGET;
@@ -525,11 +737,16 @@ for (const p of report.pages) {
     lines.push(`  analytics ${g.pass ? 'PASS' : 'FAIL'}: ${g.gtag_present ? '' : 'no gtag on this page; '}${Object.entries(g.counts).map(([k, v]) => `${k}×${v}`).join(', ') || 'no events'}`);
     lines.push(`    section_view: ${g.section_view_ids.join(', ') || '–'} | dwell: ${g.section_dwell_ids.join(', ') || '–'} | scroll_depth: ${g.scroll_depth.join(', ') || '–'}`);
     if (g.missing_events.length || g.missing_sections.length) lines.push(`    missing: ${[...g.missing_events, ...g.missing_sections.map((s) => `section_id ${s}`)].join(', ')}`);
+    for (const s of g.unexpected_sections) lines.push(`    unexpected section_id: ${s}`);
     for (const f of g.failed_clicks) lines.push(`    ${f}`);
     if (!g.pass) exitCode = Math.max(exitCode, 1);
   }
   if (p.dnt?.error) lines.push(`  dnt: ${p.dnt.error}`);
   else if (p.dnt) { lines.push(`  dnt ${p.dnt.pass ? 'PASS' : 'FAIL'}: ${p.dnt.custom_events} custom events with doNotTrack = '1'`); if (!p.dnt.pass) exitCode = Math.max(exitCode, 1); }
+  if (p.a11y?.error) lines.push(`  a11y: ${p.a11y.error}`);
+  else if (p.a11y) { lines.push(p.a11y.pass ? '  a11y PASS' : `  a11y: ${p.a11y.failures.length} failures`, ...p.a11y.failures); if (!p.a11y.pass) exitCode = Math.max(exitCode, 1); }
+  if (p.motion?.error) lines.push(`  motion: ${p.motion.error}`);
+  else if (p.motion) { lines.push(...(p.motion.pass ? ['  motion PASS'] : p.motion.failures)); if (!p.motion.pass) exitCode = Math.max(exitCode, 1); }
   if (Array.isArray(p.shots)) lines.push(`  shots: ${p.shots.length * 2} PNGs in ${opt.out}`);
   else if (p.shots?.error) lines.push(`  shots: ${p.shots.error}`);
 }
