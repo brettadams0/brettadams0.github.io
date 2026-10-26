@@ -1,0 +1,282 @@
+{
+ "slug": "shud",
+ "url": "https://shud.in/",
+ "final_url": "https://shud.in/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:39:05.928Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://shud.in/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "Shu Ding",
+ "meta_description": null,
+ "hero_text": "About Thoughts Projects Guestbook Shu Ding Making things at Vercel . My interests span a broad spectrum of subjects, encompassing visual, web, math, game design, …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "about",
+  "thoughts",
+  "projects",
+  "guestbook"
+ ],
+ "sections_ordered": [
+  "h1: Shu Ding"
+ ],
+ "fonts": {
+  "body": "sans, \"sans Fallback\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Ope",
+  "h1": "sans, \"sans Fallback\", system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Ope",
+  "loaded": [
+   "sans normal normal",
+   "serif normal normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(252, 252, 252)",
+  "text": "rgb(74, 81, 91)",
+  "link": "rgb(74, 81, 91)",
+  "h1": "rgb(59, 65, 73)"
+ },
+ "dark_light": {
+  "meta_color_scheme": "only light",
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 0
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 23,
+   "total_bytes": 1391873,
+   "js_bytes": 186428,
+   "lcp_ms": 1280,
+   "lcp_element": "p.mt-7",
+   "cls": 0.0008
+  },
+  "mobile": {
+   "requests": 23,
+   "total_bytes": 1391145,
+   "js_bytes": 186428,
+   "lcp_ms": 644,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 22,
+   "resource_transfer_bytes": 1380475,
+   "dcl_ms": 943,
+   "load_ms": 1765
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 634,
+   "text_chars_3000ms": 634
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://github.com/shuding",
+   "https://x.com/shuding",
+   "https://www.linkedin.com/in/shuding"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 1,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 3 nodes)",
+    "meta-viewport (critical, 1 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 3 nodes)",
+    "meta-viewport (critical, 1 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 0,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 0,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "'Making things at Vercel' and the 2018 Vercel line in the bio; no job title"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé on the site; LinkedIn link at 0 scrolls is the closest substitute (1 click, off-site)"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "GitHub / X (Twitter) / LinkedIn inline links in the last bio sentence; no email; guestbook is public"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'projects' in the top nav; Next.js entry is first on /projects"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Next.js, AI SDK, v0 named in the bio; verification links are on /projects (1 click)"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Same bio, first paragraph"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé; LinkedIn link in the fold"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Inline GitHub / X / LinkedIn links; no email"
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'projects' in the left nav"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Products named in the bio"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://shud.in/projects",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Projects - Shu Ding"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 3,
+    "targets": [
+     ".inline-block.px-2[href$=\"thoughts\"]",
+     ".inline-block.px-2[href$=\"projects\"]",
+     "a[href$=\"guestbook\"]"
+    ]
+   },
+   {
+    "id": "meta-viewport",
+    "impact": "critical",
+    "help": "Zooming and scaling must not be disabled",
+    "nodes": 1,
+    "targets": [
+     "meta[name=\"viewport\"]"
+    ]
+   }
+  ],
+  "record.home.desktop.dom.features.contact_links": [
+   {
+    "text": "GitHub",
+    "href": "https://github.com/shuding",
+    "y": 368,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "X (Twitter)",
+    "href": "https://x.com/shuding",
+    "y": 368,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "LinkedIn",
+    "href": "https://www.linkedin.com/in/shuding",
+    "y": 368,
+    "visible": true,
+    "in_nav": false
+   }
+  ],
+  "verify.record.home.desktop.network_initial.by_type": {
+   "document": {
+    "count": 1,
+    "bytes": 4696
+   },
+   "font": {
+    "count": 3,
+    "bytes": 65194
+   },
+   "stylesheet": {
+    "count": 1,
+    "bytes": 12869
+   },
+   "script": {
+    "count": 11,
+    "bytes": 196413
+   },
+   "fetch": {
+    "count": 8,
+    "bytes": 26284
+   }
+  },
+  "verify.record.summary.total_bytes_desktop": 305456
+ }
+}

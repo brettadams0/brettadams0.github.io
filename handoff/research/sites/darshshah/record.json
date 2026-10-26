@@ -1,0 +1,248 @@
+{
+ "slug": "darshshah",
+ "url": "https://darshshah.ca/",
+ "final_url": "https://darshshah.ca/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T16:25:25.144Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://darshshah.ca/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "Darsh Shah",
+ "meta_description": null,
+ "hero_text": "Darsh Shah Software Engineering Student at the University of Waterloo. Based in Toronto, ON. linkedin github email Experience Software Engineer Intern Wealthsimple Sep 2025 - …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [],
+ "sections_ordered": [
+  "h1: Darsh Shah",
+  "h2: Experience",
+  "h2: Projects"
+ ],
+ "fonts": {
+  "body": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Em",
+  "h1": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Em",
+  "loaded": []
+ },
+ "main_colours": {
+  "bg": "rgb(247, 247, 247)",
+  "text": "rgb(17, 17, 17)",
+  "link": "rgb(51, 51, 51)",
+  "h1": "rgb(100, 100, 255)"
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [
+   "button.theme-toggle"
+  ],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 1
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 6,
+   "total_bytes": 231801,
+   "js_bytes": 63347,
+   "lcp_ms": 1072,
+   "lcp_element": "p",
+   "cls": 0.0016
+  },
+  "mobile": {
+   "requests": 6,
+   "total_bytes": 231813,
+   "js_bytes": 63347,
+   "lcp_ms": 728,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 5,
+   "resource_transfer_bytes": 228372,
+   "dcl_ms": 925,
+   "load_ms": 925
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 747,
+   "text_chars_3000ms": 747
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://www.linkedin.com/in/dshah108",
+   "https://github.com/darshshah17",
+   "mailto:darshshah1008@gmail.com"
+  ],
+  "project_cards_hint": 5,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 3
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "button-name (critical, 1 nodes)",
+    "color-contrast (serious, 6 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "ids": [
+    "button-name (critical, 1 nodes)",
+    "color-contrast (serious, 6 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 3,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   false,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 3,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Wealthsimple 'Sep 2025 - Present' card in the fold (stale at capture)"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé on the site"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'email' button (mailto) under the intro; address not shown"
+   },
+   "best_project": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "Projects heading at y 1172 (record); no project is marked as best; each card only links to GitHub"
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "GitHub repos 1 scroll down; internships at 0 scrolls are claims only"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "First Experience card in the fold"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No résumé on the site"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "'email' button under the intro"
+   },
+   "best_project": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "Projects heading at y 1109 (record)"
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "GitHub links on the project cards"
+   }
+  }
+ },
+ "inner_page": null,
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "button-name",
+    "impact": "critical",
+    "help": "Buttons must have discernible text",
+    "nodes": 1,
+    "targets": [
+     "button"
+    ]
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 6,
+    "targets": [
+     "#work > h2",
+     "#projects > h2",
+     ".project-link[data-cap-focus=\"1\"][target=\"_blank\"]"
+    ]
+   }
+  ],
+  "record.summary.has_resume_link": false,
+  "record.summary.requests_desktop": 6,
+  "verify.record.home.desktop.network_initial.by_type": {
+   "document": {
+    "count": 1,
+    "bytes": 1153
+   },
+   "stylesheet": {
+    "count": 2,
+    "bytes": 4172
+   },
+   "script": {
+    "count": 1,
+    "bytes": 63328
+   },
+   "image": {
+    "count": 2,
+    "bytes": 163158
+   }
+  },
+  "verify.record.summary.lcp_ms_desktop": 1628
+ }
+}

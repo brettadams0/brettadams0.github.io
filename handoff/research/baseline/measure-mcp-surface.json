@@ -1,0 +1,638 @@
+{
+ "measured": {
+  "date_utc": "2026-10-21T04:00:05.720Z",
+  "method": "handoff/tools/measure.mjs (Playwright Chromium 141.0.7390.37, axe-core 4.10.2), GA requests blocked; perf = median-LCP run of 3; mobile throttled 390x844 DPR2, latency 150 ms, 1.6 Mbps down, 750 kbps up, CPU 4x; desktop 1440x900, unthrottled. Live site loaded through the session HTTPS proxy, so absolute timings include proxy latency.",
+  "command": "node handoff/tools/measure.mjs https://brettadams0.github.io/ --path / --path /mcp/ --path /neuronet-arena/ --path /mcp-surface/ --path /404.html --shots --axe --perf --runs 3 --budget --analytics --dnt"
+ },
+ "path": "/mcp-surface/",
+ "url": "https://brettadams0.github.io/mcp-surface/",
+ "status": 200,
+ "title": "mcp-surface · playground",
+ "description": "The checks from the mcp-surface npm package, running in your browser against a tools/list response you can edit.",
+ "console_errors": [],
+ "screenshots": [
+  "mcp-surface-1440-fold.webp",
+  "mcp-surface-1440-full.webp",
+  "mcp-surface-390-fold.webp",
+  "mcp-surface-390-full.webp"
+ ],
+ "perf": {
+  "mobile": {
+   "transfer_bytes": 128766,
+   "requests": 10,
+   "js_bytes_excl_ga": 48043,
+   "by_type": {
+    "document": {
+     "bytes": 2292,
+     "count": 1
+    },
+    "script": {
+     "bytes": 48043,
+     "count": 3
+    },
+    "stylesheet": {
+     "bytes": 4851,
+     "count": 2
+    },
+    "font": {
+     "bytes": 73580,
+     "count": 4
+    },
+    "image": {
+     "bytes": 0,
+     "count": 0
+    },
+    "other": {
+     "bytes": 0,
+     "count": 0
+    }
+   },
+   "initial_transfer_bytes": 128766,
+   "initial_requests": 10,
+   "ga_requests_blocked": 0,
+   "lcp": {
+    "ms": 1752,
+    "size": 109589,
+    "url": null,
+    "element": null
+   },
+   "lcp_runs_ms": [
+    1880,
+    1624,
+    1752
+   ],
+   "cls": 0.0021,
+   "cls_total": 0.0021,
+   "shifts": [
+    {
+     "value": 0.0012494234390397155,
+     "t": 1361.0999999998603,
+     "input": false,
+     "sources": [
+      "nav.top-links",
+      null
+     ]
+    }
+   ],
+   "fcp_ms": 600,
+   "dcl_ms": 1677,
+   "load_ms": 1720,
+   "framework": null,
+   "render_blocking": [
+    "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
+    "/mcp-surface/styles.css"
+   ],
+   "largest": [
+    {
+     "url": "/mcp-surface/checks.js",
+     "type": "script",
+     "bytes": 42405
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2",
+     "type": "font",
+     "bytes": 41018
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgsAXHNk.woff2",
+     "type": "font",
+     "bytes": 10896
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2",
+     "type": "font",
+     "bytes": 10838
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2",
+     "type": "font",
+     "bytes": 10828
+    },
+    {
+     "url": "/mcp-surface/app.js",
+     "type": "script",
+     "bytes": 3989
+    },
+    {
+     "url": "/mcp-surface/styles.css",
+     "type": "stylesheet",
+     "bytes": 3142
+    },
+    {
+     "url": "/mcp-surface/",
+     "type": "document",
+     "bytes": 2292
+    }
+   ],
+   "page_errors": [],
+   "runs": 3
+  },
+  "desktop": {
+   "transfer_bytes": 149352,
+   "requests": 10,
+   "js_bytes_excl_ga": 48044,
+   "by_type": {
+    "document": {
+     "bytes": 2293,
+     "count": 1
+    },
+    "script": {
+     "bytes": 48044,
+     "count": 3
+    },
+    "stylesheet": {
+     "bytes": 4975,
+     "count": 2
+    },
+    "font": {
+     "bytes": 94040,
+     "count": 4
+    },
+    "image": {
+     "bytes": 0,
+     "count": 0
+    },
+    "other": {
+     "bytes": 0,
+     "count": 0
+    }
+   },
+   "initial_transfer_bytes": 149352,
+   "initial_requests": 10,
+   "ga_requests_blocked": 0,
+   "lcp": {
+    "ms": 636,
+    "size": 287786,
+    "url": null,
+    "element": null
+   },
+   "lcp_runs_ms": [
+    676,
+    636,
+    464
+   ],
+   "cls": 0.001,
+   "cls_total": 0.001,
+   "shifts": [],
+   "fcp_ms": 300,
+   "dcl_ms": 613,
+   "load_ms": 619,
+   "framework": null,
+   "render_blocking": [
+    "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
+    "/mcp-surface/styles.css"
+   ],
+   "largest": [
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+     "type": "font",
+     "bytes": 46490
+    },
+    {
+     "url": "/mcp-surface/checks.js",
+     "type": "script",
+     "bytes": 42406
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgg.woff2",
+     "type": "font",
+     "bytes": 16398
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgg.woff2",
+     "type": "font",
+     "bytes": 15666
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
+     "type": "font",
+     "bytes": 15486
+    },
+    {
+     "url": "/mcp-surface/app.js",
+     "type": "script",
+     "bytes": 3989
+    },
+    {
+     "url": "/mcp-surface/styles.css",
+     "type": "stylesheet",
+     "bytes": 3142
+    },
+    {
+     "url": "/mcp-surface/",
+     "type": "document",
+     "bytes": 2293
+    }
+   ],
+   "page_errors": [],
+   "runs": 3
+  }
+ },
+ "perf_local_build": {
+  "mobile": {
+   "transfer_bytes": 125773,
+   "requests": 10,
+   "js_bytes_excl_ga": 46104,
+   "lcp": {
+    "ms": 1156,
+    "size": 109589,
+    "url": null,
+    "element": null
+   },
+   "lcp_runs_ms": [
+    1156,
+    1204,
+    1048
+   ],
+   "cls": 0.0012
+  },
+  "desktop": {
+   "transfer_bytes": 146205,
+   "requests": 10,
+   "js_bytes_excl_ga": 46104,
+   "lcp": {
+    "ms": 272,
+    "size": 288517,
+    "url": null,
+    "element": null
+   },
+   "lcp_runs_ms": [
+    272,
+    244,
+    348
+   ],
+   "cls": 0.001
+  }
+ },
+ "axe": {
+  "390": {
+   "counts": {
+    "critical": 0,
+    "serious": 2,
+    "moderate": 0,
+    "minor": 0
+   },
+   "by_impact": {
+    "critical": [],
+    "serious": [
+     {
+      "id": "color-contrast",
+      "impact": "serious",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "nodes": 17,
+      "targets": [
+       "#gutter",
+       ".finding.lvl-error:nth-child(1) > .rule-tag",
+       ".finding.lvl-error:nth-child(2) > .rule-tag",
+       ".finding.lvl-error:nth-child(3) > .rule-tag",
+       ".finding.lvl-error:nth-child(4) > .rule-tag",
+       ".finding.lvl-warn:nth-child(5) > .rule-tag"
+      ]
+     },
+     {
+      "id": "scrollable-region-focusable",
+      "impact": "serious",
+      "help": "Scrollable region must have keyboard access",
+      "nodes": 1,
+      "targets": [
+       ".term"
+      ]
+     }
+    ],
+    "moderate": [],
+    "minor": []
+   },
+   "incomplete": []
+  },
+  "1440": {
+   "counts": {
+    "critical": 0,
+    "serious": 2,
+    "moderate": 0,
+    "minor": 0
+   },
+   "by_impact": {
+    "critical": [],
+    "serious": [
+     {
+      "id": "color-contrast",
+      "impact": "serious",
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "nodes": 17,
+      "targets": [
+       "#gutter",
+       ".finding.lvl-error:nth-child(1) > .rule-tag",
+       ".finding.lvl-error:nth-child(2) > .rule-tag",
+       ".finding.lvl-error:nth-child(3) > .rule-tag",
+       ".finding.lvl-error:nth-child(4) > .rule-tag",
+       ".finding.lvl-warn:nth-child(5) > .rule-tag"
+      ]
+     },
+     {
+      "id": "scrollable-region-focusable",
+      "impact": "serious",
+      "help": "Scrollable region must have keyboard access",
+      "nodes": 1,
+      "targets": [
+       ".term"
+      ]
+     }
+    ],
+    "moderate": [],
+    "minor": []
+   },
+   "incomplete": []
+  }
+ },
+ "analytics": {
+  "gtag_present": false,
+  "measurement_ids": [],
+  "counts": {},
+  "section_view_ids": [],
+  "section_dwell_ids": [],
+  "scroll_depth": [],
+  "dom": {
+   "tracked_sections": [],
+   "untracked_sections": [
+    "intro",
+    "card editor-card",
+    "card report-card",
+    "card rules-card"
+   ],
+   "ids_not_on_section": [
+    {
+     "id": "hero",
+     "tag": null
+    },
+    {
+     "id": "education",
+     "tag": null
+    }
+   ]
+  },
+  "missing_events": [],
+  "missing_sections": [],
+  "failed_clicks": [],
+  "clicks": [],
+  "events": [],
+  "pass": true
+ },
+ "dnt": {
+  "gtag_present": false,
+  "custom_events": 0,
+  "measurement_ids": [],
+  "pass": true
+ },
+ "budget": null,
+ "page": {
+  "lang": "en",
+  "canonical": null,
+  "og_image": "https://brettadams0.github.io/mcp-surface/og.png",
+  "twitter_card": "summary_large_image",
+  "robots": null,
+  "jsonld": [],
+  "favicon": "/assets/img/favicon.svg",
+  "skip_link": false,
+  "landmarks": [
+   "header.top",
+   "nav.top-links",
+   "main.wrap",
+   "footer.foot"
+  ],
+  "headings": [
+   "H1 mcp-surface",
+   "H2 tools/list response",
+   "H2 Report",
+   "H2 Rules"
+  ],
+  "stylesheets": [
+   {
+    "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap",
+    "media": null
+   },
+   {
+    "href": "styles.css",
+    "media": null
+   }
+  ],
+  "fonts_loaded": [
+   "IBM Plex Mono 400 normal",
+   "IBM Plex Mono 500 normal",
+   "IBM Plex Mono 600 normal",
+   "IBM Plex Sans 400 normal",
+   "IBM Plex Sans 500 normal",
+   "IBM Plex Sans 600 normal"
+  ],
+  "images": []
+ },
+ "viewport": {
+  "390": {
+   "page_height": 2764,
+   "header_links": [
+    {
+     "text": "brettadams0.github.io",
+     "href": "/",
+     "visible": true
+    },
+    {
+     "text": "npm",
+     "href": "https://www.npmjs.com/package/mcp-surface",
+     "visible": true
+    },
+    {
+     "text": "Source on GitHub",
+     "href": "https://github.com/brettadams0/mcp-surface",
+     "visible": true
+    }
+   ],
+   "key_info": {
+    "current_role": {
+     "el": "p.lede",
+     "text": "The checks from the npm package, running in your browser. Ed",
+     "top": 128,
+     "bottom": 202,
+     "height": 74,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "resume": null,
+    "contact": null,
+    "best_project": null,
+    "shipped_work": null,
+    "projects_heading": null
+   },
+   "small_targets_24": [
+    {
+     "el": "a.back",
+     "text": "brettadams0.github.io",
+     "w": 179,
+     "h": 17,
+     "inline": false,
+     "top": 0,
+     "bottom": 17,
+     "height": 17
+    },
+    {
+     "el": "a",
+     "text": "npm",
+     "w": 28,
+     "h": 22,
+     "inline": false,
+     "top": 33,
+     "bottom": 55,
+     "height": 22
+    },
+    {
+     "el": "a",
+     "text": "Source on GitHub",
+     "w": 110,
+     "h": 22,
+     "inline": false,
+     "top": 33,
+     "bottom": 55,
+     "height": 22
+    }
+   ],
+   "targets_under_44": 7,
+   "targets_total": 31,
+   "focus_walk": [
+    "brettadams0.github.io [solid 2px rgb(255, 180, 84)]",
+    "npm [solid 2px rgb(255, 180, 84)]",
+    "Source on GitHub [solid 2px rgb(255, 180, 84)]",
+    "npm package [solid 2px rgb(255, 180, 84)]",
+    "Broken [solid 2px rgb(255, 180, 84)]",
+    "Healthy [solid 2px rgb(255, 180, 84)]",
+    "Empty [solid 2px rgb(255, 180, 84)]",
+    "textarea [solid 2px rgb(255, 180, 84)]",
+    "error warn info [solid 2px rgb(255, 180, 84)]",
+    "$ npx mcp-surface node ./server.js weath [solid 2px rgb(255, 180, 84)]",
+    "ERROR empty-surface Connected, but adver [solid 2px rgb(255, 180, 84)]",
+    "ERROR list-failed A declared capability' [solid 2px rgb(255, 180, 84)]",
+    "ERROR schema-valid A schema isn't valid  [solid 2px rgb(255, 180, 84)]",
+    "ERROR schema-missing A tool has no input [solid 2px rgb(255, 180, 84)]",
+    "ERROR schema-root-type Schema root type  [solid 2px rgb(255, 180, 84)]",
+    "ERROR schema-required-props required nam [solid 2px rgb(255, 180, 84)]",
+    "ERROR tool-duplicate-name Two tools shar [solid 2px rgb(255, 180, 84)]",
+    "WARN tool-naming Name outside [A-Za-z0-9 [solid 2px rgb(255, 180, 84)]",
+    "WARN tool-name-case-collision Names diff [solid 2px rgb(255, 180, 84)]",
+    "WARN tool-description-missing No descrip [solid 2px rgb(255, 180, 84)]",
+    "WARN tool-annotations Both readOnlyHint  [solid 2px rgb(255, 180, 84)]",
+    "WARN mutation-annotations Changes state  [solid 2px rgb(255, 180, 84)]",
+    "ERROR tool-call-error --call: a tool ret [solid 2px rgb(255, 180, 84)]",
+    "ERROR tool-call-threw --call: the call f [solid 2px rgb(255, 180, 84)]",
+    "INFO tool-call-none-eligible --call: not [solid 2px rgb(255, 180, 84)]",
+    "WARN surface-tool-count More than 40 too [solid 2px rgb(255, 180, 84)]",
+    "WARN surface-token-cost Definitions over [solid 2px rgb(255, 180, 84)]",
+    "INFO tool-description-long Description o [solid 2px rgb(255, 180, 84)]",
+    "INFO schema-property-descriptions Input  [solid 2px rgb(255, 180, 84)]",
+    "Brett Adams [solid 2px rgb(255, 180, 84)]",
+    "MIT-licensed source [solid 2px rgb(255, 180, 84)]",
+    "Third-party licenses [solid 2px rgb(255, 180, 84)]"
+   ]
+  },
+  "1440": {
+   "page_height": 1476,
+   "header_links": [
+    {
+     "text": "brettadams0.github.io",
+     "href": "/",
+     "visible": true
+    },
+    {
+     "text": "npm",
+     "href": "https://www.npmjs.com/package/mcp-surface",
+     "visible": true
+    },
+    {
+     "text": "Source on GitHub",
+     "href": "https://github.com/brettadams0/mcp-surface",
+     "visible": true
+    }
+   ],
+   "key_info": {
+    "current_role": {
+     "el": "p.lede",
+     "text": "The checks from the npm package, running in your browser. Ed",
+     "top": 125,
+     "bottom": 175,
+     "height": 50,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "resume": null,
+    "contact": null,
+    "best_project": null,
+    "shipped_work": null,
+    "projects_heading": null
+   },
+   "small_targets_24": [
+    {
+     "el": "a.back",
+     "text": "brettadams0.github.io",
+     "w": 179,
+     "h": 17,
+     "inline": false,
+     "top": 18,
+     "bottom": 35,
+     "height": 17
+    },
+    {
+     "el": "a",
+     "text": "npm",
+     "w": 28,
+     "h": 22,
+     "inline": false,
+     "top": 15,
+     "bottom": 37,
+     "height": 22
+    },
+    {
+     "el": "a",
+     "text": "Source on GitHub",
+     "w": 110,
+     "h": 22,
+     "inline": false,
+     "top": 15,
+     "bottom": 37,
+     "height": 22
+    }
+   ],
+   "targets_under_44": 7,
+   "targets_total": 31,
+   "focus_walk": [
+    "brettadams0.github.io [solid 2px rgb(255, 180, 84)]",
+    "npm [solid 2px rgb(255, 180, 84)]",
+    "Source on GitHub [solid 2px rgb(255, 180, 84)]",
+    "npm package [solid 2px rgb(255, 180, 84)]",
+    "Broken [solid 2px rgb(255, 180, 84)]",
+    "Healthy [solid 2px rgb(255, 180, 84)]",
+    "Empty [solid 2px rgb(255, 180, 84)]",
+    "textarea [solid 2px rgb(255, 180, 84)]",
+    "error warn info [solid 2px rgb(255, 180, 84)]",
+    "$ npx mcp-surface node ./server.js weath [solid 2px rgb(255, 180, 84)]",
+    "ERROR empty-surface Connected, but adver [solid 2px rgb(255, 180, 84)]",
+    "ERROR list-failed A declared capability' [solid 2px rgb(255, 180, 84)]",
+    "ERROR schema-valid A schema isn't valid  [solid 2px rgb(255, 180, 84)]",
+    "ERROR schema-missing A tool has no input [solid 2px rgb(255, 180, 84)]",
+    "ERROR schema-root-type Schema root type  [solid 2px rgb(255, 180, 84)]",
+    "ERROR schema-required-props required nam [solid 2px rgb(255, 180, 84)]",
+    "ERROR tool-duplicate-name Two tools shar [solid 2px rgb(255, 180, 84)]",
+    "WARN tool-naming Name outside [A-Za-z0-9 [solid 2px rgb(255, 180, 84)]",
+    "WARN tool-name-case-collision Names diff [solid 2px rgb(255, 180, 84)]",
+    "WARN tool-description-missing No descrip [solid 2px rgb(255, 180, 84)]",
+    "WARN tool-annotations Both readOnlyHint  [solid 2px rgb(255, 180, 84)]",
+    "WARN mutation-annotations Changes state  [solid 2px rgb(255, 180, 84)]",
+    "ERROR tool-call-error --call: a tool ret [solid 2px rgb(255, 180, 84)]",
+    "ERROR tool-call-threw --call: the call f [solid 2px rgb(255, 180, 84)]",
+    "INFO tool-call-none-eligible --call: not [solid 2px rgb(255, 180, 84)]",
+    "WARN surface-tool-count More than 40 too [solid 2px rgb(255, 180, 84)]",
+    "WARN surface-token-cost Definitions over [solid 2px rgb(255, 180, 84)]",
+    "INFO tool-description-long Description o [solid 2px rgb(255, 180, 84)]",
+    "INFO schema-property-descriptions Input  [solid 2px rgb(255, 180, 84)]",
+    "Brett Adams [solid 2px rgb(255, 180, 84)]",
+    "MIT-licensed source [solid 2px rgb(255, 180, 84)]",
+    "Third-party licenses [solid 2px rgb(255, 180, 84)]"
+   ]
+  }
+ }
+}

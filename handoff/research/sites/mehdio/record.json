@@ -1,0 +1,296 @@
+{
+ "slug": "mehdio",
+ "url": "https://www.mehdio.com/",
+ "final_url": "https://www.mehdio.com/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T13:41:22.277Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://www.mehdio.com/robots.txt",
+  "fetched": true,
+  "disallowed": false,
+  "rule": null,
+  "status": 200
+ },
+ "title": "Mehdio's tech corner",
+ "meta_description": "I build AI workflows for data and help the curious — technical or not — do more with data in the AI era. Tutorials, videos, talks, and the occasional duck.",
+ "hero_text": "Mehdi Ouazza Home Blog Videos Projects About Search ⌘K MEHDIO Mehdio — practical data and AI education by Mehdi Ouazza Teach data + AI to …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [
+  "Mehdi Ouazza",
+  "Home",
+  "Blog",
+  "Videos",
+  "Projects",
+  "About",
+  "YouTube",
+  "GitHub",
+  "LinkedIn",
+  "X",
+  "Search ⌘K",
+  "Contact",
+  "Privacy"
+ ],
+ "sections_ordered": [
+  "h1: MEHDIO Mehdio — practical data and AI education by Mehdi Ouazza",
+  "h2: About Mehdi Ouazza and this personal website",
+  "h2: Explore Mehdi's work",
+  "h2: Agent-readable resources",
+  "h2: Fresh off the press"
+ ],
+ "fonts": {
+  "body": "__Inter_d81eaa, __Inter_Fallback_d81eaa",
+  "h1": "__Caveat_c36786, __Caveat_Fallback_c36786",
+  "loaded": [
+   "__Inter_d81eaa 400 normal",
+   "__Inter_d81eaa 500 normal",
+   "__Inter_d81eaa 600 normal",
+   "__Inter_d81eaa 700 normal",
+   "__Caveat_c36786 700 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(6, 6, 6)",
+  "text": "rgb(212, 212, 212)",
+  "link": "rgba(0, 0, 0, 0)",
+  "h1": "rgb(232, 240, 250)"
+ },
+ "dark_light": {
+  "meta_color_scheme": "dark light",
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 4
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 31,
+   "total_bytes": 445710,
+   "js_bytes": 201420,
+   "lcp_ms": 1068,
+   "lcp_element": "h1.font-handwrite.text-8xl",
+   "cls": 0.0036
+  },
+  "mobile": {
+   "requests": 25,
+   "total_bytes": 417828,
+   "js_bytes": 172523,
+   "lcp_ms": 1164,
+   "cls": 0.0039
+  },
+  "perf_api_desktop": {
+   "resource_count": 29,
+   "resource_transfer_bytes": 408141,
+   "dcl_ms": 1071,
+   "load_ms": 1470
+  },
+  "canvas_contexts": [
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 2158,
+   "text_chars_3000ms": 2184
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": false,
+  "resume_links": [],
+  "contact_path": true,
+  "contact_links": [
+   "https://github.com/mehd-io",
+   "https://www.linkedin.com/in/mehd-io/",
+   "https://x.com/@mehd_io",
+   "https://github.com/mehd-io",
+   "https://www.linkedin.com/in/mehd-io/",
+   "https://x.com/@mehd_io"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": false,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 2,
+    "minor": 0
+   },
+   "ids": [
+    "color-contrast (serious, 11 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 1,
+    "moderate": 2,
+    "minor": 0
+   },
+   "ids": [
+    "button-name (critical, 1 nodes)",
+    "color-contrast (serious, 6 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 4,
+   "imgs_missing_alt": 0,
+   "heading_order_issues": [],
+   "h1_count": 1
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 7,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 2,
+    "note": "Not visible on home. Hamburger > About opens with 'Now the first DevRel at MotherDuck'."
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": 3,
+    "note": "Hamburger > About > 'Want a 1-pager PDF?' in Work Experience. Its scroll position and link target were not measured (probe only)."
+   },
+   "contact": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "Footer 'Contact' link after ~1 scroll (page is ~1.8 viewports). Social profile tiles at 0 scrolls."
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 2,
+    "note": "Hamburger > Projects; first card (Try MotherDuck) at the top"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "GitHub tile '26 repos 787 stars' on the first screen (y 352). Live projects are 2 taps away."
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "About in nav"
+   },
+   "resume": {
+    "scrolls": null,
+    "clicks": 2,
+    "note": "About > 'Want a 1-pager PDF?' (position not measured)"
+   },
+   "contact": {
+    "scrolls": 1,
+    "clicks": 1,
+    "note": "Footer Contact link at y 1116. Social icons are in the header at 0 scrolls."
+   },
+   "best_project": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "Projects in nav"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "GitHub stat tile on the first screen, or Projects with 'Visit project' links"
+   }
+  }
+ },
+ "inner_page": {
+  "url": "https://www.mehdio.com/projects",
+  "desktop_status": 200,
+  "mobile_status": 200,
+  "title": "Projects • Mehdio's tech corner"
+ },
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.mobile.axe.violations": [
+   {
+    "id": "button-name",
+    "impact": "critical",
+    "help": "Buttons must have discernible text",
+    "nodes": 1,
+    "targets": [
+     ".md\\:hidden.items-center.flex > .relative > .bg-neutral-900\\/50.px-3.py-1\\.5"
+    ]
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "nodes": 6,
+    "targets": [
+     ".h-\\[56px\\].hover\\:scale-\\[0\\.98\\][href$=\"blog\"] > .h-full.px-4.gap-3 > .min-w-0.gap-4.flex-1 > .leading-tight.flex-col.flex:nth-child(1) > .text-\\[15px\\].font-bold",
+     ".h-\\[56px\\].hover\\:scale-\\[0\\.98\\][href$=\"blog\"] > .h-full.px-4.gap-3 > .min-w-0.gap-4.flex-1 > .leading-tight.flex-col.flex:nth-child(1) > .text-\\[11px\\].opacity-70",
+     ".h-\\[56px\\].hover\\:scale-\\[0\\.98\\][href$=\"blog\"] > .h-full.px-4.gap-3 > .min-w-0.gap-4.flex-1 > .leading-tight.flex-col.flex:nth-child(2) > .text-\\[15px\\].font-bold"
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "help": "Document should have one main landmark",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 20,
+    "targets": [
+     ".w-max",
+     "h1 > .sr-only",
+     ".text-cap-accent"
+    ]
+   }
+  ],
+  "record.summary.hero_text": "Mehdi Ouazza Home Blog Videos Projects About Search ⌘K MEHDIO Mehdio — practical data and AI education by Mehdi Ouazza Teach data + AI to e | About Mehdi Ouazza and this personal website Mehdio is the…",
+  "record.summary.nav_items": [
+   "Mehdi Ouazza",
+   "Home",
+   "Blog",
+   "Videos",
+   "Projects",
+   "About",
+   "YouTube",
+   "GitHub",
+   "LinkedIn",
+   "X",
+   "Search ⌘K",
+   "Contact",
+   {
+    "_trimmed": true,
+    "_total_items": 13
+   }
+  ],
+  "record.summary.total_bytes_desktop": 445710,
+  "verify.record.summary.hero_text_mobile": "Mehdi Ouazza MEHDIO Mehdio — practical data and AI education by Mehdi Ouazza Build AI workflows for | About Mehdi Ouazza and this personal website Mehdio is the personal website of Mehdi Ouazza, a dat…",
+  "verify.record.summary.lcp_ms_desktop": 2140
+ }
+}

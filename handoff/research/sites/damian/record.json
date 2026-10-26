@@ -1,0 +1,292 @@
+{
+ "slug": "damian",
+ "url": "https://damian.bio/",
+ "final_url": "https://damian.bio/",
+ "http_status": 200,
+ "captured_utc": "2026-10-21T16:24:37.791Z",
+ "method": "Playwright Chromium (headless), unthrottled, cloud container via egress proxy. Desktop 1440x900 DPR1; mobile 390x844 DPR2 isMobile. Sizes are CDP encodedDataLength.",
+ "robots": {
+  "url": "https://damian.bio/robots.txt",
+  "fetched": false,
+  "disallowed": false,
+  "rule": null,
+  "status": 404
+ },
+ "title": "damian.bio",
+ "meta_description": null,
+ "hero_text": "Hi, I'm Damian [github] [linkedin] [resume] I am a UWaterloo Software Engineering Graduate (class of 2023). I'm currently working at Citadel as a full-time Software …",
+ "hero_text_note": "Excerpt of the visible first-screen text at 1440x900, capped at 25 words.",
+ "nav_items": [],
+ "sections_ordered": [],
+ "fonts": {
+  "body": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Fira Sans\", \"Droid Sans\", \"Helvetica ",
+  "h1": null,
+  "loaded": [
+   "Space Mono 400 normal"
+  ]
+ },
+ "main_colours": {
+  "bg": "rgb(18, 22, 25)",
+  "text": "rgb(221, 221, 221)",
+  "link": "rgb(135, 207, 255)",
+  "h1": null
+ },
+ "dark_light": {
+  "meta_color_scheme": null,
+  "toggle": [],
+  "responds_to_os_dark": false,
+  "css_prefers_color_scheme_mentions": 0
+ },
+ "performance": {
+  "note": "Measured, unthrottled, one load each; CDP encodedDataLength. Indicative only.",
+  "desktop": {
+   "requests": 8,
+   "total_bytes": 254752,
+   "js_bytes": 230347,
+   "lcp_ms": 1344,
+   "lcp_element": "p",
+   "cls": 0.0437
+  },
+  "mobile": {
+   "requests": 8,
+   "total_bytes": 254746,
+   "js_bytes": 230340,
+   "lcp_ms": 1156,
+   "cls": 0
+  },
+  "perf_api_desktop": {
+   "resource_count": 7,
+   "resource_transfer_bytes": 79766,
+   "dcl_ms": 1235,
+   "load_ms": 1235
+  },
+  "canvas_contexts": [
+   "webgl",
+   "2d"
+  ],
+  "scroll_libs": [],
+  "webgl_libs": [],
+  "splash_check": {
+   "text_chars_500ms": 1462,
+   "text_chars_3000ms": 1462
+  }
+ },
+ "console_errors": {
+  "count": 0,
+  "first": []
+ },
+ "features": {
+  "resume_link": true,
+  "resume_links": [
+   {
+    "text": "[resume]",
+    "href": "/assets/DamianReiterResume2023.4c420e14.pdf",
+    "in_nav": false
+   }
+  ],
+  "contact_path": true,
+  "contact_links": [
+   "https://github.com/dmreiter",
+   "https://www.linkedin.com/in/damianreiter/"
+  ],
+  "project_cards_hint": 0,
+  "live_demos_hint": true,
+  "case_studies_hint": false,
+  "reduced_motion_mentions": {
+   "css": 0,
+   "js": 0
+  },
+  "videos": [],
+  "progress_bars": 0,
+  "logo_images": 0
+ },
+ "accessibility": {
+  "method": "axe-core 4.10.2 (injected from pinned cdnjs file, bypassCSP)",
+  "axe_desktop": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 2,
+    "moderate": 3,
+    "minor": 0
+   },
+   "ids": [
+    "image-alt (critical, 1 nodes)",
+    "link-in-text-block (serious, 8 nodes)",
+    "link-name (serious, 1 nodes)"
+   ]
+  },
+  "axe_mobile": {
+   "by_impact": {
+    "critical": 1,
+    "serious": 2,
+    "moderate": 3,
+    "minor": 0
+   },
+   "ids": [
+    "image-alt (critical, 1 nodes)",
+    "link-in-text-block (serious, 9 nodes)",
+    "link-name (serious, 1 nodes)"
+   ]
+  },
+  "manual": {
+   "skip_link": null,
+   "imgs": 1,
+   "imgs_missing_alt": 1,
+   "heading_order_issues": [],
+   "h1_count": 0
+  },
+  "focus_visible_first_5_tabs": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "small_targets_mobile": 0,
+  "horizontal_overflow_mobile": false,
+  "mobile_layout_width": 390
+ },
+ "time_to_key_info": {
+  "mobile": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Citadel full-time SWE line in the fold"
+   },
+   "resume": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "[resume] at the top right opens a PDF (2023)"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "[linkedin] at the top; the email is plain text (not a link) in the footer about 2 screens down"
+   },
+   "best_project": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No projects on the site"
+   },
+   "shipped_work": {
+    "scrolls": 1,
+    "clicks": 0,
+    "note": "Internship bullets start about 1 screen down (estimated from mobile-full); outbound links to company/docs pages"
+   }
+  },
+  "desktop": {
+   "current_role": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Second line of the bio"
+   },
+   "resume": {
+    "scrolls": 0,
+    "clicks": 1,
+    "note": "[resume] in the header row"
+   },
+   "contact": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Email visible as plain text in the footer line inside the fold; LinkedIn in the header"
+   },
+   "best_project": {
+    "scrolls": null,
+    "clicks": null,
+    "note": "No projects on the site"
+   },
+   "shipped_work": {
+    "scrolls": 0,
+    "clicks": 0,
+    "note": "Internship outcome bullets in the fold"
+   }
+  }
+ },
+ "inner_page": null,
+ "full_capture_note": "Full-page and inner-page screenshots and the full record were kept in session scratch, not committed.",
+ "cited_fields": {
+  "record.home.desktop.axe.violations": [
+   {
+    "id": "image-alt",
+    "impact": "critical",
+    "help": "Images must have alternative text",
+    "nodes": 1,
+    "targets": [
+     "img"
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "help": "Document should have one main landmark",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "link-in-text-block",
+    "impact": "serious",
+    "help": "Links must be distinguishable without relying on color",
+    "nodes": 8,
+    "targets": [
+     "a[href$=\"citadel.com/\"]",
+     "p:nth-child(3) > .glow-green > a[href$=\"shopify.com/\"]",
+     "p:nth-child(3) > .glow-yellow > a[href$=\"splunk.com/\"]"
+    ]
+   },
+   {
+    "id": "link-name",
+    "impact": "serious",
+    "help": "Links must have discernible text",
+    "nodes": 1,
+    "targets": [
+     "a[href$=\"se-webring.xyz/\"]"
+    ]
+   },
+   {
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "help": "Page should contain a level-one heading",
+    "nodes": 1,
+    "targets": [
+     "html"
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "help": "All page content should be contained by landmarks",
+    "nodes": 1,
+    "targets": [
+     "#root"
+    ]
+   }
+  ],
+  "record.home.desktop.dom.features.contact_links": [
+   {
+    "text": "[github]",
+    "href": "https://github.com/dmreiter",
+    "y": 96,
+    "visible": true,
+    "in_nav": false
+   },
+   {
+    "text": "[linkedin]",
+    "href": "https://www.linkedin.com/in/damianreiter/",
+    "y": 96,
+    "visible": true,
+    "in_nav": false
+   }
+  ],
+  "record.home.desktop.dom.features.project_section_heading": null,
+  "record.home.desktop.dom.scroll_height": 962,
+  "verify.record.summary.fonts": {
+   "body": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Fira Sans\", \"Droid Sans\", \"Helvetica ",
+   "h1": null,
+   "loaded": [
+    "Space Mono 400 normal"
+   ]
+  }
+ }
+}

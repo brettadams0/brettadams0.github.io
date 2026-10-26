@@ -1,0 +1,870 @@
+{
+ "measured": {
+  "date_utc": "2026-10-21T04:00:05.720Z",
+  "method": "handoff/tools/measure.mjs (Playwright Chromium 141.0.7390.37, axe-core 4.10.2), GA requests blocked; perf = median-LCP run of 3; mobile throttled 390x844 DPR2, latency 150 ms, 1.6 Mbps down, 750 kbps up, CPU 4x; desktop 1440x900, unthrottled. Live site loaded through the session HTTPS proxy, so absolute timings include proxy latency.",
+  "command": "node handoff/tools/measure.mjs https://brettadams0.github.io/ --path / --path /mcp/ --path /neuronet-arena/ --path /mcp-surface/ --path /404.html --shots --axe --perf --runs 3 --budget --analytics --dnt"
+ },
+ "path": "/mcp/",
+ "url": "https://brettadams0.github.io/mcp/",
+ "status": 200,
+ "title": "MCP servers, and the tool that checks them | Brett Adams",
+ "description": "Model Context Protocol servers for Google Workspace and Reddit, with 35 tools between them, and mcp-surface, the command-line tool both run in CI.",
+ "console_errors": [
+  "Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+ ],
+ "screenshots": [
+  "mcp-1440-fold.webp",
+  "mcp-1440-full.webp",
+  "mcp-390-fold.webp",
+  "mcp-390-full.webp"
+ ],
+ "perf": {
+  "mobile": {
+   "transfer_bytes": 88070,
+   "requests": 8,
+   "js_bytes_excl_ga": 2589,
+   "by_type": {
+    "document": {
+     "bytes": 5668,
+     "count": 1
+    },
+    "script": {
+     "bytes": 2589,
+     "count": 1
+    },
+    "stylesheet": {
+     "bytes": 6247,
+     "count": 2
+    },
+    "font": {
+     "bytes": 73566,
+     "count": 4
+    },
+    "image": {
+     "bytes": 0,
+     "count": 0
+    },
+    "other": {
+     "bytes": 0,
+     "count": 0
+    }
+   },
+   "initial_transfer_bytes": 88070,
+   "initial_requests": 8,
+   "ga_requests_blocked": 1,
+   "lcp": {
+    "ms": 844,
+    "size": 95616,
+    "url": null,
+    "element": {
+     "selector": "p",
+     "src": null,
+     "text": "I've built two Model Context Protocol servers that let an AI assistant act on my"
+    }
+   },
+   "lcp_runs_ms": [
+    844,
+    780,
+    864
+   ],
+   "cls": 0.0234,
+   "cls_total": 0.0234,
+   "shifts": [
+    {
+     "value": 0.00587950716429412,
+     "t": 1346.3999999999069,
+     "input": false,
+     "sources": [
+      "h1",
+      "p.case-facts",
+      "div.post-body"
+     ]
+    },
+    {
+     "value": 0.01753066974498206,
+     "t": 1422.6999999999534,
+     "input": false,
+     "sources": [
+      null,
+      null
+     ]
+    }
+   ],
+   "fcp_ms": 844,
+   "dcl_ms": 910,
+   "load_ms": 1408,
+   "framework": null,
+   "render_blocking": [
+    "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+    "/assets/css/site.css"
+   ],
+   "largest": [
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2",
+     "type": "font",
+     "bytes": 41016
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgsAXHNk.woff2",
+     "type": "font",
+     "bytes": 10897
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgsAXHNk.woff2",
+     "type": "font",
+     "bytes": 10835
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2",
+     "type": "font",
+     "bytes": 10818
+    },
+    {
+     "url": "/mcp/",
+     "type": "document",
+     "bytes": 5668
+    },
+    {
+     "url": "/assets/css/site.css",
+     "type": "stylesheet",
+     "bytes": 4538
+    },
+    {
+     "url": "/assets/js/analytics-events.js",
+     "type": "script",
+     "bytes": 2589
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+     "type": "stylesheet",
+     "bytes": 1709
+    }
+   ],
+   "page_errors": [],
+   "runs": 3
+  },
+  "desktop": {
+   "transfer_bytes": 108515,
+   "requests": 8,
+   "js_bytes_excl_ga": 2589,
+   "by_type": {
+    "document": {
+     "bytes": 5667,
+     "count": 1
+    },
+    "script": {
+     "bytes": 2589,
+     "count": 1
+    },
+    "stylesheet": {
+     "bytes": 6219,
+     "count": 2
+    },
+    "font": {
+     "bytes": 94040,
+     "count": 4
+    },
+    "image": {
+     "bytes": 0,
+     "count": 0
+    },
+    "other": {
+     "bytes": 0,
+     "count": 0
+    }
+   },
+   "initial_transfer_bytes": 108515,
+   "initial_requests": 8,
+   "ga_requests_blocked": 1,
+   "lcp": {
+    "ms": 480,
+    "size": 107253,
+    "url": null,
+    "element": {
+     "selector": "h1",
+     "src": null,
+     "text": "Two MCP servers that act on real accounts, and the tool that checks them"
+    }
+   },
+   "lcp_runs_ms": [
+    420,
+    480,
+    540
+   ],
+   "cls": 0.0431,
+   "cls_total": 0.0431,
+   "shifts": [
+    {
+     "value": 0.041582675995584704,
+     "t": 643,
+     "input": false,
+     "sources": [
+      "nav.site-nav",
+      null,
+      null
+     ]
+    },
+    {
+     "value": 0.0015016460905349794,
+     "t": 663.4000000001397,
+     "input": false,
+     "sources": [
+      "h1",
+      "p.case-facts",
+      "div.post-body"
+     ]
+    }
+   ],
+   "fcp_ms": 480,
+   "dcl_ms": 552,
+   "load_ms": 648,
+   "framework": null,
+   "render_blocking": [
+    "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+    "/assets/css/site.css"
+   ],
+   "largest": [
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+     "type": "font",
+     "bytes": 46490
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgg.woff2",
+     "type": "font",
+     "bytes": 16398
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgg.woff2",
+     "type": "font",
+     "bytes": 15666
+    },
+    {
+     "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
+     "type": "font",
+     "bytes": 15486
+    },
+    {
+     "url": "/mcp/",
+     "type": "document",
+     "bytes": 5667
+    },
+    {
+     "url": "/assets/css/site.css",
+     "type": "stylesheet",
+     "bytes": 4537
+    },
+    {
+     "url": "/assets/js/analytics-events.js",
+     "type": "script",
+     "bytes": 2589
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+     "type": "stylesheet",
+     "bytes": 1682
+    }
+   ],
+   "page_errors": [],
+   "runs": 3
+  }
+ },
+ "perf_local_build": {
+  "mobile": {
+   "transfer_bytes": 86380,
+   "requests": 8,
+   "js_bytes_excl_ga": 2036,
+   "lcp": {
+    "ms": 596,
+    "size": 95616,
+    "url": null,
+    "element": {
+     "selector": "p",
+     "src": null,
+     "text": "I've built two Model Context Protocol servers that let an AI assistant act on my"
+    }
+   },
+   "lcp_runs_ms": [
+    560,
+    672,
+    596
+   ],
+   "cls": 0.0205
+  },
+  "desktop": {
+   "transfer_bytes": 106824,
+   "requests": 8,
+   "js_bytes_excl_ga": 2036,
+   "lcp": {
+    "ms": 268,
+    "size": 107253,
+    "url": null,
+    "element": {
+     "selector": "h1",
+     "src": null,
+     "text": "Two MCP servers that act on real accounts, and the tool that checks them"
+    }
+   },
+   "lcp_runs_ms": [
+    268,
+    196,
+    616
+   ],
+   "cls": 0.0423
+  }
+ },
+ "axe": {
+  "390": {
+   "counts": {
+    "critical": 0,
+    "serious": 1,
+    "moderate": 0,
+    "minor": 0
+   },
+   "by_impact": {
+    "critical": [],
+    "serious": [
+     {
+      "id": "scrollable-region-focusable",
+      "impact": "serious",
+      "help": "Scrollable region must have keyboard access",
+      "nodes": 1,
+      "targets": [
+       "pre"
+      ]
+     }
+    ],
+    "moderate": [],
+    "minor": []
+   },
+   "incomplete": []
+  },
+  "1440": {
+   "counts": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 0
+   },
+   "by_impact": {
+    "critical": [],
+    "serious": [],
+    "moderate": [],
+    "minor": []
+   },
+   "incomplete": []
+  }
+ },
+ "analytics": {
+  "gtag_present": true,
+  "measurement_ids": [
+   "G-Z3KW627PQQ"
+  ],
+  "counts": {
+   "scroll_depth": 4,
+   "resume_download": 1
+  },
+  "section_view_ids": [],
+  "section_dwell_ids": [],
+  "scroll_depth": [
+   25,
+   50,
+   75,
+   100
+  ],
+  "dom": {
+   "tracked_sections": [],
+   "untracked_sections": [],
+   "ids_not_on_section": [
+    {
+     "id": "hero",
+     "tag": null
+    },
+    {
+     "id": "education",
+     "tag": null
+    }
+   ]
+  },
+  "missing_events": [],
+  "missing_sections": [],
+  "failed_clicks": [
+   "missing data-contact: GitHub (https://github.com/brettadams0, in footer.site-footer) expected contact_click, fired nothing",
+   "missing data-contact: LinkedIn (https://www.linkedin.com/in/bretta/, in footer.site-footer) expected contact_click, fired nothing",
+   "missing data-contact: Email (mailto:adamsbrett00@gmail.com, in footer.site-footer) expected contact_click, fired nothing"
+  ],
+  "clicks": [
+   {
+    "where": "header.site-header",
+    "text": "Résumé",
+    "href": "/assets/resume/Resume_BrettAdams.pdf",
+    "project": null,
+    "contact": null,
+    "expect": [
+     "resume_download"
+    ],
+    "fired": [
+     "resume_download"
+    ]
+   },
+   {
+    "where": "footer.site-footer",
+    "text": "GitHub",
+    "href": "https://github.com/brettadams0",
+    "project": null,
+    "contact": null,
+    "expect": [
+     "contact_click"
+    ],
+    "fired": []
+   },
+   {
+    "where": "footer.site-footer",
+    "text": "LinkedIn",
+    "href": "https://www.linkedin.com/in/bretta/",
+    "project": null,
+    "contact": null,
+    "expect": [
+     "contact_click"
+    ],
+    "fired": []
+   },
+   {
+    "where": "footer.site-footer",
+    "text": "Email",
+    "href": "mailto:adamsbrett00@gmail.com",
+    "project": null,
+    "contact": null,
+    "expect": [
+     "contact_click"
+    ],
+    "fired": []
+   }
+  ],
+  "events": [
+   {
+    "t": 3555,
+    "name": "scroll_depth",
+    "params": {
+     "percent": 25
+    }
+   },
+   {
+    "t": 7158,
+    "name": "scroll_depth",
+    "params": {
+     "percent": 50
+    }
+   },
+   {
+    "t": 10760,
+    "name": "scroll_depth",
+    "params": {
+     "percent": 75
+    }
+   },
+   {
+    "t": 14379,
+    "name": "scroll_depth",
+    "params": {
+     "percent": 100
+    }
+   },
+   {
+    "t": 15966,
+    "name": "resume_download",
+    "params": {}
+   }
+  ],
+  "pass": true
+ },
+ "dnt": {
+  "gtag_present": true,
+  "custom_events": 0,
+  "measurement_ids": [
+   "G-Z3KW627PQQ"
+  ],
+  "pass": true
+ },
+ "budget": null,
+ "page": {
+  "lang": "en",
+  "canonical": "https://brettadams0.github.io/mcp/",
+  "og_image": "https://brettadams0.github.io/assets/img/social-card.png",
+  "twitter_card": "summary_large_image",
+  "robots": null,
+  "jsonld": [
+   "WebPage"
+  ],
+  "favicon": "/assets/img/favicon.svg",
+  "skip_link": true,
+  "landmarks": [
+   "header.site-header",
+   "nav.site-nav",
+   "main#main",
+   "footer.site-footer"
+  ],
+  "headings": [
+   "H1 Two MCP servers that act on real accounts, and the tool that",
+   "H2 One check at the end of CI",
+   "H2 The repositories",
+   "H2 What the review found",
+   "H3 Header injection through an email subject",
+   "H3 Formula injection into a spreadsheet",
+   "H3 Requests that escaped their API path",
+   "H3 Reddit failures that looked like success",
+   "H3 Calendar invitations that were never sent",
+   "H3 A consent flow anyone on the network could answer",
+   "H3 282 MB of dependencies, cut to 45 MB",
+   "H3 The checker had a bug of its own",
+   "H2 What both servers now have"
+  ],
+  "stylesheets": [
+   {
+    "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+    "media": null
+   },
+   {
+    "href": "/assets/css/site.css",
+    "media": null
+   }
+  ],
+  "fonts_loaded": [
+   "IBM Plex Mono 400 normal",
+   "IBM Plex Mono 500 normal",
+   "IBM Plex Mono 600 normal",
+   "IBM Plex Sans 400 normal",
+   "IBM Plex Sans 500 normal",
+   "IBM Plex Sans 600 normal",
+   "IBM Plex Sans 700 normal"
+  ],
+  "images": []
+ },
+ "viewport": {
+  "390": {
+   "page_height": 6279,
+   "header_links": [
+    {
+     "text": "brett adams",
+     "href": "/",
+     "visible": true
+    },
+    {
+     "text": "Experience",
+     "href": "/#experience",
+     "visible": false
+    },
+    {
+     "text": "Projects",
+     "href": "/#projects",
+     "visible": false
+    },
+    {
+     "text": "Skills",
+     "href": "/#skills",
+     "visible": false
+    },
+    {
+     "text": "Contact",
+     "href": "/#contact",
+     "visible": false
+    },
+    {
+     "text": "Résumé",
+     "href": "/assets/resume/Resume_BrettAdams.pdf",
+     "visible": true
+    }
+   ],
+   "key_info": {
+    "current_role": {
+     "el": "p.case-facts",
+     "text": "2 servers · 35 tools · 3 repositories · 114 offline tests",
+     "top": 365,
+     "bottom": 399,
+     "height": 34,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "resume": {
+     "el": "a.nav-resume",
+     "text": "Résumé",
+     "top": 11,
+     "bottom": 47,
+     "height": 36,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "contact": {
+     "el": "a",
+     "text": "Email",
+     "top": 6258,
+     "bottom": 6276,
+     "height": 18,
+     "screens_to_reach": 7,
+     "in_first_screen": false
+    },
+    "best_project": null,
+    "shipped_work": null,
+    "projects_heading": null
+   },
+   "small_targets_24": [
+    {
+     "el": "a.site-name",
+     "text": "brett adams",
+     "w": 117,
+     "h": 19,
+     "inline": false,
+     "top": 20,
+     "bottom": 39,
+     "height": 19
+    },
+    {
+     "el": "a",
+     "text": "← Brett Adams",
+     "w": 101,
+     "h": 17,
+     "inline": false,
+     "top": 123,
+     "bottom": 140,
+     "height": 17
+    },
+    {
+     "el": "a.also-name",
+     "text": "google-workspace-mcp",
+     "w": 342,
+     "h": 19,
+     "inline": false,
+     "top": 2432,
+     "bottom": 2451,
+     "height": 19
+    },
+    {
+     "el": "a.also-name",
+     "text": "reddit-mcp",
+     "w": 342,
+     "h": 19,
+     "inline": false,
+     "top": 2630,
+     "bottom": 2649,
+     "height": 19
+    },
+    {
+     "el": "a.also-name",
+     "text": "mcp-surface",
+     "w": 342,
+     "h": 19,
+     "inline": false,
+     "top": 2804,
+     "bottom": 2823,
+     "height": 19
+    },
+    {
+     "el": "a",
+     "text": "GitHub",
+     "w": 44,
+     "h": 18,
+     "inline": false,
+     "top": 6258,
+     "bottom": 6276,
+     "height": 18
+    },
+    {
+     "el": "a",
+     "text": "LinkedIn",
+     "w": 55,
+     "h": 18,
+     "inline": false,
+     "top": 6258,
+     "bottom": 6276,
+     "height": 18
+    }
+   ],
+   "targets_under_44": 9,
+   "targets_total": 12,
+   "focus_walk": [
+    "Skip to content [solid 2px rgb(255, 180, 84)]",
+    "brett adams [solid 2px rgb(255, 180, 84)]",
+    "Résumé [solid 2px rgb(255, 180, 84)]",
+    "← Brett Adams [solid 2px rgb(255, 180, 84)]",
+    "Model Context Protocol [solid 2px rgb(255, 180, 84)]",
+    "mcp-surface [solid 2px rgb(255, 180, 84)]",
+    "$ npm run surface google-workspace 2.0.0 [solid 2px rgb(255, 180, 84)]",
+    "google-workspace-mcp [solid 2px rgb(255, 180, 84)]",
+    "reddit-mcp [solid 2px rgb(255, 180, 84)]",
+    "mcp-surface [solid 2px rgb(255, 180, 84)]",
+    "GitHub [solid 2px rgb(255, 180, 84)]",
+    "LinkedIn [solid 2px rgb(255, 180, 84)]",
+    "Email [solid 2px rgb(255, 180, 84)]"
+   ]
+  },
+  "1440": {
+   "page_height": 4244,
+   "header_links": [
+    {
+     "text": "brett adams",
+     "href": "/",
+     "visible": true
+    },
+    {
+     "text": "Experience",
+     "href": "/#experience",
+     "visible": true
+    },
+    {
+     "text": "Projects",
+     "href": "/#projects",
+     "visible": true
+    },
+    {
+     "text": "Skills",
+     "href": "/#skills",
+     "visible": true
+    },
+    {
+     "text": "Contact",
+     "href": "/#contact",
+     "visible": true
+    },
+    {
+     "text": "Résumé",
+     "href": "/assets/resume/Resume_BrettAdams.pdf",
+     "visible": true
+    }
+   ],
+   "key_info": {
+    "current_role": {
+     "el": "p.case-facts",
+     "text": "2 servers · 35 tools · 3 repositories · 114 offline tests",
+     "top": 370,
+     "bottom": 387,
+     "height": 17,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "resume": {
+     "el": "a.nav-resume",
+     "text": "Résumé",
+     "top": 11,
+     "bottom": 47,
+     "height": 36,
+     "screens_to_reach": 0,
+     "in_first_screen": true
+    },
+    "contact": {
+     "el": "a",
+     "text": "Email",
+     "top": 4184,
+     "bottom": 4202,
+     "height": 18,
+     "screens_to_reach": 4,
+     "in_first_screen": false
+    },
+    "best_project": null,
+    "shipped_work": null,
+    "projects_heading": null
+   },
+   "small_targets_24": [
+    {
+     "el": "a.site-name",
+     "text": "brett adams",
+     "w": 117,
+     "h": 19,
+     "inline": false,
+     "top": 20,
+     "bottom": 39,
+     "height": 19
+    },
+    {
+     "el": "a.nav-section",
+     "text": "Experience",
+     "w": 70,
+     "h": 22,
+     "inline": false,
+     "top": 18,
+     "bottom": 40,
+     "height": 22
+    },
+    {
+     "el": "a.nav-section",
+     "text": "Projects",
+     "w": 51,
+     "h": 22,
+     "inline": false,
+     "top": 18,
+     "bottom": 40,
+     "height": 22
+    },
+    {
+     "el": "a.nav-section",
+     "text": "Skills",
+     "w": 33,
+     "h": 22,
+     "inline": false,
+     "top": 18,
+     "bottom": 40,
+     "height": 22
+    },
+    {
+     "el": "a.nav-section",
+     "text": "Contact",
+     "w": 49,
+     "h": 22,
+     "inline": false,
+     "top": 18,
+     "bottom": 40,
+     "height": 22
+    },
+    {
+     "el": "a",
+     "text": "← Brett Adams",
+     "w": 101,
+     "h": 17,
+     "inline": false,
+     "top": 123,
+     "bottom": 140,
+     "height": 17
+    },
+    {
+     "el": "a",
+     "text": "GitHub",
+     "w": 44,
+     "h": 18,
+     "inline": false,
+     "top": 4184,
+     "bottom": 4202,
+     "height": 18
+    },
+    {
+     "el": "a",
+     "text": "LinkedIn",
+     "w": 55,
+     "h": 18,
+     "inline": false,
+     "top": 4184,
+     "bottom": 4202,
+     "height": 18
+    }
+   ],
+   "targets_under_44": 10,
+   "targets_total": 16,
+   "focus_walk": [
+    "Skip to content [solid 2px rgb(255, 180, 84)]",
+    "brett adams [solid 2px rgb(255, 180, 84)]",
+    "Experience [solid 2px rgb(255, 180, 84)]",
+    "Projects [solid 2px rgb(255, 180, 84)]",
+    "Skills [solid 2px rgb(255, 180, 84)]",
+    "Contact [solid 2px rgb(255, 180, 84)]",
+    "Résumé [solid 2px rgb(255, 180, 84)]",
+    "← Brett Adams [solid 2px rgb(255, 180, 84)]",
+    "Model Context Protocol [solid 2px rgb(255, 180, 84)]",
+    "mcp-surface [solid 2px rgb(255, 180, 84)]",
+    "google-workspace-mcp [solid 2px rgb(255, 180, 84)]",
+    "reddit-mcp [solid 2px rgb(255, 180, 84)]",
+    "mcp-surface [solid 2px rgb(255, 180, 84)]",
+    "GitHub [solid 2px rgb(255, 180, 84)]",
+    "LinkedIn [solid 2px rgb(255, 180, 84)]",
+    "Email [solid 2px rgb(255, 180, 84)]"
+   ]
+  }
+ }
+}
