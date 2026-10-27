@@ -46,8 +46,16 @@
         </nav>
       </div>
     </header>
+    <nav class="nav-sections" aria-label="Sections">
+      <div class="wrap nav-sections-inner">
+        <a href="{{ '/#experience' | relative_url }}">Experience</a>
+        <a href="{{ '/#projects' | relative_url }}">Projects</a>
+        <a href="{{ '/#skills' | relative_url }}">Skills</a>
+        <a href="{{ '/#contact' | relative_url }}">Contact</a>
+      </div>
+    </nav>
 
-    <main id="main">
+    <main id="main" tabindex="-1">
       {{ content }}
     </main>
 
