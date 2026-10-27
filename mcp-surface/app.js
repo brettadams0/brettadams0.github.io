@@ -112,16 +112,20 @@ function renderCommand() {
 function renderRules(findings) {
   const hits = new Map();
   for (const f of findings) hits.set(f.rule, (hits.get(f.rule) || 0) + 1);
+  const focused = document.activeElement?.dataset.rule;   // the rebuild below replaces the pressed button
   ui.rules.replaceChildren();
   for (const [id, level, what, callOnly] of RULES) {
     const li = el("li");
     const btn = el("button", `rule lvl-${level}`);
     btn.type = "button";
+    btn.dataset.rule = id;
     btn.setAttribute("aria-pressed", String(state.skip.has(id)));
     if (callOnly) btn.classList.add("call-only");
     if (hits.has(id)) btn.classList.add("hit");
     btn.title = state.skip.has(id) ? `Skipped. Click to run ${id} again.` : `Click to skip ${id}.`;
-    btn.append(el("span", "rule-level", level), el("code", "rule-id", id), el("span", "rule-what", what));
+    // State in words, not opacity: "skipped" in the level column, "--call only:" in the description.
+    const shown = callOnly ? what.replace(/^--call:/, "--call only:") : what;
+    btn.append(el("span", "rule-level", state.skip.has(id) ? "skipped" : level), el("code", "rule-id", id), el("span", "rule-what", shown));
     if (hits.has(id)) btn.append(el("span", "rule-hits", String(hits.get(id))));
     btn.addEventListener("click", () => {
       if (state.skip.has(id)) state.skip.delete(id);
@@ -131,6 +135,7 @@ function renderRules(findings) {
     li.append(btn);
     ui.rules.append(li);
   }
+  if (focused) ui.rules.querySelector(`[data-rule="${focused}"]`)?.focus();
 }
 
 function renderReport(tools, findings) {
@@ -215,7 +220,7 @@ function load(key) {
   ui.source.value = JSON.stringify(ex.tools, null, 2);
   ui.source.scrollTop = 0;
   for (const b of document.querySelectorAll("[data-example]")) {
-    b.setAttribute("aria-checked", String(b.getAttribute("data-example") === key));
+    b.setAttribute("aria-pressed", String(b.getAttribute("data-example") === key));
   }
   update();
 }

@@ -18,6 +18,7 @@ only links to them: nothing runs until a visitor opens one.
 | `_layouts/default.html` | Page shell: head, header and footer |
 | `assets/css/site.css` | All homepage styles (dark only, same tokens as the demos) |
 | `assets/fonts/` | IBM Plex, self-hosted latin files (SIL OFL 1.1, see OFL.txt) |
+| `assets/css/demo-shell.css` | Shell for demo pages: back link, résumé, how it works |
 | `neuronet-arena/` | Live demo, synced from the neuronet-arena repo (see below) |
 | `mcp-surface/` | Live playground for the mcp-surface checks (see below) |
 | `assets/resume/Resume_BrettAdams.pdf` | Résumé, built from `resume/resume.tex` |
@@ -89,5 +90,7 @@ printf "export { runChecks, allChecks } from './package/dist/checks/index.js';\n
 npx esbuild entry.js --bundle --format=esm --minify --target=es2020 --inject:shim.js --outfile=checks.js
 ```
 
-Then copy `checks.js` over `mcp-surface/checks.js`, keeping its header comment, and update the rule
-table in `mcp-surface/app.js` if the package README's table changed.
+Then copy `checks.js` over `mcp-surface/checks.js`, keeping its header comment, update the rule
+table in `mcp-surface/app.js` if the package README's table changed, and the version in `index.html`'s How
+it works item and chip. `styles.css` starts with a copy of the token block at the top of
+`assets/css/site.css`; change both together.

@@ -3,37 +3,44 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>mcp-surface · playground</title>
+<title>mcp-surface · playground | Brett Adams</title>
 <meta name="description" content="The checks from the mcp-surface npm package, running in your browser against a tools/list response you can edit.">
 <meta name="theme-color" content="#0b0f14">
-<meta property="og:title" content="mcp-surface · playground">
+<meta property="og:title" content="mcp-surface · playground | Brett Adams">
 <meta property="og:description" content="Edit an MCP server's tools/list response and see what mcp-surface reports, live in the browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://brettadams0.github.io/mcp-surface/">
 <meta property="og:image" content="https://brettadams0.github.io/mcp-surface/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="canonical" href="https://brettadams0.github.io/mcp-surface/">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/assets/css/demo-shell.css">
+<link rel="modulepreload" href="checks.js">
+<link rel="modulepreload" href="examples.js">
 <script type="module" src="app.js"></script>
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap top-inner">
-    <a class="back" href="/">brettadams0.github.io</a>
-    <nav class="top-links" aria-label="Project">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="demo-shell">
+  <div class="wrap demo-shell-inner">
+    <p class="demo-crumb">
+      <a class="demo-back" href="/#projects"><span aria-hidden="true">←&nbsp;</span>Brett Adams</a>
+      <span class="demo-sep" aria-hidden="true">/</span>
+      <span class="demo-name">mcp-surface</span>
+    </p>
+    <nav class="demo-links" aria-label="Project">
+      <a href="https://github.com/brettadams0/mcp-surface">Source</a>
       <a href="https://www.npmjs.com/package/mcp-surface">npm</a>
-      <a href="https://github.com/brettadams0/mcp-surface">Source on GitHub</a>
+      <a class="demo-resume" href="/assets/resume/Resume_BrettAdams.pdf">Résumé</a>
     </nav>
   </div>
 </header>
 
-<main class="wrap">
+<main id="main" class="wrap" tabindex="-1">
   <section class="intro">
-    <h1>mcp-surface</h1>
+    <h1><span class="prefix" aria-hidden="true">&gt; </span>mcp-surface</h1>
     <p class="lede">The checks from the <a href="https://www.npmjs.com/package/mcp-surface">npm package</a>, running in your browser. Edit a server's <code>tools/list</code> response and the report updates as you type.</p>
   </section>
 
@@ -41,10 +48,10 @@
     <section class="card editor-card" aria-labelledby="editor-title">
       <div class="card-head">
         <h2 id="editor-title">tools/list response</h2>
-        <div class="seg" role="radiogroup" aria-label="Example">
-          <button type="button" role="radio" data-example="broken" aria-checked="true">Broken</button>
-          <button type="button" role="radio" data-example="healthy" aria-checked="false">Healthy</button>
-          <button type="button" role="radio" data-example="empty" aria-checked="false">Empty</button>
+        <div class="seg" role="group" aria-label="Example">
+          <button type="button" data-example="broken" aria-pressed="true">Broken</button>
+          <button type="button" data-example="healthy" aria-pressed="false">Healthy</button>
+          <button type="button" data-example="empty" aria-pressed="false">Empty</button>
         </div>
       </div>
       <label class="sr-only" for="source">JSON sent back by tools/list</label>
@@ -66,11 +73,11 @@
           </select>
         </label>
       </div>
-      <div class="term" aria-live="polite">
+      <div class="term" id="report-region" tabindex="0" role="region" aria-label="Report output">
         <p class="cmd"><span class="prompt">$</span> <span id="cmd"></span></p>
         <div id="report"></div>
       </div>
-      <div class="verdict" id="verdict"></div>
+      <div class="verdict" id="verdict" role="status"></div>
     </section>
   </div>
 
@@ -81,12 +88,35 @@
     </div>
     <ul class="rules" id="rules"></ul>
   </section>
+
+  <section class="demo-how" aria-labelledby="how-title">
+    <h2 id="how-title">How it works</h2>
+    <ul>
+      <li>A broken MCP server can look connected while the AI assistant gets a worse tool or none at all. These checks catch that.</li>
+      <li>The checks are the npm package's own code, mcp-surface 0.3.0, bundled for the browser with esbuild.</li>
+      <li>This page only reads what is in the editor, hands it to those checks the way the command-line tool does, and draws the result.</li>
+      <li>Nothing you type leaves this tab.</li>
+    </ul>
+    <ul class="chips" role="list"><li>Checks from mcp-surface 0.3.0</li></ul>
+    <p class="demo-source">
+      <a href="https://github.com/brettadams0/mcp-surface">Source</a>
+      <a href="https://www.npmjs.com/package/mcp-surface">npm</a>
+      <a href="/mcp/">Case study</a>
+    </p>
+  </section>
+
+  <noscript><p>The checks run in JavaScript; with it disabled there is nothing to show here.</p></noscript>
 </main>
 
-<footer class="foot">
-  <div class="wrap">Built by <a href="/">Brett Adams</a> · <a href="https://github.com/brettadams0/mcp-surface">MIT-licensed source</a> · <a href="THIRD_PARTY_LICENSES.txt">Third-party licenses</a></div>
+<footer class="demo-foot">
+  <div class="wrap demo-foot-inner">
+    <p>Built by <a href="/">Brett Adams</a> · <a href="https://github.com/brettadams0/mcp-surface">MIT-licensed source</a> · <a href="THIRD_PARTY_LICENSES.txt">Third-party licenses</a></p>
+    <p class="footer-links">
+      <a href="https://github.com/brettadams0" data-contact="github">GitHub</a>
+      <a href="https://www.linkedin.com/in/bretta/" data-contact="linkedin">LinkedIn</a>
+      <a href="mailto:adamsbrett00@gmail.com" data-contact="email">Email</a>
+    </p>
+  </div>
 </footer>
-
-<noscript><p class="wrap">The checks run in JavaScript; with it disabled there is nothing to show here.</p></noscript>
 </body>
 </html>
