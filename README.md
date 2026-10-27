@@ -21,6 +21,7 @@ only links to them: nothing runs until a visitor opens one.
 | `assets/css/demo-shell.css` | Shell for demo pages: back link, résumé, how it works |
 | `neuronet-arena/` | Live demo, synced from the neuronet-arena repo (see below) |
 | `mcp-surface/` | Live playground for the mcp-surface checks (see below) |
+| `mazefinder/` | Live demo of MazeFinder's genetic algorithm, built from the MazeFinder repo's `web/` (see below) |
 | `assets/resume/Resume_BrettAdams.pdf` | Résumé, built from `resume/resume.tex` |
 | `resume/resume.tex` | LaTeX source for the résumé (not published to the site) |
 | `.github/scripts/check-links.mjs` | CI check that every internal link and asset resolves |
@@ -94,4 +95,18 @@ npx esbuild entry.js --bundle --format=esm --minify --target=es2020 --inject:shi
 Then copy `checks.js` over `mcp-surface/checks.js`, keeping its header comment, update the rule
 table in `mcp-surface/app.js` if the package README's table changed, and the version in `index.html`'s How
 it works item and chip. `styles.css` starts with a copy of the token block at the top of
+`assets/css/site.css`; change both together.
+
+`mazefinder/` is the live demo of
+[MazeFinder-GeneticAlgorithm](https://github.com/brettadams0/MazeFinder-GeneticAlgorithm): its C++
+core compiled to WebAssembly. `index.html`, `styles.css`, `app.js` and `og.png` are this repo's own
+files. `app.js` embeds that repo's `mazes/*.txt`. Only two files are copied from the MazeFinder repo's
+`web/` build output, each by name, after `make wasm` and `make determinism` pass there:
+
+```sh
+cp ../MazeFinder-GeneticAlgorithm/web/mazefinder.js mazefinder/wasm/mazefinder.js
+cp ../MazeFinder-GeneticAlgorithm/web/mazefinder.wasm mazefinder/wasm/mazefinder.wasm
+```
+
+Edit the algorithm there, not here. `styles.css` starts with a copy of the token block at the top of
 `assets/css/site.css`; change both together.

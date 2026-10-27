@@ -1014,3 +1014,10 @@ main:focus { outline: none; }
     color: #000;
   }
 }
+
+/* Wide project card (8.7): the last half-width card when their count is odd. */
+.project-wide { grid-column: 1 / -1; display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  grid-template-rows: repeat(4, auto) 1fr; gap: 10px 28px; }
+.project-wide .project-shot { grid-row: 1 / -1; margin-bottom: 0; }
+@media (max-width: 860px) { .project-wide { display: flex; } .project-wide .project-shot { margin-bottom: 6px; } }

@@ -1,0 +1,193 @@
+/* MazeFinder live demo. Same tokens as the homepage: this file opens with a copy of the
+   site.css token block (spec 7.11), as mcp-surface/styles.css does. */
+/* ---- tokens (§7.1). Demo pages carry a copy of this block (§7.11). ---- */
+/* Tokens for brettadams0.github.io. Dark only. Demo pages copy this :root block (spec 7.11). */
+:root {
+  color-scheme: dark;
+
+  /* Colour: existing values, unchanged */
+  --bg: #0b0f14;
+  --bg-2: #0e141b;
+  --surface: #131a22;
+  --surface-2: #18212b;
+  --border: #222c38;
+  --border-strong: #2f3b4a;
+  --text: #e7ecf2;
+  --soft: #c4ccd6;
+  --muted: #8695a7;
+  --faint: #5a6878;        /* list markers and control edges only; never words (3.37:1 on --bg) */
+  --amber: #ffb454;
+  --amber-hi: #ffc97f;
+  --teal: #4fd6c4;
+  --red: #ef6a5f;
+  --good: #3ccf6e;
+
+  /* Colour: new */
+  --dim: #7b8a9c;          /* words that used --faint; >= 4.61:1 on every background */
+  --good-text: #9fe3b7;    /* text on green washes: status line, Live demo badge */
+  --on-amber: #1a1206;     /* text on --amber / --amber-hi fills */
+  --term: var(--bg-2);     /* terminal and code panels */
+  --focus: var(--amber);
+  --amber-line: rgba(255, 180, 84, 0.5);
+  --amber-wash: rgba(255, 180, 84, 0.1);
+  --good-line: rgba(60, 207, 110, 0.3);
+  --good-wash: rgba(60, 207, 110, 0.07);
+
+  /* Type */
+  --sans: "IBM Plex Sans", "IBM Plex Sans Fallback", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", "IBM Plex Mono Fallback", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --fs-xs: 0.75rem;                            /* 12px */
+  --fs-sm: 0.875rem;                           /* 14px */
+  --fs-base: 1rem;                             /* 16px */
+  --fs-md: 1.0625rem;                          /* 17px */
+  --fs-lg: 1.1875rem;                          /* 19px */
+  --fs-xl: 1.375rem;                           /* 22px */
+  --fs-2xl: clamp(2rem, 5vw, 2.75rem);         /* 32–44px */
+  --fs-3xl: clamp(1.625rem, 4.5vw, 3rem);      /* 26–48px */
+  --fs-display: clamp(2.75rem, 6vw, 4.5rem);   /* 44–72px */
+  --lh-tight: 1.1;
+  --lh-snug: 1.3;
+  --lh-base: 1.6;
+  --lh-loose: 1.75;
+  --tracking-tight: -0.03em;
+  --tracking-caps: 0.08em;
+
+  /* Space (4 px base) */
+  --space-1: 0.25rem;   /* 4 */
+  --space-2: 0.5rem;    /* 8 */
+  --space-3: 0.75rem;   /* 12 */
+  --space-4: 1rem;      /* 16 */
+  --space-5: 1.25rem;   /* 20 */
+  --space-6: 1.5rem;    /* 24 */
+  --space-7: 2rem;      /* 32 */
+  --space-8: 3rem;      /* 48 */
+  --space-9: 4rem;      /* 64 */
+  --space-10: 5.5rem;   /* 88 */
+
+  /* Layout */
+  --container: 1200px;
+  --container-demo: 1320px;
+  --container-post: 760px;
+  --gutter: 24px;
+  --header-h: 56px;
+
+  /* Shape and layers */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-pill: 999px;
+  --shadow-focus: 0 0 0 3px var(--bg), 0 0 0 5px var(--focus);
+  --z-header: 10;
+  --z-skip: 20;
+
+  /* Motion (section 9) */
+  --dur-fast: 120ms;
+  --dur: 180ms;
+  --dur-slow: 240ms;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 640px) {
+  :root { --gutter: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur: 0ms; --dur-slow: 0ms; }
+}
+
+/* IBM Plex, self-hosted (7.5). Files are Google Fonts' latin subsets, byte for byte. Licence: ../fonts/OFL.txt */
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/assets/fonts/ibm-plex-sans-latin-var.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/ibm-plex-mono-latin-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/assets/fonts/ibm-plex-mono-latin-500.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/ibm-plex-mono-latin-600.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Metric-matched fallbacks: shown until Plex arrives, sized so no line re-wraps on swap (7.5). */
+@font-face {
+  font-family: "IBM Plex Sans Fallback";
+  src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("Helvetica");
+  size-adjust: 100.3%;
+  ascent-override: 102.2%;
+  descent-override: 27.4%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "IBM Plex Sans Fallback";
+  font-weight: 600 700;
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("Helvetica Bold");
+  size-adjust: 98%;
+  ascent-override: 104.6%;
+  descent-override: 28.1%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "IBM Plex Mono Fallback";
+  src: local("Courier New"), local("CourierNewPSMT"), local("Liberation Mono");
+  size-adjust: 100%;
+  ascent-override: 102.5%;
+  descent-override: 27.5%;
+  line-gap-override: 0%;
+}
+/* ---- end tokens ---- */
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.55 var(--sans); }
+a { color: var(--amber); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--amber-hi); }
+code { font-family: var(--mono); font-size: 0.9em; }
+.wrap { max-width: var(--container-demo); margin: 0 auto; padding: 0 var(--gutter); }
+
+.intro { padding: 28px 0 16px; max-width: 860px; }
+h1 { margin: 0 0 8px; font: 600 30px/1.2 var(--mono); letter-spacing: -0.01em; }
+.lede { margin: 0; color: var(--soft); font-size: var(--fs-md); }
+
+.layout { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 24px; align-items: start; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; } }
+.board { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; }
+canvas.maze { display: block; width: 100%; height: auto; aspect-ratio: 1; image-rendering: pixelated; }
+.goal-note { margin: 8px 0 0; min-height: 1.5em; color: var(--good); font-family: var(--mono); font-size: var(--fs-sm); }
+
+.controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.controls label { display: flex; flex-direction: column; gap: 2px; color: var(--soft); font-size: var(--fs-sm); }
+button, select, input[type="range"] { font: inherit; }
+button, select { min-height: 44px; padding: 6px 12px; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; }
+button.primary { border-color: var(--amber); color: var(--amber); }
+input[type="range"] { min-height: 44px; accent-color: var(--amber); }
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+.stats { margin: 0 0 14px; display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; font-size: var(--fs-sm); }
+.stats dt { color: var(--muted); }
+.stats dd { margin: 0; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+svg.history { display: block; width: 100%; height: auto; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; }
+svg.history polyline { fill: none; stroke: var(--amber); stroke-width: 1.5; }
+svg.history text { fill: var(--muted); font: 10px var(--mono); }
+.chart-caption { margin: 4px 0 0; color: var(--muted); font-size: var(--fs-sm); }
+#run { min-width: 6.5em; }  /* fits "Pause", so starting the run does not re-wrap the controls */
