@@ -17,6 +17,7 @@ only links to them: nothing runs until a visitor opens one.
 | `mcp/index.html` | Case study of the MCP servers and `mcp-surface`, at `/mcp/` |
 | `_layouts/default.html` | Page shell: head, header and footer |
 | `assets/css/site.css` | All homepage styles (dark only, same tokens as the demos) |
+| `assets/fonts/` | IBM Plex, self-hosted latin files (SIL OFL 1.1, see OFL.txt) |
 | `neuronet-arena/` | Live demo, synced from the neuronet-arena repo (see below) |
 | `mcp-surface/` | Live playground for the mcp-surface checks (see below) |
 | `assets/resume/Resume_BrettAdams.pdf` | Résumé, built from `resume/resume.tex` |
