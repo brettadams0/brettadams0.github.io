@@ -337,7 +337,7 @@ main:focus { outline: none; }
 /* Sections */
 
 .section {
-  padding: var(--space-10) 0;
+  padding: var(--space-9) 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -370,7 +370,7 @@ main:focus { outline: none; }
 
 .job {
   position: relative;
-  padding: 0 0 44px;
+  padding: 0 0 var(--space-7);
 }
 
 .job:last-child {
@@ -403,7 +403,7 @@ main:focus { outline: none; }
   gap: 4px 20px;
 }
 
-.job h3 {
+.job-title {
   margin: 0;
   font-size: var(--fs-lg);
   font-weight: 600;
@@ -421,20 +421,19 @@ main:focus { outline: none; }
   font: var(--fs-sm) var(--mono);
 }
 
-.job > ul:not(.chips) {
-  max-width: 54em;
-  margin: 12px 0 14px;
-  padding-left: 1.1em;
-  color: var(--soft);
-}
+.job-points { max-width: 54em; margin: var(--space-3) 0 var(--space-4); padding-left: 1.1em; color: var(--soft); }
+.job-points li { margin: 5px 0; }
+.job-points li::marker { color: var(--faint); }
 
-.job > ul:not(.chips) li {
-  margin: 5px 0;
+/* More bullets, one click away (§8.4). Native disclosure, no animation. */
+.job-more { margin: 0 0 var(--space-4); }
+.job-more > .job-points { margin-top: var(--space-1); }
+.job-more summary {
+  display: list-item; min-height: 24px;
+  color: var(--amber); font: var(--fs-xs) / 24px var(--mono); cursor: pointer;
 }
-
-.job > ul:not(.chips) li::marker {
-  color: var(--faint);
-}
+.job-more summary::marker { color: var(--amber); }
+.job-more summary:hover { text-decoration: underline; }
 
 /* Projects */
 
@@ -904,8 +903,10 @@ main:focus { outline: none; }
   }
 
   .section {
-    padding: 60px 0;
+    padding: var(--space-8) 0;
   }
+
+  .job-more summary { min-height: 32px; line-height: 32px; }
 
   .hero { padding: var(--space-7) 0 40px; }
   .status { font-size: var(--fs-xs); }
