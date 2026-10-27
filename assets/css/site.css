@@ -479,6 +479,21 @@ main:focus { outline: none; }
   object-position: left top;
 }
 
+/* Card loops (PR 20): a silent clip over the still screenshot, shown only while it plays. */
+.project-shot { position: relative; }
+.shot-loop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+  opacity: 0;
+  pointer-events: none;
+}
+.shot-loop.is-playing { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .shot-loop { display: none; } }
+
 .badge-live {
   display: inline-flex;
   align-items: center;
