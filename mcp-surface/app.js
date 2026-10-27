@@ -45,12 +45,45 @@ const ui = {
   cmd: $("cmd"),
   failOn: /** @type {HTMLSelectElement} */ ($("fail-on")),
   rules: $("rules"),
+  annotations: $("annotations"),
+  breakSummary: $("break-summary"),
+  diff: $("diff"),
+  diffTitle: $("diff-title"),
+  diffBody: $("diff-body"),
+  undo: /** @type {HTMLButtonElement} */ ($("undo")),
 };
 
 const state = {
   server: EXAMPLES.broken.server,
   /** @type {Set<string>} */
   skip: new Set(),
+  /** Editor texts before each "Break it" change, newest last. */
+  undo: [],
+};
+
+// "Break it": each is one real change to the editor's JSON. Nothing here decides a
+// finding; the report below comes from runChecks on the changed JSON, as always.
+const BREAKS = {
+  required: {
+    what: "required now names \"city\", which the first tool's schema doesn't define",
+    min: 1,
+    apply: (t) => { const s = t[0].inputSchema || (t[0].inputSchema = { type: "object", properties: {} }); s.required = [...(s.required || []), "city"]; },
+  },
+  duplicate: {
+    what: "the second tool now has the first tool's name",
+    min: 2,
+    apply: (t) => { t[1].name = t[0].name; },
+  },
+  root: {
+    what: "the first tool's inputSchema type is now \"array\"",
+    min: 1,
+    apply: (t) => { (t[0].inputSchema || (t[0].inputSchema = {})).type = "array"; },
+  },
+  description: {
+    what: "the first tool's description is gone",
+    min: 1,
+    apply: (t) => { delete t[0].description; },
+  },
 };
 
 function el(tag, cls, text) {
@@ -94,12 +127,65 @@ function surfaceFor(tools) {
   };
 }
 
-function renderGutter() {
+/** 1-based editor lines for each finding: the line(s) naming its subject tool. */
+function linesFor(findings, text) {
+  const lines = text.split("\n");
+  const at = new Map();
+  for (const f of findings) {
+    if (!f.subject) continue;
+    const needle = `"name": ${JSON.stringify(f.subject)}`;
+    lines.forEach((l, i) => { if (l.includes(needle)) at.set(i + 1, [...(at.get(i + 1) || []), f]); });
+  }
+  return at;
+}
+
+function renderGutter(marks = new Map()) {
   const lines = ui.source.value.split("\n").length;
-  let out = "";
-  for (let i = 1; i <= lines; i++) out += i + "\n";
-  ui.gutter.textContent = out;
+  ui.gutter.replaceChildren();
+  for (let i = 1; i <= lines; i++) {
+    const fs = marks.get(i);
+    if (!fs) { ui.gutter.append(i + "\n"); continue; }
+    const worst = fs.reduce((a, f) => (RANK[f.level] > RANK[a] ? f.level : a), "info");
+    const mark = el("span", `mark-${worst}`, `● ${i}\n`);
+    mark.title = fs.map((f) => `${f.rule}: ${f.message}`).join("\n");
+    ui.gutter.append(mark);
+  }
   ui.gutter.scrollTop = ui.source.scrollTop;
+}
+
+function renderAnnotations(findings, marks) {
+  ui.annotations.replaceChildren();
+  const pinned = new Set();
+  for (const [line, fs] of [...marks].sort((a, b) => a[0] - b[0])) {
+    for (const f of fs) {
+      pinned.add(f);
+      ui.annotations.append(el("li", `lvl-${f.level}`, `line ${line} · ${f.rule} · ${f.message}`));
+    }
+  }
+  for (const f of findings) if (!pinned.has(f)) ui.annotations.append(el("li", `lvl-${f.level}`, `${f.rule} · ${f.message}`));
+}
+
+/** Line diff (LCS) between two texts, as hunks with one line of context. */
+function lineDiff(a, b) {
+  const x = a.split("\n"), y = b.split("\n");
+  const n = x.length, m = y.length;
+  const dp = Array.from({ length: n + 1 }, () => new Uint16Array(m + 1));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) dp[i][j] = x[i] === y[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  const ops = [];
+  let i = 0, j = 0;
+  while (i < n || j < m) {
+    if (i < n && j < m && x[i] === y[j]) { ops.push([" ", x[i]]); i++; j++; }
+    else if (j < m && (i === n || dp[i][j + 1] >= dp[i + 1][j])) { ops.push(["+", y[j]]); j++; }
+    else { ops.push(["-", x[i]]); i++; }
+  }
+  return ops.filter((op, k) => op[0] !== " " || [k - 1, k + 1].some((q) => ops[q] && ops[q][0] !== " "));
+}
+
+function showDiff(before, after, what) {
+  ui.diffTitle.textContent = `Changed: ${what}`;
+  ui.diffBody.replaceChildren(...lineDiff(before, after).map(([op, line]) =>
+    el("span", op === "+" ? "add" : op === "-" ? "del" : "ctx", `${op} ${line}`)));
+  ui.diff.hidden = false;
 }
 
 function renderCommand() {
@@ -183,6 +269,7 @@ function renderReport(tools, findings) {
 
   const threshold = RANK[ui.failOn.value];
   const fails = findings.some((f) => RANK[f.level] >= threshold);
+  state.fails = fails;
   ui.verdict.className = `verdict ${fails ? "fail" : "pass"}`;
   ui.verdict.replaceChildren(
     el("b", null, fails ? "exit 1" : "exit 0"),
@@ -210,8 +297,49 @@ function update() {
   ui.parse.classList.remove("bad");
   ui.source.removeAttribute("aria-invalid");
   const findings = runChecks(surfaceFor(tools), { skip: [...state.skip] });
+  const marks = linesFor(findings, text);
+  renderGutter(marks);
+  renderAnnotations(findings, marks);
   renderReport(tools, findings);
   renderRules(findings);
+  state.tools = tools;
+  state.findings = findings;
+  for (const b of document.querySelectorAll("[data-break]")) {
+    b.disabled = tools.length < BREAKS[b.getAttribute("data-break")].min;
+  }
+}
+
+function summarize(before) {
+  const now = state.fails ? "CI fails" : "CI passes";
+  const was = before ? "CI failed" : "CI passed";
+  const rules = [...new Set(state.findings.map((f) => `${f.level} ${f.rule}`))].join(", ") || "no findings";
+  ui.breakSummary.replaceChildren(el("span", state.fails ? "fail" : "pass", `${was} → ${now}`), document.createTextNode(` (fail on ${ui.failOn.value}: ${rules})`));
+}
+
+function breakIt(key) {
+  const before = ui.source.value;
+  let data;
+  try { data = JSON.parse(before); toolsFrom(data); } catch { return; }
+  const wasFailing = state.fails;
+  const tools = toolsFrom(data);
+  BREAKS[key].apply(tools);
+  state.undo.push(before);
+  ui.source.value = JSON.stringify(data, null, 2);
+  ui.undo.disabled = false;
+  update();
+  showDiff(before, ui.source.value, BREAKS[key].what);
+  summarize(wasFailing);
+}
+
+function undo() {
+  if (!state.undo.length) return;
+  const wasFailing = state.fails;
+  const before = ui.source.value;
+  ui.source.value = state.undo.pop();
+  ui.undo.disabled = !state.undo.length;
+  update();
+  showDiff(before, ui.source.value, "undone");
+  summarize(wasFailing);
 }
 
 function load(key) {
@@ -219,6 +347,10 @@ function load(key) {
   state.server = ex.server;
   ui.source.value = JSON.stringify(ex.tools, null, 2);
   ui.source.scrollTop = 0;
+  state.undo = [];
+  ui.undo.disabled = true;
+  ui.diff.hidden = true;
+  ui.breakSummary.textContent = "";
   for (const b of document.querySelectorAll("[data-example]")) {
     b.setAttribute("aria-pressed", String(b.getAttribute("data-example") === key));
   }
@@ -238,5 +370,9 @@ ui.failOn.addEventListener("change", update);
 for (const b of document.querySelectorAll("[data-example]")) {
   b.addEventListener("click", () => load(b.getAttribute("data-example")));
 }
+for (const b of document.querySelectorAll("[data-break]")) {
+  b.addEventListener("click", () => breakIt(b.getAttribute("data-break")));
+}
+ui.undo.addEventListener("click", undo);
 
-load("broken");
+load("healthy"); // start from a passing server, so the first change shows CI flip
