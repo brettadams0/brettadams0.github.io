@@ -20,6 +20,7 @@ only links to them: nothing runs until a visitor opens one.
 | `assets/fonts/` | IBM Plex, self-hosted latin files (SIL OFL 1.1, see OFL.txt) |
 | `assets/css/demo-shell.css` | Shell for demo pages: back link, résumé, how it works |
 | `neuronet-arena/` | Live demo, synced from the neuronet-arena repo (see below) |
+| `border-waits/` | Live demo of the border-waits pipeline, synced from its repo's `web/` (see below) |
 | `mcp-surface/` | Live playground for the mcp-surface checks (see below) |
 | `mazefinder/` | Live demo of MazeFinder's genetic algorithm, built from the MazeFinder repo's `web/` (see below) |
 | `assets/resume/Resume_BrettAdams.pdf` | Résumé, built from `resume/resume.tex` |
@@ -78,6 +79,20 @@ rsync -a --delete --exclude node_modules --exclude test \
 ```
 
 There are no local differences: the copy is exactly upstream's `web/` minus the excluded files.
+
+`border-waits/` is the page for [border-waits-pipeline](https://github.com/brettadams0/border-waits-pipeline),
+an hourly pipeline over the CBSA and U.S. CBP border wait estimates. It is a verbatim copy of that
+repository's `web/`; edit it there. Refresh its `fallback/` snapshot there from the live export, then
+re-sync from a sibling checkout:
+
+```sh
+rsync -a --delete --exclude node_modules --exclude test --exclude package.json --exclude package-lock.json --exclude tsconfig.json --exclude Makefile ../border-waits-pipeline/web/ border-waits/
+find border-waits \( -name 'package*.json' -o -name node_modules -o -name tsconfig.json -o -name Makefile -o -name test \) -print   # must print nothing
+```
+
+The live data comes from the project's own Pages at `/border-waits-pipeline/data/v1/`; `fallback/`
+is the saved snapshot the page shows if that fetch fails. Nothing on the homepage fetches it: the card
+is a still screenshot.
 
 `mcp-surface/` is a playground for [mcp-surface](https://github.com/brettadams0/mcp-surface): edit a
 `tools/list` response and the published checks run on it in the browser. `checks.js` is generated
