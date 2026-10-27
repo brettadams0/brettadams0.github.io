@@ -1000,6 +1000,7 @@ main:focus { outline: none; }
 
 @media print {
   .site-header,
+  .nav-sections,
   .site-footer,
   .actions,
   .skip-link {
