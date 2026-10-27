@@ -32,6 +32,30 @@ permalink: /mcp/
     <figcaption>How the servers run, and what checks them at the end of each server's CI</figcaption>
   </figure>
 
+  <figure class="replay" id="replay">
+    <div class="replay-head">
+      <p class="replay-label">Replay · an assistant using the Google Workspace server</p>
+      <div class="replay-controls">
+        <button type="button" data-replay="toggle" aria-pressed="false">Pause</button>
+        <button type="button" data-replay="again">Replay</button>
+      </div>
+    </div>
+    <pre class="replay-screen" aria-hidden="true"></pre>
+    <ol class="replay-script sr-only">
+      <li data-kind="note">// scripted calls; every value below is example data</li>
+      <li data-kind="call">→ calendar_list_events {"timeMin": "2026-11-02T00:00:00Z", "timeMax": "2026-11-03T00:00:00Z", "maxResults": 5}</li>
+      <li data-kind="meta">  annotations: readOnlyHint true</li>
+      <li data-kind="result">← 2 events (example): "Design review" 10:00, "Team sync" 15:30</li>
+      <li data-kind="call">→ calendar_create_event {"summary": "Lunch with Alex", "start": "2026-11-02T12:00:00-05:00", "end": "2026-11-02T13:00:00-05:00", "attendees": ["alex@example.com"]}</li>
+      <li data-kind="meta">  annotations: readOnlyHint false, destructiveHint false</li>
+      <li data-kind="result">← created (example): "Lunch with Alex" 12:00–13:00</li>
+      <li data-kind="call">→ sheets_write_range {"spreadsheetId": "example-sheet-id", "range": "Budget!A2:B2", "values": [["Lunch", "24.00"]]}</li>
+      <li data-kind="meta">  annotations: destructiveHint true (a client can ask before running it)</li>
+      <li data-kind="result">← updated 2 cells (example)</li>
+    </ol>
+    <figcaption>Tool names, arguments and annotations are the server's own, from its committed <code>mcp-surface.json</code>; the calls and results are made up.</figcaption>
+  </figure>
+
   <div class="post-body">
     <p>
       I've built two <a href="https://modelcontextprotocol.io">Model Context Protocol</a> servers that let
@@ -185,3 +209,4 @@ Snapshot mcp-surface.json
     <a href="{{ '/#projects' | relative_url }}"><span aria-hidden="true">←&nbsp;</span>All projects</a>
   </p>
 </article>
+<script src="{{ '/assets/js/mcp-replay.js' | relative_url }}" defer></script>
