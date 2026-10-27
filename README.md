@@ -53,9 +53,11 @@ measurement ID in `_config.yml`. Nothing is emitted when that key is unset.
 [`assets/js/analytics-events.js`](assets/js/analytics-events.js) adds events that page views can't
 show on a one-page site: `section_view` and `section_dwell` (which sections were read, and for how
 long), `project_click`, `resume_download`, `contact_click` (records only which link: email, LinkedIn
-or GitHub) and `scroll_depth`. The script does nothing for visitors who send Do Not Track. The event
-parameters (`section_id`, `project_name`, `method`, `percent`, `seconds`) only appear in GA reports
-after they're registered under Admin → Custom definitions.
+or GitHub), `scroll_depth`, `nav_click` (an in-page link in the header, the phone section row or the
+hero's jump link) and `job_more_open` (an Experience "more" disclosure opened). The script does
+nothing for visitors who send Do Not Track. The event parameters (`section_id`, `project_name`,
+`method`, `percent`, `seconds`, `target_section`, `nav`, `item`) only appear in GA reports after
+they're registered under Admin → Custom definitions.
 
 ## Other directories
 

@@ -90,7 +90,7 @@
   });
   window.addEventListener('pagehide', flushDwell);
 
-  /* project_click, resume_download, contact_click */
+  /* project_click, nav_click, resume_download, contact_click */
 
   document.addEventListener('click', function (event) {
     var link = closest(event.target, 'a');
@@ -104,12 +104,24 @@
       });
     }
 
+    var nav = closest(link, '[data-nav]');
+    if (nav && link.hash) send('nav_click', { target_section: link.hash.slice(1), nav: nav.getAttribute('data-nav') });
+
     // Enhanced measurement also records this as file_download; this name is ours.
     if (/Resume_BrettAdams\.pdf$/.test(link.getAttribute('href') || '')) send('resume_download');
 
     var method = link.getAttribute('data-contact');
     if (method) send('contact_click', { method: method });
   });
+
+  /* job_more_open: toggle doesn't bubble, so it is captured at the document. */
+
+  document.addEventListener('toggle', function (event) {
+    var d = event.target;
+    if (!d.matches || !d.matches('details.job-more') || !d.open || d.getAttribute('data-sent')) return;
+    d.setAttribute('data-sent', '1');
+    send('job_more_open', { item: d.getAttribute('data-item') });
+  }, true);
 
   /* scroll_depth: GA's built-in scroll event only fires at 90%. */
 
