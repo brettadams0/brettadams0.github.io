@@ -52,22 +52,32 @@
       <div class="controls">
         <button type="button" class="primary" id="run">Run</button>
         <button type="button" id="step">Step</button>
-        <button type="button" id="reset">Reset</button>
-        <label>Maze <select id="maze-pick">
-          <option value="maze">Maze (one route)</option>
-          <option value="loops">Maze with loops</option>
-          <option value="obstacles">Six wall bars</option>
-          <option value="open">Open field</option>
+        <button type="button" id="reset">Replay</button>
+        <button type="button" id="new-maze">New maze</button>
+      </div>
+      <div class="controls">
+        <label>Size <select id="size-pick">
+          <option value="20">20 × 20</option>
+          <option value="30">30 × 30</option>
+          <option value="40">40 × 40</option>
+        </select></label>
+        <label>Maze <select id="kind-pick">
+          <option value="maze">One route</option>
+          <option value="loops">With loops</option>
+          <option value="obstacles">Six wall bars (20 × 20)</option>
+          <option value="open">Open field (20 × 20)</option>
         </select></label>
         <label for="speed">Generations per frame <input type="range" id="speed" min="1" max="20" value="2"></label>
+        <label class="check"><input type="checkbox" id="show-optimal"> Show the optimal route</label>
       </div>
       <dl class="stats">
         <dt>Generation</dt><dd id="s-gen">0</dd>
         <dt>Best fitness</dt><dd id="s-fit">—</dd>
-        <dt>Shortest path</dt><dd id="s-short">—</dd>
+        <dt>Optimal route</dt><dd id="s-short">—</dd>
         <dt>Best route</dt><dd id="s-best">—</dd>
         <dt>Seed</dt><dd id="s-seed">—</dd>
       </dl>
+      <p class="share">This run's link: <a id="share" href="./">—</a></p>
       <svg class="history" id="history" viewBox="0 0 300 100" role="img" aria-label="Best fitness per generation"></svg>
       <p class="chart-caption">Best fitness per generation (lower is better).</p>
     </div>
@@ -76,13 +86,14 @@
   <section class="demo-how" aria-labelledby="how-title">
     <h2 id="how-title">How it works</h2>
     <ul>
+      <li>Mazes are generated in the C++ core from a size and a seed, so a link replays the same maze and the same run. 40 × 40 comes with loops only: one-route mazes that size can need over 400 moves.</li>
       <li>Each genome is a list of moves. A walk starts top-left; a move into a wall is blocked and the walk goes on, stopping at the goal.</li>
       <li>Fitness is the breadth-first-search distance left to the goal, plus the moves used, so a route that arrives keeps getting shorter.</li>
       <li>Each generation keeps the better half of 100 genomes and refills it by crossover and one mutation: a replaced, deleted or inserted move.</li>
       <li>One seeded generator drives it, so a seed replays the same run here and in the native build.</li>
       <li>Thread pool: native build only. The browser scores fitness on one thread.</li>
     </ul>
-    <ul class="chips" role="list"><li>C++ → WebAssembly</li><li>Seeded, reproducible</li></ul>
+    <ul class="chips" role="list"><li>20×20 to 40×40 mazes</li><li>C++ → WebAssembly</li><li>Seeded, reproducible</li></ul>
     <p class="demo-source">
       <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">Source</a>
     </p>
