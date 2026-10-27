@@ -74,8 +74,7 @@ rsync -a --delete --exclude node_modules --exclude test \
   ../neuronet-arena/web/ neuronet-arena/
 ```
 
-One local difference: the header's "How it was built" link is removed here, because the post it
-pointed to was taken down. Drop it again after a re-sync, or remove it upstream.
+There are no local differences: the copy is exactly upstream's `web/` minus the excluded files.
 
 `mcp-surface/` is a playground for [mcp-surface](https://github.com/brettadams0/mcp-surface): edit a
 `tools/list` response and the published checks run on it in the browser. `checks.js` is generated

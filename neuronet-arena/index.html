@@ -3,38 +3,41 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>neuronet-arena · live demo</title>
+<title>neuronet-arena · live demo | Brett Adams</title>
 <meta name="description" content="Forty agents, each steered by a 112-weight neural network, evolving to forage in your browser. The engine is bit-for-bit identical to the Python one it was ported from.">
 <meta name="theme-color" content="#0b0f14">
-<meta property="og:title" content="neuronet-arena · live demo">
+<meta property="og:title" content="neuronet-arena · live demo | Brett Adams">
 <meta property="og:description" content="Neural networks and a genetic algorithm written from scratch, evolving live in the browser — bit-for-bit identical to the Python engine.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://brettadams0.github.io/neuronet-arena/">
 <meta property="og:image" content="https://brettadams0.github.io/neuronet-arena/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0f14'/%3E%3Cpath d='M23 16 10 9v14z' fill='%23ffb454'/%3E%3Ccircle cx='25' cy='9' r='3' fill='%234fd6c4'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" media="print" onload="this.media='all';this.onload=null"
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
+<link rel="canonical" href="https://brettadams0.github.io/neuronet-arena/">
+<link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <script type="module" src="ui/app.js"></script>
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap top-inner">
-    <a class="back" href="https://brettadams0.github.io/">brettadams0.github.io</a>
-    <nav class="top-links" aria-label="Project">
-      <a href="https://github.com/brettadams0/neuronet-arena">Source on GitHub</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="demo-shell">
+  <div class="wrap demo-shell-inner">
+    <p class="demo-crumb">
+      <a class="demo-back" href="https://brettadams0.github.io/#projects"><span aria-hidden="true">←&nbsp;</span>Brett Adams</a>
+      <span class="demo-sep" aria-hidden="true">/</span>
+      <span class="demo-name">neuronet-arena</span>
+    </p>
+    <nav class="demo-links" aria-label="Project">
+      <a href="https://github.com/brettadams0/neuronet-arena">Source</a>
+      <a class="demo-resume" href="https://brettadams0.github.io/assets/resume/Resume_BrettAdams.pdf">Résumé</a>
     </nav>
   </div>
 </header>
 
-<main class="wrap">
+<main id="main" class="wrap" tabindex="-1">
   <section class="intro">
-    <h1>neuronet-arena</h1>
+    <h1><span class="prefix" aria-hidden="true">&gt; </span>neuronet-arena</h1>
     <p class="lede">Forty agents, each steered by its own 112-weight neural network, compete for food in a shared arena. The ones that eat the most pass their genes on. Nothing here is a library: the network, the genetic algorithm and the random number generator are written from scratch — first in Python, then ported to the JavaScript running on this page, which reproduces the Python engine <em>bit for bit</em>.</p>
   </section>
 
@@ -115,7 +118,7 @@
         <div class="card-head"><h2 id="parity-title">Cross-engine check</h2><span id="parity-badge" class="badge">running</span></div>
         <p id="parity-text">This population was trained for 200 generations by the Python engine, which also recorded what the next generation scores. Your browser is replaying that generation now.</p>
         <table class="parity-table">
-          <thead><tr><th></th><th>Python</th><th>This browser</th></tr></thead>
+          <thead><tr><td></td><th>Python</th><th>This browser</th></tr></thead>
           <tbody id="parity-rows"></tbody>
         </table>
       </section>
@@ -143,8 +146,15 @@
 
 </main>
 
-<footer class="foot">
-  <div class="wrap">Built by <a href="https://brettadams0.github.io/">Brett Adams</a> · <a href="https://github.com/brettadams0/neuronet-arena">MIT-licensed source</a> · No frameworks, no build step.</div>
+<footer class="demo-foot">
+  <div class="wrap demo-foot-inner">
+    <p>Built by <a href="https://brettadams0.github.io/">Brett Adams</a> · <a href="https://github.com/brettadams0/neuronet-arena">MIT-licensed source</a> · No frameworks, no build step.</p>
+    <p class="footer-links">
+      <a href="https://github.com/brettadams0">GitHub</a>
+      <a href="https://www.linkedin.com/in/bretta/">LinkedIn</a>
+      <a href="mailto:adamsbrett00@gmail.com">Email</a>
+    </p>
+  </div>
 </footer>
 
 <noscript><p class="wrap">The simulation runs in JavaScript; with it disabled there is nothing to show here but the description above.</p></noscript>
