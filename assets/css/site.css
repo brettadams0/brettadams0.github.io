@@ -649,12 +649,17 @@ main:focus { outline: none; }
   font: var(--fs-sm) var(--mono);
 }
 
-.post-back a {
+.post-back a,
+.post-next a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
   color: var(--muted);
   text-decoration: none;
 }
 
-.post-back a:hover {
+.post-back a:hover,
+.post-next a:hover {
   color: var(--text);
 }
 
@@ -671,8 +676,45 @@ main:focus { outline: none; }
 }
 
 .case-facts {
-  margin: 16px 0 44px;
-  color: var(--teal);
+  margin: 16px 0 0;
+}
+
+/* Who the case study is for (§8.18) */
+.case-for {
+  max-width: 34em;
+  margin: 16px 0 0;
+  color: var(--soft);
+  font-size: var(--fs-md);
+}
+
+/* Two-row diagram: what runs, and what checks it (§8.18). Chevrons are empty ::before boxes. */
+.flow-figure { margin: var(--space-4) 0 44px; }
+.flow-label {
+  margin: var(--space-4) 0 var(--space-2);
+  color: var(--muted); font: var(--fs-xs) var(--mono);
+  letter-spacing: var(--tracking-caps); text-transform: uppercase;
+}
+.flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin: 0; padding: 0; list-style-position: inside; }
+.flow li {
+  position: relative; padding: var(--space-3);
+  border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface);
+  color: var(--soft); font-size: var(--fs-sm);
+}
+.flow li::marker { color: var(--amber); font-family: var(--mono); }
+#flow-runtime + .flow { list-style: none; }
+.flow li + li::before {
+  content: ""; position: absolute; top: 50%; left: -19px; width: 8px; height: 8px;
+  border-top: 2px solid var(--faint); border-right: 2px solid var(--faint);
+  transform: translateY(-50%) rotate(45deg);
+}
+.flow-figure figcaption { margin-top: var(--space-3); color: var(--muted); font-size: var(--fs-sm); }
+
+.post-next {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-6);
+  margin: var(--space-8) 0 0;
   font: var(--fs-sm) var(--mono);
 }
 
@@ -808,6 +850,8 @@ main:focus { outline: none; }
   padding-bottom: 120px;
 }
 
+.not-found .actions { margin-top: var(--space-6); }
+
 .not-found h1 {
   margin: var(--space-2) 0 var(--space-3);
   font-size: var(--fs-2xl);
@@ -925,6 +969,10 @@ main:focus { outline: none; }
   .glance-list > .glance-tools { display: none; }   /* needs the child selector to beat .glance-list > div */
 
   .project .links a { min-height: 44px; }
+  .post-back a, .post-next a { min-height: 44px; }
+  .not-found { padding-top: var(--space-9); padding-bottom: var(--space-9); }
+  .flow { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .flow li + li::before { top: -15px; left: 50%; transform: translateX(-50%) rotate(135deg); }
   .site-footer-inner { flex-direction: column; }
   .footer-links a { min-height: 44px; }
   .also a { min-height: 44px; }
