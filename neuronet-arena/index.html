@@ -17,6 +17,7 @@
 <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <script type="module" src="ui/app.js"></script>
+<script type="module" src="ui/compare.js"></script>
 </head>
 <body>
 
@@ -143,6 +144,29 @@
       </div>
     </section>
   </div>
+
+  <section class="compare card" id="compare" aria-labelledby="compare-title">
+    <div class="card-head">
+      <h2 id="compare-title">Selection on vs off</h2>
+      <span class="meta">same seed, same world; only selection differs</span>
+    </div>
+    <p class="compare-lede">Left, the best agents breed, as above. Right, parents are drawn at random and nothing is kept, so fitness is computed but never used. This is the README's controlled experiment, running live; both engines agree on it bit for bit. Its 13.7× is food per agent over the last 10 of 150 generations, across 8 seeds; with selection on, the median passes ten food per agent at generation 23, so the gap takes a while to open.</p>
+    <div class="compare-grid">
+      <figure>
+        <canvas id="cmp-on" width="480" height="300" aria-label="Arena with selection on"></canvas>
+        <figcaption>Selection on · <span id="cmp-on-stats">not started</span></figcaption>
+      </figure>
+      <figure>
+        <canvas id="cmp-off" width="480" height="300" aria-label="Arena with selection off"></canvas>
+        <figcaption>Selection off · <span id="cmp-off-stats">not started</span></figcaption>
+      </figure>
+    </div>
+    <svg class="cmp-chart" id="cmp-chart" viewBox="0 0 300 100" role="img" aria-label="Food eaten per agent by generation: selection on in amber, off in grey"></svg>
+    <div class="compare-controls">
+      <button id="cmp-run" class="btn btn-primary" type="button">Run side by side</button>
+      <p id="cmp-status" class="cmp-status" role="status"></p>
+    </div>
+  </section>
 
 </main>
 
