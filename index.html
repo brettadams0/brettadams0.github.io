@@ -131,6 +131,22 @@ layout: default
           <a href="https://github.com/brettadams0/neuronet-arena">Source<span class="sr-only">: neuronet-arena</span></a>
         </p>
       </article>
+      <article class="project project-featured" data-project="border-waits">
+        <a class="project-shot" href="{{ '/border-waits/' | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/border-waits-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/border-waits-800.webp' | relative_url }} 800w, {{ '/assets/img/border-waits-1600.webp' | relative_url }} 1600w"
+               sizes="(min-width: 1200px) 650px, (min-width: 861px) 56vw, calc(100vw - 70px)"
+               alt="" width="1600" height="1000" loading="lazy" decoding="async" />
+        </a>
+        <h3 class="project-name">border-waits</h3>
+        <p class="project-kind"><span class="badge-live">Live demo</span> SQL in your browser</p>
+        <p class="project-line">An hourly pipeline over the wait estimates the Canadian and U.S. border agencies publish, tested with dbt. Query it with SQL in your browser.</p>
+        <ul class="chips" role="list"><li>dbt + DuckDB</li><li>Tests gate every deploy</li><li>CBSA + U.S. CBP open data</li></ul>
+        <p class="links">
+          <a href="{{ '/border-waits/' | relative_url }}">Live demo<span class="sr-only">: border-waits</span></a>
+          <a href="https://github.com/brettadams0/border-waits-pipeline">Source<span class="sr-only">: border-waits</span></a>
+        </p>
+      </article>
 
       <article class="project" data-project="mcp-surface">
         <a class="project-shot" href="{{ '/mcp-surface/' | relative_url }}" tabindex="-1" aria-hidden="true">
@@ -277,4 +293,70 @@ layout: default
     </p>
   </div>
 </section>
-<script src="{{ '/assets/js/card-loops.js' | relative_url }}" defer></script>
+<script>
+// Card loops (inlined, so they cost the homepage no extra request).
+/*
+ * Card loops: a 4 s silent clip recorded from each live demo, over its card's
+ * still screenshot. Nothing loads until a clip is needed: the <source>s carry
+ * data-src, so the browser picks and fetches one only when the clip starts.
+ *   data-loop="inview"  plays while half the card's shot is on screen;
+ *   data-loop="hover"   plays while a fine pointer hovers or the card has focus.
+ * Under prefers-reduced-motion nothing loads or plays; the screenshot stays.
+ */
+(function () {
+  'use strict';
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!reduce || reduce.matches) return;
+  var fine = window.matchMedia('(pointer: fine)').matches;
+
+  function arm(video) {
+    if (video.getAttribute('data-armed')) return;
+    video.setAttribute('data-armed', '1');
+    var sources = video.querySelectorAll('source[data-src]');
+    for (var i = 0; i < sources.length; i++) sources[i].src = sources[i].getAttribute('data-src');
+    video.addEventListener('playing', function () { video.classList.add('is-playing'); });
+    video.load();
+  }
+
+  function play(video) {
+    if (reduce.matches || document.hidden) return;
+    arm(video);
+    var p = video.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+
+  function stop(video) {
+    video.pause();
+    video.classList.remove('is-playing');
+  }
+
+  var videos = document.querySelectorAll('video.shot-loop[data-loop]');
+  var inview = [];
+  var observer = 'IntersectionObserver' in window ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { e.isIntersecting ? play(e.target) : stop(e.target); });
+  }, { threshold: 0.5 }) : null;
+
+  for (var i = 0; i < videos.length; i++) {
+    (function (video) {
+      if (video.getAttribute('data-loop') === 'inview') {
+        if (observer) { observer.observe(video); inview.push(video); }
+        return;
+      }
+      if (!fine) return; // hover clips need a hovering pointer; keyboard focus still plays them below
+      var card = video.closest('[data-project]') || video.parentNode;
+      card.addEventListener('mouseenter', function () { play(video); });
+      card.addEventListener('mouseleave', function () { stop(video); });
+      card.addEventListener('focusin', function () { play(video); });
+      card.addEventListener('focusout', function () { stop(video); });
+    })(videos[i]);
+  }
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) for (var j = 0; j < videos.length; j++) stop(videos[j]);
+  });
+  reduce.addEventListener && reduce.addEventListener('change', function () {
+    if (reduce.matches) for (var j = 0; j < videos.length; j++) stop(videos[j]);
+  });
+})();
+</script>

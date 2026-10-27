@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>border-waits · live demo | Brett Adams</title>
+<meta name="description" content="Hourly border wait-time estimates from the Canadian and U.S. border agencies, collected and tested automatically, queryable with SQL in your browser.">
+<meta name="theme-color" content="#0b0f14">
+<meta property="og:title" content="border-waits · live demo | Brett Adams">
+<meta property="og:description" content="Hourly border wait-time estimates from the Canadian and U.S. border agencies, collected and tested automatically, queryable with SQL in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://brettadams0.github.io/border-waits/">
+<meta property="og:image" content="https://brettadams0.github.io/border-waits/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://brettadams0.github.io/border-waits/">
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="demo-shell">
+  <div class="wrap demo-shell-inner">
+    <p class="demo-crumb">
+      <a class="demo-back" href="/#projects"><span aria-hidden="true">←&nbsp;</span>Brett Adams</a>
+      <span class="demo-sep" aria-hidden="true">/</span>
+      <span class="demo-name">border-waits</span>
+    </p>
+    <nav class="demo-links" aria-label="Project">
+      <a href="https://github.com/brettadams0/border-waits-pipeline">Source</a>
+      <a href="https://brettadams0.github.io/border-waits-pipeline/data/v1/">Data</a>
+      <a class="demo-resume" href="/assets/resume/Resume_BrettAdams.pdf">Résumé</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap" tabindex="-1">
+  <div class="intro">
+    <h1>border-waits</h1>
+    <p class="lede">How long are the waits at the Windsor–Detroit crossings, by hour and direction?</p>
+    <p class="lede">Wait-time estimates published by CBSA and U.S. CBP, collected every hour and checked by tests. Query them with SQL below.</p>
+    <ol class="flow" aria-label="How the data flows"><li>fetch</li><li>model</li><li>test</li><li>publish</li></ol>
+    <p class="note" id="data-note" role="status"></p>
+    <p class="live-badge" id="live-badge"></p>
+    <p class="note" id="collecting"></p>
+  </div>
+
+  <section class="block" aria-labelledby="now-title">
+    <h2 id="now-title">Windsor–Detroit now</h2>
+    <div class="scroll" tabindex="0" role="region" aria-label="Current waits table">
+      <table id="now-table">
+        <caption>Latest published estimate per crossing, in minutes. Times are local (Eastern).</caption>
+        <thead>
+          <tr><th scope="col" rowspan="2">Crossing</th><th scope="colgroup" colspan="2">To Canada</th><th scope="colgroup" colspan="2">To the US</th><th scope="col" rowspan="2">Source updated</th></tr>
+          <tr><th scope="col">Travellers</th><th scope="col">Commercial</th><th scope="col">Travellers</th><th scope="col">Commercial</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Ambassador Bridge</th><td class="none">—</td><td class="none">—</td><td class="none">—</td><td class="none">—</td><td>—</td></tr>
+          <tr><th scope="row">Detroit–Windsor Tunnel</th><td class="none">—</td><td class="none">—</td><td class="none">—</td><td class="none">—</td><td>—</td></tr>
+          <tr><th scope="row">Gordie Howe International Bridge</th><td class="none">—</td><td class="none">—</td><td class="none">—</td><td class="none">—</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="hour-title">
+    <h2 id="hour-title">Typical wait by hour</h2>
+    <div class="pickers">
+      <label>Crossing <select id="pick-crossing"></select></label>
+      <label>Direction <select id="pick-direction"><option value="to_canada">To Canada</option><option value="to_us">To the US</option></select></label>
+      <label>Lane <select id="pick-lane"><option value="travellers">Travellers</option><option value="commercial">Commercial</option></select></label>
+    </div>
+    <div id="chart"></div>
+    <p class="note" id="chart-days"></p>
+    <details>
+      <summary>Data table</summary>
+      <div class="scroll" tabindex="0" role="region" aria-label="Wait by hour table">
+        <table id="hour-table">
+          <caption>Median and 90th percentile wait by local hour, all days.</caption>
+          <thead><tr><th scope="col">Hour</th><th scope="col">Median (min)</th><th scope="col">p90 (min)</th><th scope="col">Readings</th><th scope="col">Days</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+
+  <section class="block" aria-labelledby="pipe-title">
+    <h2 id="pipe-title">Pipeline</h2>
+    <div id="pipeline"></div>
+  </section>
+
+  <section class="block" aria-labelledby="how-title">
+    <h2 id="how-title">How it works</h2>
+    <div class="how" id="how"></div>
+  </section>
+
+  <section class="block" aria-labelledby="sql-title">
+    <h2 id="sql-title">Query with SQL</h2>
+    <button type="button" id="sql-load">Load DuckDB to run SQL (about 7.7 MB)</button>
+    <p id="sql-status" role="status"></p>
+    <div id="sql-console" hidden></div>
+  </section>
+
+
+</main>
+
+<footer class="demo-foot">
+  <div class="wrap demo-foot-inner">
+    <p>Built by <a href="/">Brett Adams</a> · <a href="https://github.com/brettadams0/border-waits-pipeline">MIT-licensed source</a> · Data: CBSA and U.S. CBP · Contains information licensed under the <a href="https://open.canada.ca/en/open-government-licence-canada">Open Government Licence – Canada</a>.</p>
+    <p class="footer-links">
+      <a href="https://github.com/brettadams0" data-contact="github">GitHub</a>
+      <a href="https://www.linkedin.com/in/bretta/" data-contact="linkedin">LinkedIn</a>
+      <a href="mailto:adamsbrett00@gmail.com" data-contact="email">Email</a>
+    </p>
+  </div>
+</footer>
+</body>
+</html>

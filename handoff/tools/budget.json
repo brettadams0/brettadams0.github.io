@@ -1,8 +1,9 @@
 {
-  "/":                { "total_kb": 260, "js_kb": 15, "css_kb": 12, "font_kb": 80, "image_kb": 150, "requests": 16, "lcp_ms": 1500, "cls": 0.05, "desktop_cls": 0.05, "no_framework": true },
+  "/":                { "total_kb": 280, "js_kb": 15, "css_kb": 12, "font_kb": 80, "image_kb": 170, "requests": 16, "lcp_ms": 1500, "cls": 0.05, "desktop_cls": 0.05, "no_framework": true },
   "/mcp/":            { "total_kb": 110, "js_kb": 15, "css_kb": 12, "font_kb": 80, "image_kb": 10,  "requests": 10, "lcp_ms": 1500, "cls": 0.05, "desktop_cls": 0.05, "no_framework": true },
   "/404.html":        { "total_kb": 100, "js_kb": 15, "css_kb": 12, "font_kb": 80, "image_kb": 10,  "requests": 10, "lcp_ms": 1500, "cls": 0.05, "desktop_cls": 0.05, "no_framework": true },
   "/mcp-surface/":    { "total_kb": 150, "js_kb": 55, "css_kb": 12, "font_kb": 80, "image_kb": 10,  "requests": 14, "lcp_ms": 2000, "cls": 0.05, "desktop_cls": 0.05, "no_framework": true },
+  "/border-waits/":   { "total_kb": 110, "js_kb": 6,  "css_kb": 12, "font_kb": 80, "image_kb": 10,  "requests": 14, "lcp_ms": 1710, "cls": 0.02, "desktop_cls": 0.05, "no_framework": true },
   "/mazefinder/":     { "total_kb": 290, "js_kb": 9,  "css_kb": 12, "font_kb": 80, "image_kb": 10,  "requests": 13, "lcp_ms": 1875, "cls": 0.04, "desktop_cls": 0.05, "no_framework": true },
   "/neuronet-arena/": { "total_kb": 140, "js_kb": 35, "css_kb": 10, "font_kb": 80, "image_kb": 10,  "requests": 22, "lcp_ms": 1500, "cls": 0.05, "desktop_cls": 0.05, "no_framework": true }
 }
