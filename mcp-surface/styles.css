@@ -311,7 +311,7 @@ select {
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr));   /* fits 320 px (reflow, SC 1.4.10) */
   gap: 8px;
 }
 .rule {
