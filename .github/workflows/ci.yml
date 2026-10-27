@@ -34,3 +34,36 @@ jobs:
 
       - name: Check internal links and assets
         run: node .github/scripts/check-links.mjs
+
+      # Hands the built site to the budget job.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: _site
+
+  # Size keys only (handoff/tools/budget-ci.json). Timing keys stay local,
+  # because shared runners vary.
+  budget:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: _site
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      # Pinned to the Playwright version the budget was measured with.
+      - name: Install Playwright and Chromium
+        run: |
+          npm install -g playwright@1.56.1
+          playwright install --with-deps chromium
+
+      - name: Check the size budget
+        run: node handoff/tools/measure.mjs --site _site --path / --path /mcp/ --path /404.html --path /mcp-surface/ --budget handoff/tools/budget-ci.json --runs 1
