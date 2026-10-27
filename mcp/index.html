@@ -7,7 +7,7 @@ description: >-
 permalink: /mcp/
 ---
 <article class="post case-study">
-  <p class="post-back"><a href="{{ '/#projects' | relative_url }}">&larr; Brett Adams</a></p>
+  <p class="post-back"><a href="{{ '/#projects' | relative_url }}"><span aria-hidden="true">←&nbsp;</span>Brett Adams</a></p>
   <p class="eyebrow">Case study · October 2026</p>
   <h1>Two MCP servers that act on real accounts, and the tool that checks them</h1>
   <p class="case-facts">2 servers · 35 tools · 3 repositories · 114 offline tests</p>
@@ -25,7 +25,7 @@ permalink: /mcp/
       servers found in October 2026.
     </p>
 
-    <h2>One check at the end of CI</h2>
+    <h2><span class="prefix" aria-hidden="true">## </span>One check at the end of CI</h2>
     <p>
       A broken MCP server usually doesn't look broken. It starts, finishes the handshake and shows as
       connected, while the model gets a worse tool or none at all. Unit tests miss this, because they test
@@ -65,7 +65,7 @@ Snapshot mcp-surface.json
       kept Zod 3.
     </p>
 
-    <h2>The repositories</h2>
+    <h2><span class="prefix" aria-hidden="true">## </span>The repositories</h2>
     <ul class="also">
       <li>
         <a class="also-name" href="https://github.com/brettadams0/google-workspace-mcp">google-workspace-mcp</a>
@@ -81,7 +81,7 @@ Snapshot mcp-surface.json
       </li>
     </ul>
 
-    <h2>What the review found</h2>
+    <h2><span class="prefix" aria-hidden="true">## </span>What the review found</h2>
     <p>
       The review started from one assumption: every tool argument is written by a model, and a model that
       has just read a web page or an email can be steered by what it read. A server that sends email and
@@ -149,7 +149,7 @@ Snapshot mcp-surface.json
       end-to-end test checks what a server actually receives.
     </p>
 
-    <h2>What both servers now have</h2>
+    <h2><span class="prefix" aria-hidden="true">## </span>What both servers now have</h2>
     <ul>
       <li>Tests that run without network access or credentials, on Node 22 and 24.</li>
       <li>A committed tool snapshot that CI checks the running server against.</li>
