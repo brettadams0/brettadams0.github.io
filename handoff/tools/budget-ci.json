@@ -1,0 +1,6 @@
+{
+  "/":              { "total_kb": 240, "js_kb": 15, "css_kb": 12, "font_kb": 80, "image_kb": 130, "requests": 16, "no_framework": true },
+  "/mcp/":          { "total_kb": 110, "js_kb": 15, "css_kb": 12, "font_kb": 80, "image_kb": 10, "requests": 10, "no_framework": true },
+  "/404.html":      { "total_kb": 100, "js_kb": 15, "css_kb": 12, "font_kb": 80, "image_kb": 10, "requests": 10, "no_framework": true },
+  "/mcp-surface/":  { "total_kb": 150, "js_kb": 55, "css_kb": 12, "font_kb": 80, "image_kb": 10, "requests": 14, "no_framework": true }
+}
