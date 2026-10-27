@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MazeFinder · live demo | Brett Adams</title>
+<meta name="description" content="A C++ genetic algorithm evolving routes through walled mazes, compiled to WebAssembly and running in your browser.">
+<meta name="theme-color" content="#0b0f14">
+<meta property="og:title" content="MazeFinder · live demo | Brett Adams">
+<meta property="og:description" content="A C++ genetic algorithm evolving routes through walled mazes, compiled to WebAssembly and running in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://brettadams0.github.io/mazefinder/">
+<meta property="og:image" content="https://brettadams0.github.io/mazefinder/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://brettadams0.github.io/mazefinder/">
+<link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/assets/css/demo-shell.css">
+<link rel="modulepreload" href="wasm/mazefinder.js">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="demo-shell">
+  <div class="wrap demo-shell-inner">
+    <p class="demo-crumb">
+      <a class="demo-back" href="/#projects"><span aria-hidden="true">←&nbsp;</span>Brett Adams</a>
+      <span class="demo-sep" aria-hidden="true">/</span>
+      <span class="demo-name">MazeFinder</span>
+    </p>
+    <nav class="demo-links" aria-label="Project">
+      <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">Source</a>
+      <a class="demo-resume" href="/assets/resume/Resume_BrettAdams.pdf">Résumé</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap" tabindex="-1">
+  <section class="intro">
+    <h1>MazeFinder</h1>
+    <p class="lede">A genetic algorithm evolves a route from the top-left corner to the bottom-right of a walled maze. It's MazeFinder's C++ code, compiled to WebAssembly.</p>
+  </section>
+
+  <div class="layout">
+    <div class="board">
+      <canvas class="maze" id="maze" width="400" height="400" role="img" aria-label="The maze, every walked route and the best one"></canvas>
+      <p class="goal-note" id="goal" role="status"></p>
+    </div>
+    <div>
+      <div class="controls">
+        <button type="button" class="primary" id="run">Run</button>
+        <button type="button" id="step">Step</button>
+        <button type="button" id="reset">Reset</button>
+        <label>Maze <select id="maze-pick">
+          <option value="maze">Maze (one route)</option>
+          <option value="loops">Maze with loops</option>
+          <option value="obstacles">Six wall bars</option>
+          <option value="open">Open field</option>
+        </select></label>
+        <label for="speed">Generations per frame <input type="range" id="speed" min="1" max="20" value="2"></label>
+      </div>
+      <dl class="stats">
+        <dt>Generation</dt><dd id="s-gen">0</dd>
+        <dt>Best fitness</dt><dd id="s-fit">—</dd>
+        <dt>Shortest path</dt><dd id="s-short">—</dd>
+        <dt>Best route</dt><dd id="s-best">—</dd>
+        <dt>Seed</dt><dd id="s-seed">—</dd>
+      </dl>
+      <svg class="history" id="history" viewBox="0 0 300 100" role="img" aria-label="Best fitness per generation"></svg>
+      <p class="chart-caption">Best fitness per generation (lower is better).</p>
+    </div>
+  </div>
+
+  <section class="demo-how" aria-labelledby="how-title">
+    <h2 id="how-title">How it works</h2>
+    <ul>
+      <li>Each genome is a list of moves. A walk starts top-left; a move into a wall is blocked and the walk goes on, stopping at the goal.</li>
+      <li>Fitness is the breadth-first-search distance left to the goal, plus the moves used, so a route that arrives keeps getting shorter.</li>
+      <li>Each generation keeps the better half of 100 genomes and refills it by crossover and one mutation: a replaced, deleted or inserted move.</li>
+      <li>One seeded generator drives it, so a seed replays the same run here and in the native build.</li>
+      <li>Thread pool: native build only. The browser scores fitness on one thread.</li>
+    </ul>
+    <ul class="chips" role="list"><li>C++ → WebAssembly</li><li>Seeded, reproducible</li></ul>
+    <p class="demo-source">
+      <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">Source</a>
+    </p>
+  </section>
+
+  <noscript><p>The genetic algorithm runs in WebAssembly; with JavaScript disabled there is nothing to show here.</p></noscript>
+</main>
+
+<footer class="demo-foot">
+  <div class="wrap demo-foot-inner">
+    <p>Built by <a href="/">Brett Adams</a> · <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">MIT-licensed source</a></p>
+    <p class="footer-links">
+      <a href="https://github.com/brettadams0" data-contact="github">GitHub</a>
+      <a href="https://www.linkedin.com/in/bretta/" data-contact="linkedin">LinkedIn</a>
+      <a href="mailto:adamsbrett00@gmail.com" data-contact="email">Email</a>
+    </p>
+  </div>
+</footer>
+</body>
+</html>

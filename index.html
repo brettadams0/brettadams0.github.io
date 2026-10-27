@@ -163,6 +163,22 @@ layout: default
           <a href="https://github.com/brettadams0/mcp-surface">Source<span class="sr-only">: mcp-surface</span></a>
         </p>
       </article>
+      <article class="project" data-project="mazefinder">
+        <a class="project-shot" href="{{ '/mazefinder/' | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/mazefinder-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/mazefinder-800.webp' | relative_url }} 800w, {{ '/assets/img/mazefinder-1600.webp' | relative_url }} 1600w"
+               sizes="(min-width: 1200px) 524px, (min-width: 861px) 45vw, calc(100vw - 70px)"
+               alt="" width="1600" height="1000" loading="lazy" decoding="async" />
+        </a>
+        <h3 class="project-name">MazeFinder</h3>
+        <p class="project-kind"><span class="badge-live">Live demo</span> C++ compiled to WebAssembly</p>
+        <p class="project-line">C++ genetic algorithm with fitness evaluation on a hand-rolled thread pool.</p>
+        <ul class="chips" role="list"><li>20x20 walled mazes</li><li>C++ → WebAssembly</li><li>Seeded, reproducible</li></ul>
+        <p class="links">
+          <a href="{{ '/mazefinder/' | relative_url }}">Live demo<span class="sr-only">: MazeFinder</span></a>
+          <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">Source<span class="sr-only">: MazeFinder</span></a>
+        </p>
+      </article>
 
       <article class="project" data-project="promptpal">
         <a class="project-shot" href="https://prompt-pal-gules.vercel.app" tabindex="-1" aria-hidden="true">
@@ -181,11 +197,11 @@ layout: default
         </p>
       </article>
 
-      <article class="project" data-project="technest">
+      <article class="project project-wide" data-project="technest">
         <a class="project-shot" href="https://github.com/brettadams0/TechNest" tabindex="-1" aria-hidden="true">
           <img src="{{ '/assets/img/technest-800.webp' | relative_url }}"
                srcset="{{ '/assets/img/technest-800.webp' | relative_url }} 800w, {{ '/assets/img/technest-1600.webp' | relative_url }} 1600w"
-               sizes="(min-width: 1200px) 524px, (min-width: 861px) 45vw, calc(100vw - 70px)"
+               sizes="(min-width: 1200px) 435px, (min-width: 861px) 37vw, calc(100vw - 70px)"
                alt="" width="1600" height="1000" loading="lazy" decoding="async" />
         </a>
         <h3 class="project-name">TechNest</h3>
@@ -202,11 +218,6 @@ layout: default
       <li data-project="nhl-arena">
         <span class="also-name">NHL Arena Web Interface</span>
         <span class="also-desc">Live refrigeration data, alarms and a thermal imagery viewer for NHL arena operations teams and technicians. Built at CIMCO; internal.</span>
-      </li>
-      <li data-project="mazefinder">
-        <span class="also-name">MazeFinder</span>
-        <span class="also-desc">C++ genetic algorithm with fitness evaluation on a hand-rolled thread pool.</span>
-        <span class="also-links"><a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">Source<span class="sr-only">: MazeFinder</span></a></span>
       </li>
       <li class="also-more"><a href="https://github.com/brettadams0?tab=repositories">More on GitHub<span aria-hidden="true">&nbsp;→</span></a></li>
     </ul>
