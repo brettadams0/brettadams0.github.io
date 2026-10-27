@@ -1,12 +1,17 @@
 ---
 layout: default
 title: Page not found
+description: Page not found on brettadams0.github.io. The homepage, the projects and the résumé are linked from here.
 permalink: /404.html
 sitemap: false
 ---
-<section class="not-found wrap">
+<section class="not-found wrap" aria-labelledby="not-found-title">
   <p class="eyebrow">404</p>
-  <h1>Page not found</h1>
+  <h1 id="not-found-title">Page not found</h1>
   <p>That page doesn't exist, or it has moved.</p>
-  <p><a class="btn btn-primary" href="{{ '/' | relative_url }}">Back to the homepage</a></p>
+  <p class="actions">
+    <a class="btn btn-primary" href="{{ '/' | relative_url }}">Back to the homepage</a>
+    <a class="btn" href="{{ '/#projects' | relative_url }}">Projects</a>
+    <a class="btn" href="{{ '/assets/resume/Resume_BrettAdams.pdf' | relative_url }}">Résumé (PDF)</a>
+  </p>
 </section>

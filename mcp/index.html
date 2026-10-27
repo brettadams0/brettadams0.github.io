@@ -10,7 +10,27 @@ permalink: /mcp/
   <p class="post-back"><a href="{{ '/#projects' | relative_url }}"><span aria-hidden="true">←&nbsp;</span>Brett Adams</a></p>
   <p class="eyebrow">Case study · October 2026</p>
   <h1>Two MCP servers that act on real accounts, and the tool that checks them</h1>
-  <p class="case-facts">2 servers · 35 tools · 3 repositories · 114 offline tests</p>
+  <ul class="chips case-facts" role="list"><li>2 servers</li><li>35 tools</li><li>3 repositories</li><li>114 offline tests</li></ul>
+  <p class="case-for">For anyone who lets an AI assistant send email, edit a calendar or post on their behalf, and needs to know when what it can do changes.</p>
+  <figure class="flow-figure">
+    <div class="flow-row">
+      <p class="flow-label" id="flow-runtime">At runtime</p>
+      <ol class="flow" aria-labelledby="flow-runtime">
+        <li>An AI assistant</li>
+        <li>The MCP server</li>
+        <li>Google Workspace or Reddit, over OAuth</li>
+      </ol>
+    </div>
+    <div class="flow-row">
+      <p class="flow-label" id="flow-ci">In CI</p>
+      <ol class="flow" aria-labelledby="flow-ci">
+        <li>Start the server the way a client would. Listing tools needs no credentials.</li>
+        <li>Read the tool list and check every schema, name and annotation.</li>
+        <li>Compare the result with <code>mcp-surface.json</code>, a snapshot committed to the repository.</li>
+      </ol>
+    </div>
+    <figcaption>How the servers run, and what checks them at the end of each server's CI</figcaption>
+  </figure>
 
   <div class="post-body">
     <p>
@@ -30,19 +50,14 @@ permalink: /mcp/
       A broken MCP server usually doesn't look broken. It starts, finishes the handshake and shows as
       connected, while the model gets a worse tool or none at all. Unit tests miss this, because they test
       the code behind each tool, not the list of tools a client is shown. So the last step in each
-      server's CI runs mcp-surface:
+      server's CI runs mcp-surface, in the "In CI" row at the top of this page.
     </p>
-    <ol>
-      <li>Start the server the way a client would. Listing tools needs no credentials.</li>
-      <li>Read the tool list and check every schema, name and annotation.</li>
-      <li>Compare the result with <code>mcp-surface.json</code>, a snapshot committed to the repository.</li>
-    </ol>
     <p>
       Any change to a tool's name, description, inputs or annotations fails the build until the snapshot
       is updated in the same pull request, which turns every such change into a diff someone has to review.
     </p>
     <figure>
-<pre><code>$ npm run surface
+<pre tabindex="0" role="region" aria-label="Terminal output of npm run surface"><code>$ npm run surface
 
 google-workspace 2.0.0 (279ms)
 23 tools · 0 resources · 0 prompts · capabilities: tools
@@ -145,8 +160,9 @@ Snapshot mcp-surface.json
     <h3>The checker had a bug of its own</h3>
     <p>
       mcp-surface introduced itself to every server as version 0.1.0, a number written into the code at
-      the first release and never updated. It now reads its version from its own package, and an
-      end-to-end test checks what a server actually receives.
+      the first release and never updated. It now reads its version from its own package (merged after
+      0.3.0, so the next npm release carries it), and an end-to-end test checks what a server actually
+      receives.
     </p>
 
     <h2><span class="prefix" aria-hidden="true">## </span>What both servers now have</h2>
@@ -157,5 +173,15 @@ Snapshot mcp-surface.json
       <li>A 30-second timeout on every request, trimmed error messages, and rate-limit errors that say when to retry.</li>
       <li>No open <code>npm audit</code> advisories at release, plus ESLint, Dependabot, a changelog and a security policy.</li>
     </ul>
+
+    <h2><span class="prefix" aria-hidden="true">## </span>Limits</h2>
+    <ul>
+      <li>The test suites run without network access or credentials, so they never call the real Google or Reddit APIs.</li>
+      <li>By default, mcp-surface checks the tool list a server shows, not what its tools do when called. Three of its 19 checks run only with <code>--call</code>.</li>
+    </ul>
   </div>
+  <p class="post-next">
+    <a href="{{ '/mcp-surface/' | relative_url }}">Try mcp-surface's checks in your browser<span aria-hidden="true">&nbsp;→</span></a>
+    <a href="{{ '/#projects' | relative_url }}"><span aria-hidden="true">←&nbsp;</span>All projects</a>
+  </p>
 </article>
