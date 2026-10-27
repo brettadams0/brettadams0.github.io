@@ -44,13 +44,32 @@
     <p class="lede">The checks from the <a href="https://www.npmjs.com/package/mcp-surface">npm package</a>, running in your browser. Edit a server's <code>tools/list</code> response and the report updates as you type.</p>
   </section>
 
+  <section class="break card" aria-labelledby="break-title">
+    <div class="card-head">
+      <h2 id="break-title">Break it</h2>
+      <span class="meta">one change, then the real checks run again</span>
+    </div>
+    <div class="break-row" role="group" aria-label="Break the server">
+      <button type="button" data-break="required">Require a field that doesn't exist</button>
+      <button type="button" data-break="duplicate">Give two tools the same name</button>
+      <button type="button" data-break="root">Make a schema an array</button>
+      <button type="button" data-break="description">Delete a description</button>
+      <button type="button" id="undo" class="undo" disabled>Undo</button>
+    </div>
+    <p id="break-summary" class="break-summary" role="status" aria-live="polite"></p>
+    <div id="diff" class="diff" hidden>
+      <p class="diff-title" id="diff-title"></p>
+      <pre class="diff-body" id="diff-body" tabindex="0" aria-labelledby="diff-title"></pre>
+    </div>
+  </section>
+
   <div class="layout">
     <section class="card editor-card" aria-labelledby="editor-title">
       <div class="card-head">
         <h2 id="editor-title">tools/list response</h2>
         <div class="seg" role="group" aria-label="Example">
-          <button type="button" data-example="broken" aria-pressed="true">Broken</button>
-          <button type="button" data-example="healthy" aria-pressed="false">Healthy</button>
+          <button type="button" data-example="broken" aria-pressed="false">Broken</button>
+          <button type="button" data-example="healthy" aria-pressed="true">Healthy</button>
           <button type="button" data-example="empty" aria-pressed="false">Empty</button>
         </div>
       </div>
@@ -60,6 +79,7 @@
         <textarea id="source" spellcheck="false" autocomplete="off" autocapitalize="off" wrap="off"></textarea>
       </div>
       <p id="parse" class="parse" role="status"></p>
+      <ul id="annotations" class="annotations" aria-label="Findings by line"></ul>
     </section>
 
     <section class="card report-card" aria-labelledby="report-title">

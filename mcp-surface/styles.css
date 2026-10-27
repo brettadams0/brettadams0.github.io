@@ -364,3 +364,29 @@ select {
 @media (max-width: 640px) {
   .seg button, select { min-height: 44px; }
 }
+
+/* Break it (PR 22): one-click mutations, a line diff, and findings pinned to editor lines. */
+.break { margin: 0 0 18px; }
+.break-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.break-row button { min-height: 44px; padding: 6px 12px; font: inherit; font-size: var(--fs-sm); color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; }
+.break-row button:hover { border-color: var(--amber); }
+.break-row button:disabled { cursor: not-allowed; color: var(--dim); border-color: var(--border); }
+.break-row .undo { border-color: var(--amber); color: var(--amber); }
+.break-row .undo:disabled { border-color: var(--border); color: var(--dim); }
+.break-summary { margin: 10px 0 0; min-height: 1.5em; font-family: var(--mono); font-size: var(--fs-sm); }
+.break-summary .fail { color: var(--red); }
+.break-summary .pass { color: var(--good); }
+.diff { margin-top: 10px; }
+.diff-title { margin: 0 0 4px; color: var(--muted); font-size: var(--fs-sm); }
+.diff-body { margin: 0; padding: 8px 10px; overflow-x: auto; max-height: 14em; background: var(--term); border: 1px solid var(--border); border-radius: 6px; font: 12px/1.5 var(--mono); }
+.diff-body .del { display: block; color: var(--red); }
+.diff-body .add { display: block; color: var(--good); }
+.diff-body .ctx { display: block; color: var(--dim); }
+.gutter .mark-error { color: var(--red); }
+.gutter .mark-warn { color: var(--amber); }
+.gutter .mark-info { color: var(--teal); }
+.annotations { list-style: none; margin: 6px 0 0; padding: 0; font: var(--fs-sm)/1.5 var(--mono); }
+.annotations li { margin: 2px 0; color: var(--soft); }
+.annotations .lvl-error { color: var(--red); }
+.annotations .lvl-warn { color: var(--amber); }
+.annotations .lvl-info { color: var(--teal); }
