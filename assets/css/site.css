@@ -1036,3 +1036,17 @@ main:focus { outline: none; }
   grid-template-rows: repeat(4, auto) 1fr; gap: 10px 28px; }
 .project-wide .project-shot { grid-row: 1 / -1; margin-bottom: 0; }
 @media (max-width: 860px) { .project-wide { display: flex; } .project-wide .project-shot { margin-bottom: 6px; } }
+
+/* /mcp/ replay (PR 21): scripted tool calls, one line at a time. */
+.replay { margin: var(--space-6) 0; padding: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.replay-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.replay-label { margin: 0; color: var(--muted); font: 500 var(--fs-sm)/1.4 var(--mono); }
+.replay-controls { display: flex; gap: 8px; }
+.replay-controls button { min-height: 44px; min-width: 44px; padding: 6px 12px; font: inherit; font-size: var(--fs-sm); color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; }
+.replay-controls button:hover { border-color: var(--amber); }
+.replay-screen { margin: 0; padding: 10px 12px; overflow-x: auto; white-space: pre-wrap; overflow-wrap: anywhere; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; font: 12.5px/1.55 var(--mono); }
+.rl-note { color: var(--dim); }
+.rl-call { color: var(--text); }
+.rl-meta { color: var(--teal); }
+.rl-result { color: var(--good); }
+.rl-hidden { visibility: hidden; }
