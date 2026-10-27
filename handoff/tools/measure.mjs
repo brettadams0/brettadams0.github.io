@@ -31,8 +31,9 @@
  *     --perf               throttled mobile (390x844, DPR 2, 150 ms RTT, 1.6 Mbps down,
  *                          750 kbps up, 4x CPU) and unthrottled desktop (1440x900)
  *     --budget [file.json] --perf plus a budget check; exits 1 on failure (default budget below)
- *     --analytics          slow scroll, click every [data-project] a, [data-contact] link and
- *                          résumé link (navigation prevented), print every GA event queued
+ *     --analytics          slow scroll, click every [data-project] a, [data-contact] link, résumé
+ *                          link and [data-nav] a[href*="#"] (navigation prevented) and each
+ *                          details.job-more > summary once, print every GA event queued
  *     --dnt                navigator.doNotTrack = '1'; asserts no custom events fire (exit 1 if any)
  *     --a11y               spec section 10.15 at 390x844 and 1440x900: page.headings (CDP AX names),
  *                          viewport.<w>.focus_walk (Tab up to 120 times), small_targets_24,
@@ -401,7 +402,7 @@ async function analytics(browser, url, pathName, dnt) {
   const targets = await page.evaluate((resumeSrc) => {
     const resume = new RegExp(resumeSrc);
     const contactLike = (a) => /^mailto:/.test(a.href) || /linkedin\.com\/in\//.test(a.href) || /^https:\/\/github\.com\/[^/?#]+\/?$/.test(a.href);
-    const els = new Set([...document.querySelectorAll('[data-project] a, a[data-contact], a[href]')]);
+    const els = new Set([...document.querySelectorAll('[data-project] a, a[data-contact], a[href], details.job-more > summary')]);
     const out = [];
     let i = 0;
     for (const a of els) {
@@ -409,16 +410,20 @@ async function analytics(browser, url, pathName, dnt) {
       const contact = a.getAttribute('data-contact');
       const isResume = resume.test(a.getAttribute('href') || '');
       const missingContact = !contact && !project && contactLike(a);
-      if (!project && !contact && !isResume && !missingContact) continue;
+      const nav = a.matches('[data-nav] a[href*="#"]'); // spec section 13.8 N3
+      const more = a.matches('summary'); // N4
+      if (!project && !contact && !isResume && !missingContact && !nav && !more) continue;
       a.setAttribute('data-measure-click', String(i));
-      const expect = [project && 'project_click', isResume && 'resume_download', (contact || missingContact) && 'contact_click'].filter(Boolean);
+      const expect = [project && 'project_click', isResume && 'resume_download', (contact || missingContact) && 'contact_click',
+        nav && 'nav_click', more && 'job_more_open'].filter(Boolean);
       out.push({ i: i++, text: (a.textContent || a.getAttribute('aria-label') || '').trim().replace(/\s+/g, ' ').slice(0, 50) || '(no text)',
         href: a.getAttribute('href'), where: ((w) => w ? w.tagName.toLowerCase() + (w.id ? '#' + w.id : w.classList[0] ? '.' + w.classList[0] : '') : null)(
           a.closest('header, footer, article, section')),
         project, contact, missing_data_contact: missingContact, expect });
     }
     // Prevent navigation after the page's own document-level listener has run (window is last).
-    window.addEventListener('click', (e) => e.preventDefault());
+    // Links only: a prevented summary click would not open its details.
+    window.addEventListener('click', (e) => { if (e.target.closest('a')) e.preventDefault(); });
     return out;
   }, RESUME_RE.source);
   const log = () => page.evaluate(() => window.__gaLog.length);
