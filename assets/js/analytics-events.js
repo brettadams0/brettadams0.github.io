@@ -3,7 +3,7 @@
  * _includes/analytics.html.
  *
  * The homepage is one URL holding several sections, so per-URL reporting
- * cannot say whether anyone reached #education or opened a project. These
+ * cannot say whether anyone reached #skills or opened a project. These
  * events answer that. gtag may be blocked, so every send is guarded.
  */
 (function () {

@@ -847,14 +847,13 @@ main:focus { outline: none; }
 }
 
 .site-footer a {
-  margin-left: 18px;
   color: var(--muted);
   text-decoration: none;
 }
 
-.site-footer a:first-child {
-  margin-left: 0;
-}
+/* Footer links: 24 px targets, 44 px on phones (§8.16) */
+.footer-links { display: flex; flex-wrap: wrap; gap: 0 var(--space-6); }
+.footer-links a { display: inline-flex; align-items: center; min-height: 24px; }
 
 .site-footer a:hover {
   color: var(--text);
@@ -926,6 +925,8 @@ main:focus { outline: none; }
   .glance-list > .glance-tools { display: none; }   /* needs the child selector to beat .glance-list > div */
 
   .project .links a { min-height: 44px; }
+  .site-footer-inner { flex-direction: column; }
+  .footer-links a { min-height: 44px; }
   .also a { min-height: 44px; }
   .also-links { justify-self: start; }
 
