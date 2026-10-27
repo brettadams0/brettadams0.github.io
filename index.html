@@ -112,76 +112,103 @@ layout: default
     <div class="projects">
       <article class="project project-featured" data-project="neuronet-arena">
         <a class="project-shot" href="{{ '/neuronet-arena/' | relative_url }}" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/neuronet-arena.webp' | relative_url }}" alt="" width="1280" height="800" loading="lazy" />
+          <img src="{{ '/assets/img/neuronet-arena-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/neuronet-arena-800.webp' | relative_url }} 800w, {{ '/assets/img/neuronet-arena.webp' | relative_url }} 1280w"
+               sizes="(min-width: 1200px) 650px, (min-width: 861px) 56vw, calc(100vw - 70px)"
+               alt="" width="1280" height="800" loading="lazy" decoding="async" />
         </a>
-        <h3>neuronet-arena <span class="badge-live">Live demo</span></h3>
-        <p>Forty agents with their own neural networks evolve to forage. Watch any agent's network fire as it moves.</p>
-        <ul class="chips"><li>13.4 food vs 1.0 for the control</li><li>Python + JavaScript</li><li>No ML libraries</li></ul>
+        <h3 class="project-name">neuronet-arena</h3>
+        <p class="project-kind"><span class="badge-live">Live demo</span> runs in your browser</p>
+        <p class="project-line">Forty agents with their own neural networks evolve to forage. Watch any agent's network fire as it moves.</p>
+        <ul class="chips" role="list"><li>13.7× the food with selection on</li><li>JS matches Python bit for bit</li><li>No ML libraries</li></ul>
         <p class="links">
-          <a href="{{ '/neuronet-arena/' | relative_url }}">Live demo</a>
-          <a href="https://github.com/brettadams0/neuronet-arena">Source</a>
+          <a href="{{ '/neuronet-arena/' | relative_url }}">Live demo<span class="sr-only">: neuronet-arena</span></a>
+          <a href="https://github.com/brettadams0/neuronet-arena">Source<span class="sr-only">: neuronet-arena</span></a>
         </p>
       </article>
 
       <article class="project" data-project="mcp-servers">
-        <a class="project-shot" href="https://github.com/brettadams0/google-workspace-mcp" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/mcp-servers.webp' | relative_url }}" alt="" width="2200" height="1376" loading="lazy" />
+        <a class="project-shot" href="{{ '/mcp/' | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/mcp-servers-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/mcp-servers-800.webp' | relative_url }} 800w, {{ '/assets/img/mcp-servers-1600.webp' | relative_url }} 1600w"
+               sizes="(min-width: 1200px) 524px, (min-width: 861px) 45vw, calc(100vw - 70px)"
+               alt="" width="1600" height="1000" loading="lazy" decoding="async" />
         </a>
-        <h3>MCP servers for Google Workspace and Reddit</h3>
-        <p>Two servers that let an AI assistant act on real accounts: 23 tools for Gmail, Calendar, Drive, Sheets and YouTube, 12 for Reddit.</p>
-        <ul class="chips"><li>Node.js</li><li>OAuth 2.0</li><li>Snapshot-checked in CI</li></ul>
+        <h3 class="project-name">MCP servers for Google Workspace and Reddit</h3>
+        <p class="project-kind">Case study</p>
+        <p class="project-line">Two servers that let an AI assistant act on real accounts: 23 tools for Gmail, Calendar, Drive, Sheets and YouTube, 12 for Reddit.</p>
+        <ul class="chips" role="list"><li>Node.js</li><li>OAuth 2.0</li><li>Tools checked on every change</li></ul>
         <p class="links">
-          <a href="{{ '/mcp/' | relative_url }}">Case study</a>
-          <a href="https://github.com/brettadams0/google-workspace-mcp">Google Workspace server</a>
-          <a href="https://github.com/brettadams0/reddit-mcp">Reddit server</a>
+          <a href="{{ '/mcp/' | relative_url }}">Case study<span class="sr-only">: MCP servers</span></a>
+          <a href="https://github.com/brettadams0/google-workspace-mcp">Google Workspace source<span class="sr-only">: MCP servers</span></a>
+          <a href="https://github.com/brettadams0/reddit-mcp">Reddit source<span class="sr-only">: MCP servers</span></a>
         </p>
       </article>
 
       <article class="project" data-project="mcp-surface">
         <a class="project-shot" href="{{ '/mcp-surface/' | relative_url }}" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/mcp-surface.webp' | relative_url }}" alt="" width="2200" height="1376" loading="lazy" />
+          <img src="{{ '/assets/img/mcp-surface-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/mcp-surface-800.webp' | relative_url }} 800w, {{ '/assets/img/mcp-surface-1600.webp' | relative_url }} 1600w"
+               sizes="(min-width: 1200px) 524px, (min-width: 861px) 45vw, calc(100vw - 70px)"
+               alt="" width="1600" height="1000" loading="lazy" decoding="async" />
         </a>
-        <h3>mcp-surface <span class="badge-live">Live demo</span></h3>
-        <p>Probes an MCP server like a client would, validates its schemas, and fails CI when its tools change.</p>
-        <ul class="chips"><li>TypeScript</li><li>npm</li><li>GitHub Action</li></ul>
+        <h3 class="project-name">mcp-surface</h3>
+        <p class="project-kind"><span class="badge-live">Live demo</span> runs in your browser</p>
+        <p class="project-line">Checks an MCP server the way an AI assistant sees it, and fails the build when a tool changes, so every change gets a review.</p>
+        <ul class="chips" role="list"><li>TypeScript</li><li>19 checks</li><li>GitHub Action</li></ul>
         <p class="links">
-          <a href="{{ '/mcp-surface/' | relative_url }}">Live demo</a>
-          <a href="{{ '/mcp/' | relative_url }}">Case study</a>
-          <a href="https://www.npmjs.com/package/mcp-surface">npm</a>
-          <a href="https://github.com/brettadams0/mcp-surface">Source</a>
+          <a href="{{ '/mcp-surface/' | relative_url }}">Live demo<span class="sr-only">: mcp-surface</span></a>
+          <a href="{{ '/mcp/' | relative_url }}">Case study<span class="sr-only">: mcp-surface</span></a>
+          <a href="https://www.npmjs.com/package/mcp-surface">npm<span class="sr-only">: mcp-surface</span></a>
+          <a href="https://github.com/brettadams0/mcp-surface">Source<span class="sr-only">: mcp-surface</span></a>
         </p>
       </article>
 
       <article class="project" data-project="promptpal">
         <a class="project-shot" href="https://prompt-pal-gules.vercel.app" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/promptpal.webp' | relative_url }}" alt="" width="1600" height="1000" loading="lazy" />
+          <img src="{{ '/assets/img/promptpal-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/promptpal-800.webp' | relative_url }} 800w, {{ '/assets/img/promptpal-1600.webp' | relative_url }} 1600w"
+               sizes="(min-width: 1200px) 524px, (min-width: 861px) 45vw, calc(100vw - 70px)"
+               alt="" width="1600" height="1000" loading="lazy" decoding="async" />
         </a>
-        <h3>PromptPal</h3>
-        <p>Prompt templates in a small language with its own parser. Exports text or a ready-to-run Claude API call.</p>
-        <ul class="chips"><li>TypeScript</li><li>Next.js</li><li>E2E + a11y tests</li></ul>
+        <h3 class="project-name">PromptPal</h3>
+        <p class="project-kind">Web app on Vercel</p>
+        <p class="project-line">Write an AI prompt once as a template with fill-in fields. It flags mistakes that quietly ruin answers and exports a ready-to-run Claude API call.</p>
+        <ul class="chips" role="list"><li>TypeScript</li><li>Next.js</li><li>E2E + accessibility tests</li></ul>
         <p class="links">
-          <a href="https://prompt-pal-gules.vercel.app">Live app</a>
-          <a href="https://github.com/brettadams0/PromptPal">Source</a>
+          <a href="https://prompt-pal-gules.vercel.app">Live app<span class="sr-only">: PromptPal</span></a>
+          <a href="https://github.com/brettadams0/PromptPal">Source<span class="sr-only">: PromptPal</span></a>
         </p>
       </article>
 
       <article class="project" data-project="technest">
         <a class="project-shot" href="https://github.com/brettadams0/TechNest" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/technest.webp' | relative_url }}" alt="" width="1600" height="1000" loading="lazy" />
+          <img src="{{ '/assets/img/technest-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/technest-800.webp' | relative_url }} 800w, {{ '/assets/img/technest-1600.webp' | relative_url }} 1600w"
+               sizes="(min-width: 1200px) 524px, (min-width: 861px) 45vw, calc(100vw - 70px)"
+               alt="" width="1600" height="1000" loading="lazy" decoding="async" />
         </a>
-        <h3>TechNest</h3>
-        <p>A PHP store with no framework. Checkout is one transaction, so the last unit can't sell twice.</p>
-        <ul class="chips"><li>PHP</li><li>MySQL</li><li>200+ tests</li></ul>
+        <h3 class="project-name">TechNest</h3>
+        <p class="project-kind">Source code</p>
+        <p class="project-line">A PHP store with no framework. Checkout is one transaction, so the last unit can't sell twice.</p>
+        <ul class="chips" role="list"><li>PHP</li><li>MySQL</li><li>200+ tests</li></ul>
         <p class="links">
-          <a href="https://github.com/brettadams0/TechNest">Source</a>
+          <a href="https://github.com/brettadams0/TechNest">Source<span class="sr-only">: TechNest</span></a>
         </p>
       </article>
     </div>
 
-    <ul class="also">
-      <li data-project="nhl-arena"><b>NHL Arena Web Interface</b><span>Live refrigeration data and alarms for NHL arenas. Built at CIMCO; internal.</span></li>
-      <li data-project="mazefinder"><a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">MazeFinder</a><span>C++ genetic algorithm with fitness evaluation on a hand-rolled thread pool.</span></li>
-      <li><a href="https://github.com/brettadams0?tab=repositories">More on GitHub<span aria-hidden="true">&nbsp;→</span></a></li>
+    <ul class="also" role="list">
+      <li data-project="nhl-arena">
+        <span class="also-name">NHL Arena Web Interface</span>
+        <span class="also-desc">Live refrigeration data, alarms and a thermal imagery viewer for NHL arena operations teams and technicians. Built at CIMCO; internal.</span>
+      </li>
+      <li data-project="mazefinder">
+        <span class="also-name">MazeFinder</span>
+        <span class="also-desc">C++ genetic algorithm with fitness evaluation on a hand-rolled thread pool.</span>
+        <span class="also-links"><a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">Source<span class="sr-only">: MazeFinder</span></a></span>
+      </li>
+      <li class="also-more"><a href="https://github.com/brettadams0?tab=repositories">More on GitHub<span aria-hidden="true">&nbsp;→</span></a></li>
     </ul>
   </div>
 </section>
