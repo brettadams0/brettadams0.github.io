@@ -28,5 +28,3 @@ exclude:
   - CLAUDE.md
   - resume
   - handoff
-  # Android app source, not site content.
-  - sift
