@@ -53,29 +53,35 @@ function renderChart({ summary }) {
   const rows = summary.by_hour.filter((r) => r.crossing_id === sel.crossing && r.direction === sel.direction && r.lane === sel.lane);
   const byHour = new Map(rows.map((r) => [r.local_hour, r]));
   const W = 720, H = 240, L = 36, R = 8, T = 10, B = 26;
-  const max = Math.max(10, ...rows.filter((r) => r.n >= 7).map((r) => (r.n >= 20 ? r.p90_delay_min : r.median_delay_min)));
+  const max = Math.max(10, ...rows.filter((r) => r.n >= 3).map((r) => (r.n >= 20 ? r.p90_delay_min : r.median_delay_min)));
   const x = (h) => L + (h / 23) * (W - L - R), y = (v) => H - B - (v / max) * (H - T - B);
-  const med = [], band = [];
+  const med = [], few = [], band = [];
   for (let h = 0; h < 24; h++) {
     const r = byHour.get(h);
     if (r && r.n >= 7) med.push(`${x(h)},${y(r.median_delay_min)}`);
+    else if (r && r.n >= 3) few.push(`${x(h)},${y(r.median_delay_min)}`);
     if (r && r.n >= 20) band.push([h, r]);
   }
   const bandPath = band.length > 1 ? 'M' + band.map(([h, r]) => `${x(h)},${y(r.p90_delay_min)}`).join('L') +
     'L' + band.slice().reverse().map(([h, r]) => `${x(h)},${y(r.median_delay_min)}`).join('L') + 'Z' : '';
-  const ticks = [0, 6, 12, 18, 23].map((h) => `<text x="${x(h)}" y="${H - 8}" text-anchor="middle">${h}:00</text>`).join('');
+  const ticks = [0, 6, 12, 18, 23].map((h) => `<text x="${x(h)}" y="${H - 8}" text-anchor="${h === 23 ? 'end' : 'middle'}">${h}:00</text>`).join('');
   const yt = [0, max / 2, max].map((v) => `<text x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${Math.round(v)}</text>`).join('');
-  const enough = med.length > 0;
-  $('chart').innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Median wait by local hour${enough ? '' : ': not enough readings yet'}">
+  const enough = med.length + few.length > 0;
+  // Solid points: 7+ readings (the median is trusted). Hollow points: 3 to 6 readings, shown so the day is
+  // not blank while data accumulates. A lone hour is still visible, and the line joins solid points only.
+  const dot = (cls) => (p) => { const [cx, cy] = p.split(','); return `<circle class="${cls}" cx="${cx}" cy="${cy}" r="3.5"/>`; };
+  const dots = few.map(dot('dot few')).join('') + med.map(dot('dot')).join('');
+  $('chart').innerHTML = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Median wait by local hour${enough ? `: ${med.length} hours with enough readings, ${few.length} with fewer than 7` : ': not enough readings yet'}">
     <line class="axis" x1="${L}" y1="${H - B}" x2="${W - R}" y2="${H - B}"/>${ticks}${yt}
     ${bandPath ? `<path class="band" d="${bandPath}"/>` : ''}
-    ${med.length > 1 ? `<polyline class="median" points="${med.join(' ')}"/>` : ''}
+    ${med.length > 1 ? `<polyline class="median" points="${med.join(' ')}"/>` : ''}${dots}
     ${enough ? '' : `<text x="${W / 2}" y="${H / 2}" text-anchor="middle">not enough readings yet</text>`}</svg>`;
   const days = Math.max(0, ...rows.map((r) => r.days));
-  $('chart-days').textContent = `Based on ${days} day${days === 1 ? '' : 's'} of readings. The median shows from 7 readings in an hour, the 90th-percentile band from 20.`;
+  $('chart-days').textContent = `Based on ${days} day${days === 1 ? '' : 's'} of readings. Solid points have the 7 readings the median needs (${med.length} of 24 hours); ` +
+    `hollow points have 3 to 6 and firm up as readings accumulate (${few.length}). The 90th-percentile band needs 20.`;
   $('hour-table').tBodies[0].innerHTML = Array.from({ length: 24 }, (_, h) => {
     const r = byHour.get(h);
-    if (!r || r.n < 7) return `<tr><th scope="row">${h}:00</th><td colspan="2" class="none">not enough readings yet</td><td class="num">${r ? r.n : 0}</td><td class="num">${r ? r.days : 0}</td></tr>`;
+    if (!r || r.n < 3) return `<tr><th scope="row">${h}:00</th><td colspan="2" class="none">not enough readings yet</td><td class="num">${r ? r.n : 0}</td><td class="num">${r ? r.days : 0}</td></tr>`;
     return `<tr><th scope="row">${h}:00</th><td class="num">${r.median_delay_min}</td><td class="num">${r.n >= 20 ? r.p90_delay_min : '—'}</td><td class="num">${r.n}</td><td class="num">${r.days}</td></tr>`;
   }).join('');
 }
@@ -134,6 +140,15 @@ function renderCollecting({ manifest: m, status, live }) {
 
 function setupPickers(data) {
   $('pick-crossing').innerHTML = data.summary.crossings.map((c) => `<option value="${esc(c.crossing_id)}">${esc(c.display_name)}</option>`).join('');
+  // Open on the series with the most hours that have enough readings, so the first chart shows data.
+  const best = new Map();
+  for (const r of data.summary.by_hour) {
+    if (r.n < 7) continue;
+    const k = `${r.crossing_id}|${r.direction}|${r.lane}`;
+    best.set(k, (best.get(k) || 0) + 1);
+  }
+  const top = [...best].sort((a, b) => b[1] - a[1])[0];
+  if (top) [$('pick-crossing').value, $('pick-direction').value, $('pick-lane').value] = top[0].split('|');
   for (const id of ['pick-crossing', 'pick-direction', 'pick-lane']) $(id).addEventListener('change', () => renderChart(data));
 }
 
