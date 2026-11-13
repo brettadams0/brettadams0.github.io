@@ -275,6 +275,8 @@ button:disabled { cursor: not-allowed; border-color: var(--border); color: var(-
 svg.chart { display: block; width: 100%; height: auto; }
 .chart .band { fill: var(--teal); opacity: 0.18; }
 .chart .median { fill: none; stroke: var(--teal); stroke-width: 2; }
+.chart .dot { fill: var(--teal); }
+.chart .dot.few { fill: var(--bg-2, #0e141b); stroke: var(--teal); stroke-width: 1.5; }
 .chart .axis { stroke: var(--border); }
 .chart text { fill: var(--muted); font: 11px var(--mono); }
 details { margin-top: 10px; }
