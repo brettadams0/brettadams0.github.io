@@ -76,6 +76,8 @@
 {\centering
   {\LARGE\color{MidnightBlue} Brett Adams}\par
   \vspace{1.423pt}
+  {\small Software engineering student building backend services, data pipelines and developer tools}\par
+  \vspace{1.2pt}
   adamsbrett00@gmail.com\par
   \contactlink{\faLinkedinSquare}{https://www.linkedin.com/in/bretta/}{linkedin}\sep
   \contactlink{\faGithubSquare}{https://github.com/brettadams0}{github}\sep
@@ -85,7 +87,7 @@
 
 \resumesection{Education}
 \resumeentry{Honours Computer Science with Software Engineering Specialization Co-op}
-  {Sep 2022 - Present}
+  {Sep 2022 - 2027 (expected)}
   {University of Windsor}{Windsor, ON}
 
 \vspace{5.884pt}
@@ -93,9 +95,9 @@
 \vspace{0.9pt}
 \hspace*{17pt}{\small
 \begin{tabular}[t]{rl}
-  \skillrow{Programming Languages}{Python \sep SQL \sep Java \sep C++ \sep C \sep JavaScript \sep TypeScript \sep HTML/CSS \sep VBA} \\[2.846pt]
-  \skillrow{Data \& Cloud}{BigQuery \sep Apache Airflow \sep Cloud Composer \sep Azure Databricks \sep Power BI \sep MySQL} \\[2.846pt]
-  \skillrow{Technologies}{Git \sep GitLab CI/CD \sep GitHub Actions \sep Docker \sep Node.js \sep Flask \sep React \sep Power Platform}
+  \skillrow{Programming Languages}{Python \sep TypeScript \sep JavaScript \sep SQL \sep Java \sep C++ \sep C \sep HTML/CSS \sep VBA} \\[2.846pt]
+  \skillrow{Software \& Tools}{Node.js \sep Flask \sep React \sep Git \sep GitHub Actions \sep GitLab CI/CD \sep Docker} \\[2.846pt]
+  \skillrow{Data \& Cloud}{BigQuery \sep Apache Airflow \sep Cloud Composer \sep dbt \sep DuckDB \sep Azure Databricks \sep Power BI}
 \end{tabular}}
 
 \vspace{3.587pt}
@@ -122,7 +124,7 @@
 \resumeentry{Digital Solutions, Co-op}{Apr 2024 - Sep 2024}
   {CIMCO Refrigeration}{Burlington, ON}
 \begin{bullets}
-  \resumeitem Built Flask web applications that deliver real-time data and alarm information to NHL arena operations teams, including a thermal imagery viewer used by arena technicians.
+  \resumeitem Built Flask web applications that deliver real-time data and alarms to NHL arena operations teams, including a thermal imagery viewer used by arena technicians.
   \resumeitem Wrote a Python pipeline that aggregates data from two APIs into structured JSON for the arena interface.
   \resumeitem Automated controller data collection for CAG engineers with a Python tool, replacing manual data entry.
   \resumeitem Designed and ran hands-on Python training sessions for over 20 employees.
@@ -132,36 +134,34 @@
 \resumeentry{Digital Solutions}{Apr 2023 - Sep 2023}
   {CIMCO Refrigeration}{Burlington, ON}
 \begin{bullets}
-  \resumeitem Built Power Platform tools adopted by several departments to automate repetitive manual workflows.
+  \resumeitem Built Power Platform tools that several departments adopted to automate repetitive manual workflows.
   \resumeitem Automated SharePoint document routing and approvals, cutting turnaround time between departments.
 \end{bullets}
 
 \vspace{10pt}
 \resumesection{Notable Projects}
+\resumeentry{border-waits-pipeline}{Oct 2026 - Present}
+  {Python, dbt and DuckDB pipeline over Canadian and U.S. border wait-time feeds}{Independent}
+\begin{bullets}
+  \resumeitem Collects the wait estimates CBSA and U.S. CBP publish, models them with dbt on DuckDB, and publishes Parquet that a live dashboard queries with SQL in the browser.
+  \resumeitem Reconciled two feeds that disagree about time: CBP's ``At Noon EDT'' means the hour about to start, and the two sides of one crossing sit in different time zones.
+  \resumeitem A failed run redeploys the last good export with a status file naming the step that broke, so a failed refresh keeps the previous data and reports the failure. Tests run on recorded fixtures with no network.
+\end{bullets}
+
+\vspace{3pt}
 \resumeentry{mcp-surface}{Jul 2026 - Present}
   {TypeScript CLI and GitHub Action for testing Model Context Protocol servers}{Independent}
 \begin{bullets}
-  \resumeitem Published on npm. Connects to an MCP server over stdio, Streamable HTTP or SSE the way a real client does, and reports the tools, resources and prompts it actually exposes.
-  \resumeitem Runs 19 checks against what the server returns, such as invalid JSON Schemas, unsatisfiable required fields and duplicate tool names.
-  \resumeitem Snapshots the tool surface and fails CI when it changes unexpectedly; also ships as a GitHub Action.
+  \resumeitem Published on npm. Connects to an MCP server over stdio, Streamable HTTP or SSE the way a real client does, and runs 19 checks on the tools, resources and prompts it actually exposes.
+  \resumeitem Snapshots the tool surface and fails CI when it changes unexpectedly: a Zod 3 to 4 upgrade passed every unit test in one of my servers, and mcp-surface failed the build because all 23 tool schemas had changed.
 \end{bullets}
 
 \vspace{3pt}
 \resumeentry{MCP Servers for Claude Code}{Jul 2026 - Present}
   {Five Node.js servers exposing 69 tools to AI assistants}{Independent}
 \begin{bullets}
-  \resumeitem Covers Google Workspace, Reddit, Yahoo Fantasy, Chess.com and three Supercell game APIs, handling OAuth~2.0 and API-key auth.
-  \resumeitem The Google Workspace server (23 tools) sends email and manages Calendar, Drive, Sheets and YouTube through a self-registered OAuth client that requests only non-restricted scopes.
-  \resumeitem Each server has a test suite that runs with no network access or credentials, and CI on Node 20 and 22.
-\end{bullets}
-
-\vspace{3pt}
-\resumeentry{MazeFinder}{Mar 2024 - Sep 2024}
-  {C++ application for solving 20x20 mazes using genetic algorithms}{Independent}
-\begin{bullets}
-  \resumeitem Evolves paths through 20x20 mazes with a genetic algorithm using dynamic mutation and crossover strategies.
-  \resumeitem Parallelized genome fitness evaluation with a custom thread pool.
-  \resumeitem Stores mazes as 2D vectors so new maze configurations load without code changes.
+  \resumeitem Covers Google Workspace (23 tools, on a self-registered OAuth client that requests only non-restricted scopes), Reddit, Yahoo Fantasy, Chess.com and three Supercell game APIs. Tests run with no network or credentials.
+  \resumeitem Hardened against untrusted model output: a subject line that smuggles in a Bcc header is refused, and spreadsheet values are written as plain text unless formulas are requested. Each case has a test that builds the attack.
 \end{bullets}
 
 \end{document}

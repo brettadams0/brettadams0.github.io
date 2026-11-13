@@ -26,7 +26,7 @@ only links to them: nothing runs until a visitor opens one.
 | `assets/resume/Resume_BrettAdams.pdf` | Résumé, built from `resume/resume.tex` |
 | `resume/resume.tex` | LaTeX source for the résumé (not published to the site) |
 | `.github/scripts/check-links.mjs` | CI check that every internal link and asset resolves |
-| `handoff/` | Briefs for work another session will pick up (not published) |
+| `.github/scripts/measure.mjs` | CI page-weight budget check (`budget-ci.json`), measured in a real browser |
 
 ## Running locally
 
