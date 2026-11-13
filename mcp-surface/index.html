@@ -41,13 +41,14 @@
 <main id="main" class="wrap" tabindex="-1">
   <section class="intro">
     <h1><span class="prefix" aria-hidden="true">&gt; </span>mcp-surface</h1>
-    <p class="lede">The checks from the <a href="https://www.npmjs.com/package/mcp-surface">npm package</a>, running in your browser. Edit a server's <code>tools/list</code> response and the report updates as you type.</p>
+    <p class="lede">An AI assistant learns what an MCP server can do from its <code>tools/list</code> response. If that list is wrong, the assistant gets a worse tool or none at all. <a href="https://www.npmjs.com/package/mcp-surface">mcp-surface</a> checks it in CI, so a bad change fails the build. These are its real checks, running in your browser.</p>
+    <p class="try"><b>Try it:</b> press a button in step 1 to break the healthy server, then read step 2.</p>
   </section>
 
   <section class="break card" aria-labelledby="break-title">
     <div class="card-head">
-      <h2 id="break-title">Break it</h2>
-      <span class="meta">one change, then the real checks run again</span>
+      <h2 id="break-title"><span class="step" aria-hidden="true">1</span>Break it</h2>
+      <span class="meta">one change to the JSON below, then the real checks run again</span>
     </div>
     <div class="break-row" role="group" aria-label="Break the server">
       <button type="button" data-break="required">Require a field that doesn't exist</button>
@@ -84,7 +85,7 @@
 
     <section class="card report-card" aria-labelledby="report-title">
       <div class="card-head">
-        <h2 id="report-title">Report</h2>
+        <h2 id="report-title"><span class="step" aria-hidden="true">2</span>What the checks report</h2>
         <label class="failon">fail on
           <select id="fail-on">
             <option value="error" selected>error</option>
@@ -101,13 +102,10 @@
     </section>
   </div>
 
-  <section class="card rules-card" aria-labelledby="rules-title">
-    <div class="card-head">
-      <h2 id="rules-title">Rules</h2>
-      <span class="meta">click a rule to skip it</span>
-    </div>
+  <details class="card rules-card">
+    <summary id="rules-title">All 19 rules <span class="meta">click a rule to skip it</span></summary>
     <ul class="rules" id="rules"></ul>
-  </section>
+  </details>
 
   <section class="demo-how" aria-labelledby="how-title">
     <h2 id="how-title">How it works</h2>

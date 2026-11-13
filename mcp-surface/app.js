@@ -66,21 +66,25 @@ const state = {
 const BREAKS = {
   required: {
     what: "required now names \"city\", which the first tool's schema doesn't define",
+    why: "The schema now requires a field it never describes, so an assistant can't know what to put in it.",
     min: 1,
     apply: (t) => { const s = t[0].inputSchema || (t[0].inputSchema = { type: "object", properties: {} }); s.required = [...(s.required || []), "city"]; },
   },
   duplicate: {
     what: "the second tool now has the first tool's name",
+    why: "An assistant can't tell which of the two tools it is calling.",
     min: 2,
     apply: (t) => { t[1].name = t[0].name; },
   },
   root: {
     what: "the first tool's inputSchema type is now \"array\"",
+    why: "Tool arguments are an object, so a schema that says array can't describe them.",
     min: 1,
     apply: (t) => { (t[0].inputSchema || (t[0].inputSchema = {})).type = "array"; },
   },
   description: {
     what: "the first tool's description is gone",
+    why: "Without a description the assistant has to guess when to use the tool.",
     min: 1,
     apply: (t) => { delete t[0].description; },
   },
@@ -309,11 +313,12 @@ function update() {
   }
 }
 
-function summarize(before) {
+function summarize(before, why) {
   const now = state.fails ? "CI fails" : "CI passes";
   const was = before ? "CI failed" : "CI passed";
   const rules = [...new Set(state.findings.map((f) => `${f.level} ${f.rule}`))].join(", ") || "no findings";
   ui.breakSummary.replaceChildren(el("span", state.fails ? "fail" : "pass", `${was} → ${now}`), document.createTextNode(` (fail on ${ui.failOn.value}: ${rules})`));
+  if (why) ui.breakSummary.append(el("span", "why", why));
 }
 
 function breakIt(key) {
@@ -328,7 +333,7 @@ function breakIt(key) {
   ui.undo.disabled = false;
   update();
   showDiff(before, ui.source.value, BREAKS[key].what);
-  summarize(wasFailing);
+  summarize(wasFailing, BREAKS[key].why);
 }
 
 function undo() {
@@ -350,7 +355,7 @@ function load(key) {
   state.undo = [];
   ui.undo.disabled = true;
   ui.diff.hidden = true;
-  ui.breakSummary.textContent = "";
+  ui.breakSummary.textContent = key === "healthy" ? "Healthy server: CI passes. Press a button to break it." : "";
   for (const b of document.querySelectorAll("[data-example]")) {
     b.setAttribute("aria-pressed", String(b.getAttribute("data-example") === key));
   }
