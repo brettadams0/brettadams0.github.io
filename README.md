@@ -78,7 +78,7 @@ rsync -a --delete --exclude node_modules --exclude test \
 There are no local differences: the copy is exactly upstream's `web/` minus the excluded files.
 
 `border-waits/` is the page for [border-waits-pipeline](https://github.com/brettadams0/border-waits-pipeline),
-an hourly pipeline over the CBSA and U.S. CBP border wait estimates. It is a verbatim copy of that
+a pipeline over the CBSA and U.S. CBP border wait estimates. It is a verbatim copy of that
 repository's `web/`; edit it there. Refresh its `fallback/` snapshot there from the live export, then
 re-sync from a sibling checkout:
 
