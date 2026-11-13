@@ -45,7 +45,7 @@ confirm or deny it. No page on the web was loaded for this sheet.
 |---|---|---|
 | Name | Brett Adams | `index.html:9`, `resume/resume.tex:77`, `_config.yml:1`, `_config.yml:8`, `_layouts/default.html:18` |
 | Email | adamsbrett00@gmail.com | `index.html:15`, `index.html:186`, `_layouts/default.html:63`, `resume/resume.tex:79` |
-| Phone | 289-783-1500 | `resume/resume.tex:79` and the public PDF (extracted text line 2). **Not on the site.** The PDF is linked from the site, so the number is already public through it. |
+| Phone | (removed) | `resume/resume.tex:79` and the public PDF (extracted text line 2). **Not on the site.** The PDF is linked from the site, so the number is already public through it. |
 | LinkedIn | https://www.linkedin.com/in/bretta/ | `index.html:14`, `index.html:188`, `_layouts/default.html:25`, `_layouts/default.html:62`, `_config.yml:19`, `resume/resume.tex:80` |
 | GitHub | https://github.com/brettadams0 | `index.html:13`, `index.html:189`, `_layouts/default.html:24`, `_layouts/default.html:61`, `_config.yml:18`, `resume/resume.tex:81` |
 | Site URL | https://brettadams0.github.io | `_config.yml:6`, `resume/resume.tex:82`, `robots.txt:4` |
