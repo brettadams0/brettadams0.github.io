@@ -104,7 +104,7 @@ Snapshot mcp-surface.json
       kept Zod 3.
     </p>
 
-    <h2><span class="prefix" aria-hidden="true">## </span>The repositories</h2>
+    <h2 id="repositories"><span class="prefix" aria-hidden="true">## </span>The repositories</h2>
     <ul class="also">
       <li>
         <a class="also-name" href="https://github.com/brettadams0/google-workspace-mcp">google-workspace-mcp</a>
@@ -118,7 +118,24 @@ Snapshot mcp-surface.json
         <a class="also-name" href="https://github.com/brettadams0/mcp-surface">mcp-surface</a>
         <span class="also-desc">The checker. TypeScript, 19 checks, published on npm with build provenance, and also usable as a GitHub Action.</span>
       </li>
+      <li>
+        <a class="also-name" href="https://github.com/brettadams0/chesscom-mcp">chesscom-mcp</a>
+        <span class="also-desc">9 read-only tools over the Chess.com public API. No auth.</span>
+      </li>
+      <li>
+        <a class="also-name" href="https://github.com/brettadams0/supercell-mcp">supercell-mcp</a>
+        <span class="also-desc">15 read-only tools over three game APIs (Clash of Clans, Clash Royale, Brawl Stars) in one server.</span>
+      </li>
+      <li>
+        <a class="also-name" href="https://github.com/brettadams0/yahoo-fantasy-mcp">yahoo-fantasy-mcp</a>
+        <span class="also-desc">10 read-only tools over Yahoo Fantasy Sports, with OAuth refresh-token rotation that stays safe under parallel calls.</span>
+      </li>
     </ul>
+    <p>
+      reddit-mcp and the last three share one small harness, a fetch-based version of the Google
+      server's. All five commit an <code>mcp-surface.json</code>, and CI fails when a tool changes shape
+      without that file changing with it.
+    </p>
 
     <h2><span class="prefix" aria-hidden="true">## </span>What the review found</h2>
     <p>

@@ -2,7 +2,7 @@
 /*
  * measure.mjs: screenshots, axe-core, performance budget and GA4 event checks for
  * brettadams0.github.io (works on any URL or local build). Later redesign PRs re-run it
- * and compare with handoff/research/baseline/.
+ * and compare with a locally saved baseline.
  *
  * Requirements
  *   Node 20+ and the globally installed `playwright` module with its bundled Chromium.
@@ -23,7 +23,7 @@
  *   what --analytics reads. `--allow-ga` lets those requests through; avoid it on the live site.
  *
  * Usage
- *   node handoff/tools/measure.mjs <url> | --site <dir>  [--path /p/]...  <modes>  [options]
+ *   node .github/scripts/measure.mjs <url> | --site <dir>  [--path /p/]...  <modes>  [options]
  *
  *   Modes (combine freely; at least one):
  *     --shots              PNG screenshots at 320x640, 390x844, 768x1024, 1440x900: fold + full page
@@ -63,17 +63,17 @@
  *
  * Examples
  *   # Live site: screenshots, axe and performance for the four main pages
- *   node handoff/tools/measure.mjs https://brettadams0.github.io/ --path / --path /mcp/ \
+ *   node .github/scripts/measure.mjs https://brettadams0.github.io/ --path / --path /mcp/ \
  *     --path /neuronet-arena/ --path /mcp-surface/ --shots --axe --perf --out /tmp/shots --json /tmp/live.json
  *   # Local build (served gzipped on a random localhost port, like Pages)
- *   jekyll build && node handoff/tools/measure.mjs --site _site --path / --path /mcp/ --shots --axe --perf
+ *   jekyll build && node .github/scripts/measure.mjs --site _site --path / --path /mcp/ --shots --axe --perf
  *   # Budget check for a PR (non-zero exit when over budget)
- *   node handoff/tools/measure.mjs --site _site --path / --path /mcp/ --budget --runs 3
+ *   node .github/scripts/measure.mjs --site _site --path / --path /mcp/ --budget --runs 3
  *   # Analytics and Do Not Track check
- *   node handoff/tools/measure.mjs --site _site --path / --analytics --dnt --json /tmp/ga.json
+ *   node .github/scripts/measure.mjs --site _site --path / --analytics --dnt --json /tmp/ga.json
  *   # Accessibility and motion checks
- *   node handoff/tools/measure.mjs --site _site --path / --a11y
- *   node handoff/tools/measure.mjs --site _site --path / --path /mcp/ --path /404.html --motion
+ *   node .github/scripts/measure.mjs --site _site --path / --a11y
+ *   node .github/scripts/measure.mjs --site _site --path / --path /mcp/ --path /404.html --motion
  *
  *   With --site, a path that doesn't exist (--path /no/such/page/) is served 404.html with status 404.
  */
@@ -671,7 +671,7 @@ function checkBudget(pages, budget) {
 
 // ---------- main ----------
 
-const report = { tool: 'handoff/tools/measure.mjs', generated_utc: new Date().toISOString(), target: opt.url || null, site_dir: opt.site || null,
+const report = { tool: '.github/scripts/measure.mjs', generated_utc: new Date().toISOString(), target: opt.url || null, site_dir: opt.site || null,
   modes: ['shots', 'axe', 'perf', 'budget', 'analytics', 'dnt', 'a11y', 'motion'].filter((m) => opt[m]), ga_blocked: !opt.allowGa,
   throttling: { mobile: '390x844 DPR2, latency 150 ms, 1.6 Mbps down, 750 kbps up, CPU 4x', desktop: '1440x900, unthrottled' }, pages: [] };
 let server = null, browser = null, exitCode = 0;

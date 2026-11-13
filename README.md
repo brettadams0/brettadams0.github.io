@@ -26,7 +26,7 @@ only links to them: nothing runs until a visitor opens one.
 | `assets/resume/Resume_BrettAdams.pdf` | Résumé, built from `resume/resume.tex` |
 | `resume/resume.tex` | LaTeX source for the résumé (not published to the site) |
 | `.github/scripts/check-links.mjs` | CI check that every internal link and asset resolves |
-| `handoff/` | Briefs for work another session will pick up (not published) |
+| `.github/scripts/measure.mjs` | CI page-weight budget check (`budget-ci.json`), measured in a real browser |
 
 ## Running locally
 
@@ -78,7 +78,7 @@ rsync -a --delete --exclude node_modules --exclude test \
 There are no local differences: the copy is exactly upstream's `web/` minus the excluded files.
 
 `border-waits/` is the page for [border-waits-pipeline](https://github.com/brettadams0/border-waits-pipeline),
-an hourly pipeline over the CBSA and U.S. CBP border wait estimates. It is a verbatim copy of that
+a pipeline over the CBSA and U.S. CBP border wait estimates. It is a verbatim copy of that
 repository's `web/`; edit it there. Refresh its `fallback/` snapshot there from the live export, then
 re-sync from a sibling checkout:
 

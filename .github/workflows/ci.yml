@@ -41,7 +41,7 @@ jobs:
           name: site
           path: _site
 
-  # Size keys only (handoff/tools/budget-ci.json). Timing keys stay local,
+  # Size keys only (.github/scripts/budget-ci.json). Timing keys stay local,
   # because shared runners vary.
   budget:
     needs: build
@@ -66,4 +66,4 @@ jobs:
           playwright install --with-deps chromium
 
       - name: Check the size budget
-        run: node handoff/tools/measure.mjs --site _site --path / --path /mcp/ --path /404.html --path /mcp-surface/ --budget handoff/tools/budget-ci.json --runs 1
+        run: node .github/scripts/measure.mjs --site _site --path / --path /mcp/ --path /404.html --path /mcp-surface/ --budget .github/scripts/budget-ci.json --runs 1

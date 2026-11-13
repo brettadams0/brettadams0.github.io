@@ -5,9 +5,9 @@ layout: default
   <div class="wrap hero-grid">
     <div class="hero-text">
       <p class="status"><span class="status-dot" aria-hidden="true"></span>Graduating 2027 · Open to full-time roles</p>
-      <p class="kicker"><span class="prefix" aria-hidden="true">// </span>data &amp; software engineering</p>
+      <p class="kicker"><span class="prefix" aria-hidden="true">// </span>software engineering</p>
       <h1 id="hero-name">Brett Adams</h1>
-      <p class="lede">Data Analyst Intern at <a href="https://www.geotab.com">Geotab</a>, on production pipelines in BigQuery and Airflow. Computer Science at the University of Windsor.</p>
+      <p class="lede">Software engineering student building backend services, data pipelines and developer tools. Computer Science at the University of Windsor; Data Analyst Intern at <a href="https://www.geotab.com">Geotab</a>, on production pipelines in BigQuery and Airflow.</p>
       <p class="actions">
         <a class="btn btn-primary btn-resume" href="{{ '/assets/resume/Resume_BrettAdams.pdf' | relative_url }}">Résumé (PDF)</a>
         <a class="btn" href="mailto:adamsbrett00@gmail.com" data-contact="email">Email</a>
@@ -25,7 +25,7 @@ layout: default
         <div><dt>Studying</dt><dd>Honours Computer Science, University of Windsor · <span class="nowrap">2022 – 2027</span></dd></div>
         <!-- "Looking for", then "Based in", go here once Brett answers (§6.3) -->
         <div class="glance-results"><dt>Results</dt><dd>Power BI dashboards that replaced manual reporting (MTO) · Processing time cut from hours to minutes (MTO) · Python training for over 20 employees (CIMCO)</dd></div>
-        <div class="glance-tools"><dt>Works with</dt><dd><ul class="chips" role="list"><li>Apache Airflow</li><li>BigQuery</li><li>SQL</li><li>Python</li><li>Power BI</li><li>GitLab CI/CD</li></ul></dd></div>
+        <div class="glance-tools"><dt>Works with</dt><dd><ul class="chips" role="list"><li>Python</li><li>TypeScript</li><li>SQL</li><li>Node.js</li><li>Apache Airflow</li><li>BigQuery</li></ul></dd></div>
       </dl>
     </div>
   </div>
@@ -140,11 +140,25 @@ layout: default
         </a>
         <h3 class="project-name">border-waits</h3>
         <p class="project-kind"><span class="badge-live">Live demo</span> SQL in your browser</p>
-        <p class="project-line">An hourly pipeline over the wait estimates the Canadian and U.S. border agencies publish, tested with dbt. Query it with SQL in your browser.</p>
+        <p class="project-line">A pipeline over the wait estimates the Canadian and U.S. border agencies publish, read every few hours on GitHub's best-effort scheduler. Query it with SQL in your browser.</p>
         <ul class="chips" role="list"><li>dbt + DuckDB</li><li>Tests gate every deploy</li><li>CBSA + U.S. CBP open data</li></ul>
         <p class="links">
           <a href="{{ '/border-waits/' | relative_url }}">Live demo<span class="sr-only">: border-waits</span></a>
           <a href="https://github.com/brettadams0/border-waits-pipeline">Source<span class="sr-only">: border-waits</span></a>
+        </p>
+      </article>
+
+      <article class="project" data-project="sift">
+        <a class="project-shot" href="https://github.com/brettadams0/sift" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/sift-800.webp' | relative_url }}"
+               alt="" width="800" height="500" loading="lazy" decoding="async" />
+        </a>
+        <h3 class="project-name">Sift</h3>
+        <p class="project-kind">Android app</p>
+        <p class="project-line">Swipe through the camera roll to keep or delete, then grade the keepers on the phone, entirely on-device.</p>
+        <ul class="chips" role="list"><li>Kotlin, 6 Gradle modules</li><li>Own baseline JPEG encoder</li><li>No INTERNET permission</li></ul>
+        <p class="links">
+          <a href="https://github.com/brettadams0/sift">Source<span class="sr-only">: Sift</span></a>
         </p>
       </article>
 
@@ -184,14 +198,14 @@ layout: default
             <source data-src="{{ '/assets/video/mcp-servers-loop-640.mp4' | relative_url }}" type='video/mp4; codecs="avc1.640016"'>
           </video>
         </a>
-        <h3 class="project-name">MCP servers for Google Workspace and Reddit</h3>
+        <h3 class="project-name">google-workspace-mcp</h3>
         <p class="project-kind">Case study</p>
-        <p class="project-line">Two servers that let an AI assistant act on real accounts: 23 tools for Gmail, Calendar, Drive, Sheets and YouTube, 12 for Reddit.</p>
-        <ul class="chips" role="list"><li>Node.js</li><li>OAuth 2.0</li><li>Tools checked on every change</li></ul>
+        <p class="project-line">Lets an AI assistant send mail, edit a calendar and write to Drive and Sheets through my own Google OAuth client. Four more servers are built on the same harness.</p>
+        <ul class="chips" role="list"><li>Node.js</li><li>OAuth 2.0</li><li>23 tools</li><li>5 servers checked by mcp-surface</li></ul>
         <p class="links">
-          <a href="{{ '/mcp/' | relative_url }}">Case study<span class="sr-only">: MCP servers</span></a>
-          <a href="https://github.com/brettadams0/google-workspace-mcp">Google Workspace source<span class="sr-only">: MCP servers</span></a>
-          <a href="https://github.com/brettadams0/reddit-mcp">Reddit source<span class="sr-only">: MCP servers</span></a>
+          <a href="{{ '/mcp/' | relative_url }}">Case study<span class="sr-only">: google-workspace-mcp</span></a>
+          <a href="https://github.com/brettadams0/google-workspace-mcp">Source<span class="sr-only">: google-workspace-mcp</span></a>
+          <a href="{{ '/mcp/#repositories' | relative_url }}">4 more servers<span class="sr-only">: same harness</span></a>
         </p>
       </article>
       <article class="project" data-project="mazefinder">
@@ -208,7 +222,7 @@ layout: default
         </a>
         <h3 class="project-name">MazeFinder</h3>
         <p class="project-kind"><span class="badge-live">Live demo</span> C++ compiled to WebAssembly</p>
-        <p class="project-line">C++ genetic algorithm with fitness evaluation on a hand-rolled thread pool.</p>
+        <p class="project-line">Solves mazes with a C++ genetic algorithm, parallelizing fitness evaluation on a custom thread pool.</p>
         <ul class="chips" role="list"><li>20×20 to 40×40 mazes</li><li>C++ → WebAssembly</li><li>Seeded, reproducible</li></ul>
         <p class="links">
           <a href="{{ '/mazefinder/' | relative_url }}">Live demo<span class="sr-only">: MazeFinder</span></a>
@@ -225,7 +239,7 @@ layout: default
         </a>
         <h3 class="project-name">PromptPal</h3>
         <p class="project-kind">Web app on Vercel</p>
-        <p class="project-line">Write an AI prompt once as a template with fill-in fields. It flags mistakes that quietly ruin answers and exports a ready-to-run Claude API call.</p>
+        <p class="project-line">Write an AI prompt once as a template with fill-in fields. It flags empty required fields and leftover placeholders, and exports a ready-to-run Claude API call.</p>
         <ul class="chips" role="list"><li>TypeScript</li><li>Next.js</li><li>E2E + accessibility tests</li></ul>
         <p class="links">
           <a href="https://prompt-pal-gules.vercel.app">Live app<span class="sr-only">: PromptPal</span></a>
@@ -233,11 +247,11 @@ layout: default
         </p>
       </article>
 
-      <article class="project project-wide" data-project="technest">
+      <article class="project" data-project="technest">
         <a class="project-shot" href="https://github.com/brettadams0/TechNest" tabindex="-1" aria-hidden="true">
           <img src="{{ '/assets/img/technest-800.webp' | relative_url }}"
                srcset="{{ '/assets/img/technest-800.webp' | relative_url }} 800w, {{ '/assets/img/technest-1600.webp' | relative_url }} 1600w"
-               sizes="(min-width: 1200px) 435px, (min-width: 861px) 37vw, calc(100vw - 70px)"
+               sizes="(min-width: 1200px) 524px, (min-width: 861px) 45vw, calc(100vw - 70px)"
                alt="" width="1600" height="1000" loading="lazy" decoding="async" />
         </a>
         <h3 class="project-name">TechNest</h3>
@@ -266,9 +280,9 @@ layout: default
       <h2 id="skills-title" class="section-title"><span class="prefix" aria-hidden="true">## </span>Skills</h2>
       <dl class="skills">
         <div><dt>Languages</dt><dd><ul class="chips" role="list"><li>Python</li><li>SQL</li><li>TypeScript</li><li>JavaScript</li><li>PHP</li><li>Java</li><li>C++</li><li>C</li></ul></dd></div>
-        <div><dt>Data</dt><dd><ul class="chips" role="list"><li>BigQuery</li><li>Apache Airflow</li><li>Cloud Composer</li><li>Azure Databricks</li><li>Power BI</li><li>MySQL</li></ul></dd></div>
         <div><dt>Tools</dt><dd><ul class="chips" role="list"><li>Git</li><li>GitLab CI/CD</li><li>GitHub Actions</li><li>Docker</li><li>Linux</li><li>Node.js</li></ul></dd></div>
         <div><dt>Web</dt><dd><ul class="chips" role="list"><li>Flask</li><li>React</li><li>Next.js</li><li>HTML/CSS</li></ul></dd></div>
+        <div><dt>Data</dt><dd><ul class="chips" role="list"><li>BigQuery</li><li>Apache Airflow</li><li>Cloud Composer</li><li>Azure Databricks</li><li>Power BI</li><li>MySQL</li></ul></dd></div>
       </dl>
     </div>
     <div id="education">
