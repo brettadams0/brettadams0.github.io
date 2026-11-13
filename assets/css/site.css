@@ -262,7 +262,7 @@ main:focus { outline: none; }
     radial-gradient(900px 420px at 85% 20%, rgba(79, 214, 196, 0.07), transparent 70%),
     radial-gradient(700px 380px at 10% 90%, rgba(255, 180, 84, 0.06), transparent 70%);
 }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-8); align-items: start; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--space-8); align-items: start; }
 .status {
   display: inline-flex; align-items: center; gap: var(--space-2);
   margin: 0; padding: 5px 12px;
@@ -273,7 +273,7 @@ main:focus { outline: none; }
 .status-dot { width: 8px; height: 8px; flex: none; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 3px rgba(60, 207, 110, 0.2); }
 .kicker { margin: var(--space-6) 0 var(--space-1); color: var(--teal); font: 500 var(--fs-sm) / 1.4 var(--mono); }
 .hero h1 {
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-5);
   font-size: var(--fs-display); font-weight: 700;
   line-height: var(--lh-tight); letter-spacing: var(--tracking-tight);
 }
@@ -300,19 +300,20 @@ main:focus { outline: none; }
 
 /* ---- 8.3 At a glance ---- */
 .glance {
-  padding: 20px;
+  padding: 24px;
   border: 1px solid var(--border); border-radius: var(--radius);
   background: var(--surface);
 }
 .glance-title {
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-3);
   color: var(--muted); font: 600 var(--fs-xs) / 1.4 var(--mono);
   letter-spacing: var(--tracking-caps); text-transform: uppercase;
 }
 .glance-list { margin: 0; }
-.glance-list > div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
-.glance-list dt { padding-top: 2px; color: var(--muted); font: var(--fs-xs) / 1.6 var(--mono); }
-.glance-list dd { margin: 0; color: var(--soft); font-size: var(--fs-sm); line-height: 1.5; }
+.glance-list > div { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-top: 1px solid var(--border); }
+.glance-list dt { padding-top: 3px; color: var(--muted); font: var(--fs-xs) / 1.6 var(--mono); }
+.glance-list dd { margin: 0; color: var(--soft); font-size: 0.9375rem; line-height: 1.5; }   /* 15px */
+.glance-list > .glance-now dd { color: var(--text); }
 
 /* Chips (kept until §8.10, PR 6) */
 
@@ -521,9 +522,17 @@ main:focus { outline: none; }
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-  grid-template-rows: repeat(4, auto) 1fr;
+  grid-template-rows: 1fr repeat(5, auto) 1fr;   /* text block centred against the screenshot */
   gap: 10px 28px;
 }
+/* Explicit rows: items with a definite row are placed first, so the whole text column needs one. */
+.project-featured > :not(.project-shot),
+.project-wide > :not(.project-shot) { grid-column: 2; }
+.project-featured > .project-name, .project-wide > .project-name { grid-row: 2; }
+.project-featured > .project-kind, .project-wide > .project-kind { grid-row: 3; }
+.project-featured > .project-line, .project-wide > .project-line { grid-row: 4; }
+.project-featured > .chips, .project-wide > .chips { grid-row: 5; }
+.project-featured > .links, .project-wide > .links { grid-row: 6; }
 
 .project-featured .project-shot {
   grid-row: 1 / -1;
@@ -550,11 +559,23 @@ main:focus { outline: none; }
   color: var(--muted); font: var(--fs-xs) var(--mono);
 }
 
-.project .links { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: auto; padding-top: 4px; font-weight: 500; }
+.project .links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; margin-top: auto; padding-top: 4px; font-weight: 500; }
+.project-featured .links, .project-wide .links { margin-top: var(--space-2); }
 .project .links a { display: inline-flex; align-items: center; min-height: 24px; text-decoration: none; }
 .project .links a:hover {
   text-decoration: underline;
 }
+
+/* The demo is the first thing to open: it is the one outlined link on a card; the rest step back. */
+.project .links .link-demo {
+  min-height: 36px; padding: 0 14px;
+  border: 1px solid var(--amber-line); border-radius: var(--radius);
+  transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.project .links .link-demo:focus-visible { border-radius: var(--radius); }
+.project .links .link-demo:hover { background: var(--amber-wash); border-color: var(--amber); text-decoration: none; }
+.project .links:has(.link-demo) a:not(.link-demo) { color: var(--soft); }
+.project .links:has(.link-demo) a:not(.link-demo):hover { color: var(--text); }
 
 .also {
   margin: var(--space-7) 0 0;
@@ -983,7 +1004,7 @@ main:focus { outline: none; }
   .glance-list > .glance-now,
   .glance-list > .glance-tools { display: none; }   /* needs the child selector to beat .glance-list > div */
 
-  .project .links a { min-height: 44px; }
+  .project .links a, .project .links .link-demo { min-height: 44px; }
   .post-back a, .post-next a { min-height: 44px; }
   .not-found { padding-top: var(--space-9); padding-bottom: var(--space-9); }
   .flow { grid-template-columns: minmax(0, 1fr); gap: 20px; }
@@ -1033,7 +1054,7 @@ main:focus { outline: none; }
 /* Wide project card (8.7): the last half-width card when their count is odd. */
 .project-wide { grid-column: 1 / -1; display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-  grid-template-rows: repeat(4, auto) 1fr; gap: 10px 28px; }
+  grid-template-rows: 1fr repeat(5, auto) 1fr; gap: 10px 28px; }
 .project-wide .project-shot { grid-row: 1 / -1; margin-bottom: 0; }
 @media (max-width: 860px) { .project-wide { display: flex; } .project-wide .project-shot { margin-bottom: 6px; } }
 
