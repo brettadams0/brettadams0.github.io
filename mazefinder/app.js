@@ -69,6 +69,23 @@ function draw() {
   const pop = mf._mf_population_size(), stride = mf._mf_genome_length() + 1;
   const paths = new Int16Array(mf.HEAP16.buffer, mf._mf_paths(), pop * stride * 2);
   const lens = new Int32Array(mf.HEAP32.buffer, mf._mf_path_lengths(), pop);
+  // Where the search is looking: how many of the routes in this generation walk through each cell.
+  // It fans out across the maze at first and narrows onto one corridor as the population converges.
+  const heat = new Uint16Array(w * h), seen = new Int16Array(w * h).fill(-1);
+  for (let i = 0; i < pop; i++) {
+    const o = i * stride * 2;
+    for (let k = 0; k < lens[i]; k++) {
+      const idx = paths[o + k * 2 + 1] * w + paths[o + k * 2];
+      if (seen[idx] !== i) { seen[idx] = i; heat[idx]++; } // once per route, however often it passes
+    }
+  }
+  ctx.fillStyle = COLORS.teal;
+  for (let i = 0; i < w * h; i++) {
+    if (!heat[i] || cells[i]) continue;
+    ctx.globalAlpha = 0.5 * Math.sqrt(Math.min(1, heat[i] / pop));
+    ctx.fillRect((i % w) * cell, Math.floor(i / w) * cell, Math.ceil(cell), Math.ceil(cell));
+  }
+  ctx.globalAlpha = 1;
   const trace = (xy, offset, n) => {
     ctx.beginPath();
     for (let k = 0; k < n; k++) {
@@ -78,7 +95,7 @@ function draw() {
     ctx.stroke();
   };
   ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-  ctx.lineWidth = Math.max(1, cell / 10); ctx.strokeStyle = COLORS.soft; ctx.globalAlpha = 0.07;
+  ctx.lineWidth = Math.max(1, cell / 10); ctx.strokeStyle = COLORS.soft; ctx.globalAlpha = 0.16;
   for (let i = pop - 1; i > 0; i--) trace(paths, i * stride * 2, lens[i]);
   ctx.globalAlpha = 1;
   if ($('show-optimal').checked) {

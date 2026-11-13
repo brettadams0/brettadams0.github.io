@@ -194,3 +194,5 @@ svg.history text { fill: var(--muted); font: 10px var(--mono); }
 label.check { flex-direction: row; align-items: center; gap: 8px; min-height: 44px; }
 label.check input { width: 20px; height: 20px; accent-color: var(--teal); }
 .share { margin: 8px 0 0; color: var(--muted); font-size: var(--fs-sm); overflow-wrap: anywhere; }
+
+.legend { margin: 4px 0 0; color: var(--muted); font-size: var(--fs-sm); line-height: 1.5; }
