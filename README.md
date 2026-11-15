@@ -27,6 +27,8 @@ only links to them: nothing runs until a visitor opens one.
 | `resume/resume.tex` | LaTeX source for the résumé (not published to the site) |
 | `.github/scripts/check-links.mjs` | CI check that every internal link and asset resolves |
 | `.github/scripts/measure.mjs` | CI page-weight budget check (`budget-ci.json`), measured in a real browser |
+| `.github/scripts/check-border-waits.mjs` | CI guard: the border-waits page that is measured is the real one, loaded with data |
+| `.github/scripts/check-border-waits-sync.sh` | `border-waits/` matches the pipeline repository's `web/` |
 
 ## Running locally
 
@@ -79,17 +81,31 @@ There are no local differences: the copy is exactly upstream's `web/` minus the 
 
 `border-waits/` is the page for [border-waits-pipeline](https://github.com/brettadams0/border-waits-pipeline),
 a pipeline over the CBSA and U.S. CBP border wait estimates. It is a verbatim copy of that
-repository's `web/`; edit it there. Refresh its `fallback/` snapshot there from the live export, then
-re-sync from a sibling checkout:
+repository's `web/`; edit it there. Merge the pipeline change first and let one run publish its export,
+refresh the `fallback/` snapshot there from the recorded data (that repository's README has the
+commands), then re-sync from a sibling checkout. Look at the dry run first: `--delete` removes anything
+here that upstream doesn't have.
 
 ```sh
+rsync -an --delete -i --exclude node_modules --exclude test --exclude package.json --exclude package-lock.json --exclude tsconfig.json --exclude Makefile ../border-waits-pipeline/web/ border-waits/   # dry run
 rsync -a --delete --exclude node_modules --exclude test --exclude package.json --exclude package-lock.json --exclude tsconfig.json --exclude Makefile ../border-waits-pipeline/web/ border-waits/
 find border-waits \( -name 'package*.json' -o -name node_modules -o -name tsconfig.json -o -name Makefile -o -name test \) -print   # must print nothing
+.github/scripts/check-border-waits-sync.sh ../border-waits-pipeline   # the copy matches, with the same exclusions
 ```
 
-The live data comes from the project's own Pages at `/border-waits-pipeline/data/v1/`; `fallback/`
-is the saved snapshot the page shows if that fetch fails. Nothing on the homepage fetches it: the card
-is a still screenshot.
+CI runs that last check against the pipeline repository's `main` whenever a change touches `border-waits/`.
+To go back, revert the sync commit: the copy has no state of its own.
+
+The live data comes from the project's own Pages at `/border-waits-pipeline/data/v1/`. `fallback/` is a
+saved copy of one real export, limited to the three featured crossings (about 130 KB of Parquet and
+JSON): the page shows it, labelled as a snapshot, if the live files can't be loaded, and its SQL
+console runs on it. Nothing on the homepage fetches any of this: the card is a still screenshot,
+`assets/img/border-waits-800.webp` and `-1600.webp` (the top 1600×1000 of the page; retake them and the
+pipeline repository's `web/og.png` when the page's first screen changes).
+
+The budget job measures `/border-waits/` too (`budget-ci.json`). Because this build has no data route,
+CI copies `fallback/` to `/border-waits-pipeline/data/v1/` inside `_site` first, and
+`check-border-waits.mjs` fails unless the page then shows that data rather than its snapshot state.
 
 `mcp-surface/` is a playground for [mcp-surface](https://github.com/brettadams0/mcp-surface): edit a
 `tools/list` response and the published checks run on it in the browser. `checks.js` is generated
