@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>border-waits · live demo | Brett Adams</title>
-<meta name="description" content="Hourly border wait-time estimates from the Canadian and U.S. border agencies, collected and tested automatically, queryable with SQL in your browser.">
+<meta name="description" content="Border wait-time estimates from the Canadian and U.S. border agencies, collected on a schedule, tested, and queryable with SQL in your browser.">
 <meta name="theme-color" content="#0b0f14">
 <meta property="og:title" content="border-waits · live demo | Brett Adams">
-<meta property="og:description" content="Hourly border wait-time estimates from the Canadian and U.S. border agencies, collected and tested automatically, queryable with SQL in your browser.">
+<meta property="og:description" content="Border wait-time estimates from the Canadian and U.S. border agencies, collected on a schedule, tested, and queryable with SQL in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://brettadams0.github.io/border-waits/">
 <meta property="og:image" content="https://brettadams0.github.io/border-waits/og.png">
@@ -39,69 +39,105 @@
   <div class="intro">
     <h1>border-waits</h1>
     <p class="lede">How long are the waits at the Windsor–Detroit crossings, by hour and direction?</p>
-    <p class="lede">Wait-time estimates published by CBSA and U.S. CBP, collected every hour and checked by tests. Query them with SQL below.</p>
+    <p class="lede">Wait-time estimates published by CBSA and U.S. CBP, collected by a scheduled job and checked by tests.</p>
+    <p class="actions"><a class="button" href="#sql">Query the data with SQL</a></p>
     <ol class="flow" aria-label="How the data flows"><li>fetch</li><li>model</li><li>test</li><li>publish</li></ol>
-    <p class="note" id="data-note" role="status"></p>
-    <p class="live-badge" id="live-badge"></p>
-    <p class="note" id="collecting"></p>
+    <p class="live-badge" id="live-badge">Loading the latest readings…</p>
+    <p class="note state"><span id="data-note" role="status"></span><span id="collecting"></span>
+      <button type="button" id="retry" hidden>Try the live data again</button>
+      <button type="button" id="use-saved" hidden>Show the saved snapshot</button></p>
+    <noscript><p class="note">This page loads its readings with JavaScript. The data files are at <a href="https://brettadams0.github.io/border-waits-pipeline/data/v1/">brettadams0.github.io/border-waits-pipeline/data/v1/</a>.</p></noscript>
   </div>
 
-  <section class="block" aria-labelledby="now-title">
-    <h2 id="now-title">Windsor–Detroit now</h2>
-    <div class="scroll" tabindex="0" role="region" aria-label="Current waits table">
-      <table id="now-table">
-        <caption>Latest published estimate per crossing, in minutes. Times are local (Eastern).</caption>
-        <thead>
-          <tr><th scope="col" rowspan="2">Crossing</th><th scope="colgroup" colspan="2">To Canada</th><th scope="colgroup" colspan="2">To the US</th><th scope="col" rowspan="2">Source updated</th></tr>
-          <tr><th scope="col">Travellers</th><th scope="col">Commercial</th><th scope="col">Travellers</th><th scope="col">Commercial</th></tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">Ambassador Bridge</th><td class="none">—</td><td class="none">—</td><td class="none">—</td><td class="none">—</td><td>—</td></tr>
-          <tr><th scope="row">Detroit–Windsor Tunnel</th><td class="none">—</td><td class="none">—</td><td class="none">—</td><td class="none">—</td><td>—</td></tr>
-          <tr><th scope="row">Gordie Howe International Bridge</th><td class="none">—</td><td class="none">—</td><td class="none">—</td><td class="none">—</td><td>—</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <section class="block" id="now" aria-labelledby="now-title" aria-busy="true">
+    <h2 id="now-title">Windsor–Detroit: latest estimates</h2>
+    <p class="note" id="now-note">Loading…</p>
+    <div id="map" class="map" aria-hidden="true"></div>
+    <table id="now-table">
+      <caption>The estimate each agency last published for each lane, and how long ago the agency updated it. Bars run from 0 to 60 minutes or more.</caption>
+      <thead><tr><th scope="col">Crossing and direction</th><th scope="col">Travellers</th><th scope="col">Commercial</th></tr></thead>
+      <tbody><tr><th colspan="3" scope="rowgroup">Ambassador Bridge</th></tr>
+        <tr><th scope="row">To Canada <small>CBSA</small></th><td class="none"><b>…</b><i class="meter"></i><small>&nbsp;</small></td><td class="none"><b>…</b><i class="meter"></i><small>&nbsp;</small></td></tr>
+        <tr><th scope="row">To the US <small>U.S. CBP</small></th><td class="none"><b>…</b><i class="meter"></i><small>&nbsp;</small></td><td class="none"><b>…</b><i class="meter"></i><small>&nbsp;</small></td></tr></tbody>
+      <tbody><tr><th colspan="3" scope="rowgroup">Detroit–Windsor Tunnel</th></tr>
+        <tr><th scope="row">To Canada <small>CBSA</small></th><td class="none"><b>…</b><i class="meter"></i><small>&nbsp;</small></td><td class="none"><b>…</b><i class="meter"></i><small>&nbsp;</small></td></tr>
+        <tr><th scope="row">To the US <small>U.S. CBP</small></th><td class="none"><b>…</b><i class="meter"></i><small>&nbsp;</small></td><td class="none"><b>…</b><i class="meter"></i><small>&nbsp;</small></td></tr></tbody>
+      <tbody><tr><th colspan="3" scope="rowgroup">Gordie Howe International Bridge</th></tr>
+        <tr><th scope="row">To Canada <small>CBSA</small></th><td class="none"><b>…</b><i class="meter"></i><small>&nbsp;</small></td><td class="none"><b>…</b><i class="meter"></i><small>&nbsp;</small></td></tr>
+        <tr><th scope="row">To the US <small>U.S. CBP</small></th><td class="none"><b>…</b><i class="meter"></i><small>&nbsp;</small></td><td class="none"><b>…</b><i class="meter"></i><small>&nbsp;</small></td></tr></tbody>
+    </table>
   </section>
 
-  <section class="block" aria-labelledby="hour-title">
+  <section class="block" id="hours" aria-labelledby="hour-title" aria-busy="true">
     <h2 id="hour-title">Typical wait by hour</h2>
+    <p class="note" id="heat-note">Every lane at a glance: one square per hour of the day, brighter for a longer median wait. Choose a row to chart it below.</p>
+    <div id="heat" class="heat"></div>
     <div class="pickers">
       <label>Crossing <select id="pick-crossing"></select></label>
       <label>Direction <select id="pick-direction"><option value="to_canada">To Canada</option><option value="to_us">To the US</option></select></label>
       <label>Lane <select id="pick-lane"><option value="travellers">Travellers</option><option value="commercial">Commercial</option></select></label>
     </div>
     <div id="chart"></div>
+    <p class="note" id="chart-key"></p>
     <p class="note" id="chart-days"></p>
     <details>
       <summary>Data table</summary>
       <div class="scroll" tabindex="0" role="region" aria-label="Wait by hour table">
         <table id="hour-table">
-          <caption>Median and 90th percentile wait by local hour, all days.</caption>
-          <thead><tr><th scope="col">Hour</th><th scope="col">Median (min)</th><th scope="col">p90 (min)</th><th scope="col">Readings</th><th scope="col">Days</th></tr></thead>
+          <caption>Median and 90th percentile wait by local hour.</caption>
+          <thead><tr><th scope="col">Hour</th><th scope="col">Median (min)</th><th scope="col">p90 (min)</th><th scope="col">Estimates</th><th scope="col">Days with an estimate</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
     </details>
   </section>
 
+  <section class="block" id="sql" aria-labelledby="sql-title">
+    <h2 id="sql-title">Query with SQL</h2>
+    <p class="note">DuckDB runs in your browser over the published Parquet files. Pick a question or write your own; nothing is sent to a server.</p>
+    <div class="console-row">
+      <label>Question <select id="sql-preset">
+        <option value="0">Waits by hour and direction</option>
+        <option value="1">The latest reading for each lane</option>
+        <option value="2">Ambassador Bridge to Canada, by hour</option>
+        <option value="3">Most closed-lane readings in a week</option>
+        <option value="4">Monthly service standard since 2019</option>
+        <option value="5">How soon is an update fetched?</option>
+      </select></label>
+      <button type="button" id="sql-load" disabled>Load DuckDB and run it (about 7.7 MB)</button>
+    </div>
+    <p id="sql-status" role="status"></p>
+    <div id="sql-console" hidden>
+      <div class="console-row">
+        <label>Show a model's SQL <select id="sql-model"><option value="">Choose a model</option></select></label>
+      </div>
+      <label for="sql-editor">SQL <span class="hint">Ctrl or ⌘ + Enter runs it</span></label>
+      <textarea id="sql-editor" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+      <div class="console-row">
+        <button type="button" id="sql-run">Run</button>
+        <button type="button" id="sql-stop" class="quiet" disabled>Stop</button>
+        <button type="button" id="sql-check" class="quiet">Rebuild check</button>
+        <button type="button" id="sql-reset" class="quiet">Reset session</button>
+        <button type="button" id="sql-undo" class="quiet" hidden>Restore my query</button>
+      </div>
+      <p id="sql-check-result" role="status"></p>
+      <div id="sql-result"></div>
+    </div>
+  </section>
+
   <section class="block" aria-labelledby="pipe-title">
-    <h2 id="pipe-title">Pipeline</h2>
+    <h2 id="pipe-title">Pipeline health</h2>
     <div id="pipeline"></div>
+    <details>
+      <summary>Sources, schedule and warnings</summary>
+      <div id="pipeline-more"></div>
+    </details>
   </section>
 
   <section class="block" aria-labelledby="how-title">
     <h2 id="how-title">How it works</h2>
     <div class="how" id="how"></div>
   </section>
-
-  <section class="block" aria-labelledby="sql-title">
-    <h2 id="sql-title">Query with SQL</h2>
-    <button type="button" id="sql-load">Load DuckDB to run SQL (about 7.7 MB)</button>
-    <p id="sql-status" role="status"></p>
-    <div id="sql-console" hidden></div>
-  </section>
-
 
 </main>
 
