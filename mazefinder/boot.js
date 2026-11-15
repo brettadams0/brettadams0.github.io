@@ -1,5 +1,5 @@
 // A classic entry point can report a failed module download instead of leaving dead controls.
-import('./app.js?v=3').catch(() => {
+import('./app.js?v=4').catch(() => {
   document.getElementById('loading-title').textContent = 'The demo could not load';
   document.getElementById('loading-detail').textContent = 'Check your connection and try again.';
   document.getElementById('run-state').textContent = 'Offline';

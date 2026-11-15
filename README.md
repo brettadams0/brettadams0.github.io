@@ -127,7 +127,7 @@ it works item and chip. `styles.css` starts with a copy of the token block at th
 
 `mazefinder/` is the live demo of
 [MazeFinder-GeneticAlgorithm](https://github.com/brettadams0/MazeFinder-GeneticAlgorithm): its C++
-core compiled to WebAssembly. `index.html`, `styles.css`, `boot.js`, `app.js`, `engine-worker.js` and `og.png` are this repo's own
+core compiled to WebAssembly. `index.html`, `styles.css`, `boot.js`, `app.js`, `engine-worker.js`, `evolution-history.js` and `og.png` are this repo's own
 files. `engine-worker.js` embeds the fixed `open.txt` and `obstacles.txt` mazes and runs the real
 WASM engine off the main thread. `app.js` renders transferred snapshots; it does not reimplement
 the genetic algorithm. Only two files are copied from the MazeFinder repo's
@@ -155,6 +155,16 @@ replay, reduced motion, completion, presets, clipboard fallback and mobile overf
 worker/engine files at 190 KiB uncompressed, because page Resource Timing excludes worker downloads.
 
 MazeFinder engine build `f1b80d59` adds adaptive BFS-guided segment mutation to escape route
-plateaus. Frontend and engine requests use cache version 3; increment these together when changing
-the engine so returning visitors do not keep a stale WASM binary. The page labels a budget stop
+plateaus. Frontend requests use cache version 4; unchanged WASM requests retain version 3. Increment the
+engine version when replacing the binary so returning visitors do not keep a stale build. The page labels a budget stop
 separately from an optimal route, and can continue the same population up to 15,000 generations.
+
+The worker captures every strict fitness improvement inside a batch, with owned before/after route
+copies and the count of routes reaching the exit. The UI retains at most 256 checkpoints, preserving
+the starting population, first exit, largest fitness drop and newest result. Numeric fitness history
+is retained for the full generation budget. Selecting a checkpoint pauses evolution; recorded
+playback only draws that route and Return to live restores the previous playback preference. A
+late worker response updates cached live state without replacing the selected historical route.
+Reduced motion uses static comparisons. Dashed/bright segments compare route geometry, not
+parent-child mutation lineage. CI compares batch events against single-generation engine results
+and checks retention, keyboard selection, replay state, population counts and terminal behavior.
