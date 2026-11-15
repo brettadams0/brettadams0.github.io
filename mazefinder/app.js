@@ -1,6 +1,5 @@
 // UI and visualization only. engine-worker.js runs the project's actual C++/WASM engine.
 const $ = (id) => document.getElementById(id);
-const CAP = 1500;
 const PRESETS = {
   open: { size: 20, kind: 'open', seed: 1 },
   maze: { size: 20, kind: 'maze', seed: 1 },
@@ -25,7 +24,7 @@ function normalize(q) {
   if (!Number.isInteger(seed) || seed < 1 || seed > 2147483647) seed = 1;
   return { size, kind, seed };
 }
-const terminal = () => snapshot && (snapshot.fitness === snapshot.shortest || snapshot.generation >= CAP);
+const terminal = () => snapshot && (snapshot.fitness === snapshot.shortest || snapshot.generation >= snapshot.limit);
 
 function request(type, extra = {}) {
   pending = true;
@@ -64,7 +63,7 @@ function boot() {
   $('lab').setAttribute('aria-busy', 'true');
   syncControls();
   try {
-    worker = new Worker(new URL('./engine-worker.js?v=2', import.meta.url), { type: 'module' });
+    worker = new Worker(new URL('./engine-worker.js?v=3', import.meta.url), { type: 'module' });
     worker.onerror = (event) => { event.preventDefault(); fail('The simulation could not load. Check your connection and retry.'); };
     worker.onmessageerror = () => fail('The engine returned an unreadable response. Please retry.');
     worker.onmessage = ({ data }) => {
@@ -81,7 +80,7 @@ function boot() {
       updateHeat();
       phase = 'ready'; $('loading').hidden = true; $('lab').setAttribute('aria-busy', 'false');
       if (terminal()) setRunning(false);
-      else if (first) setRunning(desiredRunning && !document.hidden);
+      else if (first || data.extended) setRunning(desiredRunning && !document.hidden);
       updateStats(); syncControls(); fitCanvas(); draw(visualTime); if (first || !running) renderChart();
     };
     runId++;
@@ -102,6 +101,8 @@ function syncControls() {
   const ready = phase === 'ready';
   for (const control of document.querySelectorAll('[data-engine]')) control.disabled = !ready;
   $('run').disabled = !ready || terminal();
+  $('continue').hidden = !ready || !snapshot || snapshot.fitness === snapshot.shortest || snapshot.generation < snapshot.limit || snapshot.limit >= snapshot.maxBudget;
+  $('continue').disabled = !ready || pending;
   $('step').disabled = !ready || pending || terminal();
   $('run').innerHTML = running ? '<span class="pause-icon" aria-hidden="true"></span> Pause' : '<span class="play-icon" aria-hidden="true"></span> Run';
   $('run').setAttribute('aria-label', running ? 'Pause evolution' : 'Run evolution');
@@ -111,7 +112,7 @@ function syncControls() {
   $('new-maze').innerHTML = ['open', 'obstacles'].includes(state.kind) ? 'New run' : 'New maze';
   $('board-title').textContent = TITLES[state.kind];
   $('map-size').textContent = `${state.size} × ${state.size}`;
-  $('run-state').textContent = phase === 'error' ? 'Offline' : !ready ? 'Loading' : terminal() ? 'Complete' : running ? 'Evolving' : 'Paused';
+  $('run-state').textContent = phase === 'error' ? 'Offline' : !ready ? 'Loading' : terminal() ? (snapshot.fitness === snapshot.shortest ? 'Optimal' : 'Budget reached') : running ? 'Evolving' : 'Paused';
   $('run-state').dataset.running = String(running);
   $('setting-note').textContent = ['open', 'obstacles'].includes(state.kind) ? 'Fixed 20 × 20 layout. New run changes the population seed.' : state.size === 40 ? '40 × 40 uses loops to keep the search practical.' : 'Same seed, same maze, same evolution.';
   for (const button of document.querySelectorAll('[data-preset]')) {
@@ -234,9 +235,9 @@ function updateStatus() {
   let title, message;
   if (snapshot.fitness === snapshot.shortest) {
     title = 'The shortest way through.'; message = `Optimal route found in ${snapshot.generation} generations. Replay it or explore a new maze.`;
-  } else if (snapshot.generation >= CAP) {
+  } else if (snapshot.generation >= snapshot.limit) {
     title = snapshot.reached ? 'A route worth keeping.' : 'A tougher maze.';
-    message = snapshot.reached ? 'Generation budget reached. A solution was found, but it can still be shorter.' : 'No solution in 1,500 generations. Try a new maze or the Quick escape scenario.';
+    message = `${snapshot.limit.toLocaleString('en-US')} generation budget reached. ${snapshot.reached ? 'A valid route was found, but it is not optimal.' : 'The population has not reached the exit yet.'} ${snapshot.limit < snapshot.maxBudget ? 'Keep evolving to continue this population.' : 'Try a new maze or replay another seed.'}`;
   } else if (snapshot.reached) {
     title = 'Found it. Now, make it shorter.'; message = `First exit at generation ${snapshot.reachedAt}. ${running ? 'Now evolving' : 'Run to evolve'} a more efficient route.`;
   } else {
@@ -250,6 +251,7 @@ function updateStatus() {
 function updateStats() {
   const s = snapshot, moves = s.lengths[0] - 1;
   const remaining = Math.max(0, Math.round((s.fitness - moves) / s.stride));
+  $('s-limit').textContent = `of ${s.limit.toLocaleString('en-US')}`;
   $('s-gen').textContent = s.generation.toLocaleString('en-US');
   $('s-fit').textContent = s.fitness.toLocaleString('en-US');
   $('s-short').textContent = s.shortest;
@@ -282,6 +284,10 @@ $('run').addEventListener('click', () => { setRunning(!running); desiredRunning 
 $('step').addEventListener('click', () => {
   setRunning(false); desiredRunning = false;
   if (!pending && phase === 'ready' && !terminal()) { request('step', { count: 1 }); syncControls(); }
+});
+$('continue').addEventListener('click', () => {
+  if (phase !== 'ready' || pending || !snapshot || snapshot.generation < snapshot.limit || snapshot.limit >= snapshot.maxBudget) return;
+  desiredRunning = true; request('extend'); syncControls();
 });
 $('reset').addEventListener('click', () => restart(state));
 $('new-maze').addEventListener('click', () => restart({ ...state, seed: 1 + Math.floor(Math.random() * 2147483646) }));

@@ -15,9 +15,9 @@
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://brettadams0.github.io/mazefinder/">
 <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 <link rel="stylesheet" href="/assets/css/demo-shell.css">
-<script src="boot.js?v=2" defer></script>
+<script src="boot.js?v=3" defer></script>
 </head>
 <body>
 
@@ -75,9 +75,9 @@
         </div>
       </div>
       <div class="insights" role="group" aria-label="Run settings and results">
-        <div class="status-card"><p class="eyebrow">LIVE EVOLUTION</p><h2 id="status-title">Getting ready</h2><p id="goal" role="status">Your first maze is on its way.</p></div>
+        <div class="status-card"><p class="eyebrow">LIVE EVOLUTION</p><h2 id="status-title">Getting ready</h2><p id="goal" role="status">Your first maze is on its way.</p><button id="continue" data-engine disabled hidden>Keep evolving</button></div>
         <div class="metrics">
-          <div><span>Generation</span><strong id="s-gen">0</strong><small>of 1,500</small></div>
+          <div><span>Generation</span><strong id="s-gen">0</strong><small id="s-limit">of 1,500</small></div>
           <div><span id="distance-label">Distance to exit</span><strong id="s-distance">—</strong><small id="distance-unit">steps remaining</small></div>
           <div><span>Shortest possible</span><strong id="s-short">—</strong><small>steps · BFS baseline</small></div>
         </div>
@@ -105,10 +105,10 @@
     <div class="section-heading"><h2 id="how-title">Selection in action.</h2><a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">Explore the C++ source</a></div>
     <div class="how-grid">
       <div><span class="how-number">01</span><h3>Try a hundred routes</h3><p>Each genome is a sequence of moves. Walls block a move; the rest of the route keeps going.</p></div>
-      <div><span class="how-number">02</span><h3>Keep what works</h3><p>The better half survive. Crossover and mutation produce new routes for the next generation.</p></div>
+      <div><span class="how-number">02</span><h3>Keep what works</h3><p>The better half survive. Crossover and mutation produce new routes. When progress stalls, guided mutations explore larger changes.</p></div>
       <div><span class="how-number">03</span><h3>Find it. Then refine it.</h3><p>Reaching the goal is the first milestone. Evolution continues until the route is optimal or the generation budget runs out.</p></div>
     </div>
-    <details class="engine-details"><summary>Under the hood <span>C++ · WebAssembly · Web Worker · seeded RNG</span></summary><p>The actual C++ engine runs in a Web Worker so the interface stays responsive. The native CLI evaluates fitness with a thread pool; this browser build uses one worker.</p><p>Fitness = distance remaining × (genome length + 1) + moves used. Distance is measured by breadth-first search (BFS), so this is a guided genetic search. The dashed overlay is the BFS shortest path, not an evolved route. A lower score wins.</p><p>The population has 100 genomes, each at least 100 moves or 1.5× the shortest path. Replay links save maze settings and seed, starting again at generation zero. 40 × 40 uses loops to keep searches practical; a solution within the budget is not guaranteed.</p></details>
+    <details class="engine-details"><summary>Under the hood <span>C++ · WebAssembly · Web Worker · seeded RNG</span></summary><p>The actual C++ engine runs in a Web Worker so the interface stays responsive. The native CLI evaluates fitness with a thread pool; this browser build uses one worker.</p><p>Fitness = distance remaining × (genome length + 1) + moves used. Distance is measured by breadth-first search (BFS). The BFS distance field guides fitness and some mutations: this is a hybrid genetic search. Guided mutations rewrite route segments toward the goal and expand after a plateau. The dashed overlay is the BFS shortest path, not an evolved route. A lower score wins.</p><p>The population has 100 genomes, each at least 100 moves or 1.5× the shortest path. Replay links save maze settings and seed, starting again at generation zero. 40 × 40 uses loops to keep searches practical; a solution within the budget is not guaranteed. Keep evolving extends a run in 1,500-generation blocks, up to 15,000.</p></details>
   </section>
   <noscript><p class="noscript-note">Enable JavaScript to watch the simulation. You can also <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">explore the C++ source and run it locally</a>.</p><style>.loading{display:none}</style></noscript>
 </main>
