@@ -119,7 +119,8 @@ function cell(v, type) {
   if (v === null || v === undefined) return '<td class="none">null</td>';
   if (/^Timestamp/.test(type)) v = new Date(Number(v)).toISOString().replace('T', ' ').replace('.000Z', 'Z');
   else if (/^Date/.test(type)) v = new Date(Number(v)).toISOString().slice(0, 10);
-  const s = String(v);  // a bigint prints in full: no rounding through Number
+  // a double prints without its binary noise (8.000000000000007 is 8); a bigint prints in full, never through Number
+  const s = String(typeof v === 'number' && !Number.isInteger(v) ? parseFloat(v.toPrecision(12)) : v);
   return `<td${typeof v === 'number' || typeof v === 'bigint' ? ' class="num"' : ''}>${esc(s.length > 300 ? `${s.slice(0, 300)}…` : s)}</td>`;
 }
 

@@ -262,7 +262,7 @@ h2 { margin: 0 0 10px; font: 600 var(--fs-md)/1.3 var(--mono); }
 .state { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; min-height: 1.5em; }
 .state button { min-height: 36px; padding: 4px 12px; }
 .state [role="status"] { margin: 0; min-height: 0; color: inherit; }
-.state [role="status"]:empty { display: none; }
+.state span:empty { display: none; }
 
 section.block { margin: 22px 0; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); scroll-margin-top: 12px; }
 .scroll { overflow-x: auto; max-width: 100%; }
@@ -370,6 +370,10 @@ textarea { display: block; width: 100%; min-height: 11em; margin-top: 4px; paddi
 .console-row select { width: 100%; min-width: 0; }
 [role="status"] { margin: 8px 0; color: var(--soft); font-size: var(--fs-sm); min-height: 1.4em; overflow-wrap: anywhere; }
 [role="status"].err { color: var(--red); }
+/* Results scroll inside their own box, both ways, under a header that stays put. */
+#sql-result .scroll { max-height: 30rem; overflow: auto; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+#sql-result caption { padding: 8px; }
+#sql-result thead th { position: sticky; top: 0; background: var(--surface-2); }
 #sql-result td, #sql-result th { max-width: 28rem; overflow-wrap: anywhere; }
 #sql-result td, #sql-result th { white-space: nowrap; }
 #sql-result td:not(.num):not(.none) { white-space: normal; min-width: 8ch; }

@@ -85,7 +85,7 @@ function renderNow() {
   const latest = new Map(s.latest.map((r) => [`${r.crossing_id}|${r.direction}|${r.lane}`, r]));
   $('now-note').textContent = !s.latest.length ? 'No readings have been published yet.'
     : live ? `As of the last check at ${clock(toDate(seen))} (${span(age(seen))} ago). Each estimate says how long ago its agency updated it.`
-    : `A saved snapshot: what the agencies were publishing at ${clock(toDate(seen))}. Not current.`;
+    : `A saved snapshot: what the agencies were publishing at ${clock(toDate(seen)).replace(/\.$/, '')}. Not current.`;  // en-CA times end in "p.m."
   renderMap(latest);
   const t = $('now-table');
   [...t.tBodies].forEach((b) => b.remove());
