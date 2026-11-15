@@ -75,8 +75,11 @@ jobs:
           cp -r _site/border-waits/fallback/. _site/border-waits-pipeline/data/v1/
           node .github/scripts/check-border-waits.mjs _site
 
+      - name: Check MazeFinder interactions
+        run: node .github/scripts/check-mazefinder.mjs _site
+
       - name: Check the size budget
-        run: node .github/scripts/measure.mjs --site _site --path / --path /mcp/ --path /404.html --path /mcp-surface/ --path /border-waits/ --budget .github/scripts/budget-ci.json --runs 1
+        run: node .github/scripts/measure.mjs --site _site --path / --path /mcp/ --path /404.html --path /mcp-surface/ --path /mazefinder/ --path /border-waits/ --budget .github/scripts/budget-ci.json --runs 1
 
   # border-waits/ is a verbatim copy of border-waits-pipeline's web/. A change to the copy has to match
   # what is on that repository's main branch (so the page ships after the pipeline that feeds it, and
