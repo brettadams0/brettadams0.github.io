@@ -111,8 +111,10 @@ it works item and chip. `styles.css` starts with a copy of the token block at th
 
 `mazefinder/` is the live demo of
 [MazeFinder-GeneticAlgorithm](https://github.com/brettadams0/MazeFinder-GeneticAlgorithm): its C++
-core compiled to WebAssembly. `index.html`, `styles.css`, `app.js` and `og.png` are this repo's own
-files. `app.js` embeds that repo's `mazes/*.txt`. Only two files are copied from the MazeFinder repo's
+core compiled to WebAssembly. `index.html`, `styles.css`, `boot.js`, `app.js`, `engine-worker.js` and `og.png` are this repo's own
+files. `engine-worker.js` embeds the fixed `open.txt` and `obstacles.txt` mazes and runs the real
+WASM engine off the main thread. `app.js` renders transferred snapshots; it does not reimplement
+the genetic algorithm. Only two files are copied from the MazeFinder repo's
 `web/` build output, each by name, after `make wasm` and `make determinism` pass there:
 
 ```sh
@@ -122,3 +124,16 @@ cp ../MazeFinder-GeneticAlgorithm/web/mazefinder.wasm mazefinder/wasm/mazefinder
 
 Edit the algorithm there, not here. `styles.css` starts with a copy of the token block at the top of
 `assets/css/site.css`; change both together.
+
+The MazeFinder browser regression check runs against the built site in CI:
+
+```sh
+node .github/scripts/check-mazefinder.mjs _site
+# Or serve this checkout directly for demo-only checks:
+node .github/scripts/check-mazefinder.mjs .
+```
+
+It uses the globally installed Playwright from the budget job. Set `CHROMIUM_PATH` to use a local
+Chromium executable. Coverage includes loading failure/retry, rapid playback toggles, deterministic
+replay, reduced motion, completion, presets, clipboard fallback and mobile overflow. It also caps
+worker/engine files at 190 KiB uncompressed, because page Resource Timing excludes worker downloads.

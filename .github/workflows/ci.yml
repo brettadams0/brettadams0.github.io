@@ -65,5 +65,8 @@ jobs:
           npm install -g playwright@1.56.1
           playwright install --with-deps chromium
 
+      - name: Check MazeFinder interactions
+        run: node .github/scripts/check-mazefinder.mjs _site
+
       - name: Check the size budget
-        run: node .github/scripts/measure.mjs --site _site --path / --path /mcp/ --path /404.html --path /mcp-surface/ --budget .github/scripts/budget-ci.json --runs 1
+        run: node .github/scripts/measure.mjs --site _site --path / --path /mcp/ --path /404.html --path /mcp-surface/ --path /mazefinder/ --budget .github/scripts/budget-ci.json --runs 1

@@ -15,10 +15,9 @@
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://brettadams0.github.io/mazefinder/">
 <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=2">
 <link rel="stylesheet" href="/assets/css/demo-shell.css">
-<link rel="modulepreload" href="wasm/mazefinder.js">
-<script type="module" src="app.js"></script>
+<script src="boot.js?v=2" defer></script>
 </head>
 <body>
 
@@ -39,68 +38,79 @@
 
 <main id="main" class="wrap" tabindex="-1">
   <section class="intro">
-    <h1>MazeFinder</h1>
-    <p class="lede">A genetic algorithm evolves a route from the top-left corner to the bottom-right of a walled maze. It's MazeFinder's C++ code, compiled to WebAssembly.</p>
+    <div><p class="eyebrow">EVOLUTION, IN MOTION</p><h1>One maze. <span>A hundred possibilities.</span></h1>
+    <p class="lede">Watch 100 competing routes evolve, find the exit, and get smarter with every generation.</p></div>
+    <p class="engine-badge"><span aria-hidden="true">◆</span> C++ → WebAssembly <small>Real algorithm. Running in your browser.</small></p>
   </section>
 
-  <div class="layout">
-    <div class="board">
-      <canvas class="maze" id="maze" width="400" height="400" role="img" aria-label="The maze, every walked route and the best one"></canvas>
-      <p class="goal-note" id="goal" role="status"></p>
-      <p class="legend">Faint lines are the 100 routes in this generation. The glow shows where they are searching; the amber line is the best so far.</p>
-    </div>
-    <div>
-      <div class="controls">
-        <button type="button" class="primary" id="run">Run</button>
-        <button type="button" id="step">Step</button>
-        <button type="button" id="reset">Replay</button>
-        <button type="button" id="new-maze">New maze</button>
-      </div>
-      <div class="controls">
-        <label>Size <select id="size-pick">
-          <option value="20">20 × 20</option>
-          <option value="30">30 × 30</option>
-          <option value="40">40 × 40</option>
-        </select></label>
-        <label>Maze <select id="kind-pick">
-          <option value="maze">One route</option>
-          <option value="loops">With loops</option>
-          <option value="obstacles">Six wall bars (20 × 20)</option>
-          <option value="open">Open field (20 × 20)</option>
-        </select></label>
-        <label for="speed">Generations per frame <input type="range" id="speed" min="1" max="20" value="1"></label>
-        <label class="check"><input type="checkbox" id="show-optimal"> Show the optimal route</label>
-      </div>
-      <dl class="stats">
-        <dt>Generation</dt><dd id="s-gen">0</dd>
-        <dt>Best fitness</dt><dd id="s-fit">—</dd>
-        <dt>Optimal route</dt><dd id="s-short">—</dd>
-        <dt>Best route</dt><dd id="s-best">—</dd>
-        <dt>Seed</dt><dd id="s-seed">—</dd>
-      </dl>
-      <p class="share">This run's link: <a id="share" href="./">—</a></p>
-      <svg class="history" id="history" viewBox="0 0 300 100" role="img" aria-label="Best fitness per generation"></svg>
-      <p class="chart-caption">Best fitness per generation (lower is better).</p>
-    </div>
+  <div class="scenarios" role="group" aria-label="Choose a scenario">
+    <button class="scenario" data-preset="open" data-engine disabled aria-pressed="false"><span class="scenario-icon" aria-hidden="true">↗</span><span><strong>01 / Quick escape</strong><small>An open field. Watch a route emerge.</small></span></button>
+    <button class="scenario" data-preset="maze" data-engine disabled aria-pressed="true"><span class="scenario-icon" aria-hidden="true">⌁</span><span><strong>02 / Find the way</strong><small>Tight corridors. One way through.</small></span></button>
+    <button class="scenario" data-preset="loops" data-engine disabled aria-pressed="false"><span class="scenario-icon" aria-hidden="true">⋈</span><span><strong>03 / Take the long way</strong><small>A bigger maze. Many possibilities.</small></span></button>
   </div>
 
-  <section class="demo-how" aria-labelledby="how-title">
-    <h2 id="how-title">How it works</h2>
-    <ul>
-      <li>Mazes are generated in the C++ core from a size and a seed, so a link replays the same maze and the same run. 40 × 40 comes with loops only: one-route mazes that size can need over 400 moves.</li>
-      <li>Each genome is a list of moves. A walk starts top-left; a move into a wall is blocked and the walk goes on, stopping at the goal.</li>
-      <li>Fitness is the breadth-first-search distance left to the goal, plus the moves used, so a route that arrives keeps getting shorter.</li>
-      <li>Each generation keeps the better half of 100 genomes and refills it by crossover and one mutation: a replaced, deleted or inserted move.</li>
-      <li>One seeded generator drives it, so a seed replays the same run here and in the native build.</li>
-      <li>Thread pool: native build only. The browser scores fitness on one thread.</li>
-    </ul>
-    <ul class="chips" role="list"><li>20×20 to 40×40 mazes</li><li>C++ → WebAssembly</li><li>Seeded, reproducible</li></ul>
-    <p class="demo-source">
-      <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">Source</a>
-    </p>
+  <section class="lab" aria-label="Interactive maze simulation" aria-busy="true" id="lab">
+    <div class="toolbar">
+      <div class="transport" role="group" aria-label="Playback">
+        <button type="button" class="primary" id="run" data-engine disabled><span class="play-icon" aria-hidden="true"></span> Run</button>
+        <button type="button" id="step" data-engine disabled>Step</button>
+        <button type="button" id="reset" data-engine disabled>Replay</button>
+        <button type="button" id="new-maze" data-engine disabled>New maze</button>
+      </div>
+      <label class="speed-control" for="speed">Speed <input type="range" id="speed" min="1" max="20" value="1" data-engine disabled><output id="speed-value" for="speed">1×</output></label>
+    </div>
+    <div class="layout">
+      <div class="board">
+        <div class="board-heading"><h2 id="board-title">Find the way</h2><span class="run-state" id="run-state">Loading</span></div>
+        <div class="canvas-wrap">
+          <canvas class="maze" id="maze" width="600" height="600" role="img" aria-label="Maze visualization" aria-describedby="maze-description"></canvas>
+          <div class="loading" id="loading"><span class="loading-mark" aria-hidden="true">⌁</span><strong id="loading-title">Waking up the population…</strong><p id="loading-detail">Loading the C++ simulation engine.</p><button id="retry" hidden>Try again</button></div>
+        </div>
+        <p id="maze-description" class="sr-only">Routes start at S in the top-left and search for G in the bottom-right. Amber is the best route. Moving dots trace the current population's routes.</p>
+        <div class="legend" aria-label="Map legend"><span><i class="key best"></i>Best route</span><span><i class="key population"></i>Population</span><span><i class="key optimal"></i>Optimal (dashed)</span><span class="map-size" id="map-size">20 × 20</span></div>
+        <div class="layers" role="group" aria-label="Visualization layers">
+          <label><input type="checkbox" id="show-heat" checked data-engine disabled> Search heat</label>
+          <label><input type="checkbox" id="show-population" checked data-engine disabled> Population</label>
+          <label><input type="checkbox" id="show-optimal" data-engine disabled> Optimal route</label>
+        </div>
+      </div>
+      <div class="insights" role="group" aria-label="Run settings and results">
+        <div class="status-card"><p class="eyebrow">LIVE EVOLUTION</p><h2 id="status-title">Getting ready</h2><p id="goal" role="status">Your first maze is on its way.</p></div>
+        <div class="metrics">
+          <div><span>Generation</span><strong id="s-gen">0</strong><small>of 1,500</small></div>
+          <div><span id="distance-label">Distance to exit</span><strong id="s-distance">—</strong><small id="distance-unit">steps remaining</small></div>
+          <div><span>Shortest possible</span><strong id="s-short">—</strong><small>steps · BFS baseline</small></div>
+        </div>
+        <div class="chart-panel">
+          <div class="section-heading"><h3>Learning curve</h3><span>Lower is better</span></div>
+          <svg class="history" id="history" viewBox="0 0 360 132" role="img" aria-labelledby="chart-title chart-description"><title id="chart-title">Best fitness by generation</title><desc id="chart-description">Run or Step to build the learning curve.</desc><g id="chart-content"></g></svg>
+          <p class="chart-note" id="chart-note">Every generation keeps its strongest routes.</p>
+        </div>
+        <div class="settings">
+          <div class="section-heading"><h3>Make it yours</h3><span id="s-population">100 routes</span></div>
+          <div class="settings-grid">
+            <label>Grid size<select id="size-pick" data-engine disabled><option value="20">20 × 20</option><option value="30">30 × 30</option><option value="40">40 × 40</option></select></label>
+            <label>Layout<select id="kind-pick" data-engine disabled><option value="maze">One route</option><option value="loops">With loops</option><option value="obstacles">Wall bars</option><option value="open">Open field</option></select></label>
+          </div>
+          <p class="setting-note" id="setting-note">Same seed, same maze, same evolution.</p>
+          <dl class="technical-stats"><dt>Seed</dt><dd id="s-seed">—</dd><dt>Best fitness</dt><dd id="s-fit">—</dd><dt>Genome length</dt><dd id="s-genome">—</dd></dl>
+          <div class="share-row"><button id="copy" data-engine disabled>Copy replay link</button><a id="share" href="./">Open replay</a></div>
+          <p id="copy-status" class="copy-status" role="status"></p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <noscript><p>The genetic algorithm runs in WebAssembly; with JavaScript disabled there is nothing to show here.</p></noscript>
+  <section class="explanation" aria-labelledby="how-title">
+    <div class="section-heading"><h2 id="how-title">Selection in action.</h2><a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">Explore the C++ source</a></div>
+    <div class="how-grid">
+      <div><span class="how-number">01</span><h3>Try a hundred routes</h3><p>Each genome is a sequence of moves. Walls block a move; the rest of the route keeps going.</p></div>
+      <div><span class="how-number">02</span><h3>Keep what works</h3><p>The better half survive. Crossover and mutation produce new routes for the next generation.</p></div>
+      <div><span class="how-number">03</span><h3>Find it. Then refine it.</h3><p>Reaching the goal is the first milestone. Evolution continues until the route is optimal or the generation budget runs out.</p></div>
+    </div>
+    <details class="engine-details"><summary>Under the hood <span>C++ · WebAssembly · Web Worker · seeded RNG</span></summary><p>The actual C++ engine runs in a Web Worker so the interface stays responsive. The native CLI evaluates fitness with a thread pool; this browser build uses one worker.</p><p>Fitness = distance remaining × (genome length + 1) + moves used. Distance is measured by breadth-first search (BFS), so this is a guided genetic search. The dashed overlay is the BFS shortest path, not an evolved route. A lower score wins.</p><p>The population has 100 genomes, each at least 100 moves or 1.5× the shortest path. Replay links save maze settings and seed, starting again at generation zero. 40 × 40 uses loops to keep searches practical; a solution within the budget is not guaranteed.</p></details>
+  </section>
+  <noscript><p class="noscript-note">Enable JavaScript to watch the simulation. You can also <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">explore the C++ source and run it locally</a>.</p><style>.loading{display:none}</style></noscript>
 </main>
 
 <footer class="demo-foot">
