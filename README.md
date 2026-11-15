@@ -153,3 +153,8 @@ It uses the globally installed Playwright from the budget job. Set `CHROMIUM_PAT
 Chromium executable. Coverage includes loading failure/retry, rapid playback toggles, deterministic
 replay, reduced motion, completion, presets, clipboard fallback and mobile overflow. It also caps
 worker/engine files at 190 KiB uncompressed, because page Resource Timing excludes worker downloads.
+
+MazeFinder engine build `f1b80d59` adds adaptive BFS-guided segment mutation to escape route
+plateaus. Frontend and engine requests use cache version 3; increment these together when changing
+the engine so returning visitors do not keep a stale WASM binary. The page labels a budget stop
+separately from an optimal route, and can continue the same population up to 15,000 generations.

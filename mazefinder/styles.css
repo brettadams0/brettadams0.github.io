@@ -225,6 +225,7 @@ input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--teal); m
 .status-card .eyebrow { margin-bottom: 8px; }
 .status-card h2 { font-size: 21px; letter-spacing: -.025em; font-weight: 500; }
 #goal { color: var(--muted); font-size: 13px; min-height: 3.1em; margin: 6px 0 18px; }
+#continue { margin-bottom: 16px; border-color: var(--amber); color: var(--amber); }
 .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; border-top: 1px solid var(--border-strong); border-bottom: 1px solid var(--border-strong); padding: 16px 0; }
 .metrics > div { min-width: 0; }
 .metrics span, .metrics small { display: block; color: var(--muted); font-size: 11px; }

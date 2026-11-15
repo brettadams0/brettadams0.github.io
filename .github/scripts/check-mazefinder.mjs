@@ -70,15 +70,15 @@ try {
   assert(await page.locator('#size-pick').isDisabled());
   assert.equal(await page.locator('#new-maze').textContent(), 'New run');
   await page.locator('#speed').fill('20'); await page.locator('#run').click();
-  await page.waitForFunction(() => document.querySelector('#run-state').textContent === 'Complete', { timeout: 15000 });
+  await page.waitForFunction(() => document.querySelector('#run-state').textContent === 'Optimal', { timeout: 15000 });
   assert(await page.locator('#run').isDisabled()); assert(await page.locator('#step').isDisabled());
   assert.equal(await page.locator('#s-distance').textContent(), await page.locator('#s-short').textContent());
-  // This real maze reaches the exit but is still non-optimal at the generation budget.
-  await page.goto(`${origin}/mazefinder/?size=30&kind=maze&seed=3`); await ready(page);
+  // Seed 18 plateaued at 94 moves vs optimal 90 even after 10,000 generations.
+  await page.goto(`${origin}/mazefinder/?size=40&kind=loops&seed=18`); await ready(page);
   await page.locator('#speed').fill('20'); await page.locator('#run').click();
-  await page.waitForFunction(() => document.querySelector('#s-gen').textContent === '1,500', { timeout: 20000 });
-  assert(await page.locator('#run').isDisabled()); assert(await page.locator('#step').isDisabled());
-  assert.match(await page.locator('#goal').textContent(), /Generation budget reached/);
+  await page.waitForFunction(() => document.querySelector('#run-state').textContent === 'Optimal', null, { timeout: 20000 });
+  assert.equal(await page.locator('#s-distance').textContent(), '90');
+  assert(await page.locator('#continue').isHidden());
   const replayLink = await page.locator('#share').getAttribute('href');
   await page.goto(origin + replayLink); await ready(page); assert.equal(await gen(page), 0);
   // Clipboard denial must produce useful fallback feedback, not an unhandled rejection.
@@ -88,13 +88,37 @@ try {
   assert.deepEqual(errors, []);
   await context.close();
 
+  // Exercise budget exhaustion with the real engine and a deliberately small test
+  // budget; do not depend on a particular seed remaining unsolved after improvements.
+  const capped = await browser.newContext({ reducedMotion: 'reduce' });
+  await capped.route('**/engine-worker.js*', async (route) => {
+    const response = await route.fetch();
+    await route.fulfill({ response, body: (await response.text()).replace('const INITIAL_BUDGET = 1500;', 'const INITIAL_BUDGET = 5;') });
+  });
+  const limited = await capped.newPage();
+  await limited.goto(`${origin}/mazefinder/?size=40&kind=loops&seed=18`); await ready(limited);
+  await limited.locator('#speed').fill('20'); await limited.locator('#run').click();
+  await limited.waitForFunction(() => document.querySelector('#run-state').textContent === 'Budget reached');
+  assert.equal(await gen(limited), 5);
+  assert(await limited.locator('#run').isDisabled());
+  assert.match(await limited.locator('#goal').textContent(), /5 generation budget reached/);
+  const seedBefore = await limited.locator('#s-seed').textContent();
+  await limited.locator('#continue').click();
+  await limited.waitForFunction(() => document.querySelector('#s-gen').textContent === '10');
+  assert.equal(await limited.locator('#s-seed').textContent(), seedBefore);
+  assert.equal(await limited.locator('#s-limit').textContent(), 'of 10');
+  await limited.locator('#reset').click(); await ready(limited);
+  assert.equal(await gen(limited), 0);
+  assert.equal(await limited.locator('#s-limit').textContent(), 'of 5');
+  await capped.close();
+
   const failed = await browser.newContext({ reducedMotion: 'reduce' });
-  await failed.route('**/*.wasm', (route) => route.abort('timedout'));
+  await failed.route('**/*.wasm*', (route) => route.abort('timedout'));
   const broken = await failed.newPage();
   await broken.goto(`${origin}/mazefinder/`);
   await broken.locator('#retry').waitFor({ state: 'visible' });
   assert(await broken.locator('#run').isDisabled());
-  await failed.unroute('**/*.wasm');
+  await failed.unroute('**/*.wasm*');
   await broken.locator('#retry').click(); await ready(broken);
   assert.equal(await gen(broken), 0);
   await failed.close();
