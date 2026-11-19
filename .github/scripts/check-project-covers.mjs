@@ -33,6 +33,10 @@ const browser = await chromium.launch();
 try {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
   const base = 'http://127.0.0.1:' + server.address().port;
+  page.on('pageerror', error => console.error('BROWSER ERROR:', error.message));
+  page.on('requestfailed', request => {
+    if (request.url().includes('/assets/img/')) console.error('FAILED IMAGE:', request.url(), request.failure());
+  });
   const signalRequests = [];
   page.on('request', r => {
     if (r.url().includes('signal-lab-800.webp') || r.url().includes('signal-lab-overview.webp'))
@@ -48,7 +52,7 @@ try {
   await page.waitForFunction(() => {
     const image = document.querySelector('img[data-real-cover]');
     return !!image && image.complete && image.naturalWidth >= 800;
-  }, { timeout: 10000 });
+  }, undefined, { timeout: 12000 });
   assert(signalRequests.length >= 1, 'Real Signal Lab screenshot was not requested after scroll');
 
   const sift = page.locator('[data-project="sift"] img');
@@ -57,7 +61,7 @@ try {
     const image = document.querySelector('[data-project="sift"] img');
     return !!image && image.complete && image.naturalWidth >= 800 &&
       image.currentSrc.includes('sift-grade-');
-  }, { timeout: 10000 });
+  }, undefined, { timeout: 12000 });
   console.log('PASS authentic Signal Lab screenshot loaded on scroll; genuine Sift A/B cover decoded');
 } finally {
   await browser.close();
