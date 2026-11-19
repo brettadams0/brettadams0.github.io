@@ -336,20 +336,37 @@ layout: default
   'use strict';
   var img = document.querySelector('img[data-real-cover]');
   if (!img) return;
+  var card = img.closest('.project-shot') || img;
+  var loaded = false;
+  var observer = null;
+
   function show() {
+    if (loaded) return;
+    loaded = true;
     img.srcset = img.getAttribute('data-srcset');
     img.src = img.getAttribute('data-src');
+    document.removeEventListener('scroll', check, true);
+    window.removeEventListener('resize', check);
+    if (observer) observer.disconnect();
   }
-  if (!('IntersectionObserver' in window)) { show(); return; }
-  var observer = new IntersectionObserver(function (entries) {
-    if (entries[0].isIntersecting) {
-      show();
-      observer.disconnect();
-    }
-  }, { threshold: 0.01 });
-  // The image has no src until it is visible, so its own intrinsic box may
-  // be zero. Observe the fixed-aspect-ratio linked container instead.
-  observer.observe(img.closest('.project-shot') || img);
+
+  function check() {
+    var rect = card.getBoundingClientRect();
+    if (rect.width > 0 && rect.height > 0 &&
+        rect.top < window.innerHeight && rect.bottom > 0) show();
+  }
+
+  // IntersectionObserver is primary; scroll/resize is a fail-safe for
+  // script-deferred images with no intrinsic image dimensions yet.
+  document.addEventListener('scroll', check, { capture: true, passive: true });
+  window.addEventListener('resize', check, { passive: true });
+  if ('IntersectionObserver' in window) {
+    observer = new IntersectionObserver(function (entries) {
+      if (entries.some(function (entry) { return entry.isIntersecting; })) show();
+    }, { threshold: 0.01 });
+    observer.observe(card);
+  }
+  check();
 })();
 </script>
 <script>
