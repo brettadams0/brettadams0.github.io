@@ -347,7 +347,9 @@ layout: default
       observer.disconnect();
     }
   }, { threshold: 0.01 });
-  observer.observe(img);
+  // The image has no src until it is visible, so its own intrinsic box may
+  // be zero. Observe the fixed-aspect-ratio linked container instead.
+  observer.observe(img.closest('.project-shot') || img);
 })();
 </script>
 <script>
