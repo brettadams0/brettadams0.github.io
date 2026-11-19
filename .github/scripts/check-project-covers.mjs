@@ -44,7 +44,7 @@ try {
   assert.equal(await signal.getAttribute('src'), null, 'Lower-page screenshot was eagerly fetched');
   assert.equal(signalRequests.length, 0, 'Screenshot requested before its card entered view');
 
-  await signal.scrollIntoViewIfNeeded();
+  await page.locator('[data-project="signal-lab"] .project-shot').scrollIntoViewIfNeeded();
   await page.waitForFunction(() => {
     const image = document.querySelector('img[data-real-cover]');
     return !!image && image.complete && image.naturalWidth >= 800;
