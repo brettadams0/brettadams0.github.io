@@ -49,10 +49,24 @@ try {
   assert.equal(signalRequests.length, 0, 'Screenshot requested before its card entered view');
 
   await page.locator('[data-project="signal-lab"] .project-shot').scrollIntoViewIfNeeded();
-  await page.waitForFunction(() => {
-    const image = document.querySelector('img[data-real-cover]');
-    return !!image && image.complete && image.naturalWidth >= 800;
-  }, undefined, { timeout: 12000 });
+  try {
+    await page.waitForFunction(() => {
+      const image = document.querySelector('img[data-real-cover]');
+      return !!image && image.complete && image.naturalWidth >= 800;
+    }, undefined, { timeout: 12000 });
+  } catch (error) {
+    const state = await signal.evaluate(image => ({
+      src: image.getAttribute('src'),
+      srcset: image.getAttribute('srcset'),
+      dataSrc: image.getAttribute('data-src'),
+      complete: image.complete,
+      naturalWidth: image.naturalWidth,
+      rect: image.getBoundingClientRect().toJSON(),
+      cardRect: image.closest('.project-shot').getBoundingClientRect().toJSON(),
+    }));
+    throw new Error('Screenshot did not decode: ' + JSON.stringify(state) +
+      '; network requests=' + JSON.stringify(signalRequests) + '; ' + String(error));
+  }
   assert(signalRequests.length >= 1, 'Real Signal Lab screenshot was not requested after scroll');
 
   const sift = page.locator('[data-project="sift"] img');
