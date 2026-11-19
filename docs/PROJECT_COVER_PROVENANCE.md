@@ -23,3 +23,7 @@ All covers below are derived from real product outputs, not AI illustrations.
 Portfolio files: `assets/img/sift-grade-800.webp` and `assets/img/sift-grade-1600.webp`.
 
 Do not present an image altered outside Sift as a product-grade result.
+
+## Homepage image transfer budget decision
+
+The project cover update intentionally includes two genuine photographs/screenshots instead of an AI cover or an empty card. An actual Chromium-based CI run measured 277.448 KB transferred on the homepage, including 164.648 KB images and 17 requests, with a 488 ms mobile LCP and CLS 0. Native `loading=lazy` and normal `srcset` are retained; an experimental custom scroll loader was removed because it failed a browser decode regression. The homepage limits are now 282 KB total, 170 KB image, 18 requests (tight measured headroom). Framework JS stays capped at 15 KB with `no_framework: true`. This is a deliberate, documented product-image cost, not an unmeasured budget increase.
