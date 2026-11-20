@@ -78,4 +78,6 @@ jobs:
           git add mcp-surface/checks.js assets/img/mcp-surface-audit-*.webp docs/screenshots/mcp-surface-audit.png docs/MCP_COVER_EVIDENCE.md
           git diff --cached --check
           git commit -m "feat: bundle fixed MCP schema checks and capture actual playground cover"
+          git fetch origin feature/mcp-flagship-showcase
+          git rebase origin/feature/mcp-flagship-showcase
           git push origin HEAD:feature/mcp-flagship-showcase
