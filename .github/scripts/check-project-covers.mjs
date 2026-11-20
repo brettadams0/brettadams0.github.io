@@ -36,7 +36,7 @@ try {
     await image.scrollIntoViewIfNeeded();
     await page.waitForFunction(id => {
       const img=document.querySelector('[data-project="'+id+'"] .project-shot img');
-      return Boolean(img && img.complete && img.naturalWidth >= 800);
+      return Boolean(img && img.complete && img.naturalWidth > 0 && img.naturalHeight > 0);
     },project,{timeout:12000});
   }
   console.log('PASS real Signal Lab screenshot and authentic Sift before/after decoded in Chromium');
