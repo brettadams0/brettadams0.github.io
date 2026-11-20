@@ -166,50 +166,24 @@ layout: default
 
       <article class="project" data-project="mcp-surface">
         <a class="project-shot" href="{{ '/mcp-surface/' | relative_url }}" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/mcp-surface-800.webp' | relative_url }}"
-               srcset="{{ '/assets/img/mcp-surface-800.webp' | relative_url }} 800w, {{ '/assets/img/mcp-surface-1600.webp' | relative_url }} 1600w"
-               sizes="(min-width: 1200px) 524px, (min-width: 861px) 45vw, calc(100vw - 70px)"
+          <img src="{{ '/assets/img/mcp-surface-audit-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/mcp-surface-audit-800.webp' | relative_url }} 800w, {{ '/assets/img/mcp-surface-audit-1600.webp' | relative_url }} 1600w"
+               sizes="(min-width: 1200px) 650px, (min-width: 861px) 56vw, calc(100vw - 70px)"
                alt="" width="1600" height="1000" loading="lazy" decoding="async" />
-          <video class="shot-loop" data-loop="hover" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture>
-            <source data-src="{{ '/assets/video/mcp-surface-loop-640.av1.webm' | relative_url }}" type='video/webm; codecs="av01.0.00M.08"'>
-            <source data-src="{{ '/assets/video/mcp-surface-loop-640.vp9.webm' | relative_url }}" type='video/webm; codecs="vp9"'>
-            <source data-src="{{ '/assets/video/mcp-surface-loop-640.mp4' | relative_url }}" type='video/mp4; codecs="avc1.640016"'>
-          </video>
         </a>
         <h3 class="project-name">mcp-surface</h3>
-        <p class="project-kind"><span class="badge-live">Live demo</span> runs in your browser</p>
-        <p class="project-line">Checks an MCP server the way an AI assistant sees it, and fails the build when a tool changes, so every change gets a review.</p>
-        <ul class="chips" role="list"><li>TypeScript</li><li>19 checks</li><li>GitHub Action</li></ul>
+        <p class="project-kind"><span class="badge-live">Live demo</span> MCP contract testing &amp; CI</p>
+        <p class="project-line">Inspects what MCP servers actually expose, detects malformed tool schemas and unexpected changes, and safely guards CI. Verified against all 33 Chrome DevTools MCP tools.</p>
+        <ul class="chips" role="list"><li>TypeScript</li><li>JSON Schema 2020-12</li><li>GitHub Action</li></ul>
         <p class="links">
           <a class="link-demo" href="{{ '/mcp-surface/' | relative_url }}">Live demo<span class="sr-only">: mcp-surface</span></a>
-          <a href="{{ '/mcp/' | relative_url }}">Case study<span class="sr-only">: mcp-surface</span></a>
+          <a href="{{ '/mcp/' | relative_url }}">Case study<span class="sr-only">: mcp-surface and MCP servers</span></a>
           <a href="https://www.npmjs.com/package/mcp-surface">npm<span class="sr-only">: mcp-surface</span></a>
           <a href="https://github.com/brettadams0/mcp-surface">Source<span class="sr-only">: mcp-surface</span></a>
         </p>
       </article>
 
-      <article class="project" data-project="mcp-servers">
-        <a class="project-shot" href="{{ '/mcp/' | relative_url }}" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/mcp-servers-800.webp' | relative_url }}"
-               srcset="{{ '/assets/img/mcp-servers-800.webp' | relative_url }} 800w, {{ '/assets/img/mcp-servers-1600.webp' | relative_url }} 1600w"
-               sizes="(min-width: 1200px) 524px, (min-width: 861px) 45vw, calc(100vw - 70px)"
-               alt="" width="1600" height="1000" loading="lazy" decoding="async" />
-          <video class="shot-loop" data-loop="hover" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture>
-            <source data-src="{{ '/assets/video/mcp-servers-loop-640.av1.webm' | relative_url }}" type='video/webm; codecs="av01.0.00M.08"'>
-            <source data-src="{{ '/assets/video/mcp-servers-loop-640.vp9.webm' | relative_url }}" type='video/webm; codecs="vp9"'>
-            <source data-src="{{ '/assets/video/mcp-servers-loop-640.mp4' | relative_url }}" type='video/mp4; codecs="avc1.640016"'>
-          </video>
-        </a>
-        <h3 class="project-name">google-workspace-mcp</h3>
-        <p class="project-kind">Case study</p>
-        <p class="project-line">Lets an AI assistant send mail, edit a calendar and write to Drive and Sheets through my own Google OAuth client. Four more servers are built on the same harness.</p>
-        <ul class="chips" role="list"><li>Node.js</li><li>OAuth 2.0</li><li>23 tools</li><li>5 servers checked by mcp-surface</li></ul>
-        <p class="links">
-          <a href="{{ '/mcp/' | relative_url }}">Case study<span class="sr-only">: google-workspace-mcp</span></a>
-          <a href="https://github.com/brettadams0/google-workspace-mcp">Source<span class="sr-only">: google-workspace-mcp</span></a>
-          <a href="{{ '/mcp/#repositories' | relative_url }}">4 more servers<span class="sr-only">: same harness</span></a>
-        </p>
-      </article>
+
       <article class="project" data-project="signal-lab">
         <a class="project-shot" href="{{ '/signal-lab/' | relative_url }}" tabindex="-1" aria-hidden="true">
           <img src="{{ '/assets/img/signal-lab-800.webp' | relative_url }}"
