@@ -18,6 +18,7 @@ export const EXAMPLES = {
               days: { type: "integer", minimum: "one" },
             },
             required: ["city"],
+            additionalProperties: false,
           },
           annotations: { readOnlyHint: true },
         },
@@ -104,9 +105,49 @@ export const EXAMPLES = {
     },
   },
 
-  empty: {
-    label: "Connected, no tools",
-    server: "silent-mcp",
-    tools: { tools: [] },
+  modern: {
+    label: "JSON Schema 2020-12 (valid example)",
+    server: "modern-example-mcp",
+    tools: {
+      tools: [
+        {
+          name: "search_pages",
+          description: "Search archived pages, returning matching results.",
+          inputSchema: {
+            $schema: "https://json-schema.org/draft/2020-12/schema",
+            type: "object",
+            properties: {
+              query: { type: "string", description: "Search text." },
+              options: {
+                type: "array",
+                prefixItems: [{ type: "string" }, { type: "integer" }],
+                description: "Optional search mode and page limit."
+              }
+            },
+            required: ["query"],
+            unevaluatedProperties: false
+          },
+          annotations: { readOnlyHint: true }
+        },
+        {
+          name: "list_sessions",
+          description: "List active sessions without modifying state.",
+          inputSchema: {
+            $schema: "https://json-schema.org/draft/2020-12/schema",
+            type: "object",
+            properties: {},
+            unevaluatedProperties: false
+          },
+          outputSchema: {
+            $schema: "https://json-schema.org/draft/2019-09/schema",
+            type: "object",
+            properties: {
+              count: { type: "integer" }
+            }
+          },
+          annotations: { readOnlyHint: true }
+        }
+      ]
+    }
   },
 };
