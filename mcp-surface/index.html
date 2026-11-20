@@ -71,7 +71,7 @@
         <div class="seg" role="group" aria-label="Example">
           <button type="button" data-example="broken" aria-pressed="false">Broken</button>
           <button type="button" data-example="healthy" aria-pressed="true">Healthy</button>
-          <button type="button" data-example="empty" aria-pressed="false">Empty</button>
+          <button type="button" data-example="modern" aria-pressed="false">2020-12</button>
         </div>
       </div>
       <label class="sr-only" for="source">JSON sent back by tools/list</label>
@@ -111,11 +111,11 @@
     <h2 id="how-title">How it works</h2>
     <ul>
       <li>A broken MCP server can look connected while the AI assistant gets a worse tool or none at all. These checks catch that.</li>
-      <li>The checks are the npm package's own code, mcp-surface 0.3.0, bundled for the browser with esbuild.</li>
+      <li>The checks are the npm package's own code, mcp-surface 0.4.0, bundled for the browser with esbuild.</li>
       <li>This page only reads what is in the editor, hands it to those checks the way the command-line tool does, and draws the result.</li>
-      <li>Nothing you type leaves this tab.</li>
+      <li>Nothing you type leaves this tab. This page cannot connect to local MCP servers; use the CLI for that.</li>
     </ul>
-    <ul class="chips" role="list"><li>Checks from mcp-surface 0.3.0</li></ul>
+    <ul class="chips" role="list"><li>Checks from mcp-surface 0.4.0</li></ul>
     <p class="demo-source">
       <a href="https://github.com/brettadams0/mcp-surface">Source</a>
       <a href="https://www.npmjs.com/package/mcp-surface">npm</a>
