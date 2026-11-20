@@ -858,27 +858,6 @@ main:focus { outline: none; }
   background: radial-gradient(700px 300px at 20% 100%, rgba(255, 180, 84, 0.06), transparent 70%);
 }
 
-.contact-email {
-  margin: 0 0 28px;
-  font-size: var(--fs-3xl);
-  font-weight: 600;
-  letter-spacing: var(--tracking-tight);
-  overflow-wrap: anywhere;
-}
-
-.contact-email a {
-  color: var(--text);
-  text-decoration: underline;
-  text-decoration-color: var(--border-strong);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 8px;
-}
-
-.contact-email a:hover {
-  color: var(--amber);
-  text-decoration-color: var(--amber);
-}
-
 /* 404 */
 
 .not-found {
