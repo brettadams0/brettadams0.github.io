@@ -162,16 +162,12 @@ Snapshot mcp-surface.json
       24, including real stdio fixtures and a packed-package smoke test.
       <a href="https://github.com/brettadams0/mcp-surface/actions/runs/44654147231">View the independent hosted Chrome MCP probe.</a>
     </p>
-    <figure>
-      <a href="{{ '/mcp-surface/' | relative_url }}">
-        <img src="{{ '/assets/img/mcp-surface-audit-800.webp' | relative_url }}"
-             srcset="{{ '/assets/img/mcp-surface-audit-800.webp' | relative_url }} 800w, {{ '/assets/img/mcp-surface-audit-1600.webp' | relative_url }} 1600w"
-             sizes="(min-width: 900px) 760px, calc(100vw - 48px)"
-             alt="Actual mcp-surface browser playground with edited tool schema and real diagnostics."
-             width="1600" height="1000" loading="lazy" decoding="async">
-      </a>
-      <figcaption>A real browser capture of the fixed checker detecting an intentionally broken schema, not an invented terminal or generated illustration.</figcaption>
-    </figure>
+    <p>
+      <a href="{{ '/mcp-surface/' | relative_url }}">Try the live checker</a>:
+      switch to its valid 2020-12 example or deliberately break a tool contract
+      and inspect the actual findings. The project cover is an authentic capture
+      of that running interface.
+    </p>
 
     <h2><span class="prefix" aria-hidden="true">## </span>What the review found</h2>
     <p>
