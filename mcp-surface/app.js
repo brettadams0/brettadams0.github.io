@@ -65,10 +65,10 @@ const state = {
 // finding; the report below comes from runChecks on the changed JSON, as always.
 const BREAKS = {
   required: {
-    what: "required now names \"city\", which the first tool's schema doesn't define",
-    why: "The schema now requires a field it never describes, so an assistant can't know what to put in it.",
+    what: "the first tool now requires \"city\", which its closed schema cannot accept",
+    why: "A closed JSON Schema cannot accept a required field absent from its declared properties.",
     min: 1,
-    apply: (t) => { const s = t[0].inputSchema || (t[0].inputSchema = { type: "object", properties: {} }); s.required = [...(s.required || []), "city"]; },
+    apply: (t) => { const s = t[0].inputSchema || (t[0].inputSchema = { type: "object", properties: {} }); s.required = [...(s.required || []), "city"]; s.additionalProperties = false; },
   },
   duplicate: {
     what: "the second tool now has the first tool's name",
