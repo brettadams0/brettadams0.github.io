@@ -29,7 +29,13 @@ const browser = await chromium.launch();
 try {
   const page = await browser.newPage({ viewport:{ width:390,height:844 } });
   await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});
-  for (const [project, expected] of [['signal-lab','signal-lab-800.webp'],['sift','sift-grade-800.webp']]) {
+  assert.equal(await page.locator('[data-project="mcp-surface"]').count(), 1, 'Expected one MCP flagship card');
+  assert.equal(await page.locator('[data-project="mcp-servers"]').count(), 0, 'Redundant MCP server card still present');
+  for (const [project, expected] of [
+    ['signal-lab','signal-lab-800.webp'],
+    ['sift','sift-grade-800.webp'],
+    ['mcp-surface','mcp-surface-audit-800.webp']
+  ]) {
     const image = page.locator('[data-project="'+project+'"] .project-shot img');
     assert.equal(await image.count(),1,project+' cover is missing');
     assert((await image.getAttribute('src')).includes(expected),project+' source is wrong');
@@ -39,7 +45,7 @@ try {
       return Boolean(img && img.complete && img.naturalWidth > 0 && img.naturalHeight > 0);
     },project,{timeout:12000});
   }
-  console.log('PASS real Signal Lab screenshot and authentic Sift before/after decoded in Chromium');
+  console.log('PASS genuine Signal Lab, Sift and MCP covers; exactly one MCP homepage project');
 } finally {
   await browser.close();
   await new Promise(resolve => server.close(resolve));
