@@ -16,15 +16,23 @@
       "mainEntity": {
         "@type": "Person",
         "name": "Brett Adams",
+        "alternateName": "brettadams0",
+        "description": {{ site.description | strip_newlines | strip | jsonify }},
         "jobTitle": "Data Analyst Intern",
         "worksFor": { "@type": "Organization", "name": "Geotab", "url": "https://www.geotab.com" },
-        "affiliation": { "@type": "CollegeOrUniversity", "name": "University of Windsor" },
-        "knowsAbout": ["Python", "TypeScript", "SQL", "Node.js", "Apache Airflow", "BigQuery"],
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Windsor",
+          "url": "https://www.uwindsor.ca",
+          "sameAs": "https://en.wikipedia.org/wiki/University_of_Windsor"
+        },
+        "knowsAbout": ["Python", "TypeScript", "SQL", "Node.js", "Apache Airflow", "BigQuery", "dbt", "Model Context Protocol"],
         "email": "mailto:adamsbrett00@gmail.com",
         "url": "{{ site.url }}/",
         "sameAs": [
           "https://github.com/brettadams0",
-          "https://www.linkedin.com/in/bretta/"
+          "https://www.linkedin.com/in/bretta/",
+          "https://www.npmjs.com/~adamsbrett00"
         ]
       }
     }

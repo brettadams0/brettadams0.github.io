@@ -1,0 +1,30 @@
+# Brett Adams
+
+> Software engineering student (Honours Computer Science, University of Windsor, 2022–2027) and Data Analyst Intern at Geotab, working on production data pipelines in BigQuery and Airflow. Builds backend services, data pipelines and developer tools. GitHub: brettadams0.
+
+Not to be confused with other people named Brett Adams (for example, the English singer and actor). This Brett Adams is a software developer in Ontario, Canada.
+
+## Profiles
+
+- [Portfolio](https://brettadams0.github.io/): projects, live demos, résumé
+- [GitHub](https://github.com/brettadams0): source for every project below
+- [LinkedIn](https://www.linkedin.com/in/bretta/)
+- [npm](https://www.npmjs.com/~adamsbrett00): published packages
+- [Résumé (PDF)](https://brettadams0.github.io/assets/resume/Resume_BrettAdams.pdf)
+
+## Experience
+
+- Data Analyst Intern, Geotab: production pipelines in BigQuery and Airflow
+- Co-op, Ontario Ministry of Transportation (2025)
+- CIMCO Refrigeration (2023; co-op, 2024)
+
+## Projects
+
+- [mcp-surface](https://brettadams0.github.io/mcp-surface/): CLI and GitHub Action that connects to an MCP server the way a client does, validates its tool schemas, and fails CI when the tool surface changes. Published on npm.
+- [MCP case study](https://brettadams0.github.io/mcp/): how mcp-surface and Brett's MCP servers (Google Workspace, Reddit, Chess.com, Supercell, Yahoo Fantasy) fit together.
+- [border-waits](https://brettadams0.github.io/border-waits/): Python, dbt and DuckDB pipeline over Canadian and U.S. border wait times.
+- [neuronet-arena](https://brettadams0.github.io/neuronet-arena/): neural-network agents evolved with a from-scratch genetic algorithm; the browser demo reproduces the Python run bit for bit.
+- [MazeFinder](https://brettadams0.github.io/mazefinder/): solves mazes with a C++ genetic algorithm compiled to WebAssembly, with fitness evaluation parallelized on a custom thread pool.
+- [Signal Lab](https://brettadams0.github.io/signal-lab/): interactive data and ML workspaces (TTC incident severity, UK retail revenue anomalies, B2B customer retention).
+- [PromptPal](https://github.com/brettadams0/PromptPal): browser tool for writing prompt templates.
+- [TechNest](https://github.com/brettadams0/TechNest): PHP and MySQL e-commerce store with 200+ tests.
