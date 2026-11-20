@@ -223,7 +223,8 @@ function renderParity() {
   let allMatch = true;
   for (const field of PARITY_FIELDS) {
     const tr = document.createElement("tr");
-    const name = document.createElement("td");
+    const name = document.createElement("th");
+    name.scope = "row";
     name.textContent = field.replace("_", " ");
     const py = document.createElement("td");
     py.textContent = String(p.expect[field]);
