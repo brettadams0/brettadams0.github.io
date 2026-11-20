@@ -16,7 +16,12 @@
       "mainEntity": {
         "@type": "Person",
         "name": "Brett Adams",
-        "alternateName": "brettadams0",
+        "@id": "{{ site.url }}/#person",
+        "givenName": "Brett",
+        "additionalName": "Alexander",
+        "familyName": "Adams",
+        "alternateName": ["Brett Alexander Adams", "brettadams0"],
+        "homeLocation": { "@type": "Place", "name": "Niagara Region, Ontario, Canada" },
         "description": {{ site.description | strip_newlines | strip | jsonify }},
         "jobTitle": "Data Analyst Intern",
         "worksFor": { "@type": "Organization", "name": "Geotab", "url": "https://www.geotab.com" },
@@ -27,7 +32,6 @@
           "sameAs": "https://en.wikipedia.org/wiki/University_of_Windsor"
         },
         "knowsAbout": ["Python", "TypeScript", "SQL", "Node.js", "Apache Airflow", "BigQuery", "dbt", "Model Context Protocol"],
-        "email": "mailto:adamsbrett00@gmail.com",
         "url": "{{ site.url }}/",
         "sameAs": [
           "https://github.com/brettadams0",
@@ -40,6 +44,7 @@
     {% endif %}
     <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
     {% include analytics.html %}
+    <script src="{{ '/assets/js/contact.js' | relative_url }}" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -73,9 +78,9 @@
       <div class="wrap site-footer-inner">
         <p>&copy; {{ site.time | date: "%Y" }} Brett Adams</p>
         <p class="footer-links">
-          <a href="https://github.com/brettadams0" data-contact="github">GitHub</a>
-          <a href="https://www.linkedin.com/in/bretta/" data-contact="linkedin">LinkedIn</a>
-          <a href="mailto:adamsbrett00@gmail.com" data-contact="email">Email</a>
+          <a rel="me" href="https://github.com/brettadams0" data-contact="github">GitHub</a>
+          <a rel="me" href="https://www.linkedin.com/in/bretta/" data-contact="linkedin">LinkedIn</a>
+          <a href="{{ '/#contact' | relative_url }}" data-contact="email">Email</a>
         </p>
       </div>
     </footer>

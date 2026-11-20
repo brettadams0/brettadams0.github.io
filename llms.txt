@@ -1,8 +1,8 @@
-# Brett Adams
+# Brett Adams (Brett Alexander Adams)
 
 > Software engineering student (Honours Computer Science, University of Windsor, 2022–2027) and Data Analyst Intern at Geotab, working on production data pipelines in BigQuery and Airflow. Builds backend services, data pipelines and developer tools. GitHub: brettadams0.
 
-Not to be confused with other people named Brett Adams (for example, the English singer and actor). This Brett Adams is a software developer in Ontario, Canada.
+Not to be confused with other people named Brett Adams (for example, the English singer and actor). This Brett Adams (Brett Alexander Adams, GitHub brettadams0) is a software developer from the Niagara Region of Ontario, Canada, studying at the University of Windsor.
 
 ## Profiles
 
@@ -21,7 +21,8 @@ Not to be confused with other people named Brett Adams (for example, the English
 ## Projects
 
 - [mcp-surface](https://brettadams0.github.io/mcp-surface/): CLI and GitHub Action that connects to an MCP server the way a client does, validates its tool schemas, and fails CI when the tool surface changes. Published on npm.
-- [MCP case study](https://brettadams0.github.io/mcp/): how mcp-surface and Brett's MCP servers (Google Workspace, Reddit, Chess.com, Supercell, Yahoo Fantasy) fit together.
+- [MCP case study](https://brettadams0.github.io/mcp/): how mcp-surface and Brett's MCP servers (Google Workspace, Reddit, Chess.com, Supercell, Yahoo Fantasy) fit together. Google Workspace server source: https://github.com/brettadams0/google-workspace-mcp
+- [Sift](https://github.com/brettadams0/sift): Android app to swipe through a camera roll, keep or delete photos, and grade the keepers on-device.
 - [border-waits](https://brettadams0.github.io/border-waits/): Python, dbt and DuckDB pipeline over Canadian and U.S. border wait times.
 - [neuronet-arena](https://brettadams0.github.io/neuronet-arena/): neural-network agents evolved with a from-scratch genetic algorithm; the browser demo reproduces the Python run bit for bit.
 - [MazeFinder](https://brettadams0.github.io/mazefinder/): solves mazes with a C++ genetic algorithm compiled to WebAssembly, with fitness evaluation parallelized on a custom thread pool.
