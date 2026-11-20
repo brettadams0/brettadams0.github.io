@@ -109,21 +109,21 @@ CI copies `fallback/` to `/border-waits-pipeline/data/v1/` inside `_site` first,
 
 `mcp-surface/` is a playground for [mcp-surface](https://github.com/brettadams0/mcp-surface): edit a
 `tools/list` response and the published checks run on it in the browser. `checks.js` is generated
-from the npm package with esbuild; `Buffer.byteLength` (the one Node API the checks call) is shimmed
-with `TextEncoder`. To rebuild after a new release, in an empty directory:
+from the npm release pinned in `.github/scripts/mcp-bundle/package-lock.json`. The build injects
+`TextEncoder` for the checker's UTF-8 byte count in a browser. With Node 22.12 or newer, regenerate
+it from the repo root:
 
 ```sh
-npm pack mcp-surface@latest && tar xzf mcp-surface-*.tgz
-npm install ajv@8 esbuild
-printf 'const e = new TextEncoder();\nexport const Buffer = { byteLength: (s) => e.encode(String(s)).length };\n' > shim.js
-printf "export { runChecks, allChecks } from './package/dist/checks/index.js';\n" > entry.js
-npx esbuild entry.js --bundle --format=esm --minify --target=es2020 --inject:shim.js --outfile=checks.js
+npm ci --prefix .github/scripts/mcp-bundle
+npm run build --prefix .github/scripts/mcp-bundle
 ```
 
-Then copy `checks.js` over `mcp-surface/checks.js`, keeping its header comment, update the rule
-table in `mcp-surface/app.js` if the package README's table changed, and the version in `index.html`'s How
-it works item and chip. `styles.css` starts with a copy of the token block at the top of
-`assets/css/site.css`; change both together.
+CI rebuilds the bundle, checks the committed file for drift and compares the browser findings
+with the pinned Node package. For a release upgrade, update the dependency and lockfile together,
+then review the version labels, third-party notices and the playground's rule list.
+
+`styles.css` starts with a copy of the token block at the top of `assets/css/site.css`; change
+both together.
 
 `mazefinder/` is the live demo of
 [MazeFinder-GeneticAlgorithm](https://github.com/brettadams0/MazeFinder-GeneticAlgorithm): its C++
