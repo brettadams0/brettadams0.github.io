@@ -150,12 +150,14 @@ layout: default
 
       <article class="project" data-project="sift">
         <a class="project-shot" href="https://github.com/brettadams0/sift" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/sift-800.webp' | relative_url }}"
-               alt="" width="800" height="500" loading="lazy" decoding="async" />
+          <img src="{{ '/assets/img/sift-grade-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/sift-grade-800.webp' | relative_url }} 800w, {{ '/assets/img/sift-grade-1600.webp' | relative_url }} 1600w"
+               sizes="(min-width: 1200px) 650px, (min-width: 861px) 56vw, calc(100vw - 70px)"
+               alt="" width="1600" height="1000" loading="lazy" decoding="async" />
         </a>
         <h3 class="project-name">Sift</h3>
         <p class="project-kind">Android app</p>
-        <p class="project-line">Swipe through the camera roll to keep or delete, then grade the keepers on the phone, entirely on-device.</p>
+        <p class="project-line">Swipe through your camera roll to keep or delete, then grade the keepers on-device. The cover shows a real photo before and after Sift's grading pipeline.</p>
         <ul class="chips" role="list"><li>Kotlin, 6 Gradle modules</li><li>Own baseline JPEG encoder</li><li>No INTERNET permission</li></ul>
         <p class="links">
           <a href="https://github.com/brettadams0/sift">Source<span class="sr-only">: Sift</span></a>
@@ -209,6 +211,12 @@ layout: default
         </p>
       </article>
       <article class="project" data-project="signal-lab">
+        <a class="project-shot" href="{{ '/signal-lab/' | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/signal-lab-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/signal-lab-800.webp' | relative_url }} 800w, {{ '/assets/img/signal-lab-overview.webp' | relative_url }} 1600w"
+               sizes="(min-width: 1200px) 650px, (min-width: 861px) 56vw, calc(100vw - 70px)"
+               alt="" width="1600" height="1000" loading="lazy" decoding="async" />
+        </a>
         <h3 class="project-name">Signal Lab</h3>
         <p class="project-kind"><span class="badge-live">Live demo</span> Interactive data &amp; ML platform</p>
         <p class="project-line">Explore three interactive analytical workspaces: historical TTC incident severity, UK retail revenue anomalies, and synthetic B2B customer retention. Built with reproducible data and model evidence.</p>

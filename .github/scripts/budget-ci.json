@@ -1,11 +1,11 @@
 {
   "/": {
-    "total_kb": 270,
+    "total_kb": 282,
     "js_kb": 15,
     "css_kb": 12,
     "font_kb": 80,
-    "image_kb": 155,
-    "requests": 17,
+    "image_kb": 170,
+    "requests": 18,
     "no_framework": true
   },
   "/mcp/": {
