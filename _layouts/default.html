@@ -19,11 +19,17 @@
         "alternateName": ["Brett Alexander Adams", "brettadams0"],
         "description": {{ site.description | strip_newlines | strip | jsonify }},
         "jobTitle": "Data Analyst Intern",
+        "homeLocation": {
+          "@type": "Place",
+          "name": "Vineland, Ontario, Canada",
+          "address": { "@type": "PostalAddress", "addressLocality": "Vineland", "addressRegion": "ON", "addressCountry": "CA" }
+        },
         "worksFor": { "@type": "Organization", "name": "Geotab", "url": "https://www.geotab.com" },
         "affiliation": {
           "@type": "CollegeOrUniversity",
           "name": "University of Windsor",
           "url": "https://www.uwindsor.ca",
+          "address": { "@type": "PostalAddress", "addressLocality": "Windsor", "addressRegion": "ON", "addressCountry": "CA" },
           "sameAs": "https://en.wikipedia.org/wiki/University_of_Windsor"
         },
         "knowsAbout": ["Python", "TypeScript", "SQL", "Node.js", "Apache Airflow", "BigQuery", "dbt", "Model Context Protocol"],
