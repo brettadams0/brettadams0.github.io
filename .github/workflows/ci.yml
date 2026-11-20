@@ -81,6 +81,9 @@ jobs:
       - name: Check authentic cover photos load when visible
         run: node .github/scripts/check-project-covers.mjs _site
 
+      - name: Verify MCP draft 2020-12 and broken schema behavior
+        run: node .github/scripts/capture-mcp-real.mjs _site
+
       - name: Check the size budget
         run: node .github/scripts/measure.mjs --site _site --path / --path /mcp/ --path /404.html --path /mcp-surface/ --path /mazefinder/ --path /border-waits/ --budget .github/scripts/budget-ci.json --runs 1
 
