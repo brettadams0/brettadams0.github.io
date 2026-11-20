@@ -1,0 +1,81 @@
+name: Capture real mcp-surface v0.4.0 browser cover
+
+on:
+  push:
+    branches: [feature/mcp-flagship-showcase]
+    paths: [.github/workflows/capture-mcp-cover.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/mcp-flagship-showcase
+      - uses: actions/checkout@v4
+        with:
+          repository: brettadams0/mcp-surface
+          ref: c5c934e99a212dc7e3d698ea9e0196c59924e53f
+          path: _mcp_upstream
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile original tested checker for the browser (no alternate rules)
+        run: |
+          npm ci --prefix _mcp_upstream
+          npm run typecheck --prefix _mcp_upstream
+          npm test --prefix _mcp_upstream
+          npm install -g esbuild@0.25.12 playwright@1.56.1
+          esbuild _mcp_upstream/src/checks/index.ts --bundle --format=esm --platform=browser --target=es2022 --minify --legal-comments=none --outfile=mcp-surface/checks.js
+      - name: Install browser and image optimizer
+        run: |
+          playwright install --with-deps chromium
+          python -m pip install pillow==11.3.0
+      - name: Capture genuine interactive playground and check semantics
+        run: node .github/scripts/capture-mcp-real.mjs
+      - name: Optimize actual screenshot and record evidence
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          import hashlib
+          original=Path('/tmp/mcp-surface-real-audit.png')
+          img=Image.open(original).convert('RGB')
+          assert img.size == (1600, 1000), img.size
+          out=Path('assets/img')
+          for name,size,quality in [('mcp-surface-audit-1600.webp',(1600,1000),77),('mcp-surface-audit-800.webp',(800,500),66)]:
+              frame=img if img.size==size else img.resize(size,Image.Resampling.LANCZOS)
+              path=out/name
+              frame.save(path,'WEBP',quality=quality,method=6)
+              print(name, path.stat().st_size, hashlib.sha256(path.read_bytes()).hexdigest())
+          screenshot=Path('docs/screenshots/mcp-surface-audit.png')
+          screenshot.parent.mkdir(parents=True,exist_ok=True)
+          screenshot.write_bytes(original.read_bytes())
+          Path('docs/MCP_COVER_EVIDENCE.md').write_text(
+              '# mcp-surface real screenshot provenance\\n\\n'
+              '- Captured from the shipped browser playground, never AI-generated.\\n'
+              '- Checker source: `brettadams0/mcp-surface@c5c934e99a212dc7e3d698ea9e0196c59924e53f` (0.4.0).\\n'
+              '- Workflow validates valid JSON Schema 2020-12 and a genuine impossible required-property regression in-browser.\\n'
+              '- Screenshot: `docs/screenshots/mcp-surface-audit.png` (1600x1000).\\n'
+              '- WebP variants are straight screenshot encodings and a same-frame resize; no artwork synthesis.\\n'
+              '- Real Chrome DevTools MCP 1.13.0: 33 tools, 0 schema errors, 1 definition-size warning. [CI run](https://github.com/brettadams0/mcp-surface/actions/runs/44654147231).\\n'
+              '- The website example is intentionally small; it does not pretend to contain Chrome DevTools tool schemas.\\n'
+          )
+          PY
+      - name: Commit only verified browser build and real screenshot
+        run: |
+          set -euo pipefail
+          rm -rf _mcp_upstream
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mcp-surface/checks.js assets/img/mcp-surface-audit-*.webp docs/screenshots/mcp-surface-audit.png docs/MCP_COVER_EVIDENCE.md
+          git diff --cached --check
+          git commit -m "feat: bundle fixed MCP schema checks and capture actual playground cover"
+          git push origin HEAD:feature/mcp-flagship-showcase
