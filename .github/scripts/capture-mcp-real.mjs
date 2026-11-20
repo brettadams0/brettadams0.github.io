@@ -14,7 +14,7 @@ let chromium;
 try { ({ chromium } = require('playwright')); }
 catch { ({ chromium } = require(path.join(require('node:child_process').execSync('npm root -g').toString().trim(), 'playwright'))); }
 
-const root = path.resolve('.');
+const root = path.resolve(process.argv[2] || '.');
 const mime = { '.html':'text/html', '.css':'text/css', '.js':'text/javascript', '.woff2':'font/woff2', '.svg':'image/svg+xml', '.webp':'image/webp', '.png':'image/png' };
 const server = http.createServer((req,res) => {
   const uri=new URL(req.url, 'http://localhost');
