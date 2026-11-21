@@ -88,6 +88,9 @@ jobs:
           git diff --exit-code -- mcp-surface/checks.js
           node .github/scripts/capture-mcp-real.mjs _site
 
+      - name: Check homepage accessibility and text reflow
+        run: node .github/scripts/measure.mjs --site _site --path / --a11y
+
       - name: Check the size budget
         run: node .github/scripts/measure.mjs --site _site --path / --path /mcp/ --path /404.html --path /mcp-surface/ --path /mazefinder/ --path /border-waits/ --budget .github/scripts/budget-ci.json --runs 1
 

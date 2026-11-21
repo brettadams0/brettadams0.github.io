@@ -39,6 +39,7 @@
  *                          viewport.<w>.focus_walk (Tab up to 120 times), small_targets_24,
  *                          targets_under_44/targets_total, page_height, key_info, and
  *                          checks.reflow_320 (at 320x640), checks.skip_link, checks.obscured.
+ *                          The homepage also checks 200% text sizing at 320px.
  *                          Prints one "a11y FAIL <path> <width> <check>: <detail>" line per failure;
  *                          exit 1 on any
  *     --motion             spec section 9.5 checks 1-2 at 390x844 and 1440x900: getAnimations() after
@@ -593,6 +594,21 @@ async function a11y(browser, url, pathName) {
   const rctx = await newContext(browser, { viewport: { width: 320, height: 640 }, userAgent: MOBILE_UA });
   const rpage = await open(rctx, url);
   const rw = await rpage.evaluate(() => ({ scrollWidth: document.documentElement.scrollWidth, innerWidth }));
+  if (pathName === '/') {
+    await rpage.addStyleTag({ content: 'html { font-size: 200% }' });
+    const overflow = await rpage.evaluate(() => {
+      const root = document.documentElement;
+      const problems = root.scrollWidth > root.clientWidth ? [`page width ${root.scrollWidth} exceeds viewport ${root.clientWidth}`] : [];
+      for (const link of document.querySelectorAll('.nav-sections a, .hero .actions a')) {
+        const label = document.createRange();
+        label.selectNodeContents(link);
+        const text = label.getBoundingClientRect(), target = link.getBoundingClientRect();
+        if (text.left < target.left - 1 || text.right > target.right + 1) problems.push(`"${link.textContent.trim()}" extends outside its link`);
+      }
+      return problems;
+    });
+    for (const problem of overflow) fail(320, 'text_resize_200', problem);
+  }
   await rctx.close();
   const reflow_320 = rw.scrollWidth <= rw.innerWidth ? { pass: true, ...rw } : { pass: false, detail: `scrollWidth ${rw.scrollWidth} > innerWidth ${rw.innerWidth}`, ...rw };
   for (const [width, height] of A11Y_SIZES) {
