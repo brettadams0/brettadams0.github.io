@@ -154,16 +154,16 @@
 \resumeentry{mcp-surface}{Jul 2026 - Present}
   {TypeScript CLI and GitHub Action for testing Model Context Protocol servers}{Independent}
 \begin{bullets}
-  \resumeitem Published on npm. Connects to an MCP server over stdio, Streamable HTTP or SSE the way a real client does, and runs 19 checks on the tools, resources and prompts it actually exposes.
-  \resumeitem Snapshots the tool surface and fails CI when it changes unexpectedly: a Zod 3 to 4 upgrade passed every unit test in one of my servers, and mcp-surface failed the build because all 23 tool schemas had changed.
+  \resumeitem Built five MCP servers exposing 69 tools. Published a CLI and GitHub Action that inspect the tool schemas a connected client actually receives.
+  \resumeitem Caught all 23 Google Workspace tool schemas changing after a Zod upgrade passed its unit tests. The \href{https://brettadams0.github.io/mcp-surface/}{browser playground} lets reviewers try both a healthy and a broken contract.
 \end{bullets}
 
 \vspace{3pt}
-\resumeentry{MCP Servers for Claude Code}{Jul 2026 - Present}
-  {Five Node.js servers exposing 69 tools to AI assistants}{Independent}
+\resumeentry{Signal Lab}{Nov 2026}
+  {Interactive analytics with reproducible public snapshots}{Independent}
 \begin{bullets}
-  \resumeitem Covers Google Workspace (23 tools, on a self-registered OAuth client that requests only non-restricted scopes), Reddit, Yahoo Fantasy, Chess.com and three Supercell game APIs. Tests run with no network or credentials.
-  \resumeitem Hardened against untrusted model output: a subject line that smuggles in a Bcc header is refused, and spreadsheet values are written as plain text unless formulas are requested. Each case has a test that builds the attack.
+  \resumeitem Built three workspaces for historical transit incidents, retail revenue and synthetic customer retention. The static demo serves versioned snapshots with checksums.
+  \resumeitem Published a \href{https://brettadams0.github.io/projects/signal-lab/investigate/}{worked investigation and Python verifier} that reconcile a £81,948.30 revenue deviation against the median of the previous 12 observed Tuesdays.
 \end{bullets}
 
 \end{document}
