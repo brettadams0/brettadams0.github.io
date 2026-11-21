@@ -1,0 +1,17 @@
+{
+  "alert": "c646f48c31360b392784.weekday-1.median.net.2011-09-20",
+  "revision": "c646f48c31360b392784",
+  "sha256": "f0c524a49402dccaf945915c074d6871e6425dc516cfb2987f3368c55aac26e1",
+  "file": "snapshots/revenue/assessments-f0c524a49402dcca.json.gz",
+  "gross": "£109,612.03",
+  "credits": "£325.82",
+  "actual": "£109,286.21",
+  "expected": "£27,337.91",
+  "delta": "+£81,948.30",
+  "tuesdays": 12,
+  "middle_low": "£26,623.20",
+  "middle_high": "£28,052.62",
+  "uk": "+£88,018.005",
+  "netherlands": "−£6,249.355",
+  "others": "+£179.650"
+}

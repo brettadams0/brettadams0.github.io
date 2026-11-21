@@ -75,6 +75,13 @@ jobs:
           cp -r _site/border-waits/fallback/. _site/border-waits-pipeline/data/v1/
           node .github/scripts/check-border-waits.mjs _site
 
+      - name: Recalculate the published Signal Lab revenue investigation
+        run: |
+          python3 _site/projects/signal-lab/investigate/verify.py \
+            _site/signal-lab/snapshots/v2/manifest.json \
+            _site/signal-lab/snapshots/revenue/assessments-f0c524a49402dcca.json.gz \
+            --check _data/signal_revenue_example.json
+
       - name: Check MazeFinder interactions
         run: node .github/scripts/check-mazefinder.mjs _site
 
