@@ -1,6 +1,6 @@
 # Brett Adams
 
-> Brett Alexander Adams. Software engineering student (Honours Computer Science, University of Windsor, 2022–2027) and Data Analyst Intern at Geotab, working on production data pipelines in BigQuery and Airflow. Builds backend services, data pipelines and developer tools. GitHub: brettadams0.
+> Brett Alexander Adams. Software engineering student (Honours Computer Science, University of Windsor, 2022–2027) and Data Analyst Intern on Geotab’s Global Data Operations team, working on production data pipelines in BigQuery and Airflow. Builds backend services, data pipelines and developer tools. GitHub: brettadams0.
 
 Not to be confused with other people named Brett Adams (for example, the English singer and actor). This Brett Adams is a software developer based in Vineland, Ontario (Niagara Region), Canada, and studies at the University of Windsor in Windsor, Ontario.
 
@@ -14,7 +14,7 @@ Not to be confused with other people named Brett Adams (for example, the English
 
 ## Experience
 
-- Data Analyst Intern, Geotab: production pipelines in BigQuery and Airflow
+- Data Analyst Intern, Global Data Operations at Geotab: production pipelines in BigQuery and Airflow
 - Co-op, Ontario Ministry of Transportation (2025)
 - CIMCO Refrigeration (2023; co-op, 2024)
 
