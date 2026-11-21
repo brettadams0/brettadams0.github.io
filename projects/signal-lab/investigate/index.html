@@ -1,0 +1,83 @@
+---
+layout: default
+title: "Why was retail revenue £81,948 higher on 20 September 2011?"
+description: "Recalculate one historical Signal Lab revenue alert from the released daily totals and weekday baseline."
+permalink: /projects/signal-lab/investigate/
+---
+{% assign r = site.data.signal_revenue_example %}
+<style>
+.investigation { max-width: 52rem; overflow-wrap: anywhere; }
+.investigation h1 { font-size: clamp(1.8rem, 5vw, 3rem); line-height: 1.15; }
+.investigation h2 { margin: 2rem 0 .5rem; }
+.investigation p, .investigation li { max-width: 68ch; }
+.investigation .equation { font-weight: 600; font-variant-numeric: tabular-nums; }
+.investigation button { font: inherit; cursor: pointer; }
+.investigation [hidden] { display: none; }
+.investigation code { white-space: normal; }
+</style>
+<article class="section wrap investigation">
+  <a href="{{ '/projects/signal-lab/' | relative_url }}">Signal Lab case study</a>
+  <h1>Why was retail revenue higher on 20 September 2011?</h1>
+  <p id="missing-alert" hidden>This example has no record for the requested alert. <a href="?alert={{ r.alert }}">Open the September 2011 alert</a>.</p>
+  <div id="receipt" data-alert="{{ r.alert }}" data-revision="{{ r.revision }}" data-sha256="{{ r.sha256 }}">
+    <p>Historical invoice totals from a UK online retailer show <strong>{{ r.delta }}</strong> in net revenue above the weekday median. This retrospective alert identifies an unusual day. The aggregates cannot establish a cause or confirm fraud.</p>
+    <h2>Rebuild the comparison</h2>
+    <ol>
+      <li>Subtract credits from gross sales. <span class="equation">{{ r.gross }} − {{ r.credits }} = {{ r.actual }}</span> recorded net revenue.</li>
+      <li>Sort the {{ r.tuesdays }} observed Tuesday net totals in the preceding twelve weeks. The middle two were {{ r.middle_low }} and {{ r.middle_high }}. Their mean is the weekday baseline of <strong>{{ r.expected }}</strong>.</li>
+      <li>Subtract the baseline from recorded net revenue. <span class="equation">{{ r.actual }} − {{ r.expected }} = {{ r.delta }}</span>.</li>
+    </ol>
+    <h2>Where the difference came from</h2>
+    <p>The United Kingdom contributed <strong>{{ r.uk }}</strong> of the deviation, the Netherlands <strong>{{ r.netherlands }}</strong>, and the remaining countries <strong>{{ r.others }}</strong> combined. These signed contributions sum to {{ r.delta }}. Three decimal places preserve half-pennies in the baseline allocation.</p>
+    <p>Source data from Daqing Chen, <a href="https://doi.org/10.24432/C5CG6D">Online Retail II, UCI Machine Learning Repository</a>. The public export contains aggregate values for this calculation.</p>
+    <h2>Verify the released figures</h2>
+    <p>Alert <code>{{ r.alert }}</code><br>Compressed snapshot SHA-256 <code>{{ r.sha256 }}</code></p>
+    <button type="button" class="btn" id="check-snapshot" hidden>Check snapshot checksum</button>
+    <p id="check-result" role="status"></p>
+    <p>For an independent, offline calculation, save the <a id="manifest" href="{{ '/signal-lab/snapshots/v2/manifest.json' | relative_url }}" download>release manifest</a>, <a id="snapshot" href="{{ r.file | prepend: '/signal-lab/' | relative_url }}" download>compressed snapshot</a> and <a href="verify.py" download>Python verifier</a> in one directory. Run this command with Python 3.</p>
+    <p><code>python3 verify.py manifest.json {{ r.file | split: '/' | last }}</code></p>
+    <p><a href="{{ '/signal-lab/' | relative_url }}#revenue">Explore the Revenue workspace</a></p>
+  </div>
+</article>
+<script>
+(() => {
+  const receipt = document.getElementById('receipt');
+  const requested = new URLSearchParams(location.search).get('alert');
+  if (requested !== null && requested !== receipt.dataset.alert) {
+    receipt.hidden = true;
+    document.getElementById('missing-alert').hidden = false;
+    return;
+  }
+  const button = document.getElementById('check-snapshot');
+  const status = document.getElementById('check-result');
+  button.hidden = false;
+  button.addEventListener('click', async () => {
+    button.disabled = true;
+    status.textContent = 'Checking the current public release…';
+    try {
+      const options = { cache: 'no-store', signal: AbortSignal.timeout(15000) };
+      const manifest = await fetch(document.getElementById('manifest').href, options);
+      if (!manifest.ok) throw new Error('fetch');
+      const published = (await manifest.json()).financial?.revenue;
+      const snapshotUrl = document.getElementById('snapshot').href;
+      if (published?.revision !== receipt.dataset.revision || published.sha256 !== receipt.dataset.sha256 ||
+          new URL(published.file, new URL('../../', manifest.url)).href !== snapshotUrl) {
+        status.textContent = 'The current manifest no longer identifies this snapshot. The figures above describe the saved release only.';
+        return;
+      }
+      const response = await fetch(snapshotUrl, options);
+      if (!response.ok) throw new Error('fetch');
+      const bytes = await response.arrayBuffer();
+      const hash = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
+      const digest = Array.from(hash, byte => byte.toString(16).padStart(2, '0')).join('');
+      status.textContent = digest === receipt.dataset.sha256
+        ? 'Verified. The downloaded bytes match the manifest and this investigation.'
+        : 'Checksum mismatch. The downloaded bytes cannot verify this investigation.';
+    } catch {
+      status.textContent = 'Verification unavailable. Check your connection and retry, or run the Python verifier on previously saved files.';
+    } finally {
+      button.disabled = false;
+    }
+  });
+})();
+</script>
