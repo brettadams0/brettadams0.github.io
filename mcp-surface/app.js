@@ -218,6 +218,7 @@ function renderRules(findings) {
     btn.append(el("span", "rule-level", state.skip.has(id) ? "skipped" : level), el("code", "rule-id", id), el("span", "rule-what", shown));
     if (hits.has(id)) btn.append(el("span", "rule-hits", String(hits.get(id))));
     btn.addEventListener("click", () => {
+      ui.breakSummary.replaceChildren();
       if (state.skip.has(id)) state.skip.delete(id);
       else state.skip.add(id);
       update();
@@ -295,6 +296,15 @@ function update() {
       : `Can't read tools: ${err.message}.`;
     ui.parse.classList.add("bad");
     ui.source.setAttribute("aria-invalid", "true");
+    ui.report.replaceChildren();
+    ui.annotations.replaceChildren();
+    ui.verdict.className = "verdict";
+    ui.verdict.textContent = "Checks paused until the input is valid.";
+    ui.breakSummary.replaceChildren();
+    ui.diff.hidden = true;
+    state.fails = null;
+    renderRules([]);
+    for (const button of document.querySelectorAll("[data-break]")) button.disabled = true;
     return;
   }
   ui.parse.textContent = `${plural(tools.length, "tool")} parsed.`;
@@ -306,7 +316,6 @@ function update() {
   renderAnnotations(findings, marks);
   renderReport(tools, findings);
   renderRules(findings);
-  state.tools = tools;
   state.findings = findings;
   for (const b of document.querySelectorAll("[data-break]")) {
     b.disabled = tools.length < BREAKS[b.getAttribute("data-break")].min;
@@ -315,9 +324,9 @@ function update() {
 
 function summarize(before, why) {
   const now = state.fails ? "CI fails" : "CI passes";
-  const was = before ? "CI failed" : "CI passed";
+  const transition = before === null ? now : (before ? "CI failed" : "CI passed") + " → " + now;
   const rules = [...new Set(state.findings.map((f) => `${f.level} ${f.rule}`))].join(", ") || "no findings";
-  ui.breakSummary.replaceChildren(el("span", state.fails ? "fail" : "pass", `${was} → ${now}`), document.createTextNode(` (fail on ${ui.failOn.value}: ${rules})`));
+  ui.breakSummary.replaceChildren(el("span", state.fails ? "fail" : "pass", transition), document.createTextNode(` (fail on ${ui.failOn.value}: ${rules})`));
   if (why) ui.breakSummary.append(el("span", "why", why));
 }
 
@@ -364,6 +373,8 @@ function load(key) {
 
 let timer = 0;
 ui.source.addEventListener("input", () => {
+  ui.breakSummary.replaceChildren();
+  ui.diff.hidden = true;
   renderGutter();
   clearTimeout(timer);
   timer = setTimeout(update, 120);
@@ -371,7 +382,10 @@ ui.source.addEventListener("input", () => {
 ui.source.addEventListener("scroll", () => {
   ui.gutter.scrollTop = ui.source.scrollTop;
 });
-ui.failOn.addEventListener("change", update);
+ui.failOn.addEventListener("change", () => {
+  ui.breakSummary.replaceChildren();
+  update();
+});
 for (const b of document.querySelectorAll("[data-example]")) {
   b.addEventListener("click", () => load(b.getAttribute("data-example")));
 }
