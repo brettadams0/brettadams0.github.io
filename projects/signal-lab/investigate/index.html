@@ -28,7 +28,7 @@ permalink: /projects/signal-lab/investigate/
       <li>Subtract the baseline from recorded net revenue. <span class="equation">{{ r.actual }} − {{ r.expected }} = {{ r.delta }}</span>.</li>
     </ol>
     <h2>Where the difference came from</h2>
-    <p>The United Kingdom contributed <strong>{{ r.uk }}</strong> of the deviation, the Netherlands <strong>{{ r.netherlands }}</strong>, and the remaining countries <strong>{{ r.others }}</strong> combined. These signed contributions sum to {{ r.delta }}. Three decimal places preserve half-pennies in the baseline allocation.</p>
+    <p>Each contribution is a country’s net sales on the alert date minus its share of the weekday baseline. The United Kingdom contributed <strong>{{ r.uk }}</strong> of the deviation, the Netherlands <strong>{{ r.netherlands }}</strong>, and the remaining countries <strong>{{ r.others }}</strong> combined. These signed contributions sum to {{ r.delta }}. Three decimal places preserve half-pennies in the baseline allocation.</p>
     <p>Source data from Daqing Chen, <a href="https://doi.org/10.24432/C5CG6D">Online Retail II, UCI Machine Learning Repository</a>. The public export contains aggregate values for this calculation.</p>
     <h2>Verify the released figures</h2>
     <p>Alert <code>{{ r.alert }}</code><br>Compressed snapshot SHA-256 <code>{{ r.sha256 }}</code></p>
@@ -36,6 +36,7 @@ permalink: /projects/signal-lab/investigate/
     <p id="check-result" role="status"></p>
     <p>For an independent, offline calculation, save the <a id="manifest" href="{{ '/signal-lab/snapshots/v2/manifest.json' | relative_url }}" download>release manifest</a>, <a id="snapshot" href="{{ r.file | prepend: '/signal-lab/' | relative_url }}" download>compressed snapshot</a> and <a href="verify.py" download>Python verifier</a> in one directory. Run this command with Python 3.</p>
     <p><code>python3 verify.py manifest.json {{ r.file | split: '/' | last }}</code></p>
+    <p>The <a href="https://github.com/brettadams0/brettadams0.github.io/tree/0fc79d95e010994d5567a966e49cc7c2b1b7be2c/signal-lab/snapshots">original published snapshot files</a> are pinned to portfolio revision <code>0fc79d9</code> for replay after a release change.</p>
     <p><a href="{{ '/signal-lab/' | relative_url }}#revenue">Explore the Revenue workspace</a></p>
   </div>
 </article>
