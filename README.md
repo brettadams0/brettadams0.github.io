@@ -5,15 +5,17 @@
 
 Source for my personal site, **[brettadams0.github.io](https://brettadams0.github.io/)**.
 
-A Jekyll site published by GitHub Pages: a one-page portfolio with live project demos, plus a case
-study of the MCP work at `/mcp/`. The demos are plain ES modules with no build step. The homepage
-only links to them: nothing runs until a visitor opens one.
+GitHub Pages builds the portfolio with Jekyll. The homepage links to eight projects, including native and source-only work. The browser demos run on their own pages. Some ship prebuilt assets, including the Signal Lab application and the MazeFinder WebAssembly solver.
+
+[Reproduce a Signal Lab revenue finding](https://brettadams0.github.io/projects/signal-lab/investigate/?alert=c646f48c31360b392784.weekday-1.median.net.2011-09-20) · [Try the MCP checker](https://brettadams0.github.io/mcp-surface/) · [Read the MCP case study](https://brettadams0.github.io/mcp/)
 
 ## Layout
 
 | Path | |
 |---|---|
 | `index.html` | The homepage |
+| `signal-lab/` | Published application and public snapshots |
+| `projects/signal-lab/` | Case study, worked investigation and downloadable Python verifier |
 | `mcp/index.html` | Case study of the MCP servers and `mcp-surface`, at `/mcp/` |
 | `_layouts/default.html` | Page shell: head, header and footer |
 | `assets/css/site.css` | All homepage styles (dark only, same tokens as the demos) |

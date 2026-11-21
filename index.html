@@ -110,61 +110,25 @@ layout: default
   <div class="wrap">
     <h2 id="projects-title" class="section-title"><span class="prefix" aria-hidden="true">## </span>Projects</h2>
     <div class="projects">
-      <article class="project project-featured" data-project="neuronet-arena">
-        <a class="project-shot" href="{{ '/neuronet-arena/' | relative_url }}" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/neuronet-arena-800.webp' | relative_url }}"
-               srcset="{{ '/assets/img/neuronet-arena-800.webp' | relative_url }} 800w, {{ '/assets/img/neuronet-arena.webp' | relative_url }} 1280w"
-               sizes="(min-width: 1200px) 650px, (min-width: 861px) 56vw, calc(100vw - 70px)"
-               alt="" width="1280" height="800" loading="lazy" decoding="async" />
-          <video class="shot-loop" data-loop="inview" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture>
-            <source data-src="{{ '/assets/video/neuronet-arena-loop-480.av1.webm' | relative_url }}" type='video/webm; codecs="av01.0.00M.08"'>
-            <source data-src="{{ '/assets/video/neuronet-arena-loop-480.vp9.webm' | relative_url }}" type='video/webm; codecs="vp9"'>
-            <source data-src="{{ '/assets/video/neuronet-arena-loop-480.mp4' | relative_url }}" type='video/mp4; codecs="avc1.640016"'>
-          </video>
-        </a>
-        <h3 class="project-name">neuronet-arena</h3>
-        <p class="project-kind"><span class="badge-live">Live demo</span> runs in your browser</p>
-        <p class="project-line">Forty agents with their own neural networks evolve to forage. Watch any agent's network fire as it moves.</p>
-        <ul class="chips" role="list"><li>13.7× the food with selection on</li><li>JS matches Python bit for bit</li><li>No ML libraries</li></ul>
-        <p class="links">
-          <a class="link-demo" href="{{ '/neuronet-arena/' | relative_url }}">Live demo<span class="sr-only">: neuronet-arena</span></a>
-          <a href="https://github.com/brettadams0/neuronet-arena">Source<span class="sr-only">: neuronet-arena</span></a>
-        </p>
-      </article>
-      <article class="project project-featured" data-project="border-waits">
-        <a class="project-shot" href="{{ '/border-waits/' | relative_url }}" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/border-waits-800.webp' | relative_url }}"
-               srcset="{{ '/assets/img/border-waits-800.webp' | relative_url }} 800w, {{ '/assets/img/border-waits-1600.webp' | relative_url }} 1600w"
+      <article class="project project-featured" data-project="signal-lab">
+        <a class="project-shot" href="{{ '/signal-lab/' | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/signal-lab-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/signal-lab-800.webp' | relative_url }} 800w, {{ '/assets/img/signal-lab-overview.webp' | relative_url }} 1600w"
                sizes="(min-width: 1200px) 650px, (min-width: 861px) 56vw, calc(100vw - 70px)"
                alt="" width="1600" height="1000" loading="lazy" decoding="async" />
         </a>
-        <h3 class="project-name">border-waits</h3>
-        <p class="project-kind"><span class="badge-live">Live demo</span> SQL in your browser</p>
-        <p class="project-line">A pipeline over the wait estimates the Canadian and U.S. border agencies publish, read every few hours on GitHub's best-effort scheduler. Query it with SQL in your browser.</p>
-        <ul class="chips" role="list"><li>dbt + DuckDB</li><li>Tests gate every deploy</li><li>CBSA + U.S. CBP open data</li></ul>
+        <h3 class="project-name">Signal Lab</h3>
+        <p class="project-kind"><span class="badge-live">Live demo</span> Interactive data &amp; ML platform</p>
+        <p class="project-line">Explore historical Toronto transit incidents, UK retail revenue and synthetic customer retention. Reproduce one unusual day’s revenue from the published aggregates.</p>
+        <ul class="chips" role="list"><li>React + TypeScript</li><li>Python + DuckDB</li><li>Offline-ready</li></ul>
         <p class="links">
-          <a class="link-demo" href="{{ '/border-waits/' | relative_url }}">Live demo<span class="sr-only">: border-waits</span></a>
-          <a href="https://github.com/brettadams0/border-waits-pipeline">Source<span class="sr-only">: border-waits</span></a>
+          <a class="link-demo" href="{{ '/signal-lab/' | relative_url }}">Live demo<span class="sr-only">: Signal Lab</span></a>
+          <a href="{{ '/projects/signal-lab/investigate/' | relative_url }}?alert=c646f48c31360b392784.weekday-1.median.net.2011-09-20">Verify the revenue finding</a>
+          <a href="{{ '/projects/signal-lab/' | relative_url }}">Case study<span class="sr-only">: Signal Lab</span></a>
         </p>
       </article>
 
-      <article class="project" data-project="sift">
-        <a class="project-shot" href="https://github.com/brettadams0/sift" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/sift-grade-800.webp' | relative_url }}"
-               srcset="{{ '/assets/img/sift-grade-800.webp' | relative_url }} 800w, {{ '/assets/img/sift-grade-1600.webp' | relative_url }} 1600w"
-               sizes="(min-width: 1200px) 650px, (min-width: 861px) 56vw, calc(100vw - 70px)"
-               alt="" width="1600" height="1000" loading="lazy" decoding="async" />
-        </a>
-        <h3 class="project-name">Sift</h3>
-        <p class="project-kind">Android app</p>
-        <p class="project-line">Swipe through your camera roll to keep or delete, then grade the keepers on-device. The cover shows a real photo before and after Sift's grading pipeline.</p>
-        <ul class="chips" role="list"><li>Kotlin, 6 Gradle modules</li><li>Own baseline JPEG encoder</li><li>No INTERNET permission</li></ul>
-        <p class="links">
-          <a href="https://github.com/brettadams0/sift">Source<span class="sr-only">: Sift</span></a>
-        </p>
-      </article>
-
-      <article class="project" data-project="mcp-surface">
+      <article class="project project-featured" data-project="mcp-surface">
         <a class="project-shot" href="{{ '/mcp-surface/' | relative_url }}" tabindex="-1" aria-hidden="true">
           <img src="{{ '/assets/img/mcp-surface-audit-800.webp' | relative_url }}"
                srcset="{{ '/assets/img/mcp-surface-audit-800.webp' | relative_url }} 800w, {{ '/assets/img/mcp-surface-audit-1600.webp' | relative_url }} 1600w"
@@ -183,23 +147,61 @@ layout: default
         </p>
       </article>
 
-
-      <article class="project" data-project="signal-lab">
-        <a class="project-shot" href="{{ '/signal-lab/' | relative_url }}" tabindex="-1" aria-hidden="true">
-          <img src="{{ '/assets/img/signal-lab-800.webp' | relative_url }}"
-               srcset="{{ '/assets/img/signal-lab-800.webp' | relative_url }} 800w, {{ '/assets/img/signal-lab-overview.webp' | relative_url }} 1600w"
-               sizes="(min-width: 1200px) 650px, (min-width: 861px) 56vw, calc(100vw - 70px)"
+      <article class="project" data-project="border-waits">
+        <a class="project-shot" href="{{ '/border-waits/' | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/border-waits-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/border-waits-800.webp' | relative_url }} 800w, {{ '/assets/img/border-waits-1600.webp' | relative_url }} 1600w"
+               sizes="(min-width: 1200px) 524px, (min-width: 861px) 45vw, calc(100vw - 70px)"
                alt="" width="1600" height="1000" loading="lazy" decoding="async" />
         </a>
-        <h3 class="project-name">Signal Lab</h3>
-        <p class="project-kind"><span class="badge-live">Live demo</span> Interactive data &amp; ML platform</p>
-        <p class="project-line">Explore three interactive analytical workspaces: historical TTC incident severity, UK retail revenue anomalies, and synthetic B2B customer retention. Built with reproducible data and model evidence.</p>
-        <ul class="chips" role="list"><li>React + TypeScript</li><li>Python + DuckDB</li><li>Offline-ready</li></ul>
+        <h3 class="project-name">border-waits</h3>
+        <p class="project-kind"><span class="badge-live">Live demo</span> SQL in your browser</p>
+        <p class="project-line">A pipeline over the wait estimates the Canadian and U.S. border agencies publish, read every few hours on GitHub's best-effort scheduler. Query it with SQL in your browser.</p>
+        <ul class="chips" role="list"><li>dbt + DuckDB</li><li>Tests gate every deploy</li><li>CBSA + U.S. CBP open data</li></ul>
         <p class="links">
-          <a class="link-demo" href="{{ '/signal-lab/' | relative_url }}">Live demo<span class="sr-only">: Signal Lab</span></a>
-          <a href="{{ '/projects/signal-lab/' | relative_url }}">Case study<span class="sr-only">: Signal Lab</span></a>
+          <a class="link-demo" href="{{ '/border-waits/' | relative_url }}">Live demo<span class="sr-only">: border-waits</span></a>
+          <a href="https://github.com/brettadams0/border-waits-pipeline">Source<span class="sr-only">: border-waits</span></a>
         </p>
       </article>
+
+      <article class="project" data-project="sift">
+        <a class="project-shot" href="https://github.com/brettadams0/sift" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/sift-grade-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/sift-grade-800.webp' | relative_url }} 800w, {{ '/assets/img/sift-grade-1600.webp' | relative_url }} 1600w"
+               sizes="(min-width: 1200px) 524px, (min-width: 861px) 45vw, calc(100vw - 70px)"
+               alt="" width="1600" height="1000" loading="lazy" decoding="async" />
+        </a>
+        <h3 class="project-name">Sift</h3>
+        <p class="project-kind">Android app</p>
+        <p class="project-line">Swipe through your camera roll to keep or delete, then grade the keepers on-device. The cover shows a real photo before and after Sift's grading pipeline.</p>
+        <ul class="chips" role="list"><li>Kotlin, 6 Gradle modules</li><li>Own baseline JPEG encoder</li><li>No INTERNET permission</li></ul>
+        <p class="links">
+          <a href="https://github.com/brettadams0/sift">Source<span class="sr-only">: Sift</span></a>
+        </p>
+      </article>
+
+      <article class="project" data-project="neuronet-arena">
+        <a class="project-shot" href="{{ '/neuronet-arena/' | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ '/assets/img/neuronet-arena-800.webp' | relative_url }}"
+               srcset="{{ '/assets/img/neuronet-arena-800.webp' | relative_url }} 800w, {{ '/assets/img/neuronet-arena.webp' | relative_url }} 1280w"
+               sizes="(min-width: 1200px) 524px, (min-width: 861px) 45vw, calc(100vw - 70px)"
+               alt="" width="1280" height="800" loading="lazy" decoding="async" />
+          <video class="shot-loop" data-loop="inview" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture>
+            <source data-src="{{ '/assets/video/neuronet-arena-loop-480.av1.webm' | relative_url }}" type='video/webm; codecs="av01.0.00M.08"'>
+            <source data-src="{{ '/assets/video/neuronet-arena-loop-480.vp9.webm' | relative_url }}" type='video/webm; codecs="vp9"'>
+            <source data-src="{{ '/assets/video/neuronet-arena-loop-480.mp4' | relative_url }}" type='video/mp4; codecs="avc1.640016"'>
+          </video>
+        </a>
+        <h3 class="project-name">neuronet-arena</h3>
+        <p class="project-kind"><span class="badge-live">Live demo</span> runs in your browser</p>
+        <p class="project-line">Forty agents with their own neural networks evolve to forage. Watch any agent's network fire as it moves.</p>
+        <ul class="chips" role="list"><li>13.7× the food with selection on</li><li>JS matches Python bit for bit</li><li>No ML libraries</li></ul>
+        <p class="links">
+          <a class="link-demo" href="{{ '/neuronet-arena/' | relative_url }}">Live demo<span class="sr-only">: neuronet-arena</span></a>
+          <a href="https://github.com/brettadams0/neuronet-arena">Source<span class="sr-only">: neuronet-arena</span></a>
+        </p>
+      </article>
+
       <article class="project" data-project="mazefinder">
         <a class="project-shot" href="{{ '/mazefinder/' | relative_url }}" tabindex="-1" aria-hidden="true">
           <img src="{{ '/assets/img/mazefinder-800.webp' | relative_url }}"
