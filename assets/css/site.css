@@ -319,7 +319,7 @@ main:focus { outline: none; }
   letter-spacing: var(--tracking-caps); text-transform: uppercase;
 }
 .glance-list { margin: 0; }
-.glance-list > div { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-top: 1px solid var(--border); }
+.glance-list > div { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 12px; padding: 12px 0; border-top: 1px solid var(--border); }
 .glance-list dt { padding-top: 3px; color: var(--muted); font: var(--fs-xs) / 1.6 var(--mono); }
 .glance-list dd { margin: 0; color: var(--soft); font-size: 0.9375rem; line-height: 1.5; }   /* 15px */
 .glance-list > .glance-now dd { color: var(--text); }
@@ -943,9 +943,9 @@ main:focus { outline: none; }
 @media (max-width: 860px) {
   .site-nav .nav-section { display: none; }
   .nav-sections { display: block; }
-  .nav-sections-inner { display: flex; justify-content: space-between; }
+  .nav-sections-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 4.3rem), 1fr)); }
   .nav-sections a {
-    flex: 1 1 0; min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
     color: var(--soft); text-decoration: none; font: 500 var(--fs-sm) var(--sans);
   }
   .nav-sections a:hover { color: var(--text); }
@@ -985,11 +985,14 @@ main:focus { outline: none; }
   .status { font-size: var(--fs-xs); }
   .lede { font-size: var(--fs-md); }
   .hero .lede { font-family: "IBM Plex Sans", "Plex Mobile Lede Fallback", var(--sans); }
-  .hero .actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); }
-  .hero .actions .btn { justify-content: center; padding: 0 var(--space-2); }
-  .hero .actions .btn-resume { grid-column: 1 / -1; }
+  .hero .actions { gap: var(--space-2); }
+  .hero .actions .btn { flex: 1 1 6em; justify-content: center; padding: 0 var(--space-2); }
+  .hero .actions .btn-resume { flex-basis: 100%; }
   .glance { max-width: none; padding: 16px; }
-  .glance-list > div { grid-template-columns: 88px minmax(0, 1fr); }
+  .glance-list > div { display: flex; flex-wrap: wrap; }
+  .glance-list dt { flex: 0 0 5.5rem; }
+  .glance-list dd { flex: 1 1 9rem; min-width: 0; }
+  .glance-list .nowrap { display: inline-block; max-width: 100%; white-space: normal; }
   .glance-list > .glance-now,
   .glance-list > .glance-tools { display: none; }   /* needs the child selector to beat .glance-list > div */
 
