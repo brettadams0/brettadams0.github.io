@@ -11,6 +11,7 @@ interface Props {
   imageAlt?: string;
   type?: 'website' | 'article' | 'profile';
   noindex?: boolean;
+  noCanonical?: boolean;    // error pages: served with a 404 status, so no canonical and no noindex needed
   jsonld?: Record<string, unknown>;
   bare?: boolean;            // case-study pages: compact header
 }
@@ -19,7 +20,7 @@ const {
   title, description, path,
   image = '/assets/img/social-card.png',
   imageAlt = 'Brett Adams: software engineering student. brettadams.ca',
-  type = 'website', noindex = false, jsonld,
+  type = 'website', noindex = false, noCanonical = false, jsonld,
 } = Astro.props;
 
 const canonical = new URL(path, SITE_URL).href;
@@ -40,7 +41,8 @@ const nav = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex" />}
+    {!noindex && !noCanonical && <link rel="canonical" href={canonical} />}
     <meta name="author" content={person.name} />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#fafcfe" media="(prefers-color-scheme: light)" />
