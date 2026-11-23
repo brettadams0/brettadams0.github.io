@@ -62,6 +62,7 @@ for (const p of pages) {
     expect((await page.title()).length).toBeGreaterThan(10);
     await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /.{50,}/);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://brettadams.ca${p}`);
+    await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /^https:\/\/brettadams\.ca\//);
     await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute('content', 'summary_large_image');
     await expect(page.locator('h1')).toHaveCount(1);
@@ -171,8 +172,11 @@ test('all links on our pages resolve', async ({ page, request, baseURL }) => {
   await page.goto('/');
   for (const id of new Set(homeAnchors)) expect(await page.locator(`[id="${id}"]`).count(), `/#${id}`).toBeGreaterThan(0);
   const broken: string[] = [];
+  const external = live || !!process.env.LINKS_EXTERNAL;
   for (const url of links) {
     const internal = url.startsWith(origin);
+    // Third-party sites are checked against the live site (and with LINKS_EXTERNAL=1), not on every PR.
+    if (!internal && !external) continue;
     try {
       // npmjs.com blocks automated requests (403); check the package in the npm registry instead.
       const npm = url.match(/^https:\/\/www\.npmjs\.com\/package\/([^/?#]+)/);

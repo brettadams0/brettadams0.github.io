@@ -40,8 +40,7 @@ const nav = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex" />}
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <meta name="author" content={person.name} />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#fafcfe" media="(prefers-color-scheme: light)" />
@@ -182,8 +181,7 @@ const nav = [
     transition: background-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
   }
   .site-nav a:hover { color: var(--text); background: var(--raised); }
-  .header-cta { min-height: 40px; padding-inline: 0.9rem; color: var(--accent); border-color: color-mix(in oklch, var(--accent) 45%, transparent); background: var(--accent-wash); }
-  .header-cta:hover { color: var(--accent-hi); }
+  .header-cta { min-height: 44px; padding-inline: 0.9rem; }
 
   /* Small screens: only the name and the résumé stay pinned; section links scroll away with the page. */
   .mobile-nav { display: none; }
