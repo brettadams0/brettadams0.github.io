@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { person } from '../data/site';
+---
+<Base title="Page not found" description="This page doesn’t exist on brettadams.ca. The projects, live demos and résumé are one click away." path="/404.html" noindex>
+  <section class="nf wrap" aria-labelledby="nf-title">
+    <p class="eyebrow">404</p>
+    <h1 id="nf-title">That page isn’t here.</h1>
+    <p>It may have moved when this site became brettadams.ca. Everything still lives one click away.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/#projects">See the projects<Icon name="arrow-right" /></a>
+      <a class="btn" href="/">Homepage</a>
+      <a class="btn" href={person.resume}><Icon name="file" />Résumé (PDF)</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf { display: grid; gap: var(--s4); justify-items: start; padding-block: clamp(3rem, 2rem + 8vw, 8rem); max-width: 40rem; }
+  h1 { font-size: var(--fs-2xl); letter-spacing: -0.03em; }
+  p:not(.eyebrow) { color: var(--soft); font-size: var(--fs-md); }
+  .actions { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s3); }
+</style>

@@ -1,0 +1,321 @@
+---
+import Article from '../../layouts/Article.astro';
+---
+<Article
+  title="MCP servers, and the tool that checks them"
+  description="Model Context Protocol servers for Google Workspace and Reddit, with 35 tools between them, and mcp-surface, the command-line tool both run in CI."
+  path="/mcp/"
+  eyebrow="Case study · October 2026"
+  heading="Two MCP servers that act on real accounts, and the tool that checks them"
+>
+  <Fragment slot="intro">
+    <ul class="chips case-facts" role="list"><li>2 servers</li><li>35 tools</li><li>3 repositories</li><li>114 offline tests</li></ul>
+    <p class="case-for">For anyone who lets an AI assistant send email, edit a calendar or post on their behalf, and needs to know when what it can do changes.</p>
+  </Fragment>
+  <figure class="flow-figure">
+    <div class="flow-row">
+      <p class="flow-label" id="flow-runtime">At runtime</p>
+      <ol class="flow" aria-labelledby="flow-runtime">
+        <li>An AI assistant</li>
+        <li>The MCP server</li>
+        <li>Google Workspace or Reddit, over OAuth</li>
+      </ol>
+    </div>
+    <div class="flow-row">
+      <p class="flow-label" id="flow-ci">In CI</p>
+      <ol class="flow" aria-labelledby="flow-ci">
+        <li>Start the server the way a client would. Listing tools needs no credentials.</li>
+        <li>Read the tool list and check every schema, name and annotation.</li>
+        <li>Compare the result with <code>mcp-surface.json</code>, a snapshot committed to the repository.</li>
+      </ol>
+    </div>
+    <figcaption>How the servers run, and what checks them at the end of each server's CI</figcaption>
+  </figure>
+  <figure class="replay" id="replay">
+    <div class="replay-head">
+      <p class="replay-label">Replay · an assistant using the Google Workspace server</p>
+      <div class="replay-controls">
+        <button type="button" data-replay="toggle" aria-pressed="false">Pause</button>
+        <button type="button" data-replay="again">Replay</button>
+      </div>
+    </div>
+    <pre class="replay-screen" aria-hidden="true"></pre>
+    <ol class="replay-script sr-only">
+      <li data-kind="note">// scripted calls; every value below is example data</li>
+      <li data-kind="call">→ calendar_list_events &#123;"timeMin": "2026-11-02T00:00:00Z", "timeMax": "2026-11-03T00:00:00Z", "maxResults": 5&#125;</li>
+      <li data-kind="meta">  annotations: readOnlyHint true</li>
+      <li data-kind="result">← 2 events (example): "Design review" 10:00, "Team sync" 15:30</li>
+      <li data-kind="call">→ calendar_create_event &#123;"summary": "Lunch with Alex", "start": "2026-11-02T12:00:00-05:00", "end": "2026-11-02T13:00:00-05:00", "attendees": ["alex@example.com"]&#125;</li>
+      <li data-kind="meta">  annotations: readOnlyHint false, destructiveHint false</li>
+      <li data-kind="result">← created (example): "Lunch with Alex" 12:00–13:00</li>
+      <li data-kind="call">→ sheets_write_range &#123;"spreadsheetId": "example-sheet-id", "range": "Budget!A2:B2", "values": [["Lunch", "24.00"]]&#125;</li>
+      <li data-kind="meta">  annotations: destructiveHint true (a client can ask before running it)</li>
+      <li data-kind="result">← updated 2 cells (example)</li>
+    </ol>
+    <figcaption>Tool names, arguments and annotations are the server's own, from its committed <code>mcp-surface.json</code>; the calls and results are made up.</figcaption>
+  </figure>
+
+    <p>
+      I've built two <a href="https://modelcontextprotocol.io">Model Context Protocol</a> servers that let
+      an AI assistant act on my behalf. One sends email, edits my calendar and writes to spreadsheets in
+      Google Workspace. The other reads, posts, votes and sends private messages on Reddit. I also built
+      <a href="https://github.com/brettadams0/mcp-surface">mcp-surface</a>, a command-line tool that
+      connects to an MCP server the way a client does and reports what it actually exposes.
+    </p>
+    <p>
+      This page covers how the three fit together, and what a security and correctness review of both
+      servers found in October 2026.
+    </p>
+
+    <h2>One check at the end of CI</h2>
+    <p>
+      A broken MCP server usually doesn't look broken. It starts, finishes the handshake and shows as
+      connected, while the model gets a worse tool or none at all. Unit tests miss this, because they test
+      the code behind each tool, not the list of tools a client is shown. So the last step in each
+      server's CI runs mcp-surface, in the "In CI" row at the top of this page.
+    </p>
+    <p>
+      Any change to a tool's name, description, inputs or annotations fails the build until the snapshot
+      is updated in the same pull request, which turns every such change into a diff someone has to review.
+    </p>
+    <figure>
+<pre tabindex="0" role="region" aria-label="Terminal output of npm run surface"><code>$ npm run surface
+
+google-workspace 2.0.0 (279ms)
+23 tools · 0 resources · 0 prompts · capabilities: tools
+  ⋮
+Snapshot mcp-surface.json
+  ~ tool calendar_create_event: description, inputSchema changed
+  ~ tool calendar_delete_event: description, inputSchema changed
+  ~ tool calendar_list_events: inputSchema changed
+  ~ tool calendar_update_event: description, inputSchema changed
+  ~ tool sheets_write_range: inputSchema changed
+  ⋮
+  Run with --update-snapshot if these changes are intended.</code></pre>
+      <figcaption>Real output, shortened where marked: the Google server after the fixes below, compared with the snapshot taken before them.</figcaption>
+    </figure>
+    <p>
+      It caught something on the first day. Upgrading the schema library from Zod 3 to Zod 4 looked
+      routine, and all 30 unit tests still passed. mcp-surface reported that all 23 Google tools had
+      changed: Zod 4 stopped marking objects as closed to extra properties, and added a 120-byte pattern
+      to every email field, which pushed the server's tool definitions past their 16 KB size budget. I
+      kept Zod 3.
+    </p>
+
+    <h2 id="repositories">The repositories</h2>
+    <ul class="repo-list">
+      <li>
+        <a class="repo-name" href="https://github.com/brettadams0/google-workspace-mcp">google-workspace-mcp</a>
+        <span class="repo-desc">23 tools for Gmail, Calendar, Drive, Sheets and YouTube, through my own Google OAuth client. It asks for no restricted scopes, so it can send mail but not read the inbox, and only sees Drive files it created. That keeps it out of the paid security assessment Google requires for restricted scopes.</span>
+      </li>
+      <li>
+        <a class="repo-name" href="https://github.com/brettadams0/reddit-mcp">reddit-mcp</a>
+        <span class="repo-desc">12 tools, five of which post, comment, vote, message or mark mail read under the account. OAuth with a long-lived refresh token, and access tokens renewed by a single shared request when parallel calls find one expired.</span>
+      </li>
+      <li>
+        <a class="repo-name" href="https://github.com/brettadams0/mcp-surface">mcp-surface</a>
+        <span class="repo-desc">The checker. TypeScript, 19 checks, published on npm with build provenance, and also usable as a GitHub Action.</span>
+      </li>
+      <li>
+        <a class="repo-name" href="https://github.com/brettadams0/chesscom-mcp">chesscom-mcp</a>
+        <span class="repo-desc">9 read-only tools over the Chess.com public API. No auth.</span>
+      </li>
+      <li>
+        <a class="repo-name" href="https://github.com/brettadams0/supercell-mcp">supercell-mcp</a>
+        <span class="repo-desc">15 read-only tools over three game APIs (Clash of Clans, Clash Royale, Brawl Stars) in one server.</span>
+      </li>
+      <li>
+        <a class="repo-name" href="https://github.com/brettadams0/yahoo-fantasy-mcp">yahoo-fantasy-mcp</a>
+        <span class="repo-desc">10 read-only tools over Yahoo Fantasy Sports, with OAuth refresh-token rotation that stays safe under parallel calls.</span>
+      </li>
+    </ul>
+    <p>
+      reddit-mcp and the last three share one small harness, a fetch-based version of the Google
+      server's. All five commit an <code>mcp-surface.json</code>, and CI fails when a tool changes shape
+      without that file changing with it.
+    </p>
+
+    <h2 id="external-compatibility">A real third-party test found a bug in my checker</h2>
+    <p>
+      The first broad compatibility test mattered more than a polished demo.
+      Against Chrome DevTools MCP, my checker incorrectly called all 33 tool schemas
+      invalid. The problem was not Google's server: its tools declare
+      JSON Schema 2020-12, while my checker fed every schema to a draft-07
+      validator. The schemas were valid; the verdicts were wrong.
+    </p>
+    <p>
+      I fixed dialect selection per input and output schema (draft-07,
+      2019-09 and 2020-12), and added regressions for valid, malformed,
+      mixed-dialect and 33-tool inputs. The review also exposed a second
+      false-positive claim: a required property absent from
+      <code>properties</code> is not automatically impossible in an open JSON
+      Schema. Finally, <code>--call</code> now refuses conflicting destructive
+      annotations and tools that cannot accept empty arguments.
+    </p>
+    <p>
+      The retest ran the real <code>chrome-devtools-mcp</code> 1.13.0 server:
+      <strong>33 tools, zero schema errors, one legitimate warning</strong>
+      for approximately 28.1 KB of tool definitions against a 16 KB
+      configurable default. The change passed 75 tests on Node 22.12, 22 and
+      24, including real stdio fixtures and a packed-package smoke test.
+      <a href="https://github.com/brettadams0/mcp-surface/actions/runs/44654147231">View the independent hosted Chrome MCP probe.</a>
+    </p>
+    <p>
+      <a href="/mcp-surface/">Try the live checker</a>:
+      switch to its valid 2020-12 example or deliberately break a tool contract
+      and inspect the actual findings. The project cover is an authentic capture
+      of that running interface.
+    </p>
+
+    <h2>What the review found</h2>
+    <p>
+      The review started from one assumption: every tool argument is written by a model, and a model that
+      has just read a web page or an email can be steered by what it read. A server that sends email and
+      writes to spreadsheets has to treat its inputs the way a web server treats a form submission. Each
+      fix below shipped with a test that builds the bad input.
+    </p>
+
+    <h3>Header injection through an email subject</h3>
+    <p>
+      The Gmail tools wrote the subject, recipients and attachment names straight into the message
+      headers, so a subject of <code>Hi\r\nBcc: someone@example.com</code> added a hidden recipient. Line
+      breaks in those fields are now rejected, and non-ASCII text is encoded the way the email standards
+      require (RFC 2047 and 2231).
+    </p>
+
+    <h3>Formula injection into a spreadsheet</h3>
+    <p>
+      Sheet writes used Google's "as if typed" mode, so a value like
+      <code>=IMPORTDATA("https://…"&amp;A1)</code> became a live formula that could send the sheet's
+      contents to any address. Values are now written as plain text unless the caller asks for formulas.
+    </p>
+
+    <h3>Requests that escaped their API path</h3>
+    <p>
+      Subreddit names, usernames and post ids went into Reddit request URLs unchecked. URLs resolve
+      <code>..</code>, so a subreddit named <code>../api/v1/me</code> reached a different Reddit endpoint
+      with the account's access token attached, and percent-encoding doesn't help because it leaves
+      <code>..</code> alone. Each value is now checked against what Reddit actually allows.
+    </p>
+
+    <h3>Reddit failures that looked like success</h3>
+    <p>
+      When Reddit rejects a post, for a misspelt subreddit or a rate limit, it still answers with HTTP 200
+      and puts the reasons in the body. The tool passed that through, so the assistant could report a post
+      that was never made. Those responses are now errors that include Reddit's reasons. Ids had the same
+      problem: Reddit's write endpoints silently ignore a comment id where a post id belongs, so every id
+      is now type-checked before the request is sent.
+    </p>
+
+    <h3>Calendar invitations that were never sent</h3>
+    <p>
+      Google Calendar only emails attendees when the request asks it to, so "invite Alice" created an event
+      Alice never heard about, even though the tool's description said she would. Invitations, updates and
+      cancellations are now emailed by default, with an option to turn that off.
+    </p>
+
+    <h3>A consent flow anyone on the network could answer</h3>
+    <p>
+      Both servers get their tokens through a one-time browser sign-in that redirects to a small local web
+      server. That server listened on every network interface, and the Google flow didn't check that the
+      redirect came from the sign-in it started. It now listens on localhost only, the Google flow checks
+      an OAuth <code>state</code> value and uses PKCE, and token files are kept readable only by their owner.
+    </p>
+
+    <h3>282 MB of dependencies, cut to 45 MB</h3>
+    <p>
+      The <code>googleapis</code> package bundles every Google API there is. Switching the Google server to
+      the five per-API packages it actually uses shrank its installed dependencies by more than 80%.
+    </p>
+
+    <h3>The checker had a bug of its own</h3>
+    <p>
+      mcp-surface introduced itself to every server as version 0.1.0, a number written into the code at
+      the first release and never updated. It now reads its version from its own package (merged after
+      0.3.0, so the next npm release carries it), and an end-to-end test checks what a server actually
+      receives.
+    </p>
+
+    <h2>What both servers now have</h2>
+    <ul>
+      <li>Tests that run without network access or credentials, on Node 22 and 24.</li>
+      <li>A committed tool snapshot that CI checks the running server against.</li>
+      <li>Read-only, destructive and idempotent annotations on every tool, so a client can approve reads automatically and ask before writes.</li>
+      <li>A 30-second timeout on every request, trimmed error messages, and rate-limit errors that say when to retry.</li>
+      <li>No open <code>npm audit</code> advisories at release, plus ESLint, Dependabot, a changelog and a security policy.</li>
+    </ul>
+
+    <h2>Limits</h2>
+    <ul>
+      <li>The test suites run without network access or credentials, so they never call the real Google or Reddit APIs.</li>
+      <li>By default, mcp-surface checks the tool list a server shows, not what its tools do when called. Three of its 19 checks run only with <code>--call</code>.</li>
+    </ul>
+  
+  <nav slot="after" class="next" aria-label="Next">
+    <a class="btn btn-primary" href="/mcp-surface/">Try mcp-surface’s checks in your browser <span aria-hidden="true">→</span></a>
+    <a class="btn" href="/#projects"><span aria-hidden="true">←</span> All projects</a>
+  </nav>
+</Article>
+<script is:inline src="/assets/js/mcp-replay.js" defer></script>
+
+<style is:global>
+  .case-facts { margin-top: var(--s1); }
+  .case-for { color: var(--soft); font-size: var(--fs-md); max-width: 60ch; }
+
+  .flow-figure { margin: 0; display: grid; gap: var(--s5); }
+  .flow-row { display: grid; gap: var(--s2); }
+  .flow-label { font: 400 var(--fs-xs)/1.4 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .flow { display: grid; gap: var(--s2); padding: 0 !important; list-style: none; counter-reset: step; }
+  @media (min-width: 40rem) { .flow { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .flow li {
+    counter-increment: step;
+    margin: 0 !important;
+    padding: var(--s3) var(--s4);
+    border-radius: var(--r-inner);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-size: var(--fs-sm); line-height: 1.5; color: var(--soft);
+  }
+  .flow li::before { content: counter(step); display: block; margin-bottom: 2px; font: 400 var(--fs-xs)/1.4 var(--mono); color: var(--accent); }
+
+  .replay {
+    margin: 0;
+    padding: var(--pad-card);
+    border-radius: var(--r-outer);
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .replay-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s2); padding: var(--s1) var(--s2) var(--s2); }
+  .replay-label { font: 400 var(--fs-xs)/1.4 var(--mono); color: var(--muted); }
+  .replay-controls { display: flex; gap: var(--s2); }
+  .replay-controls button {
+    min-height: 44px; min-width: 44px; padding: 0 var(--s4);
+    border-radius: calc(var(--r-inner) - 2px);
+    border: 1px solid var(--border-strong); background: var(--bg); color: var(--text);
+    font: 500 var(--fs-sm)/1 var(--sans); cursor: pointer;
+    transition: border-color var(--t-fast) var(--ease-out), background-color var(--t-fast) var(--ease-out);
+  }
+  .replay-controls button:hover { border-color: var(--accent); }
+  .replay-screen {
+    margin: 0; min-height: 14.5em;
+    padding: var(--s3) var(--s4);
+    white-space: pre-wrap; overflow-wrap: anywhere;
+    border-radius: var(--r-inner);              /* concentric with .replay */
+    border: 1px solid var(--border);
+    background: var(--raised); color: var(--text);
+    font: 400 0.78rem/1.6 var(--mono);
+  }
+  .replay figcaption { padding: var(--s2) var(--s2) var(--s1); }
+  .rl-note { color: var(--muted); }
+  .rl-call { color: var(--text); }
+  .rl-meta { color: var(--accent); }
+  .rl-result { color: var(--live); }
+  .rl-hidden { visibility: hidden; }
+
+  .repo-list { list-style: none; padding: 0 !important; display: grid; gap: var(--s2); }
+  .repo-list li { margin: 0 !important; display: grid; gap: var(--s1); padding: var(--s3) var(--s4); border-radius: var(--r-inner); border: 1px solid var(--border); background: var(--surface); }
+  .repo-name { font: 500 var(--fs-sm)/1.5 var(--mono); }
+  .repo-desc { font-size: var(--fs-base); line-height: 1.6; }
+
+  .next { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s7); }
+</style>

@@ -1,0 +1,42 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  eyebrow: string;
+  heading: string;
+  back?: { label: string; href: string };
+  jsonld?: Record<string, unknown>;
+  image?: string;
+}
+const { title, description, path, eyebrow, heading, back = { label: 'All projects', href: '/#projects' }, jsonld, image } = Astro.props;
+---
+<Base title={title} description={description} path={path} type="article" jsonld={jsonld} image={image}>
+  <article class="article wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href={back.href}><span aria-hidden="true">←</span> {back.label}</a>
+    </nav>
+    <header class="article-head">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{heading}</h1>
+      <slot name="intro" />
+    </header>
+    <div class="prose">
+      <slot />
+    </div>
+    <slot name="after" />
+  </article>
+</Base>
+
+<style>
+  .article { max-width: 46rem; padding-block: clamp(2rem, 1rem + 4vw, 4rem) var(--s6); }
+  .crumbs a {
+    display: inline-flex; align-items: center; gap: var(--s2); min-height: 44px;
+    color: var(--muted); font-size: var(--fs-sm); text-decoration: none;
+  }
+  .crumbs a:hover { color: var(--text); }
+  .article-head { display: grid; gap: var(--s4); margin: var(--s4) 0 var(--s7); }
+  .article-head h1 { font-size: var(--fs-2xl); letter-spacing: -0.03em; line-height: 1.12; }
+</style>

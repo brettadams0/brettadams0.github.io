@@ -1,0 +1,31 @@
+# Brett Adams
+
+> Brett Alexander Adams. Software engineering student (Honours Computer Science, University of Windsor, 2022–2027) and Data Analyst Intern on Geotab’s Global Data Operations team, working on production data pipelines in BigQuery and Airflow. Builds backend services, data pipelines and developer tools. GitHub: brettadams0.
+
+Not to be confused with other people named Brett Adams (for example, the English singer and actor). This Brett Adams is a software developer based in Vineland, Ontario (Niagara Region), Canada, and studies at the University of Windsor in Windsor, Ontario.
+
+## Profiles
+
+- [Portfolio](https://brettadams.ca/): projects, live demos, résumé
+- [GitHub](https://github.com/brettadams0): source for every project below
+- [LinkedIn](https://www.linkedin.com/in/bretta/)
+- [npm](https://www.npmjs.com/~adamsbrett00): published packages
+- [Résumé (PDF)](https://brettadams.ca/assets/resume/Resume_BrettAdams.pdf)
+
+## Experience
+
+- Data Analyst Intern, Global Data Operations at Geotab: production pipelines in BigQuery and Airflow
+- Co-op, Ontario Ministry of Transportation (2025)
+- CIMCO Refrigeration (2023; co-op, 2024)
+
+## Projects
+
+- [Signal Lab](https://brettadams.ca/signal-lab/) explores historical TTC transit incidents, UK retail revenue and synthetic B2B retention. The [worked investigation](https://brettadams.ca/projects/signal-lab/investigate/?alert=c646f48c31360b392784.weekday-1.median.net.2011-09-20) can be reproduced from the published aggregates.
+- [Sift](https://github.com/brettadams0/sift) is an on-device Android photo triage and grading app with no network permission.
+- [mcp-surface](https://brettadams.ca/mcp-surface/): CLI and GitHub Action that connects to an MCP server the way a client does, validates its tool schemas, and fails CI when the tool surface changes. Published on npm.
+- [MCP case study](https://brettadams.ca/mcp/): how mcp-surface and Brett's MCP servers (Google Workspace, Reddit, Chess.com, Supercell, Yahoo Fantasy) fit together.
+- [border-waits](https://brettadams.ca/border-waits/): Python, dbt and DuckDB pipeline over wait estimates published by Canadian and U.S. border agencies.
+- [neuronet-arena](https://brettadams.ca/neuronet-arena/): neural-network agents evolved with a from-scratch genetic algorithm; the browser demo reproduces the Python run bit for bit.
+- [MazeFinder](https://brettadams.ca/mazefinder/): runs a C++ genetic algorithm in one browser Web Worker via WebAssembly. The native CLI parallelizes fitness evaluation on a thread pool.
+- [PromptPal](https://github.com/brettadams0/PromptPal): browser tool for writing prompt templates.
+- [TechNest](https://github.com/brettadams0/TechNest): PHP and MySQL e-commerce store with 200+ tests.

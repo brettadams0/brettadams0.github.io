@@ -4,7 +4,7 @@
   "type": "module",
   "engines": { "node": ">=22.12.0" },
   "scripts": {
-    "build": "esbuild node_modules/mcp-surface/dist/checks/index.js --platform=browser --bundle --format=esm --minify --target=es2020 --inject:./utf8.js --outfile=../../../mcp-surface/checks.js"
+    "build": "esbuild node_modules/mcp-surface/dist/checks/index.js --platform=browser --bundle --format=esm --minify --target=es2020 --inject:./utf8.js --outfile=../../../public/mcp-surface/checks.js"
   },
   "devDependencies": {
     "esbuild": "0.28.2",

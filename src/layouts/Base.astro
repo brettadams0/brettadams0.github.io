@@ -1,0 +1,218 @@
+---
+import '../styles/global.css';
+import { SITE_URL, person } from '../data/site';
+import Icon from '../components/Icon.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;              // canonical path, e.g. "/" or "/mcp/"
+  image?: string;            // social image path
+  imageAlt?: string;
+  type?: 'website' | 'article' | 'profile';
+  noindex?: boolean;
+  jsonld?: Record<string, unknown>;
+  bare?: boolean;            // case-study pages: compact header
+}
+
+const {
+  title, description, path,
+  image = '/assets/img/social-card.png',
+  imageAlt = 'Brett Adams: software engineering student. brettadams.ca',
+  type = 'website', noindex = false, jsonld,
+} = Astro.props;
+
+const canonical = new URL(path, SITE_URL).href;
+const ogImage = new URL(image, SITE_URL).href;
+const fullTitle = path === '/' ? `${person.name}: Software Engineering Student` : `${title} · ${person.name}`;
+const GA_ID = 'G-Z3KW627PQQ';
+const onHome = path === '/';
+const nav = [
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Experience', href: '/#experience' },
+  { label: 'Contact', href: '/#contact' },
+];
+---
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="author" content={person.name} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#fafcfe" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={person.name} />
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+
+    {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
+
+    <!-- Analytics (GA4) loads after the page is idle, so it never competes with content.
+         Skipped entirely for visitors who send Do Not Track. -->
+    <script is:inline define:vars={{ GA_ID }}>
+      if (navigator.doNotTrack !== '1' && window.doNotTrack !== '1' && /(^|\.)brettadams\.ca$/.test(location.hostname)) {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag('js', new Date());
+        gtag('config', GA_ID);
+        var load = function () {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+          document.head.appendChild(s);
+          var e = document.createElement('script');
+          e.defer = true;
+          e.src = '/assets/js/analytics-events.js';
+          document.head.appendChild(e);
+        };
+        var idle = function () { ('requestIdleCallback' in window) ? requestIdleCallback(load, { timeout: 4000 }) : setTimeout(load, 2000); };
+        document.readyState === 'complete' ? idle() : addEventListener('load', idle, { once: true });
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true">BA</span>
+          <span class="brand-name">Brett Adams</span>
+        </a>
+        <nav class="site-nav" aria-label="Main" data-nav="header">
+          <ul role="list">
+            {nav.map((item) => (
+              <li><a href={onHome ? item.href.slice(1) : item.href}>{item.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <a class="btn header-cta" href={person.resume} data-resume="header">
+          <Icon name="file" />Résumé
+        </a>
+      </div>
+    </header>
+    <nav class="mobile-nav" aria-label="Sections" data-nav="sections">
+      <ul role="list" class="wrap">
+        {nav.map((item) => (
+          <li><a href={onHome ? item.href.slice(1) : item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p>© {new Date().getFullYear()} {person.name} · Vineland, Ontario</p>
+        <ul class="footer-links" role="list">
+          <li><a href={person.github} data-contact="github">GitHub</a></li>
+          <li><a href={person.linkedin} data-contact="linkedin">LinkedIn</a></li>
+          <li><a href={person.resume}>Résumé</a></li>
+          <li><a href="https://github.com/brettadams0/brettadams0.github.io">Site source</a></li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in oklch, var(--bg) 86%, transparent);
+    backdrop-filter: saturate(1.4) blur(12px);
+    -webkit-backdrop-filter: saturate(1.4) blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    display: flex; align-items: center; gap: var(--s4);
+    min-height: var(--header-h);
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: var(--s3);
+    min-height: 44px;
+    text-decoration: none; font-weight: 650; letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .brand:hover { color: var(--text); }
+  .brand-mark {
+    display: grid; place-items: center;
+    width: 32px; height: 32px; border-radius: 9px;
+    background: var(--text); color: var(--bg);
+    font: 650 0.8rem/1 var(--sans); letter-spacing: -0.02em;
+    position: relative;
+  }
+  .brand-mark::after {
+    content: ""; position: absolute; left: 9px; right: 9px; bottom: 5px; height: 2px; border-radius: 1px;
+    background: var(--accent);
+  }
+  .site-nav { margin-left: auto; }
+  .site-nav ul { display: flex; gap: var(--s1); list-style: none; }
+  .site-nav a {
+    display: inline-flex; align-items: center; min-height: 44px;
+    padding: 0 var(--s3);
+    border-radius: var(--r-btn);
+    color: var(--soft); text-decoration: none; font-size: var(--fs-sm); font-weight: 500;
+    transition: background-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+  }
+  .site-nav a:hover { color: var(--text); background: var(--raised); }
+  .header-cta { min-height: 40px; padding-inline: 0.9rem; color: var(--accent); border-color: color-mix(in oklch, var(--accent) 45%, transparent); background: var(--accent-wash); }
+  .header-cta:hover { color: var(--accent-hi); }
+
+  /* Small screens: only the name and the résumé stay pinned; section links scroll away with the page. */
+  .mobile-nav { display: none; }
+  @media (max-width: 40rem) {
+    .site-nav { display: none; }
+    .header-cta { margin-left: auto; }
+    .brand-name { font-size: var(--fs-sm); }
+    .mobile-nav { display: block; border-bottom: 1px solid var(--border); }
+    .mobile-nav ul { display: flex; gap: var(--s1); list-style: none; padding: 0; }
+    .mobile-nav a {
+      display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--s3);
+      margin-left: calc(-1 * var(--s3) / 3);
+      color: var(--soft); text-decoration: none; font-size: var(--fs-sm); font-weight: 500;
+    }
+    .mobile-nav li:first-child a { margin-left: calc(-1 * var(--s3)); }
+  }
+
+  .site-footer {
+    margin-top: var(--s8);
+    border-top: 1px solid var(--border);
+    color: var(--muted); font-size: var(--fs-sm);
+  }
+  .footer-inner {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+    gap: var(--s3) var(--s5);
+    padding-block: var(--s5);
+  }
+  .footer-links { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s2); list-style: none; }
+  .footer-links a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: var(--s2); text-decoration: none; }
+  .footer-links a:hover { color: var(--text); }
+  main:focus { outline: none; }
+</style>
