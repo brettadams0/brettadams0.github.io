@@ -1,0 +1,142 @@
+---
+import type { Project } from '../data/site';
+import Icon from './Icon.astro';
+
+interface Props { project: Project; priority?: boolean }
+const { project: p, priority = false } = Astro.props;
+const external = (href: string) => /^https?:/.test(href);
+const sizes = p.featured
+  ? '(min-width: 72rem) 560px, (min-width: 48rem) 46vw, calc(100vw - 2rem)'
+  : '(min-width: 72rem) 360px, (min-width: 48rem) 30vw, calc(100vw - 2rem)';
+const primaryIsDemo = p.links[0]?.kind === 'demo';
+---
+<article class:list={['card', { 'card-featured': p.featured }]} data-project={p.id}>
+  <div class:list={['shot', { 'on-white': p.img.onWhite }]}>
+    <img
+      src={p.img.src800}
+      srcset={`${p.img.src800} 800w, ${p.img.src1600} ${p.img.wide}w`}
+      sizes={sizes}
+      alt={p.img.alt}
+      width={p.img.w}
+      height={p.img.h}
+      loading={priority ? 'eager' : 'lazy'}
+      fetchpriority={priority ? 'high' : 'auto'}
+      decoding="async"
+    />
+    {p.loop && (
+      <video class="shot-loop" data-loop={p.loop.mode} muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" disablepictureinpicture>
+        <source data-src={`${p.loop.base}.av1.webm`} type='video/webm; codecs="av01.0.00M.08"' />
+        <source data-src={`${p.loop.base}.vp9.webm`} type='video/webm; codecs="vp9"' />
+        <source data-src={`${p.loop.base}.mp4`} type={`video/mp4; codecs="${p.loop.mp4Codec}"`} />
+      </video>
+    )}
+  </div>
+  <div class="card-body">
+    <p class="card-kind">
+      {p.live && <span class="badge-live"><span class="dot" aria-hidden="true"></span>Live</span>}
+      {p.kind}
+    </p>
+    <h3 class="card-name">
+      <a class="card-link" href={p.href}>{p.name}<Icon name={external(p.href) ? 'arrow-up-right' : 'arrow-right'} class="card-arrow" /></a>
+    </h3>
+    <p class="card-line">{p.line}</p>
+    <ul class="chips" role="list">{p.chips.map((c) => <li>{c}</li>)}</ul>
+    <ul class="card-links" role="list">
+      {p.links.map((l, i) => (
+        <li>
+          <a href={l.href} class:list={[{ 'is-demo': l.kind === 'demo' && i === 0 && primaryIsDemo }]}>
+            {l.label}<span class="sr-only">: {p.name}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    display: flex; flex-direction: column;
+    padding: var(--pad-card);
+    border-radius: var(--r-outer);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: border-color var(--t-base) var(--ease-out), background-color var(--t-base) var(--ease-out);
+  }
+  .card:hover { border-color: var(--border-strong); }
+  @media (prefers-color-scheme: dark) { .card:hover { background: color-mix(in oklch, var(--surface) 70%, var(--raised)); } }
+
+  .shot {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: var(--r-inner);              /* concentric: outer 16 − padding 8 */
+    background: var(--raised);
+    outline: 1px solid var(--border);
+    outline-offset: -1px;
+  }
+  .shot img, .shot video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: top left;
+    transition: transform var(--t-slow) var(--ease-out);
+  }
+  @media (prefers-color-scheme: light) {
+    /* White-background product shots blend into the page instead of sitting in a white box. */
+    .shot.on-white img { mix-blend-mode: multiply; }
+  }
+  .shot-loop { opacity: 0; transition: opacity var(--t-base) var(--ease-out); }
+  .shot-loop:global(.is-playing) { opacity: 1; }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .card:hover .shot img, .card:hover .shot video { transform: scale(1.015); }
+  }
+
+  .card-body {
+    display: flex; flex-direction: column; gap: var(--s3);
+    padding: var(--s4) calc(var(--s4) - var(--pad-card) + var(--s2)) var(--s2);
+    flex: 1;
+  }
+  .card-kind {
+    display: flex; align-items: center; flex-wrap: wrap; gap: var(--s2);
+    font: 400 var(--fs-xs)/1.4 var(--mono); color: var(--muted);
+  }
+  .badge-live {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 1px 7px; border-radius: 999px;
+    color: var(--live);
+    background: color-mix(in oklch, var(--live) 10%, transparent);
+    border: 1px solid color-mix(in oklch, var(--live) 28%, transparent);
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .card-name { font-size: var(--fs-lg); letter-spacing: -0.015em; }
+  .card-featured .card-name { font-size: var(--fs-xl); }
+  .card-link { display: inline-flex; align-items: center; gap: 0.35em; text-decoration: none; color: var(--text); }
+  .card-link:hover { color: var(--text); }
+  /* The name link covers the whole card: a large target (Fitts) without nesting links. */
+  .card-link::after { content: ""; position: absolute; inset: 0; border-radius: var(--r-outer); z-index: 1; }
+  .card-link:focus-visible { outline: none; }
+  .card-link:focus-visible::after { outline: 2px solid var(--focus); outline-offset: 2px; }
+  :global(.card-arrow) {
+    width: 0.8em; height: 0.8em; stroke-width: 2.25;
+    color: var(--muted);
+    transition: transform var(--t-base) var(--ease-out), color var(--t-base) var(--ease-out);
+  }
+  /* Follow-through: the arrow moves after the pointer arrives. */
+  .card:hover :global(.card-arrow), .card-link:focus-visible :global(.card-arrow) { color: var(--accent); transform: translate(2px, 0); }
+  .card-line { color: var(--soft); font-size: var(--fs-base); }
+  .card-featured .card-line { font-size: var(--fs-md); }
+  .chips { margin-top: auto; }
+
+  .card-links {
+    display: flex; flex-wrap: wrap; gap: 0 var(--s4);
+    list-style: none;
+    position: relative; z-index: 2;         /* above the stretched card link */
+    margin: 0 calc(-1 * var(--s2));
+  }
+  .card-links a {
+    display: inline-flex; align-items: center; min-height: 44px; padding-inline: var(--s2);
+    font-size: var(--fs-sm); font-weight: 550;
+    color: var(--accent); text-decoration: underline; text-decoration-color: transparent;
+  }
+  .card-links a:hover { color: var(--accent-hi); text-decoration-color: currentColor; }
+</style>

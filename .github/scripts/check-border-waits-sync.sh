@@ -6,10 +6,10 @@ set -euo pipefail
 upstream=${1:?usage: check-border-waits-sync.sh <border-waits-pipeline checkout>}
 diff=$(rsync -rcn --delete --itemize-changes \
   --exclude node_modules --exclude test --exclude package.json --exclude package-lock.json --exclude tsconfig.json --exclude Makefile \
-  "$upstream/web/" border-waits/)
+  "$upstream/web/" public/border-waits/)
 if [ -n "$diff" ]; then
   echo "border-waits/ differs from $upstream/web/ (>f: upstream is newer or different, *deleting: only here):"
   echo "$diff"
   exit 1
 fi
-echo "border-waits/ matches $upstream/web/ at $(git -C "$upstream" rev-parse --short HEAD 2>/dev/null || echo '?')"
+echo "public/border-waits/ matches $upstream/web/ at $(git -C "$upstream" rev-parse --short HEAD 2>/dev/null || echo '?')"

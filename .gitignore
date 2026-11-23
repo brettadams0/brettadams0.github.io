@@ -1,10 +1,16 @@
-_site/
-.jekyll-cache/
-.jekyll-metadata
-.sass-cache/
+# build output
+dist/
+.astro/
+check-site/
 node_modules/
-vendor/
-.bundle/
+
+# test output
+test-results/
+playwright-report/
+scripts/.favicon-32.png
+
+# local only
+handoff/
+resume/private-contact.tex
 *.log
 .DS_Store
-resume/private-contact.tex

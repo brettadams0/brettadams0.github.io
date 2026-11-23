@@ -4,15 +4,15 @@
 // failures but is perfectly happy to publish a page pointing at a renamed
 // image or a deleted post, which is the failure mode this catches.
 //
-// No dependencies and no network: it only reads ./_site.
+// No dependencies and no network: it only reads the build output (default ./dist).
 
 import { readdirSync, statSync, existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 
-const SITE = path.resolve('_site');
+const SITE = path.resolve(process.argv[2] || 'dist');
 
 if (!existsSync(SITE)) {
-  console.error('No _site directory — run the Jekyll build first.');
+  console.error('No build directory — run npm run build first.');
   process.exit(1);
 }
 
@@ -79,7 +79,7 @@ console.log(
 if (broken.length) {
   console.error(`\n${broken.length} broken reference(s):\n`);
   for (const b of broken) {
-    console.error(`  ${b.page}\n    -> ${b.url}  (expected _site/${b.expected})`);
+    console.error(`  ${b.page}\n    -> ${b.url}  (expected ${b.expected})`);
   }
   process.exit(1);
 }

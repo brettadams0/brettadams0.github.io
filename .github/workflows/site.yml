@@ -1,0 +1,119 @@
+name: Site
+
+# Builds the Astro site, checks it, and (on main) deploys it to GitHub Pages.
+# Pull requests run every check but never deploy.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  # Never cancel a production deploy part-way; superseded PR runs can go.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  ASTRO_TELEMETRY_DISABLED: 1
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22.x
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Check internal links and assets
+        run: node .github/scripts/check-links.mjs dist
+
+      - name: Keep private files out of the published site
+        run: |
+          for f in PROGRESS.md reels.md CLAUDE.md README.md handoff resume/resume.tex tests playwright.config.ts src package.json; do
+            if [ -e "dist/$f" ]; then echo "::error::$f must not be published"; exit 1; fi
+          done
+
+      - name: Recalculate the published Signal Lab revenue investigation
+        run: |
+          python3 dist/projects/signal-lab/investigate/verify.py \
+            dist/signal-lab/snapshots/v2/manifest.json \
+            dist/signal-lab/snapshots/revenue/assessments-f0c524a49402dcca.json.gz \
+            --check src/data/signal_revenue_example.json
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Playwright (pages, links, keyboard, 404, reduced motion)
+        run: npx playwright test
+
+      # /border-waits/ reads data from the border-waits-pipeline repository's own Pages site, which this
+      # build doesn't have. Its saved export is a real recorded one, so it stands in at that route.
+      - name: Check the border-waits demo loads its data
+        run: |
+          cp -r dist check-site
+          mkdir -p check-site/border-waits-pipeline/data/v1
+          cp -r check-site/border-waits/fallback/. check-site/border-waits-pipeline/data/v1/
+          node .github/scripts/check-border-waits.mjs check-site
+
+      - name: Check MazeFinder interactions
+        run: node .github/scripts/check-mazefinder.mjs dist
+
+      - name: Verify the shipped MCP checker and playground verdicts
+        run: |
+          npm ci --prefix .github/scripts/mcp-bundle
+          npm run build --prefix .github/scripts/mcp-bundle
+          git diff --exit-code -- public/mcp-surface/checks.js
+          node .github/scripts/capture-mcp-real.mjs dist
+
+      - uses: actions/upload-pages-artifact@v5
+        if: github.event_name != 'pull_request'
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
+
+  # public/border-waits/ is a verbatim copy of border-waits-pipeline's web/. A change to the copy has to
+  # match that repository's main branch. When this change doesn't touch the copy, drift is only reported.
+  border-waits-sync:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/checkout@v7
+        with:
+          repository: brettadams0/border-waits-pipeline
+          path: upstream
+      - name: Compare public/border-waits/ with upstream web/
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && format('origin/{0}', github.base_ref) || github.event.before }}
+        run: |
+          if .github/scripts/check-border-waits-sync.sh upstream; then exit 0; fi
+          if git diff --quiet "$BASE" HEAD -- public/border-waits/ 2>/dev/null; then
+            echo "::warning::public/border-waits/ is behind border-waits-pipeline's web/. Re-sync it (see README)."
+          else
+            echo "::error::This change edits public/border-waits/ but it does not match border-waits-pipeline's main."
+            exit 1
+          fi

@@ -1,0 +1,59 @@
+---
+import Article from '../../../layouts/Article.astro';
+---
+<Article
+  title="Signal Lab: interactive data and ML platform"
+  description="Three interactive analytical workspaces exploring historical transit incidents, UK retail revenue anomalies, and synthetic B2B retention."
+  path="/projects/signal-lab/"
+  eyebrow="Case study · data engineering + applied machine learning"
+  heading="Signal Lab"
+>
+  <Fragment slot="intro">
+    <p class="lede-sm">An interactive, static-first analytics platform connecting real historical data, experimental modeling, and practical investigation workflows.</p>
+    <div class="story-actions">
+      <a class="btn btn-primary" href="/signal-lab/">Open the live demo</a>
+      <a class="btn" href="/projects/signal-lab/investigate/?alert=c646f48c31360b392784.weekday-1.median.net.2011-09-20">Investigate 20 September 2011</a>
+    </div>
+    <ul class="chips" role="list"><li>React</li><li>TypeScript</li><li>Python</li><li>FastAPI</li><li>DuckDB</li><li>scikit-learn</li><li>GitHub Pages</li></ul>
+  </Fragment>
+  <figure>
+      <img src="/assets/img/signal-lab-800.webp" srcset="/assets/img/signal-lab-800.webp 800w, /assets/img/signal-lab-overview.webp 1600w" sizes="(min-width: 46rem) 736px, calc(100vw - 2rem)" fetchpriority="high" width="1600" height="1000" alt="Signal Lab desktop dashboard showing historical transit activity and interactive chart panels." decoding="async">
+      <figcaption>Production-built Signal Lab overview, using the public verified data release.</figcaption>
+    </figure>
+    <h2>Three connected investigations</h2>
+    <div class="story-grid not-prose">
+      <div><h3>Transit Intelligence</h3><p>Explore TTC incident records, Route 70 context, and experimental severity estimates for already reported incidents. The model is not a real-time bus arrival predictor.</p><p><a href="/signal-lab/#transit">Explore Transit</a></p></div>
+      <div><h3>Revenue Intelligence</h3><p>Investigate historical UK retail revenue and credits using weekday-aware anomaly detection, contribution breakdowns, and a read-only public review workflow.</p><p><a href="/signal-lab/#revenue">Explore Revenue</a></p></div>
+      <div><h3>Retention Intelligence</h3><p>Study synthetic SaaS account histories, cohort retention, monthly recurring revenue reconciliation, churn-risk ranking, and transparent hypothetical scenarios.</p><p><a href="/signal-lab/#retention">Explore Retention</a></p></div>
+    </div>
+    <h2>From signals to evidence</h2>
+    <p>Each workspace begins with a specific analytical question, keeps the underlying data lineage visible, and lets visitors follow evidence into deeper detail. Historical and simulated inputs are clearly distinguished; exported results retain their scope.</p>
+    <figure><img src="/assets/img/signal-lab-transit-severity-800.webp" srcset="/assets/img/signal-lab-transit-severity-800.webp 800w, /assets/img/signal-lab-transit-severity.webp 1600w" sizes="(min-width: 46rem) 736px, calc(100vw - 2rem)" width="1600" height="1000" alt="Route 70 TTC incident severity scenario matrix and historical evaluation interface." loading="lazy" decoding="async"><figcaption>Transit: historical incident severity, frozen evaluation, and scenario inspection.</figcaption></figure>
+    <figure><img src="/assets/img/signal-lab-revenue-investigation-800.webp" srcset="/assets/img/signal-lab-revenue-investigation-800.webp 800w, /assets/img/signal-lab-revenue-investigation.webp 1600w" sizes="(min-width: 46rem) 736px, calc(100vw - 2rem)" width="1600" height="1000" alt="Historical retail financial anomaly investigation with observed and expected values." loading="lazy" decoding="async"><figcaption>Revenue: accounting reconciliation, anomaly detection, and contribution analysis.</figcaption></figure>
+    <figure><img src="/assets/img/signal-lab-retention-cohorts-800.webp" srcset="/assets/img/signal-lab-retention-cohorts-800.webp 800w, /assets/img/signal-lab-retention-cohorts.webp 1600w" sizes="(min-width: 46rem) 736px, calc(100vw - 2rem)" width="1600" height="1000" alt="Synthetic customer retention cohort heatmap in the Signal Lab dashboard." loading="lazy" decoding="async"><figcaption>Retention: synthetic customer cohorts and churn-risk investigation.</figcaption></figure>
+    <h2>Architecture and engineering choices</h2>
+    <p>Python, DuckDB, and typed FastAPI services prepare domain-specific datasets and analyses. React and TypeScript use generated API contracts for local development and immutable, SHA-256-verified public artifacts for a backend-free GitHub Pages build. Charting modules are lazy-loaded. A versioned offline worker can install the full public release.</p>
+    <p>Scientific boundaries were explicit: chronological evaluation and point-in-time feature selection for predictive work; integer-cent retention accounting and signed GBP transaction reconciliation; and separate model cards describing calibration, uncertainty, and data availability. Extensive unit, integration, browser, Windows, container, accessibility, and performance checks guard the release.</p>
+    <h2>Limitations</h2>
+    <p>Transit probabilities apply to eligible reported incidents, not all trips. Revenue anomalies are statistical deviations, not verified fraud. Retention outcomes and modeled risk are synthetic, and changing a feature in a model does not prove an intervention would prevent churn. Original weather source bytes required for one full historical raw-data replay are unavailable, while the approved prepared reports remain checksum-verified.</p>
+    <p class="status-note">The public experience is a read-only analytical demonstration. Private transaction lines and analyst notes remain outside the GitHub Pages distribution.</p>
+    <figure class="phone-shot"><img src="/assets/img/signal-lab-mobile.webp" width="390" height="844" alt="Responsive mobile Signal Lab retention dashboard showing a populated summary." loading="lazy" decoding="async"><figcaption>The same data-driven experience on a narrow screen.</figcaption></figure>
+    
+  <nav slot="after" class="next" aria-label="Next">
+    <a class="btn btn-primary" href="/signal-lab/">Try Signal Lab <span aria-hidden="true">→</span></a>
+    <a class="btn" href="/#projects"><span aria-hidden="true">←</span> All projects</a>
+  </nav>
+</Article>
+
+<style is:global>
+  .lede-sm { font-size: var(--fs-lg); line-height: 1.5; color: var(--soft); max-width: 60ch; }
+  .story-actions, .next { display: flex; flex-wrap: wrap; gap: var(--s3); }
+  .next { margin-top: var(--s7); }
+  .story-grid { display: grid; gap: var(--s3); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 40rem) { .story-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .story-grid > div { display: grid; gap: var(--s2); align-content: start; padding: var(--s4); border-radius: var(--r-inner); border: 1px solid var(--border); background: var(--surface); font-size: var(--fs-sm); line-height: 1.6; }
+  .story-grid h3 { margin: 0 !important; font-size: var(--fs-base) !important; }
+  .story-grid p { margin: 0 !important; }
+  .status-note { color: var(--muted); font-size: var(--fs-sm); }
+  .phone-shot { max-width: 260px; }
+</style>

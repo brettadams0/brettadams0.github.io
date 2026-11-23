@@ -12,7 +12,7 @@ const require = createRequire(import.meta.url);
 let chromium;
 try { ({ chromium } = require('playwright')); }
 catch { ({ chromium } = require(path.join(execSync('npm root -g').toString().trim(), 'playwright'))); }
-const root = path.resolve(process.argv[2] || '_site');
+const root = path.resolve(process.argv[2] || 'dist');
 // Resource Timing on the page does not include worker-initiated downloads. Budget those
 // independently, using raw bytes (a conservative ceiling even when hosting compresses them).
 const engineBytes = ['engine-worker.js', 'wasm/mazefinder.js', 'wasm/mazefinder.wasm']

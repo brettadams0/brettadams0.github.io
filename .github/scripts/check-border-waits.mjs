@@ -19,7 +19,7 @@ let playwright;
 try { playwright = require('playwright'); }
 catch { playwright = require(path.join(execSync('npm root -g').toString().trim(), 'playwright')); }
 
-const root = path.resolve(process.argv[2] || '_site');
+const root = path.resolve(process.argv[2] || 'dist');
 const TYPES = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json', '.woff2': 'font/woff2', '.svg': 'image/svg+xml' };
 const server = http.createServer((req, res) => {
   let file = path.join(root, decodeURIComponent(new URL(req.url, 'http://x').pathname));

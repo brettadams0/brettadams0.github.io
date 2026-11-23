@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MazeFinder · live demo | Brett Adams</title>
+<meta name="description" content="A C++ genetic algorithm evolving routes through walled mazes, compiled to WebAssembly and running in your browser.">
+<meta name="theme-color" content="#0b0f14">
+<meta property="og:title" content="MazeFinder · live demo | Brett Adams">
+<meta property="og:description" content="A C++ genetic algorithm evolving routes through walled mazes, compiled to WebAssembly and running in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://brettadams.ca/mazefinder/">
+<meta property="og:image" content="https://brettadams.ca/mazefinder/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://brettadams.ca/mazefinder/">
+<link rel="preload" href="/assets/fonts/ibm-plex-sans-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="/assets/css/demo-shell.css">
+<script src="boot.js?v=4" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="demo-shell">
+  <div class="wrap demo-shell-inner">
+    <p class="demo-crumb">
+      <a class="demo-back" href="/#projects"><span aria-hidden="true">←&nbsp;</span>Brett Adams</a>
+      <span class="demo-sep" aria-hidden="true">/</span>
+      <span class="demo-name">MazeFinder</span>
+    </p>
+    <nav class="demo-links" aria-label="Project">
+      <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">Source</a>
+      <a class="demo-resume" href="/assets/resume/Resume_BrettAdams.pdf">Résumé</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap" tabindex="-1">
+  <section class="intro">
+    <div><p class="eyebrow">EVOLUTION, IN MOTION</p><h1>One maze. <span>A hundred possibilities.</span></h1>
+    <p class="lede">Watch 100 competing routes evolve, find the exit, and get smarter with every generation.</p></div>
+    <p class="engine-badge"><span aria-hidden="true">◆</span> C++ → WebAssembly <small>Real algorithm. Running in your browser.</small></p>
+  </section>
+
+  <div class="scenarios" role="group" aria-label="Choose a scenario">
+    <button class="scenario" data-preset="open" data-engine disabled aria-pressed="false"><span class="scenario-icon" aria-hidden="true">↗</span><span><strong>01 / Quick escape</strong><small>An open field. Watch a route emerge.</small></span></button>
+    <button class="scenario" data-preset="maze" data-engine disabled aria-pressed="true"><span class="scenario-icon" aria-hidden="true">⌁</span><span><strong>02 / Find the way</strong><small>Tight corridors. One way through.</small></span></button>
+    <button class="scenario" data-preset="loops" data-engine disabled aria-pressed="false"><span class="scenario-icon" aria-hidden="true">⋈</span><span><strong>03 / Take the long way</strong><small>A bigger maze. Many possibilities.</small></span></button>
+  </div>
+
+  <section class="lab" data-view="live" aria-label="Interactive maze simulation" aria-busy="true" id="lab">
+    <div class="toolbar">
+      <div class="transport" role="group" aria-label="Playback">
+        <button type="button" class="primary" id="run" data-engine disabled><span class="play-icon" aria-hidden="true"></span> Run</button>
+        <button type="button" id="step" data-engine disabled>Step</button>
+        <button type="button" id="reset" data-engine disabled>Restart</button>
+        <button type="button" id="new-maze" data-engine disabled>New maze</button>
+      </div>
+      <label class="speed-control" for="speed">Speed <input type="range" id="speed" min="1" max="20" value="1" data-engine disabled><output id="speed-value" for="speed">1×</output></label>
+    </div>
+    <div class="layout">
+      <div class="board">
+        <div class="board-heading"><h2 id="board-title">Find the way</h2><span class="run-state" id="run-state">Loading</span></div>
+        <div class="replay-controls" id="replay-controls" hidden>
+          <span id="replay-label">Recorded breakthrough</span>
+          <button id="play-route">Play route</button><button id="return-live">Return to live</button>
+        </div>
+        <div class="canvas-wrap">
+          <canvas class="maze" id="maze" width="600" height="600" role="img" aria-label="Maze visualization" aria-describedby="maze-description"></canvas>
+          <div class="loading" id="loading"><span class="loading-mark" aria-hidden="true">⌁</span><strong id="loading-title">Waking up the population…</strong><p id="loading-detail">Loading the C++ simulation engine.</p><button id="retry" hidden>Try again</button></div>
+        </div>
+        <p class="breakthrough" id="breakthrough">Watch the best route change as evolution explores.</p>
+        <p id="maze-description" class="sr-only">Routes start at S in the top-left and search for G in the bottom-right. Amber is the best route. Moving dots trace the current population's routes.</p>
+        <div class="legend" aria-label="Map legend"><span><i class="key best"></i>Best route</span><span id="population-key"><i class="key population"></i>Population</span><span><i class="key optimal"></i>Optimal (dashed)</span><span class="replay-key" id="replay-key" hidden><i class="key previous"></i>Previous (dashed) · new segments (thick)</span><span class="map-size" id="map-size">20 × 20</span></div>
+        <div class="layers" role="group" aria-label="Visualization layers">
+          <label><input type="checkbox" id="show-heat" checked data-engine disabled> Search heat</label>
+          <label><input type="checkbox" id="show-population" checked data-engine disabled> Population</label>
+          <label><input type="checkbox" id="show-optimal" data-engine disabled> Optimal route</label>
+        </div>
+      </div>
+      <div class="insights" role="group" aria-label="Run settings and results">
+        <div class="status-card"><p class="eyebrow" id="view-label">LIVE EVOLUTION</p><h2 id="status-title">Getting ready</h2><p id="goal" role="status">Your first maze is on its way.</p><button id="continue" data-engine disabled hidden>Keep evolving</button></div>
+        <div class="metrics">
+          <div><span>Generation</span><strong id="s-gen">0</strong><small id="s-limit">of 1,500</small></div>
+          <div><span id="distance-label">Distance to exit</span><strong id="s-distance">—</strong><small id="distance-unit">steps remaining</small></div>
+          <div><span>Shortest possible</span><strong id="s-short">—</strong><small>steps · BFS baseline</small></div>
+        </div>
+        <div class="population-progress" id="population-progress">
+          <div><span>Routes reaching the exit</span><strong id="s-success">0 / 100</strong></div>
+          <progress id="success-meter" value="0" max="100" aria-label="Routes reaching the exit"></progress>
+          <p id="population-note">The whole population, not just the leader.</p>
+        </div>
+        <div class="chart-panel">
+          <div class="section-heading"><h3>Breakthrough timeline</h3><span>Lower is better</span></div>
+          <svg class="history" id="history" viewBox="0 0 360 132" role="img" aria-labelledby="chart-title chart-description"><title id="chart-title">Best fitness by generation</title><desc id="chart-description">Run or Step to build the learning curve.</desc><g id="chart-content"></g></svg>
+          <p class="chart-note" id="chart-note">Every generation keeps its strongest routes.</p>
+          <div class="milestones" id="milestones" role="group" aria-label="Key breakthroughs"></div>
+          <label class="event-picker" for="event-pick">Inspect a recorded improvement
+            <select id="event-pick" disabled><option value="">Improvements will appear here</option></select>
+          </label>
+          <p class="timeline-note" id="timeline-note">Select a chart point or choose a generation to compare routes.</p>
+        </div>
+        <details class="settings"><summary>Settings &amp; engine details <span id="s-population">100 routes</span></summary>
+          <div class="settings-grid">
+            <label>Grid size<select id="size-pick" data-engine disabled><option value="20">20 × 20</option><option value="30">30 × 30</option><option value="40">40 × 40</option></select></label>
+            <label>Layout<select id="kind-pick" data-engine disabled><option value="maze">One route</option><option value="loops">With loops</option><option value="obstacles">Wall bars</option><option value="open">Open field</option></select></label>
+          </div>
+          <p class="setting-note" id="setting-note">Same seed, same maze, same evolution.</p>
+          <dl class="technical-stats"><dt>Seed</dt><dd id="s-seed">—</dd><dt>Best fitness</dt><dd id="s-fit">—</dd><dt>Genome length</dt><dd id="s-genome">—</dd></dl>
+        </details>
+          <div class="share-row"><button id="copy" data-engine disabled>Copy replay link</button><a id="share" href="./">Open replay</a></div>
+          <p id="copy-status" class="copy-status" role="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="explanation" aria-labelledby="how-title">
+    <div class="section-heading"><h2 id="how-title">Selection in action.</h2><a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">Explore the C++ source</a></div>
+    <div class="how-grid">
+      <div><span class="how-number">01</span><h3>Try a hundred routes</h3><p>Each genome is a sequence of moves. Walls block a move; the rest of the route keeps going.</p></div>
+      <div><span class="how-number">02</span><h3>Keep what works</h3><p>The better half survive. Crossover and mutation produce new routes. When progress stalls, guided mutations explore larger changes.</p></div>
+      <div><span class="how-number">03</span><h3>Find it. Then refine it.</h3><p>Reaching the goal is the first milestone. Evolution continues until the route is optimal or the generation budget runs out.</p></div>
+    </div>
+    <details class="engine-details"><summary>Under the hood <span>C++ · WebAssembly · Web Worker · seeded RNG</span></summary><p>The actual C++ engine runs in a Web Worker so the interface stays responsive. The native CLI evaluates fitness with a thread pool; this browser build uses one worker.</p><p>Fitness = distance remaining × (genome length + 1) + moves used. Distance is measured by breadth-first search (BFS). The BFS distance field guides fitness and some mutations: this is a hybrid genetic search. Guided mutations rewrite route segments toward the goal and expand after a plateau. The dashed overlay is the BFS shortest path, not an evolved route. A lower score wins.</p><p>The population has 100 genomes, each at least 100 moves or 1.5× the shortest path. Replay links save maze settings and seed, starting again at generation zero. The timeline records real improvements from this run; inspecting one pauses evolution and never changes the population. Moving dots replay routes, not extra simulation steps. 40 × 40 uses loops to keep searches practical; a solution within the budget is not guaranteed. Keep evolving extends a run in 1,500-generation blocks, up to 15,000.</p></details>
+  </section>
+  <noscript><p class="noscript-note">Enable JavaScript to watch the simulation. You can also <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">explore the C++ source and run it locally</a>.</p><style>.loading{display:none}</style></noscript>
+</main>
+
+<footer class="demo-foot">
+  <div class="wrap demo-foot-inner">
+    <p>Built by <a href="/">Brett Adams</a> · <a href="https://github.com/brettadams0/MazeFinder-GeneticAlgorithm">MIT-licensed source</a></p>
+    <p class="footer-links">
+      <a href="https://github.com/brettadams0" data-contact="github">GitHub</a>
+      <a href="https://www.linkedin.com/in/bretta/" data-contact="linkedin">LinkedIn</a>
+    </p>
+  </div>
+</footer>
+</body>
+</html>

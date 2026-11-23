@@ -1,0 +1,380 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Icon from '../components/Icon.astro';
+import { person, projects, jobs, skills, education, SITE_URL } from '../data/site';
+
+const featured = projects.filter((p) => p.featured);
+const rest = projects.filter((p) => !p.featured);
+
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: person.name,
+      inLanguage: 'en-CA',
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': `${SITE_URL}/#profile`,
+      url: `${SITE_URL}/`,
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+      mainEntity: { '@id': `${SITE_URL}/#person` },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
+      name: person.name,
+      alternateName: ['Brett Alexander Adams', 'brettadams0'],
+      description: person.description,
+      url: `${SITE_URL}/`,
+      image: `${SITE_URL}/assets/img/social-card.png`,
+      jobTitle: 'Data Analyst Intern',
+      worksFor: { '@type': 'Organization', name: 'Geotab', url: 'https://www.geotab.com' },
+      alumniOf: {
+        '@type': 'CollegeOrUniversity',
+        name: 'University of Windsor',
+        url: 'https://www.uwindsor.ca',
+        sameAs: 'https://en.wikipedia.org/wiki/University_of_Windsor',
+      },
+      homeLocation: {
+        '@type': 'Place',
+        name: 'Vineland, Ontario, Canada',
+        address: { '@type': 'PostalAddress', addressLocality: 'Vineland', addressRegion: 'ON', addressCountry: 'CA' },
+      },
+      knowsAbout: ['Python', 'TypeScript', 'SQL', 'Node.js', 'Apache Airflow', 'BigQuery', 'dbt', 'DuckDB', 'Model Context Protocol'],
+      sameAs: [person.github, person.linkedin, person.npm],
+    },
+  ],
+};
+---
+<Base
+  title="Brett Adams: Software Engineering Student"
+  description={person.description}
+  path="/"
+  type="profile"
+  jsonld={jsonld}
+>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="status"><span class="status-dot" aria-hidden="true"></span><span>Graduating 2027 · <span class="nowrap">Open to full-time roles</span></span></p>
+        <h1 id="hero-title">Brett Adams</h1>
+        <p class="lede">I build backend services, data pipelines and developer tools, and ship them where you can try them: six of the eight projects below run live in your browser.</p>
+        <p class="sublede">Software engineering student at the University of Windsor. Data Analyst Intern at <a class="inline-link" href="https://www.geotab.com">Geotab</a>, on production pipelines in BigQuery and Airflow.</p>
+        <div class="actions">
+          <a class="btn btn-primary btn-lg" href={person.resume} data-resume="hero"><Icon name="file" />Résumé (PDF)</a>
+          <a class="btn btn-lg" href={person.github} data-contact="github"><Icon name="github" />GitHub</a>
+          <a class="btn btn-lg" href={person.linkedin} data-contact="linkedin"><Icon name="linkedin" />LinkedIn</a>
+        </div>
+      </div>
+
+      <aside class="glance" aria-labelledby="glance-title">
+        <h2 id="glance-title" class="eyebrow">At a glance</h2>
+        <dl>
+          <div class="glance-now"><dt>Now</dt><dd>Data Analyst Intern, Geotab · <span class="nowrap">May 2026 – Present</span></dd></div>
+          <div><dt>Before</dt><dd>Ontario Ministry of Transportation <span class="nowrap">(co-op, 2025)</span> · CIMCO Refrigeration <span class="nowrap">(2023; co-op, 2024)</span></dd></div>
+          <div><dt>Studying</dt><dd>Honours Computer Science, University of Windsor · <span class="nowrap">2022 – 2027</span></dd></div>
+          <div><dt>Results</dt><dd>Power BI dashboards that replaced manual reporting <span class="nowrap">(MTO)</span> · processing time cut from hours to minutes <span class="nowrap">(MTO)</span> · Python training for 20+ employees <span class="nowrap">(CIMCO)</span></dd></div>
+          <div><dt>Based in</dt><dd>Vineland, Ontario <span class="nowrap">(Niagara Region)</span></dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section id="projects" class="section" aria-labelledby="projects-title">
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="projects-title">Projects</h2>
+        <p>Each one has a repository behind it. The ones marked <span class="live-word">Live</span> run in your browser.</p>
+      </header>
+      <div class="grid-featured">
+        {featured.map((p, i) => <ProjectCard project={p} priority={i === 0} />)}
+      </div>
+      <div class="grid-rest">
+        {rest.map((p) => <ProjectCard project={p} />)}
+      </div>
+      <div class="also">
+        <p><strong>NHL Arena Web Interface</strong> <span>Live refrigeration data, alarms and a thermal imagery viewer for NHL arena operations teams. Built at CIMCO; internal.</span></p>
+        <a class="also-more" href={`${person.github}?tab=repositories`}>Everything on GitHub<Icon name="arrow-up-right" /></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="section" aria-labelledby="experience-title">
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="experience-title">Experience</h2>
+        <p>Four placements across data operations, government and industrial software.</p>
+      </header>
+      <ol class="timeline" role="list">
+        {jobs.map((j) => (
+          <li class:list={['job', { 'job-current': j.current }]}>
+            <div class="job-when">
+              <span>{j.when}</span>
+              <span class="job-where">{j.where}</span>
+            </div>
+            <div class="job-body">
+              <h3>{j.title} <span class="job-org"><span class="sr-only">at </span>{j.org}</span></h3>
+              <ul class="job-points">{j.points.map((pt) => <li>{pt}</li>)}</ul>
+              {j.more && (
+                <details class="job-more" data-item={j.id}>
+                  <summary>{j.more.length} more<span class="sr-only"> from {j.org}</span></summary>
+                  <ul class="job-points">{j.more.map((pt) => <li>{pt}</li>)}</ul>
+                </details>
+              )}
+              <ul class="chips" role="list">{j.chips.map((c) => <li>{c}</li>)}</ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="skills" class="section" aria-labelledby="skills-title">
+    <div class="wrap two-col">
+      <div>
+        <header class="section-head"><h2 id="skills-title">Skills</h2></header>
+        <dl class="skills">
+          {skills.map((s) => (
+            <div><dt>{s.group}</dt><dd><ul class="chips" role="list">{s.items.map((i) => <li>{i}</li>)}</ul></dd></div>
+          ))}
+        </dl>
+      </div>
+      <div id="education">
+        <header class="section-head"><h2>Education</h2></header>
+        <div class="edu">
+          <h3>{education.school}</h3>
+          <p>{education.program}</p>
+          <p class="muted">{education.when} · {education.where}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="contact-card">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">Hiring for 2027? Let’s talk.</h2>
+        <p>I’m looking for full-time backend and software engineering roles after I graduate. The fastest way to reach me is a LinkedIn message.</p>
+        <div class="actions">
+          <a class="btn btn-primary btn-lg" href={person.linkedin} data-contact="linkedin"><Icon name="linkedin" />Message me on LinkedIn</a>
+          <a class="btn btn-lg" href={person.resume} data-resume="contact"><Icon name="file" />Résumé (PDF)</a>
+          <a class="btn btn-lg" href={person.github} data-contact="github"><Icon name="github" />GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    /*
+     * Card loops: a few seconds recorded from each live demo, over its still screenshot.
+     * Nothing downloads until a clip is needed (sources carry data-src).
+     *   data-loop="inview"  plays while half the shot is on screen
+     *   data-loop="hover"   plays while a fine pointer hovers, or the card has keyboard focus
+     * Under prefers-reduced-motion nothing loads or plays.
+     */
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    const fine = matchMedia('(pointer: fine)').matches;
+    const videos = [...document.querySelectorAll<HTMLVideoElement>('video.shot-loop[data-loop]')];
+
+    const arm = (v: HTMLVideoElement) => {
+      if (v.dataset.armed) return;
+      v.dataset.armed = '1';
+      v.querySelectorAll<HTMLSourceElement>('source[data-src]').forEach((s) => (s.src = s.dataset.src!));
+      v.addEventListener('playing', () => v.classList.add('is-playing'));
+      v.load();
+    };
+    const play = (v: HTMLVideoElement) => {
+      if (reduce.matches || document.hidden) return;
+      arm(v);
+      v.play().catch(() => {});
+    };
+    const stop = (v: HTMLVideoElement) => { v.pause(); v.classList.remove('is-playing'); };
+
+    if (!reduce.matches) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => (e.isIntersecting ? play(e.target as HTMLVideoElement) : stop(e.target as HTMLVideoElement)));
+      }, { threshold: 0.5 });
+      for (const v of videos) {
+        if (v.dataset.loop === 'inview') { io.observe(v); continue; }
+        const card = v.closest('[data-project]')!;
+        if (fine) {
+          card.addEventListener('mouseenter', () => play(v));
+          card.addEventListener('mouseleave', () => stop(v));
+        }
+        card.addEventListener('focusin', () => play(v));
+        card.addEventListener('focusout', () => stop(v));
+      }
+    }
+    document.addEventListener('visibilitychange', () => { if (document.hidden) videos.forEach(stop); });
+    reduce.addEventListener('change', () => { if (reduce.matches) videos.forEach(stop); });
+  </script>
+</Base>
+
+<style>
+  /* ---------- hero ---------- */
+  .hero { padding-block: clamp(2rem, 0.5rem + 4.5vw, 4.5rem) var(--s4); }
+  .hero-grid {
+    display: grid; gap: var(--s7);
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+  }
+  @media (min-width: 60rem) {
+    .hero-grid { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: var(--s8); }
+  }
+  .status {
+    display: inline-flex; align-items: center; gap: var(--s2);
+    padding: 4px 12px 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font: 400 var(--fs-xs)/1.5 var(--mono); color: var(--soft);
+  }
+  .status-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--live);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--live) 22%, transparent);
+  }
+  h1 {
+    margin-top: var(--s4);
+    font-size: var(--fs-display);
+    letter-spacing: -0.035em;
+    font-weight: 650;
+    line-height: 1.02;
+  }
+  .lede {
+    margin-top: var(--s4);
+    max-width: 38ch;
+    font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem);
+    line-height: 1.4;
+    letter-spacing: -0.012em;
+    color: var(--text);
+  }
+  .sublede { margin-top: var(--s4); max-width: 58ch; color: var(--soft); font-size: var(--fs-md); }
+  .actions { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s5); }
+  .btn-lg { min-height: 48px; padding-inline: 1.2rem; font-size: var(--fs-base); }
+  @media (max-width: 30rem) {
+    .actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .actions .btn-primary { grid-column: 1 / -1; }
+    .status { font-size: 0.75rem; }
+  }
+
+  .glance {
+    padding: var(--s5);
+    border-radius: var(--r-outer);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .glance dl { margin: var(--s3) 0 0; display: grid; gap: 0; }
+  .glance dl > div {
+    display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: var(--s3);
+    padding-block: var(--s3);
+    border-top: 1px solid var(--border);
+  }
+  .glance dt { font: 400 var(--fs-xs)/1.7 var(--mono); color: var(--muted); }
+  .glance dd { margin: 0; font-size: var(--fs-sm); color: var(--soft); line-height: 1.55; }
+  .glance-now dd { color: var(--text); font-weight: 550; }
+
+  /* ---------- sections ---------- */
+  .section { padding-block: clamp(2.5rem, 1.5rem + 4vw, 5rem); }
+  .section + .section { border-top: 1px solid var(--border); }
+  .section-head { display: grid; gap: var(--s2); margin-bottom: var(--s6); }
+  .section-head h2 { font-size: var(--fs-2xl); letter-spacing: -0.03em; }
+  .section-head p { color: var(--muted); max-width: 60ch; }
+  .live-word { color: var(--live); font-weight: 550; }
+
+  .grid-featured, .grid-rest { display: grid; gap: var(--s5); grid-template-columns: minmax(0, 1fr); }
+  .grid-rest { margin-top: var(--s5); }
+  @media (min-width: 48rem) {
+    .grid-featured { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-rest { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 64rem) {
+    .grid-rest { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  .also {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: var(--s3) var(--s5);
+    margin-top: var(--s5);
+    padding: var(--s4) var(--s5);
+    border-radius: var(--r-outer);
+    border: 1px dashed var(--border-strong);
+    color: var(--soft); font-size: var(--fs-sm);
+  }
+  .also p { max-width: 70ch; }
+  .also strong { color: var(--text); font-weight: 600; margin-right: var(--s2); }
+  .also-more {
+    display: inline-flex; align-items: center; gap: 0.35em; min-height: 44px;
+    color: var(--accent); font-weight: 550; text-decoration: none;
+  }
+  .also-more :global(.icon) { width: 1em; height: 1em; stroke-width: 2; }
+
+  /* ---------- experience: one connected timeline (uniform connectedness) ---------- */
+  .timeline { list-style: none; display: grid; }
+  .job {
+    display: grid; gap: var(--s2) var(--s6);
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: var(--s5);
+    border-top: 1px solid var(--border);
+  }
+  .job:first-child { border-top: 0; padding-top: 0; }
+  @media (min-width: 48rem) {
+    .job { grid-template-columns: 11rem minmax(0, 1fr); }
+  }
+  .job-when { display: flex; flex-direction: column; font: 400 var(--fs-xs)/1.7 var(--mono); color: var(--muted); }
+  @media (max-width: 47.99rem) { .job-when { flex-direction: row; flex-wrap: wrap; gap: 0 var(--s3); } }
+  .job-current .job-when span:first-child { color: var(--live); }
+  .job-body { display: grid; gap: var(--s3); max-width: 70ch; }
+  .job-body h3 { font-size: var(--fs-lg); line-height: 1.3; }
+  .job-org { display: block; margin-top: 2px; color: var(--muted); font-weight: 450; font-size: var(--fs-base); letter-spacing: 0; }
+  .job-points { padding-left: 1.1rem; color: var(--soft); display: grid; gap: var(--s1); }
+  .job-points li::marker { color: var(--muted); }
+  .job-more summary {
+    display: inline-flex; align-items: center; gap: 0.4em; min-height: 44px;
+    cursor: pointer; list-style: none;
+    color: var(--accent); font-size: var(--fs-sm); font-weight: 550;
+  }
+  .job-more summary::-webkit-details-marker { display: none; }
+  .job-more summary::before {
+    content: ""; width: 0.45em; height: 0.45em;
+    border-right: 1.75px solid currentColor; border-bottom: 1.75px solid currentColor;
+    transform: rotate(-45deg);
+    transition: transform var(--t-base) var(--ease-out);
+  }
+  .job-more[open] summary::before { transform: rotate(45deg); }
+  .job-more[open] > .job-points { margin-bottom: var(--s2); }
+
+  /* ---------- skills + education ---------- */
+  .two-col { display: grid; gap: var(--s7); grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 60rem) { .two-col { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: var(--s8); } }
+  .skills { margin: 0; display: grid; gap: var(--s4); }
+  .skills > div { display: grid; gap: var(--s2); }
+  @media (min-width: 40rem) { .skills > div { grid-template-columns: 7rem minmax(0, 1fr); align-items: baseline; } }
+  .skills dt { font: 400 var(--fs-xs)/1.7 var(--mono); color: var(--muted); }
+  .skills dd { margin: 0; }
+  .edu { display: grid; gap: var(--s2); padding: var(--s5); border-radius: var(--r-outer); border: 1px solid var(--border); background: var(--surface); }
+  .edu h3 { font-size: var(--fs-lg); }
+  .edu p { color: var(--soft); }
+  .muted { color: var(--muted) !important; font: 400 var(--fs-xs)/1.7 var(--mono); }
+
+  /* ---------- contact: the ending people remember (peak-end) ---------- */
+  .contact { border-top: 0 !important; padding-bottom: 0; }
+  .contact-card {
+    padding: clamp(1.5rem, 1rem + 4vw, 4rem);
+    border-radius: calc(var(--r-outer) + 8px);
+    border: 1px solid var(--border);
+    background:
+      radial-gradient(120% 140% at 100% 0%, var(--accent-wash), transparent 60%),
+      linear-gradient(in oklch 135deg, var(--surface), var(--raised));
+    box-shadow: var(--shadow);
+  }
+  .contact-card h2 { margin-top: var(--s3); font-size: var(--fs-2xl); letter-spacing: -0.03em; }
+  .contact-card > p:not(.eyebrow) { margin-top: var(--s4); max-width: 56ch; color: var(--soft); font-size: var(--fs-md); }
+</style>
