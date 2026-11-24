@@ -23,7 +23,7 @@ Not to be confused with other people named Brett Adams (for example, the English
 - [Signal Lab](https://brettadams.ca/signal-lab/) explores historical TTC transit incidents, UK retail revenue and synthetic B2B retention. The [worked investigation](https://brettadams.ca/projects/signal-lab/investigate/?alert=c646f48c31360b392784.weekday-1.median.net.2011-09-20) can be reproduced from the published aggregates.
 - [Sift](https://github.com/brettadams0/sift) is an on-device Android photo triage and grading app with no network permission.
 - [mcp-surface](https://brettadams.ca/mcp-surface/): CLI and GitHub Action that connects to an MCP server the way a client does, validates its tool schemas, and fails CI when the tool surface changes. Published on npm.
-- [MCP case study](https://brettadams.ca/mcp/): how mcp-surface and Brett's MCP servers (Google Workspace, Reddit, Chess.com, Supercell, Yahoo Fantasy) fit together.
+- [MCP case study](https://brettadams.ca/mcp/): how mcp-surface and Brett's MCP servers (Google Workspace, Chess.com, Supercell, Yahoo Fantasy) fit together.
 - [border-waits](https://brettadams.ca/border-waits/): Python, dbt and DuckDB pipeline over wait estimates published by Canadian and U.S. border agencies.
 - [neuronet-arena](https://brettadams.ca/neuronet-arena/): neural-network agents evolved with a from-scratch genetic algorithm; the browser demo reproduces the Python run bit for bit.
 - [MazeFinder](https://brettadams.ca/mazefinder/): runs a C++ genetic algorithm in one browser Web Worker via WebAssembly. The native CLI parallelizes fitness evaluation on a thread pool.

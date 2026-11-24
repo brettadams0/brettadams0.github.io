@@ -229,7 +229,7 @@ function renderHow() {
   const total = (t.pass ?? 0) + (t.warn ?? 0) + (t.error ?? 0), parquet = Object.values(f).filter((v) => v.url.endsWith('.parquet')).length;
   $('how').innerHTML = [
     ['Fetch', `${n(f.dim_crossing.rows)} crossings`, `A scheduled GitHub Actions job downloads both agencies' feeds and checks them before anything is stored${k?.median_gap_minutes_7d ? `. GitHub runs it best-effort: lately about every ${span(k.median_gap_minutes_7d)}` : ''}.`],
-    ['Model', `${n(f.fct_wait_readings.rows)} readings`, 'dbt models on DuckDB match the crossings across the two feeds and resolve each local time to its zone. <a href="https://brettadams0.github.io/border-waits-pipeline/docs/">Lineage and column docs</a>'],
+    ['Model', `${n(f.fct_wait_readings.rows)} readings`, 'dbt models on DuckDB match the crossings across the two feeds and resolve each local time to its zone. <a href="https://brettadams.ca/border-waits-pipeline/docs/">Lineage and column docs</a>'],
     ['Test', `${n(t.pass)} of ${n(total)} passed`, `${n(t.warn)} warned and are listed under Pipeline health. A failed test stops the deploy.`],
     ['Publish', `${parquet} Parquet files`, c.run_seconds != null && c.snapshot_bytes_added != null
       ? `Content-hashed, with a manifest, on GitHub Pages. A run takes ${Math.round(c.run_seconds)} s on a free runner and adds ${(c.snapshot_bytes_added / 1024).toFixed(1)} KB.`
