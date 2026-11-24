@@ -1,9 +1,9 @@
-/* neuronet-arena demo. Tokens follow brettadams0.github.io's palette:
+/* neuronet-arena demo. Tokens follow brettadams.ca's palette:
    near-black ground, amber accent, teal secondary, IBM Plex. Dark only — the
    arena is a lit scene on a dark field, and the page is built around it. */
 
 /* ---- tokens (§7.1). Demo pages carry a copy of this block (§7.11). ---- */
-/* Tokens for brettadams0.github.io. Dark only. Demo pages copy this :root block (spec 7.11). */
+/* Tokens for brettadams.ca. Dark only. Demo pages copy this :root block (spec 7.11). */
 :root {
   color-scheme: dark;
 
@@ -168,7 +168,7 @@
   --bad: #ef6a5f;
 }
 
-/* ---- shell: a copy of brettadams0.github.io's assets/css/demo-shell.css (site spec 8.20).
+/* ---- shell: a copy of brettadams.ca's assets/css/demo-shell.css (site spec 8.20).
    A copy, not a link, so web/ still works when this repo runs on its own. ---- */
 
 /* Utilities the shell and the page share */

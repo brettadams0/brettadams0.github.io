@@ -1,7 +1,7 @@
 /* border-waits page. Renders on its own (the project repo has no site CSS), so it carries copies of
    the site's token block (spec 7.1, 7.11) and of assets/css/demo-shell.css. Diff both at each sync. */
 /* ---- tokens (§7.1). Demo pages carry a copy of this block (§7.11). ---- */
-/* Tokens for brettadams0.github.io. Dark only. Demo pages copy this :root block (spec 7.11). */
+/* Tokens for brettadams.ca. Dark only. Demo pages copy this :root block (spec 7.11). */
 :root {
   color-scheme: dark;
 

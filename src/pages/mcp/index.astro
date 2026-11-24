@@ -3,14 +3,14 @@ import Article from '../../layouts/Article.astro';
 ---
 <Article
   title="MCP servers, and the tool that checks them"
-  description="Model Context Protocol servers for Google Workspace and Reddit, with 35 tools between them, and mcp-surface, the command-line tool both run in CI."
+  description="A Model Context Protocol server for Google Workspace with 23 tools, and mcp-surface, the command-line tool that checks it and four other servers in CI."
   path="/mcp/"
   eyebrow="Case study · October 2026"
-  heading="Two MCP servers that act on real accounts, and the tool that checks them"
+  heading="An MCP server that acts on a real account, and the tool that checks it"
 >
   <Fragment slot="intro">
-    <ul class="chips case-facts" role="list"><li>2 servers</li><li>35 tools</li><li>3 repositories</li><li>114 offline tests</li></ul>
-    <p class="case-for">For anyone who lets an AI assistant send email, edit a calendar or post on their behalf, and needs to know when what it can do changes.</p>
+    <ul class="chips case-facts" role="list"><li>23 tools</li><li>19 checks</li><li>Snapshot in CI</li><li>Offline tests</li></ul>
+    <p class="case-for">For anyone who lets an AI assistant send email, edit a calendar or write to a spreadsheet on their behalf, and needs to know when what it can do changes.</p>
   </Fragment>
   <figure class="flow-figure">
     <div class="flow-row">
@@ -18,7 +18,7 @@ import Article from '../../layouts/Article.astro';
       <ol class="flow" aria-labelledby="flow-runtime">
         <li>An AI assistant</li>
         <li>The MCP server</li>
-        <li>Google Workspace or Reddit, over OAuth</li>
+        <li>Google Workspace, over OAuth</li>
       </ol>
     </div>
     <div class="flow-row">
@@ -56,15 +56,15 @@ import Article from '../../layouts/Article.astro';
   </figure>
 
     <p>
-      I've built two <a href="https://modelcontextprotocol.io">Model Context Protocol</a> servers that let
-      an AI assistant act on my behalf. One sends email, edits my calendar and writes to spreadsheets in
-      Google Workspace. The other reads, posts, votes and sends private messages on Reddit. I also built
+      I built a <a href="https://modelcontextprotocol.io">Model Context Protocol</a> server that lets
+      an AI assistant act on my behalf: it sends email, edits my calendar and writes to spreadsheets in
+      Google Workspace. I also built
       <a href="https://github.com/brettadams0/mcp-surface">mcp-surface</a>, a command-line tool that
       connects to an MCP server the way a client does and reports what it actually exposes.
     </p>
     <p>
-      This page covers how the three fit together, and what a security and correctness review of both
-      servers found in October 2026.
+      This page covers how they fit together, and what a security and correctness review found in
+      October 2026.
     </p>
 
     <h2>One check at the end of CI</h2>
@@ -106,11 +106,7 @@ Snapshot mcp-surface.json
     <ul class="repo-list">
       <li>
         <a class="repo-name" href="https://github.com/brettadams0/google-workspace-mcp">google-workspace-mcp</a>
-        <span class="repo-desc">23 tools for Gmail, Calendar, Drive, Sheets and YouTube, through my own Google OAuth client. It asks for no restricted scopes, so it can send mail but not read the inbox, and only sees Drive files it created. That keeps it out of the paid security assessment Google requires for restricted scopes.</span>
-      </li>
-      <li>
-        <a class="repo-name" href="https://github.com/brettadams0/reddit-mcp">reddit-mcp</a>
-        <span class="repo-desc">12 tools, five of which post, comment, vote, message or mark mail read under the account. OAuth with a long-lived refresh token, and access tokens renewed by a single shared request when parallel calls find one expired.</span>
+        <span class="repo-desc">23 tools for Gmail, Calendar, Drive, Sheets and other Google APIs, through my own Google OAuth client. It asks for no restricted scopes, so it can send mail but not read the inbox, and only sees Drive files it created. That keeps it out of the paid security assessment Google requires for restricted scopes.</span>
       </li>
       <li>
         <a class="repo-name" href="https://github.com/brettadams0/mcp-surface">mcp-surface</a>
@@ -130,8 +126,8 @@ Snapshot mcp-surface.json
       </li>
     </ul>
     <p>
-      reddit-mcp and the last three share one small harness, a fetch-based version of the Google
-      server's. All five commit an <code>mcp-surface.json</code>, and CI fails when a tool changes shape
+      The last three share one small harness, a fetch-based version of the Google
+      server's. All four servers commit an <code>mcp-surface.json</code>, and CI fails when a tool changes shape
       without that file changing with it.
     </p>
 
@@ -190,23 +186,6 @@ Snapshot mcp-surface.json
       contents to any address. Values are now written as plain text unless the caller asks for formulas.
     </p>
 
-    <h3>Requests that escaped their API path</h3>
-    <p>
-      Subreddit names, usernames and post ids went into Reddit request URLs unchecked. URLs resolve
-      <code>..</code>, so a subreddit named <code>../api/v1/me</code> reached a different Reddit endpoint
-      with the account's access token attached, and percent-encoding doesn't help because it leaves
-      <code>..</code> alone. Each value is now checked against what Reddit actually allows.
-    </p>
-
-    <h3>Reddit failures that looked like success</h3>
-    <p>
-      When Reddit rejects a post, for a misspelt subreddit or a rate limit, it still answers with HTTP 200
-      and puts the reasons in the body. The tool passed that through, so the assistant could report a post
-      that was never made. Those responses are now errors that include Reddit's reasons. Ids had the same
-      problem: Reddit's write endpoints silently ignore a comment id where a post id belongs, so every id
-      is now type-checked before the request is sent.
-    </p>
-
     <h3>Calendar invitations that were never sent</h3>
     <p>
       Google Calendar only emails attendees when the request asks it to, so "invite Alice" created an event
@@ -216,9 +195,9 @@ Snapshot mcp-surface.json
 
     <h3>A consent flow anyone on the network could answer</h3>
     <p>
-      Both servers get their tokens through a one-time browser sign-in that redirects to a small local web
-      server. That server listened on every network interface, and the Google flow didn't check that the
-      redirect came from the sign-in it started. It now listens on localhost only, the Google flow checks
+      The server gets its tokens through a one-time browser sign-in that redirects to a small local web
+      server. That server listened on every network interface, and the flow didn't check that the
+      redirect came from the sign-in it started. It now listens on localhost only, checks
       an OAuth <code>state</code> value and uses PKCE, and token files are kept readable only by their owner.
     </p>
 
@@ -236,7 +215,7 @@ Snapshot mcp-surface.json
       receives.
     </p>
 
-    <h2>What both servers now have</h2>
+    <h2>What the server now has</h2>
     <ul>
       <li>Tests that run without network access or credentials, on Node 22 and 24.</li>
       <li>A committed tool snapshot that CI checks the running server against.</li>
@@ -247,7 +226,7 @@ Snapshot mcp-surface.json
 
     <h2>Limits</h2>
     <ul>
-      <li>The test suites run without network access or credentials, so they never call the real Google or Reddit APIs.</li>
+      <li>The test suites run without network access or credentials, so they never call the real Google APIs.</li>
       <li>By default, mcp-surface checks the tool list a server shows, not what its tools do when called. Three of its 19 checks run only with <code>--call</code>.</li>
     </ul>
   
