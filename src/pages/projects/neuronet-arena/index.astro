@@ -27,11 +27,13 @@ import Article from '../../../layouts/Article.astro';
   <h2>Measuring it</h2>
   <p><code>neuronet experiment</code> runs every seed twice with the same config and the same starting population: once normally, and once with selection switched off (parents drawn at random, no elitism, fitness never read). Any gap between the two runs is selection's doing.</p>
   <figure>
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="/assets/img/neuronet-fitness-dark.svg">
-      <img src="/assets/img/neuronet-fitness-light.svg" width="880" height="460" loading="lazy" decoding="async" alt="Food eaten per agent by generation over 150 generations and 8 seeds. With selection on, the median climbs from about 1 to 10 by generation 23 and levels off around 13. With selection off it stays around 1.">
-    </picture>
-    <figcaption>8 seeds × 150 generations, from the committed <code>results/experiment.json</code>.</figcaption>
+    <a href="/assets/img/neuronet-fitness-light.svg" class="chart-link">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="/assets/img/neuronet-fitness-dark.svg">
+        <img src="/assets/img/neuronet-fitness-light.svg" width="880" height="460" loading="lazy" decoding="async" alt="Food eaten per agent by generation over 150 generations and 8 seeds. With selection on, the median climbs from about 1 to 10 by generation 23 and levels off around 13. With selection off it stays around 1.">
+      </picture>
+    </a>
+    <figcaption>8 seeds × 150 generations, from the committed <a href="https://github.com/brettadams0/neuronet-arena/blob/main/results/experiment.json"><code>results/experiment.json</code></a>. Tap the chart for full size.</figcaption>
   </figure>
   <div class="table-wrap" tabindex="0" role="region" aria-label="Selection on versus off">
     <table>
@@ -39,7 +41,7 @@ import Article from '../../../layouts/Article.astro';
       <tbody>
         <tr><th scope="row">Food per agent, generation 0</th><td>1.07</td><td>1.07</td></tr>
         <tr><th scope="row">Food per agent, last 10 generations</th><td>13.39</td><td>0.98</td></tr>
-        <tr><th scope="row">Agents alive at the end, of 40</th><td>33.0</td><td>13.4</td></tr>
+        <tr><th scope="row">Agents alive at the end of a generation, of 40 (last 10)</th><td>33.0</td><td>13.4</td></tr>
         <tr><th scope="row">Hazard steps per food eaten</th><td>0.52</td><td>3.56</td></tr>
       </tbody>
     </table>
@@ -70,5 +72,5 @@ import Article from '../../../layouts/Article.astro';
   .table-wrap { overflow-x: auto; }
   .table-wrap table { border-collapse: collapse; width: 100%; font-size: var(--fs-sm); }
   .table-wrap th, .table-wrap td { padding: var(--s2) var(--s3); border-bottom: 1px solid var(--border); text-align: left; }
-  .table-wrap td { text-align: right; font-variant-numeric: tabular-nums; }
+  .table-wrap td, .table-wrap thead th + th { text-align: right; font-variant-numeric: tabular-nums; }
 </style>

@@ -80,7 +80,7 @@ test('homepage has Person JSON-LD', async ({ page }) => {
 });
 
 test('every page ships a Content-Security-Policy without unsafe-inline', async ({ page }) => {
-  for (const path of ['/', '/mcp/', '/projects/signal-lab/', '/projects/signal-lab/investigate/', '/404.html']) {
+  for (const path of ['/', '/mcp/', '/projects/neuronet-arena/', '/projects/signal-lab/', '/projects/signal-lab/investigate/', '/404.html']) {
     await page.goto(path);
     const csp = await page.locator('meta[http-equiv="content-security-policy"]').getAttribute('content');
     expect(csp).toContain("default-src 'self'");
@@ -90,7 +90,7 @@ test('every page ships a Content-Security-Policy without unsafe-inline', async (
 });
 
 test('case studies have Article and BreadcrumbList JSON-LD', async ({ page }) => {
-  for (const [path, depth] of [['/mcp/', 2], ['/projects/signal-lab/investigate/', 3]] as const) {
+  for (const [path, depth] of [['/mcp/', 2], ['/projects/neuronet-arena/', 2], ['/projects/signal-lab/investigate/', 3]] as const) {
     await page.goto(path);
     const data = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent())!);
     const types = data['@graph'].map((n: { '@type': string }) => n['@type']);
@@ -185,6 +185,10 @@ test('all links on our pages resolve', async ({ page, request, baseURL }) => {
     const hrefs = await page.$$eval('a[href], link[rel~="icon"], link[rel="manifest"], link[rel="apple-touch-icon"], img[src], source[data-src]', (els) =>
       els.map((e) => (e as HTMLAnchorElement).href || (e as HTMLImageElement).src || (e.getAttribute('data-src') ? new URL(e.getAttribute('data-src')!, location.href).href : '')));
     for (const h of hrefs) if (h && !h.startsWith('mailto:')) links.add(h.split('#')[0]);
+    // <source srcset> (e.g. the dark-mode chart) isn't covered by img[src]; check every URL it lists.
+    const srcsets = await page.$$eval('source[srcset]', (els) =>
+      els.flatMap((e) => e.getAttribute('srcset')!.split(',').map((c) => new URL(c.trim().split(/\s+/)[0], location.href).href)));
+    for (const h of srcsets) links.add(h);
     // Same-page anchors must exist on that page; "/#id" anchors must exist on the homepage.
     const local = await page.$$eval('a[href^="#"]', (els) => els.map((e) => e.getAttribute('href')!.slice(1)).filter(Boolean));
     for (const id of local) expect(await page.locator(`[id="${id}"]`).count(), `#${id} on ${p}`).toBeGreaterThan(0);
