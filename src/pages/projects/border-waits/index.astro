@@ -1,0 +1,57 @@
+---
+import Article from '../../../layouts/Article.astro';
+---
+<Article
+  title="border-waits: a pipeline that keeps its readings when it fails"
+  description="A scheduled pipeline over the wait estimates CBSA and CBP publish for Canada–US land crossings: stored every run, modeled and tested with dbt on DuckDB, and queryable with SQL in the browser."
+  path="/projects/border-waits/"
+  eyebrow="Case study · data pipeline"
+  heading="border-waits"
+>
+  <Fragment slot="intro">
+    <p class="lede-sm">A scheduled pipeline over the wait estimates the Canadian and U.S. border agencies publish. It stores every run, models and tests the readings with dbt on DuckDB, and publishes Parquet files a browser can query.</p>
+    <div class="story-actions">
+      <a class="btn btn-primary" href="/border-waits/">Open the live demo</a>
+      <a class="btn" href="https://github.com/brettadams0/border-waits-pipeline">Source</a>
+    </div>
+    <ul class="chips" role="list"><li>Python</li><li>dbt</li><li>DuckDB</li><li>Parquet</li><li>GitHub Actions</li><li>DuckDB-Wasm</li></ul>
+  </Fragment>
+  <figure>
+    <img src="/assets/img/border-waits-800.webp" srcset="/assets/img/border-waits-800.webp 800w, /assets/img/border-waits-1600.webp 1600w" sizes="(min-width: 46rem) 736px, calc(100vw - 2rem)" fetchpriority="high" width="1600" height="1000" alt="border-waits: the latest wait estimates for the Windsor–Detroit crossings, by direction." decoding="async">
+    <figcaption>The live page, featuring the three Windsor–Detroit crossings.</figcaption>
+  </figure>
+
+  <h2>Store first, build second</h2>
+  <p>Each run fetches both feeds, checks every row against a contract, and commits the snapshot to an orphan <code>data</code> branch before anything downstream can fail. Only then does <code>dbt build</code> run. If dbt or the export fails, the readings are already stored. A recovery job redeploys the last good export with a status file naming the failing step, and opens one "pipeline failing" issue. The next good run closes it.</p>
+  <p>Error-severity tests check only the current run. Each one has a warning copy over all of history, so one bad old snapshot can't block every later run.</p>
+
+  <h2>Honest about the schedule</h2>
+  <p>The pipeline runs on GitHub Actions cron, which is best-effort. The schedule asks for two runs an hour; on 2026-10-28 only 3 of about 14 hourly runs fired, and the median gap in the first weeks was about three hours. The page doesn't hide this: it shows a run strip and the age of every reading.</p>
+
+  <h2>What the feeds actually do</h2>
+  <p>Each of these was seen in the live feeds and is pinned by a test:</p>
+  <ul>
+    <li>CBP stamps an update with the coming hour: fetched at 15:53 EDT, several ports said <code>At 4:00 pm EDT</code>. Times up to a day ahead are kept and warned about. Further ahead fails the build.</li>
+    <li>CBP writes noon as <code>At Noon EDT</code> and midnight as <code>At Midnight</code>. The midnight form broke two scheduled runs before the parser learned it.</li>
+    <li>A late-evening CBP time fetched after local midnight belongs to the day before.</li>
+    <li>The two sides of a crossing can be in different time zones, so every crossing has a zone per side.</li>
+    <li>Agencies sometimes change a value under an unchanged update time (CBP did, 2 of 4,124 updates by 2026-11-14). The later value is kept and marked revised.</li>
+  </ul>
+
+  <h2>Rules with tests behind them</h2>
+  <p>A row with a category outside the contract, a delay outside 0–720 minutes, or an update time that doesn't parse stays in the snapshots but is left out of every mart. Nothing is clipped or deleted. A newer "Update Pending" or "Lanes Closed" reading replaces an older number instead of carrying it over. Each of these is a decision, and each has a test.</p>
+
+  <h2>The page</h2>
+  <p>The page reads a manifest, a status file and a summary. DuckDB-Wasm loads only when a visitor opens the SQL console. If the live files can't be loaded or fail the contract, the page shows a saved snapshot, labelled as one, and the console runs on that.</p>
+
+  <nav slot="after" class="next" aria-label="Next">
+    <a class="btn btn-primary" href="/border-waits/">Try border-waits <span aria-hidden="true">→</span></a>
+    <a class="btn" href="/#projects"><span aria-hidden="true">←</span> All projects</a>
+  </nav>
+</Article>
+
+<style is:global>
+  .lede-sm { font-size: var(--fs-lg); line-height: 1.5; color: var(--soft); max-width: 60ch; }
+  .story-actions, .next { display: flex; flex-wrap: wrap; gap: var(--s3); }
+  .next { margin-top: var(--s7); }
+</style>

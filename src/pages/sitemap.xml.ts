@@ -8,6 +8,7 @@ const pages = [
   { path: '/projects/signal-lab/investigate/', priority: '0.5' },
   { path: '/mcp/', priority: '0.8' },
   { path: '/projects/neuronet-arena/', priority: '0.8' },
+  { path: '/projects/border-waits/', priority: '0.8' },
   { path: '/signal-lab/', priority: '0.7' },
   { path: '/mcp-surface/', priority: '0.7' },
   { path: '/neuronet-arena/', priority: '0.7' },
