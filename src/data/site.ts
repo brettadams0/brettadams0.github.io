@@ -83,6 +83,7 @@ export const projects: Project[] = [
     href: '/neuronet-arena/',
     links: [
       { label: 'Live demo', href: '/neuronet-arena/', kind: 'demo' },
+      { label: 'Case study', href: '/projects/neuronet-arena/', kind: 'case' },
       { label: 'Source', href: 'https://github.com/brettadams0/neuronet-arena', kind: 'source' },
     ],
     img: { ...img('neuronet-arena', 1280, 1280, 800, '/assets/img/neuronet-arena.webp'), alt: 'neuronet-arena at generation 202: agents foraging among food and hazards.' },
