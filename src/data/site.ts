@@ -175,14 +175,15 @@ export const jobs: Job[] = [
     where: 'Oakville, ON',
     current: true,
     points: [
-      'Maintain and debug production data pipelines built with Apache Airflow on Cloud Composer.',
-      'Write and deploy SQL for production tables in BigQuery.',
+      'Own production pipeline changes on BigQuery and Apache Airflow end to end: root-cause write-up, SQL and DAG fix, staging validation and production checks.',
+      'Built and maintain a multi-source data-retirement system used to safely decommission unused warehouse tables and pipelines.',
     ],
     more: [
-      'Ship changes through GitLab CI/CD, from branch development through staging validation to production.',
-      'Carry out live table migrations against fixed infrastructure deadlines, coordinating with dataset owners.',
+      'Designed the team’s tiered review gate for GitLab merge requests, with a stricter path for production data changes.',
+      'Run live schema changes and table migrations against fixed infrastructure deadlines, coordinating with dataset owners.',
+      'Automate team workflow in Python (with unit tests) and PowerShell, integrating issue-tracker, service-desk and Google Workspace APIs.',
     ],
-    chips: ['BigQuery', 'Apache Airflow', 'Cloud Composer', 'SQL', 'GitLab CI/CD'],
+    chips: ['BigQuery', 'Apache Airflow', 'Cloud Composer', 'SQL', 'Python', 'GitLab CI/CD'],
   },
   {
     id: 'mto',
@@ -226,8 +227,8 @@ export const jobs: Job[] = [
 ];
 
 export const skills: { group: string; items: string[] }[] = [
-  { group: 'Languages', items: ['Python', 'SQL', 'TypeScript', 'JavaScript', 'PHP', 'Java', 'C++', 'C'] },
-  { group: 'Data', items: ['BigQuery', 'Apache Airflow', 'Cloud Composer', 'Azure Databricks', 'dbt', 'DuckDB', 'Power BI', 'MySQL'] },
+  { group: 'Languages', items: ['Python', 'SQL', 'TypeScript', 'JavaScript', 'PHP', 'Java', 'C++', 'C', 'PowerShell'] },
+  { group: 'Data', items: ['BigQuery', 'Apache Airflow', 'Cloud Composer', 'Azure Databricks', 'dbt', 'DuckDB', 'Power BI', 'Superset', 'MySQL'] },
   { group: 'Tools', items: ['Git', 'GitLab CI/CD', 'GitHub Actions', 'Docker', 'Linux', 'Node.js'] },
   { group: 'Web', items: ['Flask', 'React', 'Next.js', 'HTML/CSS'] },
 ];
