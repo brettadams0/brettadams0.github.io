@@ -1,5 +1,6 @@
 ---
 import Base from './Base.astro';
+import { SITE_URL, person } from '../data/site';
 
 interface Props {
   title: string;
@@ -12,8 +13,31 @@ interface Props {
   image?: string;
 }
 const { title, description, path, eyebrow, heading, back = { label: 'All projects', href: '/#projects' }, jsonld, image } = Astro.props;
+const url = new URL(path, SITE_URL).href;
+// Article + breadcrumb structured data for every case study, unless a page supplies its own.
+const graph = jsonld ?? {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: heading,
+      description,
+      url,
+      mainEntityOfPage: url,
+      author: { '@type': 'Person', name: person.name, url: `${SITE_URL}/` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { name: 'Home', item: `${SITE_URL}/` },
+        ...(back.href.startsWith('/#') ? [] : [{ name: back.label, item: new URL(back.href, SITE_URL).href }]),
+        { name: title, item: url },
+      ].map((crumb, i) => ({ '@type': 'ListItem', position: i + 1, ...crumb })),
+    },
+  ],
+};
 ---
-<Base title={title} description={description} path={path} type="article" jsonld={jsonld} image={image}>
+<Base title={title} description={description} path={path} type="article" jsonld={graph} image={image}>
   <article class="article wrap">
     <nav class="crumbs" aria-label="Breadcrumb">
       <a href={back.href}><span aria-hidden="true">←</span> {back.label}</a>
