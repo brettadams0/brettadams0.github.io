@@ -1,0 +1,74 @@
+---
+import Article from '../../../layouts/Article.astro';
+---
+<Article
+  title="neuronet-arena: does it actually evolve?"
+  description="Forty agents with hand-written neural networks evolve to forage. A controlled experiment shows selection is doing the work, and the browser demo matches the Python engine bit for bit."
+  path="/projects/neuronet-arena/"
+  eyebrow="Case study · simulation + testing"
+  heading="neuronet-arena"
+>
+  <Fragment slot="intro">
+    <p class="lede-sm">An evolution simulator. The network, the genetic algorithm and the random number generator are written by hand in Python, then again in JavaScript for a demo that reproduces the Python engine exactly.</p>
+    <div class="story-actions">
+      <a class="btn btn-primary" href="/neuronet-arena/">Open the live demo</a>
+      <a class="btn" href="https://github.com/brettadams0/neuronet-arena">Source</a>
+    </div>
+    <ul class="chips" role="list"><li>Python</li><li>JavaScript</li><li>No ML libraries</li><li>Golden-trace tests</li></ul>
+  </Fragment>
+  <figure>
+    <img src="/assets/img/neuronet-arena-800.webp" srcset="/assets/img/neuronet-arena-800.webp 800w, /assets/img/neuronet-arena.webp 1280w" sizes="(min-width: 46rem) 736px, calc(100vw - 2rem)" fetchpriority="high" width="1280" height="800" alt="neuronet-arena at generation 202: agents foraging among food and hazards." decoding="async">
+    <figcaption>The live demo, starting from a population trained in Python.</figcaption>
+  </figure>
+
+  <h2>The first version didn't evolve</h2>
+  <p>The first version of this project couldn't say whether it evolved, and it didn't. The simulation rebuilt the population from fresh random networks every generation, so 0 of 20 evolved brains survived into the next one. Food never ran out either, so an agent could score by circling one node. Both bugs are pinned by regression tests now.</p>
+
+  <h2>Measuring it</h2>
+  <p><code>neuronet experiment</code> runs every seed twice with the same config and the same starting population: once normally, and once with selection switched off (parents drawn at random, no elitism, fitness never read). Any gap between the two runs is selection's doing.</p>
+  <figure>
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="/assets/img/neuronet-fitness-dark.svg">
+      <img src="/assets/img/neuronet-fitness-light.svg" width="880" height="460" loading="lazy" decoding="async" alt="Food eaten per agent by generation over 150 generations and 8 seeds. With selection on, the median climbs from about 1 to 10 by generation 23 and levels off around 13. With selection off it stays around 1.">
+    </picture>
+    <figcaption>8 seeds × 150 generations, from the committed <code>results/experiment.json</code>.</figcaption>
+  </figure>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Selection on versus off">
+    <table>
+      <thead><tr><th scope="col">8 seeds × 150 generations</th><th scope="col">Selection on</th><th scope="col">Selection off</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Food per agent, generation 0</th><td>1.07</td><td>1.07</td></tr>
+        <tr><th scope="row">Food per agent, last 10 generations</th><td>13.39</td><td>0.98</td></tr>
+        <tr><th scope="row">Agents alive at the end, of 40</th><td>33.0</td><td>13.4</td></tr>
+        <tr><th scope="row">Hazard steps per food eaten</th><td>0.52</td><td>3.56</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Evolved populations eat 13.7× as much and mostly stay alive. Hazard avoidance comes along without being rewarded directly: touching a hazard costs energy, and energy is time to eat. The simulation is deterministic, so the same command reproduces the data exactly.</p>
+
+  <h2>Two engines, one set of bits</h2>
+  <p>IEEE 754 pins down <code>+ − × ÷</code> and <code>sqrt</code>, but not <code>tanh</code>, <code>exp</code>, <code>sin</code> or <code>cos</code>. On 200,000 random inputs, CPython and Node returned different doubles for <code>exp</code> 19,930 times. A cross-engine test would then need a tolerance, and a tolerance can't tell rounding noise from a porting bug. So the hot path only uses operations IEEE guarantees:</p>
+  <ul>
+    <li>A shared PRNG (xoshiro128** seeded by splitmix32), all 32-bit integer arithmetic.</li>
+    <li>Softsign instead of tanh: one add, one abs, one divide.</li>
+    <li>Turning without angles: the heading is a unit vector rotated by the Cayley transform.</li>
+    <li>Explicit summation loops, because Python 3.12's <code>sum()</code> compensates for float error and a JavaScript loop doesn't.</li>
+  </ul>
+  <p>A golden trace written by Python (RNG output, a forward pass, every agent's state every 20 steps, and the genomes after four generations) is checked with exact equality by both test suites. The demo page replays generation 200 of the trained population and checks on screen that it scores exactly what Python recorded.</p>
+  <p>The payoff is speed: a generation takes about half a second in CPython and under 20 ms in V8, so the browser can fast-forward while Python stays the reference.</p>
+
+  <nav slot="after" class="next" aria-label="Next">
+    <a class="btn btn-primary" href="/neuronet-arena/">Try neuronet-arena <span aria-hidden="true">→</span></a>
+    <a class="btn" href="/#projects"><span aria-hidden="true">←</span> All projects</a>
+  </nav>
+</Article>
+
+<style is:global>
+  .lede-sm { font-size: var(--fs-lg); line-height: 1.5; color: var(--soft); max-width: 60ch; }
+  .story-actions, .next { display: flex; flex-wrap: wrap; gap: var(--s3); }
+  .next { margin-top: var(--s7); }
+  .table-wrap { overflow-x: auto; }
+  .table-wrap table { border-collapse: collapse; width: 100%; font-size: var(--fs-sm); }
+  .table-wrap th, .table-wrap td { padding: var(--s2) var(--s3); border-bottom: 1px solid var(--border); text-align: left; }
+  .table-wrap td { text-align: right; font-variant-numeric: tabular-nums; }
+</style>

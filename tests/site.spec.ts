@@ -5,7 +5,7 @@ import path from 'node:path';
 const live = !!process.env.BASE_URL;
 
 // Our own pages, and the live demos published alongside them.
-const pages = ['/', '/mcp/', '/projects/signal-lab/', '/projects/signal-lab/investigate/'];
+const pages = ['/', '/mcp/', '/projects/neuronet-arena/', '/projects/signal-lab/', '/projects/signal-lab/investigate/'];
 const demos = ['/signal-lab/', '/mcp-surface/', '/neuronet-arena/', '/border-waits/', '/mazefinder/'];
 
 /**
