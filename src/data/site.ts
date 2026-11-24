@@ -99,6 +99,7 @@ export const projects: Project[] = [
     href: '/border-waits/',
     links: [
       { label: 'Live demo', href: '/border-waits/', kind: 'demo' },
+      { label: 'Case study', href: '/projects/border-waits/', kind: 'case' },
       { label: 'Source', href: 'https://github.com/brettadams0/border-waits-pipeline', kind: 'source' },
     ],
     img: { ...img('border-waits'), alt: 'border-waits: the latest wait estimates for the Windsor–Detroit crossings, by direction.' },
