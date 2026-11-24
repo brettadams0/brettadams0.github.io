@@ -94,6 +94,19 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v5
 
+      # Tell IndexNow (Bing, Yandex and others) every URL in the sitemap changed. The key file is public by
+      # design (public/<key>.txt). A failed ping never fails the deploy.
+      - name: Ping IndexNow
+        continue-on-error: true
+        env:
+          KEY: 7ef5d31ee0a01fe6d43f0c7abaae1661
+        run: |
+          urls=$(curl -fsS https://brettadams.ca/sitemap.xml | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g' | jq -R . | jq -sc .)
+          body=$(jq -nc --arg key "$KEY" --argjson urls "$urls" \
+            '{host:"brettadams.ca", key:$key, keyLocation:"https://brettadams.ca/\($key).txt", urlList:$urls}')
+          curl -sS -o /dev/null -w 'IndexNow HTTP %{http_code}\n' -H 'Content-Type: application/json; charset=utf-8' \
+            -d "$body" https://api.indexnow.org/indexnow
+
   # public/border-waits/ is a verbatim copy of border-waits-pipeline's web/. A change to the copy has to
   # match that repository's main branch. When this change doesn't touch the copy, drift is only reported.
   border-waits-sync:

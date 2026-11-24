@@ -79,6 +79,18 @@ test('homepage has Person JSON-LD', async ({ page }) => {
   expect(person.url).toBe('https://brettadams.ca/');
 });
 
+test('case studies have Article and BreadcrumbList JSON-LD', async ({ page }) => {
+  for (const [path, depth] of [['/mcp/', 2], ['/projects/signal-lab/investigate/', 3]] as const) {
+    await page.goto(path);
+    const data = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent())!);
+    const types = data['@graph'].map((n: { '@type': string }) => n['@type']);
+    expect(types).toEqual(['Article', 'BreadcrumbList']);
+    const crumbs = data['@graph'][1].itemListElement;
+    expect(crumbs).toHaveLength(depth);
+    expect(crumbs.at(-1).item).toBe(`https://brettadams.ca${path}`);
+  }
+});
+
 test('section navigation scrolls to each section', async ({ page, isMobile }) => {
   await page.goto('/');
   const nav = page.getByRole('navigation', { name: isMobile ? 'Sections' : 'Main' });
