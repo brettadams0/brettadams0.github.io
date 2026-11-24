@@ -79,6 +79,16 @@ test('homepage has Person JSON-LD', async ({ page }) => {
   expect(person.url).toBe('https://brettadams.ca/');
 });
 
+test('every page ships a Content-Security-Policy without unsafe-inline', async ({ page }) => {
+  for (const path of ['/', '/mcp/', '/projects/signal-lab/', '/projects/signal-lab/investigate/', '/404.html']) {
+    await page.goto(path);
+    const csp = await page.locator('meta[http-equiv="content-security-policy"]').getAttribute('content');
+    expect(csp).toContain("default-src 'self'");
+    expect(csp).toContain("object-src 'none'");
+    expect(csp).not.toContain('unsafe-inline');
+  }
+});
+
 test('case studies have Article and BreadcrumbList JSON-LD', async ({ page }) => {
   for (const [path, depth] of [['/mcp/', 2], ['/projects/signal-lab/investigate/', 3]] as const) {
     await page.goto(path);
